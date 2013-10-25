@@ -170,8 +170,8 @@ void main() {
     INTCON3bits.INT1F   = 0; //clear INT1 flag
     INTCON3bits.INT1IP  = 0; //low priority
     INTCON2bits.INT3IP  = 0; //low priority
-    INTCON2bits.INTEDG1 = 0; //INT1 interrupts on falling edge ?????
-    INTCON2bits.INTEDG3 = 0; //INT3 interrupts on falling edge ?????
+    INTCON2bits.INTEDG1 = 1; //INT1 interrupts on falling edge ?????
+    INTCON2bits.INTEDG3 = 1; //INT3 interrupts on falling edge ?????
     
     //////////////////////////////////////////////
     
