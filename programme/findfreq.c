@@ -1,36 +1,45 @@
-/*
- Auteurs : Lena Peschke et Mélanie Sedda
- ------------------------------------------------------
- Objectif : Trouver la véritable fréquence de notre pic
- ------------------------------------------------------
- Stratégie :
+/******************************************************************************
+ 
+ FICHIER : findfreq.c
+ ------------------------------------------------------------------------------
+ AUTEURS : Lena Peschke et Mélanie Sedda
+ ------------------------------------------------------------------------------
+ OBJECTIFS : Trouver la véritable fréquence de notre pic
+ ------------------------------------------------------------------------------
+ STRATEGIE :
  
  Nous avons configuré le timer1 pour qu'il overflow après 2 secondes.
  L'idée de base est alors de mesurer le nombre de fois que le timer0
- overflow pendant ce laps de temps. Nous estimerons alors que
- nombre d'instructions par seconde = overflows * 2^16 / 2
- et f = 4 * nombre d'instructions par seconde
+ overflow pendant ce laps de temps. Nous estimerons alors que :
+ 
+    (nombre d'instructions par seconde) = overflows * 2^16 / 2 et
+    f = 4 * (nombre d'instructions par seconde)
  
  Afin d'avoir une erreur relative la plus petite possible nous
- -  n'avons pas utilisé de prescaler sur le timer0
- -  avons effectué notre mesure sur plus de 2 secondes
+    - n'avons pas utilisé de prescaler sur le timer0,
+    - avons effectué notre mesure sur plus de 2 secondes.
+ 
  En effet,
- f_exacte           = 4*(overflows*2^16+value)/N où value est la valeur qui se trouve dans le
- timer0 pile au moment de l'overflow du timer1
- N est le temps de notre mesure en secondes
- f_mesuree          = 4*(overflows*2^16)/N
- erreur relative    = |f_exacte - f_mesuree|/f_exacte
- = value/(overflows*2^16+value)
- donc notre erreur relative sera plus petite lorsque overflows est plus grand.
- C'est pourquoi utiliser un prescaler sur le timer0 serait contreproductif (cela
- diviserait le nombre d'overflows par la valeur du prescaler) et augmenter le temps
- de mesurer est intéressant (cela augmentera le nombre d'overflows).
+    f_exacte = 4 * (overflows * 2^16 + value) / N
+    où  - value est la valeur qui se trouve dans le timer0 pile au moment de l'overflow du timer1
+        - N est le temps de notre mesure en secondes
+ 
+    f_mesuree = 4 * (overflows * 2^16) / N
+    (erreur relative) = |f_exacte - f_mesuree| / f_exacte
+                      = value / (overflows * 2^16 + value)
+ 
+ Notre erreur relative sera donc plus petite lorsque overflows est plus grand.
+ C'est pourquoi utiliser un prescaler sur le timer0 serait contreproductif
+ (cela diviserait le nombre d'overflows par la valeur du prescaler) et
+ augmenter le temps de mesure est intéressant (cela augmentera le nombre
+ d'overflows).
  
  Nous avons pris le parti de ne pas mesurer la valeur se trouvant dans
- le timer0 après l'overflows du timer1 parce que cette valeur est négligeable.
- L'erreur relative maximale en ne la mesurant pas est en effet <= 1/(overflows+1).
- De plus, on ne trouverait de toute façon pas précisément la valeur qui se trouvait
- dans le timer0 pile au moment de l'overflow.
+ le timer0 après l'overflow du timer1 parce que cette valeur est négligeable.
+ L'erreur relative maximale en ne la mesurant pas est en effet
+ <= 1 / (overflows + 1).
+ De plus, on ne trouverait de toute façon pas précisément la valeur qui se
+ trouvait dans le timer0 pile au moment de l'overflow.
  
  Nous avons effectué 3 mesures sur un laps de temps de 10 minutes et avons
  trouvé qu'en moyenne
@@ -38,9 +47,9 @@
  le nombre d'incrémentation/s   = 95,366 * 2^16      = 6249906,176
  la fréquence du PIC            = 6249906,176 * 4    = 24999624 Hz
  ce qui représente un écart de 0.0015% par rapport à la fréquence de 25 MHz
- annoncée dans la doc du PIC.
+ annoncée dans la documentation du PIC.
  
- */
+ *****************************************************************************/
 
 #define __18F97J60
 #define __SDCC__
@@ -56,16 +65,20 @@
 void DisplayString(BYTE pos, char* text);
 size_t strlcpy(char *dst, const char *src, size_t siz);
 
-// strings pour le LCD
+/* strings pour le LCD */
 char s[16];
 char t[16];
-// stockage de la valeur dans timer0
+
+/* stockage de la valeur dans timer0 */
 unsigned int low;
 unsigned int high;
 unsigned int value;
-// nombre d'overflows du timer0
+
+/* nombre d'overflows du timer0 */
 unsigned int overflows = 0;
-// nombre de secondes qu'on veut laisser passer (doit être un nombre pair) et de secondes déjà passées
+
+/* nombre de secondes qu'on veut laisser passer (doit être un nombre pair)
+ * et de secondes déjà passées */
 unsigned int N = 600;
 unsigned int seconds = 0;
 
@@ -88,7 +101,7 @@ void timer_overflow() interrupt 1 {
             sprintf(t, "%u", overflows);
             DisplayString (0, t);
             
-            // on stop les timers
+            // on stoppe les timers
             T1CONbits.TMR1ON = 0;
             T0CONbits.TMR0ON = 0;
         }
@@ -123,7 +136,9 @@ void main(void) {
     PIR1bits.TMR1IF    	= 0; //clear Timer1 overflow bit
 	IPR1bits.TMR1IP		= 1; //high priority
 	T1CONbits.T1RUN     = 0; //device clock is derived from another source
-	T1CONbits.TMR1CS    = 1; //external clock from RC0/T1OSO/T13CKI pin (on the rising edge)
+	T1CONbits.TMR1CS    = 1; //external clock from RC0/T1OSO/T13CKI pin
+                             //(on the rising edge)
+    
 	T1CONbits.T1OSCEN 	= 1; //timer1 oscillator is enabled
 	T1CONbits.T1CKPS1 	= 0; //disable prescaling
 	T1CONbits.T1CKPS0 	= 0; //disable prescaling
@@ -151,7 +166,6 @@ void DisplayString(BYTE pos, char* text)
     
 }
 #endif
-
 
 /*-------------------------------------------------------------------------
  *
