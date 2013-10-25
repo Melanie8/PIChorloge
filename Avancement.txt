@@ -1,0 +1,12 @@
+A FAIRE
+
+lena.c :
+- il faut tester si l'alarme et le snooze font bien ce qu'on leur demande, dans tous les cas possibles
+- il faut ajouter ce qu'il y a dans melanie.c (ce sera le plus simple, j'ai touché à toutes les fonctions je pense)
+- utiliser les TYPEDEF au lieu des int etc.
+- commenter proprement
+- embellir la main
+- tester sur plusieurs heures
+
+
+SINON, tout devrait y être :)

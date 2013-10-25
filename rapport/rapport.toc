@@ -1,0 +1,4 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Documentation pour l'utilisateur}{1}
+\contentsline {section}{\numberline {2}Documentation pour l'installateur}{1}
+\contentsline {section}{\numberline {3}Documentation pour le programmeur}{1}
