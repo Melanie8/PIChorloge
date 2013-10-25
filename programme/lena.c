@@ -38,11 +38,11 @@
 #define SNOOZE 11
 
 #define SNOOZE_MINUTE 5
-#define SNOOZE_MAX 12 // tester avec une autre valeur ##
+#define SNOOZE_MAX 12
 
 /* OPS est le nombre d'overflows du timer0 en 1 seconde, que nous avons mesuré
- * dans findfreq. Pour être plus précis, toutes les PER pseudosecondes (càd après
- * PER*OPS overflows), il faudra retirer CUT nombre d'overflows
+ * dans findfreq. Pour être plus précis, toutes les PER pseudosecondes (càd
+ * après PER*OPS overflows), il faudra retirer CUT nombre d'overflows
  */
 #define OPS 95
 #define PER 5
@@ -170,8 +170,8 @@ void main() {
     INTCON3bits.INT1F   = 0; //clear INT1 flag
     INTCON3bits.INT1IP  = 0; //low priority
     INTCON2bits.INT3IP  = 0; //low priority
-    //INTCON2bits.INTEDG1 = 0; //INT1 interrupts on falling edge ?????
-    //INTCON2bits.INTEDG3 = 0; //INT3 interrupts on falling edge ?????
+    INTCON2bits.INTEDG1 = 0; //INT1 interrupts on falling edge ?????
+    INTCON2bits.INTEDG3 = 0; //INT3 interrupts on falling edge ?????
     
     //////////////////////////////////////////////
     
