@@ -208,12 +208,6 @@ void inc_tsec(BYTE val)
     tsec = (tsec + val) % 60;
 }
 
-/* Fonction qui incrémente les heures du réveil */
-void inc_ahour(BYTE val)
-{
-    ahour = (ahour + val) % 24;
-}
-
 /* Fonction qui incrémente les minutes du réveil */
 void inc_amin(BYTE val)
 {
@@ -221,34 +215,10 @@ void inc_amin(BYTE val)
     BYTE mod_amin;
     mod_amin = (amin + val) / 60;
     if (mod_amin) {
-        inc_ahour(mod_amin);
+        ahour = (ahour + mod_amin) % 24;
     }
     
     amin = (amin + val) % 60;
-}
-
-/* Fonction qui décrémente les heures de l'alarme */
-void dec_ahour(BYTE val)
-{
-    // vérifie s'il faut faire une boucle sur les heures
-    if (val > ahour) {
-        ahour = (24+ahour) - val;
-    } else {
-        ahour = ahour - val;
-    }
-
-}
-
-/* Fonction qui décrémente les minutes de l'alarme */
-void dec_amin(BYTE val)
-{
-    // vérifie s'il faut décrémenter les heures
-    if (val > amin) {
-        dec_ahour(1);
-        amin = (60+amin) - val;
-    } else {
-        amin  = amin - val;
-    }
 }
 
 /* Fonction qui met l'heure à jour et lance le réveil */
@@ -346,11 +316,11 @@ void button(void)
                 LATJbits.LATJ2 = 0; // switch LED 3 off
                 whereami = DISPLAY;
                 break;
-            case SNOOZE: // STOP // à vérifier ##
+            case SNOOZE: // STOP // verifier ##
+                stop_ringing = 1; // le réveil ne doit plus sonner
                 amin = amin_o; // remet le réveil
                 ahour = ahour_o;
                 snooze = 0;
-                stop_ringing = 0; // le réveil doit sonner à nouveau 
                 LATJbits.LATJ1 = 0; // switch LED 2 off
                 LATJbits.LATJ2 = 0; // switch LED 3 off
                 whereami = DISPLAY;
