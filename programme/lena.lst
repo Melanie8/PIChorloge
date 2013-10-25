@@ -1,6 +1,6 @@
 gplink-1.2.0 #980 (Oct 17 2013)
 Copyright (c) 1998-2013 gputils project
-Listing File Generated: 10-25-2013  16:41:52
+Listing File Generated: 10-25-2013  16:58:01
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 2.9.4 #5595 (Oct 17 2013) (Mac OS X ppc)
-                                           ; This file was generated Fri Oct 25 16:39:29 2013
+                                           ; This file was generated Fri Oct 25 16:58:01 2013
                                            ;--------------------------------------------------------
                                            ; PIC16 port for the Microchip 16-bit core micros
                                            ;--------------------------------------------------------
@@ -627,33 +627,37 @@ Address  Value    Disassembly              Source
 002bfa   9cf0     bcf     0xf0, 0x6, 0     	BCF	_INTCON3bits, 6
                                            ;	.line	172; lena.c	INTCON2bits.INT3IP  = 0; //low priority
 002bfc   92f1     bcf     0xf1, 0x1, 0     	BCF	_INTCON2bits, 1
+                                           ;	.line	173; lena.c	INTCON2bits.INTEDG1 = 1; //INT1 interrupts on falling edge ?????
+002bfe   8af1     bsf     0xf1, 0x5, 0     	BSF	_INTCON2bits, 5
+                                           ;	.line	174; lena.c	INTCON2bits.INTEDG3 = 1; //INT3 interrupts on falling edge ?????
+002c00   86f1     bsf     0xf1, 0x3, 0     	BSF	_INTCON2bits, 3
                                            ;	.line	178; lena.c	LCDInit();
-002bfe   ecc6     call    0x138c, 0        	CALL	_LCDInit
-002c00   f009
+002c02   ecc6     call    0x138c, 0        	CALL	_LCDInit
+002c04   f009
                                            ;	.line	179; lena.c	whereami = TIME_MENU;
-002c02   0e01     movlw   0x1              	MOVLW	0x01
-002c04   010f     movlb   0xf              	BANKSEL	_whereami
-002c06   6f4c     movwf   0x4c, 0x1        	MOVWF	_whereami, B
-002c08   010f     movlb   0xf              	BANKSEL	_chandelle
+002c06   0e01     movlw   0x1              	MOVLW	0x01
+002c08   010f     movlb   0xf              	BANKSEL	_whereami
+002c0a   6f4c     movwf   0x4c, 0x1        	MOVWF	_whereami, B
+002c0c   010f     movlb   0xf              	BANKSEL	_chandelle
                                            ;	.line	181; lena.c	chandelle++; // ##### BIZARRE ####
-002c0a   2b41     incf    0x41, 0x1, 0x1   	INCF	_chandelle, F, B
+002c0e   2b41     incf    0x41, 0x1, 0x1   	INCF	_chandelle, F, B
                                            ;	.line	183; lena.c	T0CONbits.TMR0ON = 1; // start timer0
-002c0c   8ed5     bsf     0xd5, 0x7, 0     	BSF	_T0CONbits, 7
+002c10   8ed5     bsf     0xd5, 0x7, 0     	BSF	_T0CONbits, 7
                                            _00135_DS_:
                                            ;	.line	185; lena.c	time();
-002c0e   ec9c     call    0x1d38, 0        	CALL	_time
-002c10   f00e
+002c12   ec9c     call    0x1d38, 0        	CALL	_time
+002c14   f00e
                                            ;	.line	186; lena.c	manageseconds();
-002c12   ec7a     call    0x2cf4, 0        	CALL	_manageseconds
-002c14   f016
+002c16   ec7c     call    0x2cf8, 0        	CALL	_manageseconds
+002c18   f016
                                            ;	.line	187; lena.c	button();
-002c16   ecf4     call    0x15e8, 0        	CALL	_button
-002c18   f00a
+002c1a   ecf4     call    0x15e8, 0        	CALL	_button
+002c1c   f00a
                                            ;	.line	188; lena.c	refresh_lcd();
-002c1a   ec29     call    0x852, 0         	CALL	_refresh_lcd
-002c1c   f004
-002c1e   d7f7     bra     0x2c0e           	BRA	_00135_DS_
-002c20   0012     return  0                	RETURN	
+002c1e   ec29     call    0x852, 0         	CALL	_refresh_lcd
+002c20   f004
+002c22   d7f7     bra     0x2c12           	BRA	_00135_DS_
+002c24   0012     return  0                	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_lena__strlcpy	code
@@ -780,7 +784,7 @@ Address  Value    Disassembly              Source
 001920   c011     movff   0x11, 0xff3      	MOVFF	r0x11, PRODL
 001922   fff3
 001924   5012     movf    0x12, 0, 0       	MOVF	r0x12, W
-001926   ecde     call    0x2dbc, 0        	CALL	__gptrget1
+001926   ece0     call    0x2dc0, 0        	CALL	__gptrget1
 001928   f016
 00192a   6e15     movwf   0x15, 0          	MOVWF	r0x15
 00192c   2a10     incf    0x10, 0x1, 0     	INCF	r0x10, F
@@ -795,7 +799,7 @@ Address  Value    Disassembly              Source
 00193e   c001     movff   0x1, 0xff3       	MOVFF	r0x01, PRODL
 001940   fff3
 001942   5002     movf    0x2, 0, 0        	MOVF	r0x02, W
-001944   ec14     call    0x2e28, 0        	CALL	__gptrput1
+001944   ec16     call    0x2e2c, 0        	CALL	__gptrput1
 001946   f017
 001948   2a00     incf    0, 0x1, 0        	INCF	r0x00, F
 00194a   b0d8     btfsc   0xd8, 0, 0       	BTFSC	STATUS, 0
@@ -839,7 +843,7 @@ Address  Value    Disassembly              Source
 00198a   c009     movff   0x9, 0xff3       	MOVFF	r0x09, PRODL
 00198c   fff3
 00198e   500a     movf    0xa, 0, 0        	MOVF	r0x0a, W
-001990   ec14     call    0x2e28, 0        	CALL	__gptrput1
+001990   ec16     call    0x2e2c, 0        	CALL	__gptrput1
 001992   f017
                                            _00409_DS_:
                                            ;	.line	583; lena.c	while (*s++)
@@ -855,7 +859,7 @@ Address  Value    Disassembly              Source
 0019a4   c001     movff   0x1, 0xff3       	MOVFF	r0x01, PRODL
 0019a6   fff3
 0019a8   5002     movf    0x2, 0, 0        	MOVF	r0x02, W
-0019aa   ecde     call    0x2dbc, 0        	CALL	__gptrget1
+0019aa   ece0     call    0x2dc0, 0        	CALL	__gptrget1
 0019ac   f016
 0019ae   6e06     movwf   0x6, 0           	MOVWF	r0x06
 0019b0   2a00     incf    0, 0x1, 0        	INCF	r0x00, F
@@ -2296,41 +2300,41 @@ Address  Value    Disassembly              Source
                                            S_lena__manageseconds	code
                                            _manageseconds:
                                            ;	.line	305; lena.c	void manageseconds() {
-002cf4   cfd9     movff   0xfd9, 0xfe5     	MOVFF	FSR2L, POSTDEC1
-002cf6   ffe5
-002cf8   cfe1     movff   0xfe1, 0xfd9     	MOVFF	FSR1L, FSR2L
-002cfa   ffd9
-002cfc   010f     movlb   0xf              	BANKSEL	(_pseudoseconds + 1)
+002cf8   cfd9     movff   0xfd9, 0xfe5     	MOVFF	FSR2L, POSTDEC1
+002cfa   ffe5
+002cfc   cfe1     movff   0xfe1, 0xfd9     	MOVFF	FSR1L, FSR2L
+002cfe   ffd9
+002d00   010f     movlb   0xf              	BANKSEL	(_pseudoseconds + 1)
                                            ;	.line	306; lena.c	if (pseudoseconds >= PER) {
-002cfe   5154     movf    0x54, 0, 0x1     	MOVF	(_pseudoseconds + 1), W, B
-002d00   0f80     addlw   0x80             	ADDLW	0x80
-002d02   0f80     addlw   0x80             	ADDLW	0x80
-002d04   e103     bnz     0x2d0c           	BNZ	_00250_DS_
-002d06   0e05     movlw   0x5              	MOVLW	0x05
-002d08   010f     movlb   0xf              	BANKSEL	_pseudoseconds
-002d0a   5d53     subwf   0x53, 0, 0x1     	SUBWF	_pseudoseconds, W, B
+002d02   5154     movf    0x54, 0, 0x1     	MOVF	(_pseudoseconds + 1), W, B
+002d04   0f80     addlw   0x80             	ADDLW	0x80
+002d06   0f80     addlw   0x80             	ADDLW	0x80
+002d08   e103     bnz     0x2d10           	BNZ	_00250_DS_
+002d0a   0e05     movlw   0x5              	MOVLW	0x05
+002d0c   010f     movlb   0xf              	BANKSEL	_pseudoseconds
+002d0e   5d53     subwf   0x53, 0, 0x1     	SUBWF	_pseudoseconds, W, B
                                            _00250_DS_:
-002d0c   e30c     bnc     0x2d26           	BNC	_00247_DS_
+002d10   e30c     bnc     0x2d2a           	BNC	_00247_DS_
                                            ;	.line	307; lena.c	overflows = overflows - CUT;
-002d0e   0efe     movlw   0xfe             	MOVLW	0xfe
-002d10   010f     movlb   0xf              	BANKSEL	_overflows
-002d12   2751     addwf   0x51, 0x1, 0x1   	ADDWF	_overflows, F, B
-002d14   e202     bc      0x2d1a           	BC	_10389_DS_
-002d16   010f     movlb   0xf              	BANKSEL	(_overflows + 1)
-002d18   0752     decf    0x52, 0x1, 0x1   	DECF	(_overflows + 1), F, B
+002d12   0efe     movlw   0xfe             	MOVLW	0xfe
+002d14   010f     movlb   0xf              	BANKSEL	_overflows
+002d16   2751     addwf   0x51, 0x1, 0x1   	ADDWF	_overflows, F, B
+002d18   e202     bc      0x2d1e           	BC	_10389_DS_
+002d1a   010f     movlb   0xf              	BANKSEL	(_overflows + 1)
+002d1c   0752     decf    0x52, 0x1, 0x1   	DECF	(_overflows + 1), F, B
                                            _10389_DS_:
                                            ;	.line	308; lena.c	pseudoseconds = pseudoseconds - PER;
-002d1a   0efb     movlw   0xfb             	MOVLW	0xfb
-002d1c   010f     movlb   0xf              	BANKSEL	_pseudoseconds
-002d1e   2753     addwf   0x53, 0x1, 0x1   	ADDWF	_pseudoseconds, F, B
-002d20   e202     bc      0x2d26           	BC	_20390_DS_
-002d22   010f     movlb   0xf              	BANKSEL	(_pseudoseconds + 1)
-002d24   0754     decf    0x54, 0x1, 0x1   	DECF	(_pseudoseconds + 1), F, B
+002d1e   0efb     movlw   0xfb             	MOVLW	0xfb
+002d20   010f     movlb   0xf              	BANKSEL	_pseudoseconds
+002d22   2753     addwf   0x53, 0x1, 0x1   	ADDWF	_pseudoseconds, F, B
+002d24   e202     bc      0x2d2a           	BC	_20390_DS_
+002d26   010f     movlb   0xf              	BANKSEL	(_pseudoseconds + 1)
+002d28   0754     decf    0x54, 0x1, 0x1   	DECF	(_pseudoseconds + 1), F, B
                                            _20390_DS_:
                                            _00247_DS_:
-002d26   cfe4     movff   0xfe4, 0xfd9     	MOVFF	PREINC1, FSR2L
-002d28   ffd9
-002d2a   0012     return  0                	RETURN	
+002d2a   cfe4     movff   0xfe4, 0xfd9     	MOVFF	PREINC1, FSR2L
+002d2c   ffd9
+002d2e   0012     return  0                	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_lena__time	code
@@ -2523,95 +2527,95 @@ Address  Value    Disassembly              Source
                                            S_lena__dec_amin	code
                                            _dec_amin:
                                            ;	.line	245; lena.c	void dec_amin(BYTE val)
-002c22   cfd9     movff   0xfd9, 0xfe5     	MOVFF	FSR2L, POSTDEC1
-002c24   ffe5
-002c26   cfe1     movff   0xfe1, 0xfd9     	MOVFF	FSR1L, FSR2L
-002c28   ffd9
-002c2a   c000     movff   0, 0xfe5         	MOVFF	r0x00, POSTDEC1
-002c2c   ffe5
-002c2e   c001     movff   0x1, 0xfe5       	MOVFF	r0x01, POSTDEC1
+002c26   cfd9     movff   0xfd9, 0xfe5     	MOVFF	FSR2L, POSTDEC1
+002c28   ffe5
+002c2a   cfe1     movff   0xfe1, 0xfd9     	MOVFF	FSR1L, FSR2L
+002c2c   ffd9
+002c2e   c000     movff   0, 0xfe5         	MOVFF	r0x00, POSTDEC1
 002c30   ffe5
-002c32   0e02     movlw   0x2              	MOVLW	0x02
-002c34   cfdb     movff   0xfdb, 0         	MOVFF	PLUSW2, r0x00
-002c36   f000
+002c32   c001     movff   0x1, 0xfe5       	MOVFF	r0x01, POSTDEC1
+002c34   ffe5
+002c36   0e02     movlw   0x2              	MOVLW	0x02
+002c38   cfdb     movff   0xfdb, 0         	MOVFF	PLUSW2, r0x00
+002c3a   f000
                                            ;	.line	248; lena.c	if (val > amin) {
-002c38   5000     movf    0, 0, 0          	MOVF	r0x00, W
-002c3a   010f     movlb   0xf              	BANKSEL	_amin
-002c3c   5d47     subwf   0x47, 0, 0x1     	SUBWF	_amin, W, B
-002c3e   e20e     bc      0x2c5c           	BC	_00175_DS_
+002c3c   5000     movf    0, 0, 0          	MOVF	r0x00, W
+002c3e   010f     movlb   0xf              	BANKSEL	_amin
+002c40   5d47     subwf   0x47, 0, 0x1     	SUBWF	_amin, W, B
+002c42   e20e     bc      0x2c60           	BC	_00175_DS_
                                            ;	.line	249; lena.c	dec_ahour(1);
-002c40   0e01     movlw   0x1              	MOVLW	0x01
-002c42   6ee5     movwf   0xe5, 0          	MOVWF	POSTDEC1
-002c44   ec38     call    0x2c70, 0        	CALL	_dec_ahour
-002c46   f016
-002c48   2ae1     incf    0xe1, 0x1, 0     	INCF	FSR1L, F
+002c44   0e01     movlw   0x1              	MOVLW	0x01
+002c46   6ee5     movwf   0xe5, 0          	MOVWF	POSTDEC1
+002c48   ec3a     call    0x2c74, 0        	CALL	_dec_ahour
+002c4a   f016
+002c4c   2ae1     incf    0xe1, 0x1, 0     	INCF	FSR1L, F
                                            ;	.line	250; lena.c	amin = (60+amin) - val;
-002c4a   0e3c     movlw   0x3c             	MOVLW	0x3c
-002c4c   010f     movlb   0xf              	BANKSEL	_amin
-002c4e   2547     addwf   0x47, 0, 0x1     	ADDWF	_amin, W, B
-002c50   6e01     movwf   0x1, 0           	MOVWF	r0x01
-002c52   5000     movf    0, 0, 0          	MOVF	r0x00, W
-002c54   5c01     subwf   0x1, 0, 0        	SUBWF	r0x01, W
-002c56   010f     movlb   0xf              	BANKSEL	_amin
-002c58   6f47     movwf   0x47, 0x1        	MOVWF	_amin, B
-002c5a   d003     bra     0x2c62           	BRA	_00177_DS_
+002c4e   0e3c     movlw   0x3c             	MOVLW	0x3c
+002c50   010f     movlb   0xf              	BANKSEL	_amin
+002c52   2547     addwf   0x47, 0, 0x1     	ADDWF	_amin, W, B
+002c54   6e01     movwf   0x1, 0           	MOVWF	r0x01
+002c56   5000     movf    0, 0, 0          	MOVF	r0x00, W
+002c58   5c01     subwf   0x1, 0, 0        	SUBWF	r0x01, W
+002c5a   010f     movlb   0xf              	BANKSEL	_amin
+002c5c   6f47     movwf   0x47, 0x1        	MOVWF	_amin, B
+002c5e   d003     bra     0x2c66           	BRA	_00177_DS_
                                            _00175_DS_:
                                            ;	.line	252; lena.c	amin  = amin - val;
-002c5c   5000     movf    0, 0, 0          	MOVF	r0x00, W
-002c5e   010f     movlb   0xf              	BANKSEL	_amin
-002c60   5f47     subwf   0x47, 0x1, 0x1   	SUBWF	_amin, F, B
+002c60   5000     movf    0, 0, 0          	MOVF	r0x00, W
+002c62   010f     movlb   0xf              	BANKSEL	_amin
+002c64   5f47     subwf   0x47, 0x1, 0x1   	SUBWF	_amin, F, B
                                            _00177_DS_:
-002c62   cfe4     movff   0xfe4, 0x1       	MOVFF	PREINC1, r0x01
-002c64   f001
-002c66   cfe4     movff   0xfe4, 0         	MOVFF	PREINC1, r0x00
-002c68   f000
-002c6a   cfe4     movff   0xfe4, 0xfd9     	MOVFF	PREINC1, FSR2L
-002c6c   ffd9
-002c6e   0012     return  0                	RETURN	
+002c66   cfe4     movff   0xfe4, 0x1       	MOVFF	PREINC1, r0x01
+002c68   f001
+002c6a   cfe4     movff   0xfe4, 0         	MOVFF	PREINC1, r0x00
+002c6c   f000
+002c6e   cfe4     movff   0xfe4, 0xfd9     	MOVFF	PREINC1, FSR2L
+002c70   ffd9
+002c72   0012     return  0                	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_lena__dec_ahour	code
                                            _dec_ahour:
                                            ;	.line	233; lena.c	void dec_ahour(BYTE val)
-002c70   cfd9     movff   0xfd9, 0xfe5     	MOVFF	FSR2L, POSTDEC1
-002c72   ffe5
-002c74   cfe1     movff   0xfe1, 0xfd9     	MOVFF	FSR1L, FSR2L
-002c76   ffd9
-002c78   c000     movff   0, 0xfe5         	MOVFF	r0x00, POSTDEC1
-002c7a   ffe5
-002c7c   c001     movff   0x1, 0xfe5       	MOVFF	r0x01, POSTDEC1
+002c74   cfd9     movff   0xfd9, 0xfe5     	MOVFF	FSR2L, POSTDEC1
+002c76   ffe5
+002c78   cfe1     movff   0xfe1, 0xfd9     	MOVFF	FSR1L, FSR2L
+002c7a   ffd9
+002c7c   c000     movff   0, 0xfe5         	MOVFF	r0x00, POSTDEC1
 002c7e   ffe5
-002c80   0e02     movlw   0x2              	MOVLW	0x02
-002c82   cfdb     movff   0xfdb, 0         	MOVFF	PLUSW2, r0x00
-002c84   f000
+002c80   c001     movff   0x1, 0xfe5       	MOVFF	r0x01, POSTDEC1
+002c82   ffe5
+002c84   0e02     movlw   0x2              	MOVLW	0x02
+002c86   cfdb     movff   0xfdb, 0         	MOVFF	PLUSW2, r0x00
+002c88   f000
                                            ;	.line	236; lena.c	if (val > ahour) {
-002c86   5000     movf    0, 0, 0          	MOVF	r0x00, W
-002c88   010f     movlb   0xf              	BANKSEL	_ahour
-002c8a   5d46     subwf   0x46, 0, 0x1     	SUBWF	_ahour, W, B
-002c8c   e209     bc      0x2ca0           	BC	_00164_DS_
+002c8a   5000     movf    0, 0, 0          	MOVF	r0x00, W
+002c8c   010f     movlb   0xf              	BANKSEL	_ahour
+002c8e   5d46     subwf   0x46, 0, 0x1     	SUBWF	_ahour, W, B
+002c90   e209     bc      0x2ca4           	BC	_00164_DS_
                                            ;	.line	237; lena.c	ahour = (24+ahour) - val;
-002c8e   0e18     movlw   0x18             	MOVLW	0x18
-002c90   010f     movlb   0xf              	BANKSEL	_ahour
-002c92   2546     addwf   0x46, 0, 0x1     	ADDWF	_ahour, W, B
-002c94   6e01     movwf   0x1, 0           	MOVWF	r0x01
-002c96   5000     movf    0, 0, 0          	MOVF	r0x00, W
-002c98   5c01     subwf   0x1, 0, 0        	SUBWF	r0x01, W
-002c9a   010f     movlb   0xf              	BANKSEL	_ahour
-002c9c   6f46     movwf   0x46, 0x1        	MOVWF	_ahour, B
-002c9e   d003     bra     0x2ca6           	BRA	_00166_DS_
+002c92   0e18     movlw   0x18             	MOVLW	0x18
+002c94   010f     movlb   0xf              	BANKSEL	_ahour
+002c96   2546     addwf   0x46, 0, 0x1     	ADDWF	_ahour, W, B
+002c98   6e01     movwf   0x1, 0           	MOVWF	r0x01
+002c9a   5000     movf    0, 0, 0          	MOVF	r0x00, W
+002c9c   5c01     subwf   0x1, 0, 0        	SUBWF	r0x01, W
+002c9e   010f     movlb   0xf              	BANKSEL	_ahour
+002ca0   6f46     movwf   0x46, 0x1        	MOVWF	_ahour, B
+002ca2   d003     bra     0x2caa           	BRA	_00166_DS_
                                            _00164_DS_:
                                            ;	.line	239; lena.c	ahour = ahour - val;
-002ca0   5000     movf    0, 0, 0          	MOVF	r0x00, W
-002ca2   010f     movlb   0xf              	BANKSEL	_ahour
-002ca4   5f46     subwf   0x46, 0x1, 0x1   	SUBWF	_ahour, F, B
+002ca4   5000     movf    0, 0, 0          	MOVF	r0x00, W
+002ca6   010f     movlb   0xf              	BANKSEL	_ahour
+002ca8   5f46     subwf   0x46, 0x1, 0x1   	SUBWF	_ahour, F, B
                                            _00166_DS_:
-002ca6   cfe4     movff   0xfe4, 0x1       	MOVFF	PREINC1, r0x01
-002ca8   f001
-002caa   cfe4     movff   0xfe4, 0         	MOVFF	PREINC1, r0x00
-002cac   f000
-002cae   cfe4     movff   0xfe4, 0xfd9     	MOVFF	PREINC1, FSR2L
-002cb0   ffd9
-002cb2   0012     return  0                	RETURN	
+002caa   cfe4     movff   0xfe4, 0x1       	MOVFF	PREINC1, r0x01
+002cac   f001
+002cae   cfe4     movff   0xfe4, 0         	MOVFF	PREINC1, r0x00
+002cb0   f000
+002cb2   cfe4     movff   0xfe4, 0xfd9     	MOVFF	PREINC1, FSR2L
+002cb4   ffd9
+002cb6   0012     return  0                	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_lena__inc_amin	code
@@ -3430,8 +3434,8 @@ Address  Value    Disassembly              Source
                                            
                                            
                                            ; Statistics:
-                                           ; code size:	 4398 (0x112e) bytes ( 3.36%)
-                                           ;           	 2199 (0x0897) words
+                                           ; code size:	 4402 (0x1132) bytes ( 3.36%)
+                                           ;           	 2201 (0x0899) words
                                            ; udata size:	   32 (0x0020) bytes ( 0.83%)
                                            ; access size:	   22 (0x0016) bytes
                                            

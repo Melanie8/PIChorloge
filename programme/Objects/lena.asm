@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Oct 17 2013) (Mac OS X ppc)
-; This file was generated Fri Oct 25 16:39:29 2013
+; This file was generated Fri Oct 25 16:58:01 2013
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -618,6 +618,10 @@ _main:
 	BCF	_INTCON3bits, 6
 ;	.line	172; lena.c	INTCON2bits.INT3IP  = 0; //low priority
 	BCF	_INTCON2bits, 1
+;	.line	173; lena.c	INTCON2bits.INTEDG1 = 1; //INT1 interrupts on falling edge ?????
+	BSF	_INTCON2bits, 5
+;	.line	174; lena.c	INTCON2bits.INTEDG3 = 1; //INT3 interrupts on falling edge ?????
+	BSF	_INTCON2bits, 3
 ;	.line	178; lena.c	LCDInit();
 	CALL	_LCDInit
 ;	.line	179; lena.c	whereami = TIME_MENU;
@@ -2776,8 +2780,8 @@ __str_14:
 
 
 ; Statistics:
-; code size:	 4398 (0x112e) bytes ( 3.36%)
-;           	 2199 (0x0897) words
+; code size:	 4402 (0x1132) bytes ( 3.36%)
+;           	 2201 (0x0899) words
 ; udata size:	   32 (0x0020) bytes ( 0.83%)
 ; access size:	   22 (0x0016) bytes
 
