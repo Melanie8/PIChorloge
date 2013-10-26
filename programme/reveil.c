@@ -77,7 +77,11 @@ void DisplayString(BYTE pos, char* text);
 void DisplayWORD(BYTE pos, WORD w);
 size_t strlcpy(char *dst, const char *src, size_t siz);
 
-BYTE chandelle = 1; // ##
+BYTE chandelle;
+
+/* les boutons */
+BYTE button1 = 0; // flag pour le boutton 1
+BYTE button2 = 0; // flag pour le bouton 2
 
 /* variables pour le calcul de l'heure actuelle */
 QWORD overflows = 0; // nombre d'overflows du timer0 depuis le début
@@ -112,10 +116,6 @@ BYTE whereami = 0;
 
 /* état de la led jaune */
 BYTE on = 0;
-
-/* les boutons */
-BYTE button1 = 0; // flag pour le boutton 1
-BYTE button2 = 0; // flag pour le bouton 2
 
 /* buffer pour l'affichage sur le LCD */
 CHAR display[32];
@@ -339,7 +339,12 @@ void alarm(void)
 
 /* Fonction qui gère l'actionnement des boutons */
 void button(void)
-{    
+{
+    
+    BYTE inchour = thour;
+    BYTE incmin = tmin;
+    BYTE incsec = tsec;
+    
     // gère le bouton MENU/NEXT/STOP
     if (button1) {
         switch (whereami) {
@@ -398,12 +403,15 @@ void button(void)
                 break;
             case SET_HOUR: // ADD
                 overflows += F*3600;
+                //overflows -= (inchour/24)*F*3600;
                 break;
             case SET_MINUTE: // ADD
                 overflows += F*60;
+                overflows -= (incmin/60)*F*3600;
                 break;
             case SET_SECOND: // ADD
                 overflows += F;
+                overflows -= (incsec/60)*F*60;
                 break;
             case ALARM_MENU: // SELECT
                 whereami = SET_ALARM;
