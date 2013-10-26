@@ -32,7 +32,7 @@
     - s'il faut changer d'état ou la valeur d'une variable suite à
       l'actionnement d'un bouton.
  
- *****************************************************************************/
+******************************************************************************/
 
 #define __18F97J60
 #define __SDCC__
@@ -73,10 +73,6 @@ void button(void);
 void inc_ahour(BYTE val);
 void inc_amin(BYTE val);
 
-void DisplayString(BYTE pos, char* text);
-void DisplayWORD(BYTE pos, WORD w);
-size_t strlcpy(char *dst, const char *src, size_t siz);
-
 /* les boutons */
 BYTE button1 = 0; // flag pour le boutton 1
 BYTE button2 = 0; // flag pour le bouton 2
@@ -112,7 +108,7 @@ BYTE stop_ringing = 0; // indique si on a eteint le réveil
 /* l'état du réveil */
 BYTE whereami = 0;
 
-/* état de la led jaune */
+/* l'état de la led jaune */
 BYTE on = 0;
 
 /* buffer pour l'affichage sur le LCD */
@@ -134,52 +130,52 @@ void high_isr (void) interrupt 1
 void low_isr (void) interrupt 2
 {
     // bouton 1
-    if(INTCON3bits.INT3F) {
+    if (INTCON3bits.INT3F) {
         button1 = 1;
         INTCON3bits.INT3F = 0;
         
     // bouton 2
-    } else if(INTCON3bits.INT1F) {
+    } else if (INTCON3bits.INT1F) {
         button2 = 1;
         INTCON3bits.INT1F = 0;
     }
 }
 
 /* Fonction main */
-void main() {
-    
+void main()
+{
     /* bits d'interruption */
-    RCONbits.IPEN       = 1; //enable interrupts priority levels
-    INTCONbits.GIE      = 1; //enables all high-priority interrupts
-    INTCONbits.PEIE     = 1; //enables all low-priority peripheral interrupts
+    RCONbits.IPEN       = 1; // enable interrupts priority levels
+    INTCONbits.GIE      = 1; // enables all high-priority interrupts
+    INTCONbits.PEIE     = 1; // enables all low-priority peripheral interrupts
     
     /* timer0 */
-    T0CONbits.TMR0ON    = 1; //enables Timer0
-    INTCONbits.TMR0IE   = 1; //enables the TMR0 overflow interrupt
-    INTCONbits.TMR0IF   = 0; //clear Timer0 overflow bit
-    INTCON2bits.TMR0IP  = 1; //high priority
-    T0CONbits.T08BIT    = 0; //timer0 is configured as a 16-bit timer/counter
-	T0CONbits.T0CS      = 0; //internal instruction cycle clock (CLKO)
-    T0CONbits.PSA       = 1; //timer0 prescaler is not assigned
+    T0CONbits.TMR0ON    = 1; // enables Timer0
+    INTCONbits.TMR0IE   = 1; // enables the TMR0 overflow interrupt
+    INTCONbits.TMR0IF   = 0; // clear Timer0 overflow bit
+    INTCON2bits.TMR0IP  = 1; // high priority
+    T0CONbits.T08BIT    = 0; // timer0 is configured as a 16-bit timer/counter
+	T0CONbits.T0CS      = 0; // internal instruction cycle clock (CLKO)
+    T0CONbits.PSA       = 1; // timer0 prescaler is not assigned
 	TMR0L = 0;    TMR0H = 0;
     
     /* LED */
-    LED0_TRIS = 0; //configure 1st led pin as output (yellow)
-    LED1_TRIS = 0; //configure 2nd led pin as output (red)
-    LED2_TRIS = 0; //configure 3rd led pin as output (red)
+    LED0_TRIS = 0; // configure 1st led pin as output (yellow)
+    LED1_TRIS = 0; // configure 2nd led pin as output (red)
+    LED2_TRIS = 0; // configure 3rd led pin as output (red)
     LATJbits.LATJ0 = 0; // switch LED 1 off
     LATJbits.LATJ1 = 0; // switch LED 2 off
     LATJbits.LATJ2 = 0; // switch LED 3 off
     
-    /* buttons */
-    BUTTON0_TRIS        = 1; //configure 1st button as input
-    BUTTON1_TRIS        = 1; //configure 2nd button as input
-    INTCON3bits.INT3E   = 1; //enable INT3 interrupt (button 1)
-    INTCON3bits.INT3F   = 0; //clear INT3 flag
-    INTCON3bits.INT1E   = 1; //enable INT1 interrupt (button 2)
-    INTCON3bits.INT1F   = 0; //clear INT1 flag
-    INTCON3bits.INT1IP  = 0; //low priority
-    INTCON2bits.INT3IP  = 0; //low priority
+    /* boutons */
+    BUTTON0_TRIS        = 1; // configure 1st button as input
+    BUTTON1_TRIS        = 1; // configure 2nd button as input
+    INTCON3bits.INT3E   = 1; // enable INT3 interrupt (button 1)
+    INTCON3bits.INT3F   = 0; // clear INT3 flag
+    INTCON3bits.INT1E   = 1; // enable INT1 interrupt (button 2)
+    INTCON3bits.INT1F   = 0; // clear INT1 flag
+    INTCON3bits.INT1IP  = 0; // low priority
+    INTCON2bits.INT3IP  = 0; // low priority
     
     LCDInit();
     whereami = TIME_MENU;
@@ -187,10 +183,10 @@ void main() {
     T0CONbits.TMR0ON = 1; // start timer0
     
     while (1) {
-        time();
-        refresh_lcd();
-        alarm();
-        button();
+        time(); // met à jour l'heure
+        refresh_lcd(); // met à jour l'affichage
+        alarm(); // vérifie l'alarme
+        button(); // vérifie les boutons
     }
 }
 
@@ -213,7 +209,7 @@ void time(void)
     if (thour != h)
         thour = h;
     
-    // allumage des LED, dès qu'on peut dans la première demi-seconde
+    // allumage des LED, dès qu'on peut dans la 1e demi-seconde
     if (!on && ds < 5) {
         LATJbits.LATJ0 = 1;
         if (whereami == ALARM) {
@@ -223,7 +219,7 @@ void time(void)
         on = 1;
     }
     
-    // extinction des LED, dès qu'on peut dans la deuxième demi-seconde
+    // extinction des LED, dès qu'on peut dans la 2e demi-seconde
     if (on && ds >= 5) {
         LATJbits.LATJ0 = 0;
         if (whereami == ALARM) {
@@ -258,11 +254,10 @@ void refresh_lcd(void)
             sprintf(display, "Do you want to  set the alarm ? ");
             break;
         case SET_ALARM:
-            if (alarm_set) {
+            if (alarm_set)
                 sprintf(display, "  Alarm [ON ]                   ");
-            } else {
+            else
                 sprintf(display, "  Alarm [OFF]                   ");
-            }
             break;
         case SET_A_HOUR:
             sprintf(display, "    Alarm at        [%02u]: %02u    ",
@@ -273,26 +268,24 @@ void refresh_lcd(void)
                     ahour, amin);
             break;
         case DISPLAY:
-            if (alarm_set) {
+            if (alarm_set)
                 sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
                         thour, tmin, tsec, ahour, amin);
-            } else {
+            else
                 sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
                         thour, tmin, tsec);
-            }
             break;
         case ALARM:
             sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
                     thour, tmin, tsec);
             break;
         case SNOOZE:
-            if (snooze < 10) {
+            if (snooze < 10)
                 sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
                         thour, tmin, tsec, snooze, ahour_o, amin_o);
-            } else {
+            else
                 sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
                         thour, tmin, tsec, snooze, ahour_o, amin_o);
-            }
             break;
         default:
             sprintf(display, "**** ERROR ********* ERROR *****");
@@ -306,28 +299,27 @@ void refresh_lcd(void)
 void alarm(void)
 {
     // vérifie si l'heure de réveil est atteinte et si l'alarme est mise
-    if ((thour == ahour) && (tmin == amin) && alarm_set) {
+    if (thour == ahour && tmin == amin && alarm_set) {
+        
         // vérifie que l'alarme n'est pas encore finie, qu'elle n'a pas encore
         // été arrêtée et qu'on ne se trouve pas dans le menu
-        if ((tsec < 31) && (stop_ringing == 0)) {
-            if ((whereami == DISPLAY) || (whereami == SNOOZE)) {
+        if (tsec < 31 && stop_ringing == 0) {
+            if (whereami == DISPLAY || whereami == SNOOZE)
                 whereami = ALARM;
-            }
+            
         // éteint l'alarme au bout de 30 secondes 
         } else if (tsec > 30) {
-            stop_ringing = 0; // remet à 0 si l'alarme a été éteinte à la main
+            stop_ringing = 0; // l'alarme doit sonner à nouveau dans 24h
             LATJbits.LATJ1 = 0; // switch LED 2 off
             LATJbits.LATJ2 = 0; // switch LED 3 off
             
             if (snooze) {
-                ahour = ahour_o; // remet le réveil
+                ahour = ahour_o; // remet le réveil à l'heure d'origine
                 amin = amin_o;
                 snooze = 0;
                 whereami = DISPLAY;
-            } else if (whereami == ALARM) { // si l'alarme sonnait toujours, on
-                whereami = DISPLAY;         // revient à l'affichage de l'heure
-                                            // normal
-            }
+            } else if (whereami == ALARM) // si l'alarme sonnait toujours, on
+                whereami = DISPLAY;       // revient à l'affichage de l'heure
         }
     }
 }
@@ -335,7 +327,7 @@ void alarm(void)
 /* Fonction qui gère l'actionnement des boutons */
 void button(void)
 {
-    
+    // variables pour le changement manuel de l'heure
     BYTE inchour = thour;
     BYTE incmin = tmin;
     BYTE incsec = tsec;
@@ -371,13 +363,13 @@ void button(void)
                 whereami = TIME_MENU;
                 break;
             case ALARM: // STOP
-                stop_ringing = 1;
+                stop_ringing = 1; // l'alarme doit s'arrêter
                 LATJbits.LATJ1 = 0; // switch LED 2 off
                 LATJbits.LATJ2 = 0; // switch LED 3 off
                 whereami = DISPLAY;
                 break;
             case SNOOZE: // STOP
-                stop_ringing = 1; // le réveil ne doit plus sonner
+                stop_ringing = 1; // l'alarme doit s'arrêter
                 amin = amin_o; // remet le réveil à l'heure d'origine
                 ahour = ahour_o;
                 snooze = 0;
@@ -397,19 +389,19 @@ void button(void)
                 whereami = SET_HOUR;
                 break;
             case SET_HOUR: // ADD
-                if (thour==23)
+                if (thour == 23) // l'heure doit repasser à 0
                     overflows -= 59*F*3600;
                 else
                     overflows += F*3600;
                 break;
             case SET_MINUTE: // ADD
-                if (tmin==59)
+                if (tmin == 59) // les minutes doivent repasser à 0
                     overflows -= 59*F*60;
                 else
                     overflows += F*60;
                 break;
             case SET_SECOND: // ADD
-                if (tsec==59)
+                if (tsec == 59) // les secondes doivent repasser à 0
                     overflows -= 59*F;
                 else
                     overflows += F;
@@ -421,24 +413,21 @@ void button(void)
                 alarm_set ^= 1;
                 break;
             case SET_A_HOUR: // ADD
-                if (ahour == 23) {
+                if (ahour == 23) // l'heure d'alarme doit repasser à 0
                     ahour = 0;
-                } else {
+                else
                     ahour++;
-                }
                 ahour_o = ahour;
                 break;
             case SET_A_MIN: // ADD
-                if (amin == 59) {
+                if (amin == 59) // les minutes d'alarme doivent repasser à 0
                     amin = 0;
-                } else {
+                else
                     amin++;
-                }
                 amin_o = amin;
                 break;
             case DISPLAY: // ---
-                // rien à faire
-                break;
+                break; // bouton sans fonction
             case ALARM: // SNOOZE
                 // snooze si la limite n'est pas encore atteinte...
                 if (snooze < SNOOZE_MAX) {
@@ -474,12 +463,10 @@ void inc_ahour(BYTE val)
 /* Fonction qui incrémente les minutes du réveil */
 void inc_amin(BYTE val)
 {
-    // vérifie s'il faut incrémenter les heures
     BYTE mod_amin;
     mod_amin = (amin + val) / 60;
-    if (mod_amin) {
+    if (mod_amin) // vérifie s'il faut incrémenter les heures
         inc_ahour(mod_amin);
-    }
     
     amin = (amin + val) % 60;
 }
