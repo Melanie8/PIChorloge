@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  1
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-               00004 ; This file was generated Sat Oct 26 20:44:33 2013
+               00004 ; This file was generated Sat Oct 26 21:00:25 2013
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern __gptrget1
                00053         extern __gptrput1
                00054         extern _EBSTCONbits
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  2
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _LATFbits
                00107         extern _LATGbits
                00108         extern _LATHbits
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  3
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _SSP1CON1bits
                00161         extern _SSPCON1bits
                00162         extern _SSP1STATbits
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  4
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _MIRD
                00215         extern _MIRDL
                00216         extern _MIRDH
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  5
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _EDMANDL
                00269         extern _EDMANDH
                00270         extern _EDMADST
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  6
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _PORTD
                00323         extern _PORTE
                00324         extern _PORTF
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  7
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _SPBRG
                00377         extern _SPBRG1
                00378         extern _PSPCON
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  8
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _FSR2L
                00431         extern _FSR2H
                00432         extern _PLUSW2
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE  9
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00484         extern ___fsadd
                00485         extern __modsint
                00486         extern __divsint
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 10
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -598,7 +598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00538 r0x0b   res     1
                00539 r0x0c   res     1
                00540 r0x0d   res     1
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 11
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -657,68 +657,68 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00591 ; ; Starting pCode block
                00592 S_reveil__main  code
 0000 00593 _main:
-               00594 ;       .line   154; reveil.c   RCONbits.IPEN       = 1; //enable interrupts priority levels
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 12
+               00594 ;       .line   152; reveil.c   RCONbits.IPEN       = 1; //enable interrupts priority levels
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 0000 8E00      00595         BSF     _RCONbits, 7
-               00596 ;       .line   155; reveil.c   INTCONbits.GIE      = 1; //enables all high-priority interrupts
+               00596 ;       .line   153; reveil.c   INTCONbits.GIE      = 1; //enables all high-priority interrupts
 0002 8E00      00597         BSF     _INTCONbits, 7
-               00598 ;       .line   156; reveil.c   INTCONbits.PEIE     = 1; //enables all low-priority peripheral interrupts
+               00598 ;       .line   154; reveil.c   INTCONbits.PEIE     = 1; //enables all low-priority peripheral interrupts
 0004 8C00      00599         BSF     _INTCONbits, 6
-               00600 ;       .line   159; reveil.c   T0CONbits.TMR0ON    = 1; //enables Timer0
+               00600 ;       .line   157; reveil.c   T0CONbits.TMR0ON    = 1; //enables Timer0
 0006 8E00      00601         BSF     _T0CONbits, 7
-               00602 ;       .line   160; reveil.c   INTCONbits.TMR0IE   = 1; //enables the TMR0 overflow interrupt
+               00602 ;       .line   158; reveil.c   INTCONbits.TMR0IE   = 1; //enables the TMR0 overflow interrupt
 0008 8A00      00603         BSF     _INTCONbits, 5
-               00604 ;       .line   161; reveil.c   INTCONbits.TMR0IF   = 0; //clear Timer0 overflow bit
+               00604 ;       .line   159; reveil.c   INTCONbits.TMR0IF   = 0; //clear Timer0 overflow bit
 000A 9400      00605         BCF     _INTCONbits, 2
-               00606 ;       .line   162; reveil.c   INTCON2bits.TMR0IP  = 1; //high priority
+               00606 ;       .line   160; reveil.c   INTCON2bits.TMR0IP  = 1; //high priority
 000C 8400      00607         BSF     _INTCON2bits, 2
-               00608 ;       .line   163; reveil.c   T0CONbits.T08BIT    = 0; //timer0 is configured as a 16-bit timer/counter
+               00608 ;       .line   161; reveil.c   T0CONbits.T08BIT    = 0; //timer0 is configured as a 16-bit timer/counter
 000E 9C00      00609         BCF     _T0CONbits, 6
-               00610 ;       .line   164; reveil.c   T0CONbits.T0CS      = 0; //internal instruction cycle clock (CLKO)
+               00610 ;       .line   162; reveil.c   T0CONbits.T0CS      = 0; //internal instruction cycle clock (CLKO)
 0010 9A00      00611         BCF     _T0CONbits, 5
-               00612 ;       .line   165; reveil.c   T0CONbits.PSA       = 1; //timer0 prescaler is not assigned
+               00612 ;       .line   163; reveil.c   T0CONbits.PSA       = 1; //timer0 prescaler is not assigned
 0012 8600      00613         BSF     _T0CONbits, 3
-               00614 ;       .line   166; reveil.c   TMR0L = 0;    TMR0H = 0;
+               00614 ;       .line   164; reveil.c   TMR0L = 0;    TMR0H = 0;
 0014 6A00      00615         CLRF    _TMR0L
 0016 6A00      00616         CLRF    _TMR0H
-               00617 ;       .line   169; reveil.c   LED0_TRIS = 0; //configure 1st led pin as output (yellow)
+               00617 ;       .line   167; reveil.c   LED0_TRIS = 0; //configure 1st led pin as output (yellow)
 0018 9000      00618         BCF     _TRISJbits, 0
-               00619 ;       .line   170; reveil.c   LED1_TRIS = 0; //configure 2nd led pin as output (red)
+               00619 ;       .line   168; reveil.c   LED1_TRIS = 0; //configure 2nd led pin as output (red)
 001A 9200      00620         BCF     _TRISJbits, 1
-               00621 ;       .line   171; reveil.c   LED2_TRIS = 0; //configure 3rd led pin as output (red)
+               00621 ;       .line   169; reveil.c   LED2_TRIS = 0; //configure 3rd led pin as output (red)
 001C 9400      00622         BCF     _TRISJbits, 2
-               00623 ;       .line   172; reveil.c   LATJbits.LATJ0 = 0; // switch LED 1 off
+               00623 ;       .line   170; reveil.c   LATJbits.LATJ0 = 0; // switch LED 1 off
 001E 9000      00624         BCF     _LATJbits, 0
-               00625 ;       .line   173; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
+               00625 ;       .line   171; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
 0020 9200      00626         BCF     _LATJbits, 1
-               00627 ;       .line   174; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
+               00627 ;       .line   172; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
 0022 9400      00628         BCF     _LATJbits, 2
-               00629 ;       .line   177; reveil.c   BUTTON0_TRIS        = 1; //configure 1st button as input
+               00629 ;       .line   175; reveil.c   BUTTON0_TRIS        = 1; //configure 1st button as input
 0024 8600      00630         BSF     _TRISBbits, 3
-               00631 ;       .line   178; reveil.c   BUTTON1_TRIS        = 1; //configure 2nd button as input
+               00631 ;       .line   176; reveil.c   BUTTON1_TRIS        = 1; //configure 2nd button as input
 0026 8200      00632         BSF     _TRISBbits, 1
-               00633 ;       .line   179; reveil.c   INTCON3bits.INT3E   = 1; //enable INT3 interrupt (button 1)
+               00633 ;       .line   177; reveil.c   INTCON3bits.INT3E   = 1; //enable INT3 interrupt (button 1)
 0028 8A00      00634         BSF     _INTCON3bits, 5
-               00635 ;       .line   180; reveil.c   INTCON3bits.INT3F   = 0; //clear INT3 flag
+               00635 ;       .line   178; reveil.c   INTCON3bits.INT3F   = 0; //clear INT3 flag
 002A 9400      00636         BCF     _INTCON3bits, 2
-               00637 ;       .line   181; reveil.c   INTCON3bits.INT1E   = 1; //enable INT1 interrupt (button 2)
+               00637 ;       .line   179; reveil.c   INTCON3bits.INT1E   = 1; //enable INT1 interrupt (button 2)
 002C 8600      00638         BSF     _INTCON3bits, 3
-               00639 ;       .line   182; reveil.c   INTCON3bits.INT1F   = 0; //clear INT1 flag
+               00639 ;       .line   180; reveil.c   INTCON3bits.INT1F   = 0; //clear INT1 flag
 002E 9000      00640         BCF     _INTCON3bits, 0
-               00641 ;       .line   183; reveil.c   INTCON3bits.INT1IP  = 0; //low priority
+               00641 ;       .line   181; reveil.c   INTCON3bits.INT1IP  = 0; //low priority
 0030 9C00      00642         BCF     _INTCON3bits, 6
-               00643 ;       .line   184; reveil.c   INTCON2bits.INT3IP  = 0; //low priority
+               00643 ;       .line   182; reveil.c   INTCON2bits.INT3IP  = 0; //low priority
 0032 9200      00644         BCF     _INTCON2bits, 1
-               00645 ;       .line   186; reveil.c   LCDInit();
+               00645 ;       .line   184; reveil.c   LCDInit();
 0034 EC00 F000 00646         CALL    _LCDInit
-               00647 ;       .line   187; reveil.c   whereami = TIME_MENU;
+               00647 ;       .line   185; reveil.c   whereami = TIME_MENU;
 0038 0E01      00648         MOVLW   0x01
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 13
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -726,16 +726,16 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 003A 0000      00649         BANKSEL _whereami
 003C 6F00      00650         MOVWF   _whereami, B
-               00651 ;       .line   191; reveil.c   T0CONbits.TMR0ON = 1; // start timer0
+               00651 ;       .line   187; reveil.c   T0CONbits.TMR0ON = 1; // start timer0
 003E 8E00      00652         BSF     _T0CONbits, 7
 0040 00653 _00123_DS_:
-               00654 ;       .line   194; reveil.c   time();
+               00654 ;       .line   190; reveil.c   time();
 0040 EC00 F000 00655         CALL    _time
-               00656 ;       .line   195; reveil.c   refresh_lcd();
+               00656 ;       .line   191; reveil.c   refresh_lcd();
 0044 EC00 F000 00657         CALL    _refresh_lcd
-               00658 ;       .line   196; reveil.c   alarm();
+               00658 ;       .line   192; reveil.c   alarm();
 0048 EC00 F000 00659         CALL    _alarm
-               00660 ;       .line   197; reveil.c   button();
+               00660 ;       .line   193; reveil.c   button();
 004C EC00 F000 00661         CALL    _button
 0050 D000      00662         BRA     _00123_DS_
 0052 0012      00663         RETURN  
@@ -743,7 +743,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00665 ; ; Starting pCode block
                00666 S_reveil__strlcpy       code
 0000 00667 _strlcpy:
-               00668 ;       .line   543; reveil.c   strlcpy(char *dst, const char *src, size_t siz)
+               00668 ;       .line   539; reveil.c   strlcpy(char *dst, const char *src, size_t siz)
 0000 CFD9 FFE5 00669         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00670         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00671         MOVFF   r0x00, POSTDEC1
@@ -778,7 +778,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0074 CFDB F000 00700         MOVFF   PLUSW2, r0x03
 0078 0E06      00701         MOVLW   0x06
 007A CFDB F000 00702         MOVFF   PLUSW2, r0x04
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 14
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -790,23 +790,23 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0086 CFDB F000 00706         MOVFF   PLUSW2, r0x06
 008A 0E09      00707         MOVLW   0x09
 008C CFDB F000 00708         MOVFF   PLUSW2, r0x07
-               00709 ;       .line   545; reveil.c   char       *d = dst;
+               00709 ;       .line   541; reveil.c   char       *d = dst;
 0090 C000 F000 00710         MOVFF   r0x00, r0x08
 0094 C000 F000 00711         MOVFF   r0x01, r0x09
 0098 C000 F000 00712         MOVFF   r0x02, r0x0a
-               00713 ;       .line   546; reveil.c   const char *s = src;
+               00713 ;       .line   542; reveil.c   const char *s = src;
 009C C000 F000 00714         MOVFF   r0x03, r0x0b
 00A0 C000 F000 00715         MOVFF   r0x04, r0x0c
 00A4 C000 F000 00716         MOVFF   r0x05, r0x0d
-               00717 ;       .line   547; reveil.c   size_t      n = siz;
+               00717 ;       .line   543; reveil.c   size_t      n = siz;
 00A8 C000 F000 00718         MOVFF   r0x06, r0x0e
 00AC C000 F000 00719         MOVFF   r0x07, r0x0f
-               00720 ;       .line   550; reveil.c   if (n != 0)
+               00720 ;       .line   546; reveil.c   if (n != 0)
 00B0 5000      00721         MOVF    r0x06, W
 00B2 1000      00722         IORWF   r0x07, W
 00B4 B4D8      00723         BTFSC   STATUS, 2
 00B6 D000      00724         BRA     _00371_DS_
-               00725 ;       .line   552; reveil.c   while (--n != 0)
+               00725 ;       .line   548; reveil.c   while (--n != 0)
 00B8 C000 F000 00726         MOVFF   r0x03, r0x10
 00BC C000 F000 00727         MOVFF   r0x04, r0x11
 00C0 C000 F000 00728         MOVFF   r0x05, r0x12
@@ -820,7 +820,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D4 5000      00736         MOVF    r0x13, W
 00D6 1000      00737         IORWF   r0x14, W
 00D8 E000      00738         BZ      _00386_DS_
-               00739 ;       .line   554; reveil.c   if ((*d++ = *s++) == '\0')
+               00739 ;       .line   550; reveil.c   if ((*d++ = *s++) == '\0')
 00DA C000 FFE9 00740         MOVFF   r0x10, FSR0L
 00DE C000 FFF3 00741         MOVFF   r0x11, PRODL
 00E2 5000      00742         MOVF    r0x12, W
@@ -838,7 +838,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0102 EC00 F000 00754         CALL    __gptrput1
 0106 2A00      00755         INCF    r0x00, F
 0108 B0D8      00756         BTFSC   STATUS, 0
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 15
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -850,7 +850,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0110 5000      00760         MOVF    r0x15, W
 0112 E100      00761         BNZ     _00367_DS_
 0114 00762 _00386_DS_:
-               00763 ;       .line   555; reveil.c   break;
+               00763 ;       .line   551; reveil.c   break;
 0114 C000 F000 00764         MOVFF   r0x10, r0x0b
 0118 C000 F000 00765         MOVFF   r0x11, r0x0c
 011C C000 F000 00766         MOVFF   r0x12, r0x0d
@@ -860,15 +860,15 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 012C C000 F000 00770         MOVFF   r0x13, r0x0e
 0130 C000 F000 00771         MOVFF   r0x14, r0x0f
 0134 00772 _00371_DS_:
-               00773 ;       .line   560; reveil.c   if (n == 0)
+               00773 ;       .line   556; reveil.c   if (n == 0)
 0134 5000      00774         MOVF    r0x0e, W
 0136 1000      00775         IORWF   r0x0f, W
 0138 E100      00776         BNZ     _00378_DS_
-               00777 ;       .line   562; reveil.c   if (siz != 0)
+               00777 ;       .line   558; reveil.c   if (siz != 0)
 013A 5000      00778         MOVF    r0x06, W
 013C 1000      00779         IORWF   r0x07, W
 013E E000      00780         BZ      _00385_DS_
-               00781 ;       .line   563; reveil.c   *d = '\0';          /* NUL-terminate dst */
+               00781 ;       .line   559; reveil.c   *d = '\0';          /* NUL-terminate dst */
 0140 0E00      00782         MOVLW   0x00
 0142 6EE5      00783         MOVWF   POSTDEC1
 0144 C000 FFE9 00784         MOVFF   r0x08, FSR0L
@@ -876,7 +876,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 014C 5000      00786         MOVF    r0x0a, W
 014E EC00 F000 00787         CALL    __gptrput1
 0152 00788 _00385_DS_:
-               00789 ;       .line   564; reveil.c   while (*s++)
+               00789 ;       .line   560; reveil.c   while (*s++)
 0152 C000 F000 00790         MOVFF   r0x0b, r0x00
 0156 C000 F000 00791         MOVFF   r0x0c, r0x01
 015A C000 F000 00792         MOVFF   r0x0d, r0x02
@@ -897,8 +897,8 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0180 C000 F000 00807         MOVFF   r0x01, r0x0c
 0184 C000 F000 00808         MOVFF   r0x02, r0x0d
 0188 00809 _00378_DS_:
-               00810 ;       .line   570; reveil.c   return (s - src - 1);       /* count does not include NUL */
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 16
+               00810 ;       .line   566; reveil.c   return (s - src - 1);       /* count does not include NUL */
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -944,7 +944,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00848 ; ; Starting pCode block
                00849 S_reveil__DisplayString code
 0000 00850 _DisplayString:
-               00851 ;       .line   498; reveil.c   void DisplayString(BYTE pos, char* text)
+               00851 ;       .line   494; reveil.c   void DisplayString(BYTE pos, char* text)
 0000 CFD9 FFE5 00852         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00853         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00854         MOVFF   r0x00, POSTDEC1
@@ -958,7 +958,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0028 0E02      00862         MOVLW   0x02
 002A CFDB F000 00863         MOVFF   PLUSW2, r0x00
 002E 0E03      00864         MOVLW   0x03
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 17
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -969,7 +969,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0036 CFDB F000 00867         MOVFF   PLUSW2, r0x02
 003A 0E05      00868         MOVLW   0x05
 003C CFDB F000 00869         MOVFF   PLUSW2, r0x03
-               00870 ;       .line   500; reveil.c   BYTE l= strlen(text)+1;
+               00870 ;       .line   496; reveil.c   BYTE l= strlen(text)+1;
 0040 5000      00871         MOVF    r0x03, W
 0042 6EE5      00872         MOVWF   POSTDEC1
 0044 5000      00873         MOVF    r0x02, W
@@ -982,11 +982,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0056 0E03      00880         MOVLW   0x03
 0058 26E1      00881         ADDWF   FSR1L, F
 005A 2A00      00882         INCF    r0x04, F
-               00883 ;       .line   501; reveil.c   BYTE max= 32-pos;
+               00883 ;       .line   497; reveil.c   BYTE max= 32-pos;
 005C 5000      00884         MOVF    r0x00, W
 005E 0820      00885         SUBLW   0x20
 0060 6E00      00886         MOVWF   r0x05
-               00887 ;       .line   502; reveil.c   strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+               00887 ;       .line   498; reveil.c   strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
 0062 6A00      00888         CLRF    r0x06
 0064 0E00      00889         MOVLW   LOW(_LCDText)
 0066 2600      00890         ADDWF   r0x00, F
@@ -1018,7 +1018,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 009A 6EE5      00916         MOVWF   POSTDEC1
 009C 5000      00917         MOVF    r0x06, W
 009E 6EE5      00918         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 18
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1029,7 +1029,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00A4 EC00 F000 00921         CALL    _strlcpy
 00A8 0E08      00922         MOVLW   0x08
 00AA 26E1      00923         ADDWF   FSR1L, F
-               00924 ;       .line   503; reveil.c   LCDUpdate();
+               00924 ;       .line   499; reveil.c   LCDUpdate();
 00AC EC00 F000 00925         CALL    _LCDUpdate
 00B0 CFE4 F000 00926         MOVFF   PREINC1, r0x07
 00B4 CFE4 F000 00927         MOVFF   PREINC1, r0x06
@@ -1045,7 +1045,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00937 ; ; Starting pCode block
                00938 S_reveil__inc_amin      code
 0000 00939 _inc_amin:
-               00940 ;       .line   479; reveil.c   void inc_amin(BYTE val)
+               00940 ;       .line   475; reveil.c   void inc_amin(BYTE val)
 0000 CFD9 FFE5 00941         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00942         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00943         MOVFF   r0x00, POSTDEC1
@@ -1054,7 +1054,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0014 C000 FFE5 00946         MOVFF   r0x03, POSTDEC1
 0018 0E02      00947         MOVLW   0x02
 001A CFDB F000 00948         MOVFF   PLUSW2, r0x00
-               00949 ;       .line   483; reveil.c   mod_amin = (amin + val) / 60;
+               00949 ;       .line   479; reveil.c   mod_amin = (amin + val) / 60;
 001E C000 F000 00950         MOVFF   _amin, r0x01
 0022 6A00      00951         CLRF    r0x02
 0024 6A00      00952         CLRF    r0x03
@@ -1075,22 +1075,22 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0044 CFF3 F000 00967         MOVFF   PRODL, r0x02
 0048 0E04      00968         MOVLW   0x04
 004A 26E1      00969         ADDWF   FSR1L, F
-               00970 ;       .line   484; reveil.c   if (mod_amin) {
+               00970 ;       .line   480; reveil.c   if (mod_amin) {
 004C 5000      00971         MOVF    r0x01, W
 004E E000      00972         BZ      _00349_DS_
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 19
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00973 ;       .line   485; reveil.c   inc_ahour(mod_amin);
+               00973 ;       .line   481; reveil.c   inc_ahour(mod_amin);
 0050 5000      00974         MOVF    r0x01, W
 0052 6EE5      00975         MOVWF   POSTDEC1
 0054 EC00 F000 00976         CALL    _inc_ahour
 0058 2AE1      00977         INCF    FSR1L, F
 005A 00978 _00349_DS_:
-               00979 ;       .line   488; reveil.c   amin = (amin + val) % 60;
+               00979 ;       .line   484; reveil.c   amin = (amin + val) % 60;
 005A C000 F000 00980         MOVFF   _amin, r0x01
 005E 6A00      00981         CLRF    r0x02
 0060 5000      00982         MOVF    r0x01, W
@@ -1123,7 +1123,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01009 ; ; Starting pCode block
                01010 S_reveil__inc_ahour     code
 0000 01011 _inc_ahour:
-               01012 ;       .line   473; reveil.c   void inc_ahour(BYTE val)
+               01012 ;       .line   469; reveil.c   void inc_ahour(BYTE val)
 0000 CFD9 FFE5 01013         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01014         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01015         MOVFF   r0x00, POSTDEC1
@@ -1132,13 +1132,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0014 C000 FFE5 01018         MOVFF   r0x03, POSTDEC1
 0018 0E02      01019         MOVLW   0x02
 001A CFDB F000 01020         MOVFF   PLUSW2, r0x00
-               01021 ;       .line   475; reveil.c   ahour = (ahour + val) % 24;
+               01021 ;       .line   471; reveil.c   ahour = (ahour + val) % 24;
 001E C000 F000 01022         MOVFF   _ahour, r0x01
 0022 6A00      01023         CLRF    r0x02
 0024 6A00      01024         CLRF    r0x03
 0026 5000      01025         MOVF    r0x00, W
 0028 2600      01026         ADDWF   r0x01, F
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 20
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1172,7 +1172,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01052 ; ; Starting pCode block
                01053 S_reveil__button        code
 0000 01054 _button:
-               01055 ;       .line   340; reveil.c   void button(void)
+               01055 ;       .line   336; reveil.c   void button(void)
 0000 CFD9 FFE5 01056         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01057         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01058         MOVFF   r0x00, POSTDEC1
@@ -1180,11 +1180,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0010 C000 FFE5 01060         MOVFF   r0x02, POSTDEC1
 0014 C000 FFE5 01061         MOVFF   r0x03, POSTDEC1
 0018 0000      01062         BANKSEL _button1
-               01063 ;       .line   348; reveil.c   if (button1) {
+               01063 ;       .line   344; reveil.c   if (button1) {
 001A 5100      01064         MOVF    _button1, W, B
 001C B4D8      01065         BTFSC   STATUS, 2
 001E D000      01066         BRA     _00303_DS_
-               01067 ;       .line   349; reveil.c   switch (whereami) {
+               01067 ;       .line   345; reveil.c   switch (whereami) {
 0020 0E01      01068         MOVLW   0x01
 0022 0000      01069         BANKSEL _whereami
 0024 5D00      01070         SUBWF   _whereami, W, B
@@ -1198,7 +1198,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0034 0000      01078         BANKSEL _whereami
 0036 0500      01079         DECF    _whereami, W, B
 0038 6E00      01080         MOVWF   r0x00
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 21
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1240,85 +1240,85 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0094 EF00 F000 01114         GOTO    _00264_DS_
 0098 EF00 F000 01115         GOTO    _00265_DS_
 009C 01116 _00255_DS_:
-               01117 ;       .line   351; reveil.c   whereami = ALARM_MENU;
+               01117 ;       .line   347; reveil.c   whereami = ALARM_MENU;
 009C 0E05      01118         MOVLW   0x05
 009E 0000      01119         BANKSEL _whereami
 00A0 6F00      01120         MOVWF   _whereami, B
-               01121 ;       .line   352; reveil.c   break;
+               01121 ;       .line   348; reveil.c   break;
 00A2 D000      01122         BRA     _00267_DS_
 00A4 01123 _00256_DS_:
-               01124 ;       .line   354; reveil.c   whereami = SET_MINUTE;
+               01124 ;       .line   350; reveil.c   whereami = SET_MINUTE;
 00A4 0E03      01125         MOVLW   0x03
 00A6 0000      01126         BANKSEL _whereami
 00A8 6F00      01127         MOVWF   _whereami, B
-               01128 ;       .line   355; reveil.c   break;
+               01128 ;       .line   351; reveil.c   break;
 00AA D000      01129         BRA     _00267_DS_
 00AC 01130 _00257_DS_:
-               01131 ;       .line   357; reveil.c   whereami = SET_SECOND;
+               01131 ;       .line   353; reveil.c   whereami = SET_SECOND;
 00AC 0E04      01132         MOVLW   0x04
 00AE 0000      01133         BANKSEL _whereami
 00B0 6F00      01134         MOVWF   _whereami, B
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 22
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               01135 ;       .line   358; reveil.c   break;
+               01135 ;       .line   354; reveil.c   break;
 00B2 D000      01136         BRA     _00267_DS_
 00B4 01137 _00258_DS_:
-               01138 ;       .line   360; reveil.c   whereami = ALARM_MENU;
+               01138 ;       .line   356; reveil.c   whereami = ALARM_MENU;
 00B4 0E05      01139         MOVLW   0x05
 00B6 0000      01140         BANKSEL _whereami
 00B8 6F00      01141         MOVWF   _whereami, B
-               01142 ;       .line   361; reveil.c   break;
+               01142 ;       .line   357; reveil.c   break;
 00BA D000      01143         BRA     _00267_DS_
 00BC 01144 _00259_DS_:
-               01145 ;       .line   363; reveil.c   whereami = DISPLAY;
+               01145 ;       .line   359; reveil.c   whereami = DISPLAY;
 00BC 0E09      01146         MOVLW   0x09
 00BE 0000      01147         BANKSEL _whereami
 00C0 6F00      01148         MOVWF   _whereami, B
-               01149 ;       .line   364; reveil.c   break;
+               01149 ;       .line   360; reveil.c   break;
 00C2 D000      01150         BRA     _00267_DS_
 00C4 01151 _00260_DS_:
-               01152 ;       .line   366; reveil.c   whereami = SET_A_HOUR;
+               01152 ;       .line   362; reveil.c   whereami = SET_A_HOUR;
 00C4 0E07      01153         MOVLW   0x07
 00C6 0000      01154         BANKSEL _whereami
 00C8 6F00      01155         MOVWF   _whereami, B
-               01156 ;       .line   367; reveil.c   break;
+               01156 ;       .line   363; reveil.c   break;
 00CA D000      01157         BRA     _00267_DS_
 00CC 01158 _00261_DS_:
-               01159 ;       .line   369; reveil.c   whereami = SET_A_MIN;
+               01159 ;       .line   365; reveil.c   whereami = SET_A_MIN;
 00CC 0E08      01160         MOVLW   0x08
 00CE 0000      01161         BANKSEL _whereami
 00D0 6F00      01162         MOVWF   _whereami, B
-               01163 ;       .line   370; reveil.c   break;
+               01163 ;       .line   366; reveil.c   break;
 00D2 D000      01164         BRA     _00267_DS_
 00D4 01165 _00262_DS_:
-               01166 ;       .line   372; reveil.c   whereami = DISPLAY;
+               01166 ;       .line   368; reveil.c   whereami = DISPLAY;
 00D4 0E09      01167         MOVLW   0x09
 00D6 0000      01168         BANKSEL _whereami
 00D8 6F00      01169         MOVWF   _whereami, B
-               01170 ;       .line   373; reveil.c   break;
+               01170 ;       .line   369; reveil.c   break;
 00DA D000      01171         BRA     _00267_DS_
 00DC 01172 _00263_DS_:
-               01173 ;       .line   375; reveil.c   whereami = TIME_MENU;
+               01173 ;       .line   371; reveil.c   whereami = TIME_MENU;
 00DC 0E01      01174         MOVLW   0x01
 00DE 0000      01175         BANKSEL _whereami
 00E0 6F00      01176         MOVWF   _whereami, B
-               01177 ;       .line   376; reveil.c   break;
+               01177 ;       .line   372; reveil.c   break;
 00E2 D000      01178         BRA     _00267_DS_
 00E4 01179 _00264_DS_:
-               01180 ;       .line   378; reveil.c   stop_ringing = 1;
+               01180 ;       .line   374; reveil.c   stop_ringing = 1;
 00E4 0E01      01181         MOVLW   0x01
 00E6 0000      01182         BANKSEL _stop_ringing
 00E8 6F00      01183         MOVWF   _stop_ringing, B
-               01184 ;       .line   379; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
+               01184 ;       .line   375; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
 00EA 9200      01185         BCF     _LATJbits, 1
-               01186 ;       .line   380; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
+               01186 ;       .line   376; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
 00EC 9400      01187         BCF     _LATJbits, 2
-               01188 ;       .line   381; reveil.c   whereami = DISPLAY;
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 23
+               01188 ;       .line   377; reveil.c   whereami = DISPLAY;
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1327,40 +1327,40 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00EE 0E09      01189         MOVLW   0x09
 00F0 0000      01190         BANKSEL _whereami
 00F2 6F00      01191         MOVWF   _whereami, B
-               01192 ;       .line   382; reveil.c   break;
+               01192 ;       .line   378; reveil.c   break;
 00F4 D000      01193         BRA     _00267_DS_
 00F6 01194 _00265_DS_:
-               01195 ;       .line   384; reveil.c   stop_ringing = 1; // le réveil ne doit plus sonner
+               01195 ;       .line   380; reveil.c   stop_ringing = 1; // le réveil ne doit plus sonner
 00F6 0E01      01196         MOVLW   0x01
 00F8 0000      01197         BANKSEL _stop_ringing
 00FA 6F00      01198         MOVWF   _stop_ringing, B
-               01199 ;       .line   385; reveil.c   amin = amin_o; // remet le réveil à l'heure d'origine
+               01199 ;       .line   381; reveil.c   amin = amin_o; // remet le réveil à l'heure d'origine
 00FC C000 F000 01200         MOVFF   _amin_o, _amin
-               01201 ;       .line   386; reveil.c   ahour = ahour_o;
+               01201 ;       .line   382; reveil.c   ahour = ahour_o;
 0100 C000 F000 01202         MOVFF   _ahour_o, _ahour
 0104 0000      01203         BANKSEL _snooze
-               01204 ;       .line   387; reveil.c   snooze = 0;
+               01204 ;       .line   383; reveil.c   snooze = 0;
 0106 6B00      01205         CLRF    _snooze, B
-               01206 ;       .line   388; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
+               01206 ;       .line   384; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
 0108 9200      01207         BCF     _LATJbits, 1
-               01208 ;       .line   389; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
+               01208 ;       .line   385; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
 010A 9400      01209         BCF     _LATJbits, 2
-               01210 ;       .line   390; reveil.c   whereami = DISPLAY;
+               01210 ;       .line   386; reveil.c   whereami = DISPLAY;
 010C 0E09      01211         MOVLW   0x09
 010E 0000      01212         BANKSEL _whereami
 0110 6F00      01213         MOVWF   _whereami, B
 0112 01214 _00267_DS_:
 0112 0000      01215         BANKSEL _button1
-               01216 ;       .line   395; reveil.c   button1 = 0; // remet le flag du bouton 1 à 0
+               01216 ;       .line   391; reveil.c   button1 = 0; // remet le flag du bouton 1 à 0
 0114 6B00      01217         CLRF    _button1, B
 0116 EF00 F000 01218         GOTO    _00305_DS_
 011A 01219 _00303_DS_:
 011A 0000      01220         BANKSEL _button2
-               01221 ;       .line   398; reveil.c   } else if (button2) {
+               01221 ;       .line   394; reveil.c   } else if (button2) {
 011C 5100      01222         MOVF    _button2, W, B
 011E B4D8      01223         BTFSC   STATUS, 2
 0120 EF00 F000 01224         GOTO    _00305_DS_
-               01225 ;       .line   399; reveil.c   switch (whereami) {
+               01225 ;       .line   395; reveil.c   switch (whereami) {
 0124 0E01      01226         MOVLW   0x01
 0126 0000      01227         BANKSEL _whereami
 0128 5D00      01228         SUBWF   _whereami, W, B
@@ -1378,7 +1378,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0146 C000 FFE5 01240         MOVFF   r0x05, POSTDEC1
 014A 6A00      01241         CLRF    r0x05
 014C 3400      01242         RLCF    r0x00, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 24
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1416,29 +1416,29 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 019C EF00 F000 01272         GOTO    _00292_DS_
 01A0 EF00 F000 01273         GOTO    _00295_DS_
 01A4 01274 _00268_DS_:
-               01275 ;       .line   401; reveil.c   whereami = SET_HOUR;
+               01275 ;       .line   397; reveil.c   whereami = SET_HOUR;
 01A4 0E02      01276         MOVLW   0x02
 01A6 0000      01277         BANKSEL _whereami
 01A8 6F00      01278         MOVWF   _whereami, B
-               01279 ;       .line   402; reveil.c   break;
+               01279 ;       .line   398; reveil.c   break;
 01AA EF00 F000 01280         GOTO    _00299_DS_
 01AE 01281 _00269_DS_:
 01AE 0000      01282         BANKSEL _thour
-               01283 ;       .line   404; reveil.c   if (thour==23)
+               01283 ;       .line   400; reveil.c   if (thour==23)
 01B0 5100      01284         MOVF    _thour, W, B
 01B2 0A17      01285         XORLW   0x17
 01B4 E000      01286         BZ      _00327_DS_
 01B6 D000      01287         BRA     _00271_DS_
 01B8 01288 _00327_DS_:
 01B8 0000      01289         BANKSEL (_overflows + 3)
-               01290 ;       .line   405; reveil.c   overflows -= 59*F*3600;
+               01290 ;       .line   401; reveil.c   overflows -= 59*F*3600;
 01BA 5100      01291         MOVF    (_overflows + 3), W, B
 01BC 6EE5      01292         MOVWF   POSTDEC1
 01BE 0000      01293         BANKSEL (_overflows + 2)
 01C0 5100      01294         MOVF    (_overflows + 2), W, B
 01C2 6EE5      01295         MOVWF   POSTDEC1
 01C4 0000      01296         BANKSEL (_overflows + 1)
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 25
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1498,13 +1498,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0244 D000      01348         BRA     _00299_DS_
 0246 01349 _00271_DS_:
 0246 0000      01350         BANKSEL (_overflows + 3)
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 26
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               01351 ;       .line   407; reveil.c   overflows += F*3600;
+               01351 ;       .line   403; reveil.c   overflows += F*3600;
 0248 5100      01352         MOVF    (_overflows + 3), W, B
 024A 6EE5      01353         MOVWF   POSTDEC1
 024C 0000      01354         BANKSEL (_overflows + 2)
@@ -1558,7 +1558,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02BE 0000      01402         BANKSEL _overflows
 02C0 6F00      01403         MOVWF   _overflows, B
 02C2 CFF3 F000 01404         MOVFF   PRODL, (_overflows + 1)
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 27
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 27
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1568,18 +1568,18 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02CA CFE9 F000 01406         MOVFF   FSR0L, (_overflows + 3)
 02CE 0E04      01407         MOVLW   0x04
 02D0 26E1      01408         ADDWF   FSR1L, F
-               01409 ;       .line   408; reveil.c   break;
+               01409 ;       .line   404; reveil.c   break;
 02D2 D000      01410         BRA     _00299_DS_
 02D4 01411 _00273_DS_:
 02D4 0000      01412         BANKSEL _tmin
-               01413 ;       .line   410; reveil.c   if (tmin==59)
+               01413 ;       .line   406; reveil.c   if (tmin==59)
 02D6 5100      01414         MOVF    _tmin, W, B
 02D8 0A3B      01415         XORLW   0x3b
 02DA E000      01416         BZ      _00329_DS_
 02DC D000      01417         BRA     _00275_DS_
 02DE 01418 _00329_DS_:
 02DE 0000      01419         BANKSEL (_overflows + 3)
-               01420 ;       .line   411; reveil.c   overflows -= 59*F*60;
+               01420 ;       .line   407; reveil.c   overflows -= 59*F*60;
 02E0 5100      01421         MOVF    (_overflows + 3), W, B
 02E2 6EE5      01422         MOVWF   POSTDEC1
 02E4 0000      01423         BANKSEL (_overflows + 2)
@@ -1618,7 +1618,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0330 6E00      01456         MOVWF   r0x00
 0332 CFF3 F000 01457         MOVFF   PRODL, r0x01
 0336 CFF4 F000 01458         MOVFF   PRODH, r0x02
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 28
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1646,7 +1646,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 036A D000      01478         BRA     _00299_DS_
 036C 01479 _00275_DS_:
 036C 0000      01480         BANKSEL (_overflows + 3)
-               01481 ;       .line   413; reveil.c   overflows += F*60;
+               01481 ;       .line   409; reveil.c   overflows += F*60;
 036E 5100      01482         MOVF    (_overflows + 3), W, B
 0370 6EE5      01483         MOVWF   POSTDEC1
 0372 0000      01484         BANKSEL (_overflows + 2)
@@ -1678,7 +1678,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 03AE 5000      01510         MOVF    r0x02, W
 03B0 6EE5      01511         MOVWF   POSTDEC1
 03B2 5000      01512         MOVF    r0x01, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 29
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1710,18 +1710,18 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 03F0 CFE9 F000 01536         MOVFF   FSR0L, (_overflows + 3)
 03F4 0E04      01537         MOVLW   0x04
 03F6 26E1      01538         ADDWF   FSR1L, F
-               01539 ;       .line   414; reveil.c   break;
+               01539 ;       .line   410; reveil.c   break;
 03F8 D000      01540         BRA     _00299_DS_
 03FA 01541 _00277_DS_:
 03FA 0000      01542         BANKSEL _tsec
-               01543 ;       .line   416; reveil.c   if (tsec==59)
+               01543 ;       .line   412; reveil.c   if (tsec==59)
 03FC 5100      01544         MOVF    _tsec, W, B
 03FE 0A3B      01545         XORLW   0x3b
 0400 E000      01546         BZ      _00331_DS_
 0402 D000      01547         BRA     _00279_DS_
 0404 01548 _00331_DS_:
 0404 0000      01549         BANKSEL (_overflows + 3)
-               01550 ;       .line   417; reveil.c   overflows -= 59*F;
+               01550 ;       .line   413; reveil.c   overflows -= 59*F;
 0406 5100      01551         MOVF    (_overflows + 3), W, B
 0408 6EE5      01552         MOVWF   POSTDEC1
 040A 0000      01553         BANKSEL (_overflows + 2)
@@ -1738,7 +1738,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0422 CFF3 F000 01564         MOVFF   PRODL, r0x01
 0426 CFF4 F000 01565         MOVFF   PRODH, r0x02
 042A CFE9 F000 01566         MOVFF   FSR0L, r0x03
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 30
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1788,7 +1788,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0490 D000      01608         BRA     _00299_DS_
 0492 01609 _00279_DS_:
 0492 0000      01610         BANKSEL (_overflows + 3)
-               01611 ;       .line   419; reveil.c   overflows += F;
+               01611 ;       .line   415; reveil.c   overflows += F;
 0494 5100      01612         MOVF    (_overflows + 3), W, B
 0496 6EE5      01613         MOVWF   POSTDEC1
 0498 0000      01614         BANKSEL (_overflows + 2)
@@ -1798,7 +1798,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 04A0 5100      01618         MOVF    (_overflows + 1), W, B
 04A2 6EE5      01619         MOVWF   POSTDEC1
 04A4 0000      01620         BANKSEL _overflows
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 31
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1852,118 +1852,118 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0516 CFE9 F000 01666         MOVFF   FSR0L, (_overflows + 3)
 051A 0E04      01667         MOVLW   0x04
 051C 26E1      01668         ADDWF   FSR1L, F
-               01669 ;       .line   420; reveil.c   break;
+               01669 ;       .line   416; reveil.c   break;
 051E D000      01670         BRA     _00299_DS_
 0520 01671 _00281_DS_:
-               01672 ;       .line   422; reveil.c   whereami = SET_ALARM;
+               01672 ;       .line   418; reveil.c   whereami = SET_ALARM;
 0520 0E06      01673         MOVLW   0x06
 0522 0000      01674         BANKSEL _whereami
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 32
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 0524 6F00      01675         MOVWF   _whereami, B
-               01676 ;       .line   423; reveil.c   break;
+               01676 ;       .line   419; reveil.c   break;
 0526 D000      01677         BRA     _00299_DS_
 0528 01678 _00282_DS_:
-               01679 ;       .line   425; reveil.c   alarm_set ^= 1;
+               01679 ;       .line   421; reveil.c   alarm_set ^= 1;
 0528 0E01      01680         MOVLW   0x01
 052A 0000      01681         BANKSEL _alarm_set
 052C 1B00      01682         XORWF   _alarm_set, F, B
-               01683 ;       .line   426; reveil.c   break;
+               01683 ;       .line   422; reveil.c   break;
 052E D000      01684         BRA     _00299_DS_
 0530 01685 _00283_DS_:
 0530 0000      01686         BANKSEL _ahour
-               01687 ;       .line   428; reveil.c   if (ahour == 23) {
+               01687 ;       .line   424; reveil.c   if (ahour == 23) {
 0532 5100      01688         MOVF    _ahour, W, B
 0534 0A17      01689         XORLW   0x17
 0536 E100      01690         BNZ     _00285_DS_
 0538 01691 _00334_DS_:
 0538 0000      01692         BANKSEL _ahour
-               01693 ;       .line   429; reveil.c   ahour = 0;
+               01693 ;       .line   425; reveil.c   ahour = 0;
 053A 6B00      01694         CLRF    _ahour, B
 053C D000      01695         BRA     _00286_DS_
 053E 01696 _00285_DS_:
 053E 0000      01697         BANKSEL _ahour
-               01698 ;       .line   431; reveil.c   ahour++;
+               01698 ;       .line   427; reveil.c   ahour++;
 0540 2B00      01699         INCF    _ahour, F, B
 0542 01700 _00286_DS_:
-               01701 ;       .line   433; reveil.c   ahour_o = ahour;
+               01701 ;       .line   429; reveil.c   ahour_o = ahour;
 0542 C000 F000 01702         MOVFF   _ahour, _ahour_o
-               01703 ;       .line   434; reveil.c   break;
+               01703 ;       .line   430; reveil.c   break;
 0546 D000      01704         BRA     _00299_DS_
 0548 01705 _00287_DS_:
 0548 0000      01706         BANKSEL _amin
-               01707 ;       .line   436; reveil.c   if (amin == 59) {
+               01707 ;       .line   432; reveil.c   if (amin == 59) {
 054A 5100      01708         MOVF    _amin, W, B
 054C 0A3B      01709         XORLW   0x3b
 054E E100      01710         BNZ     _00289_DS_
 0550 01711 _00336_DS_:
 0550 0000      01712         BANKSEL _amin
-               01713 ;       .line   437; reveil.c   amin = 0;
+               01713 ;       .line   433; reveil.c   amin = 0;
 0552 6B00      01714         CLRF    _amin, B
 0554 D000      01715         BRA     _00290_DS_
 0556 01716 _00289_DS_:
 0556 0000      01717         BANKSEL _amin
-               01718 ;       .line   439; reveil.c   amin++;
+               01718 ;       .line   435; reveil.c   amin++;
 0558 2B00      01719         INCF    _amin, F, B
 055A 01720 _00290_DS_:
-               01721 ;       .line   441; reveil.c   amin_o = amin;
+               01721 ;       .line   437; reveil.c   amin_o = amin;
 055A C000 F000 01722         MOVFF   _amin, _amin_o
-               01723 ;       .line   442; reveil.c   break;
+               01723 ;       .line   438; reveil.c   break;
 055E D000      01724         BRA     _00299_DS_
 0560 01725 _00291_DS_:
-               01726 ;       .line   445; reveil.c   break;
+               01726 ;       .line   441; reveil.c   break;
 0560 D000      01727         BRA     _00299_DS_
 0562 01728 _00292_DS_:
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 33
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               01729 ;       .line   448; reveil.c   if (snooze < SNOOZE_MAX) {
-0562 0E0C      01730         MOVLW   0x0c
+               01729 ;       .line   444; reveil.c   if (snooze < SNOOZE_MAX) {
+0562 0E03      01730         MOVLW   0x03
 0564 0000      01731         BANKSEL _snooze
 0566 5D00      01732         SUBWF   _snooze, W, B
 0568 E200      01733         BC      _00299_DS_
-               01734 ;       .line   449; reveil.c   inc_amin(SNOOZE_MINUTE); // modifie le réveil
-056A 0E05      01735         MOVLW   0x05
+               01734 ;       .line   445; reveil.c   inc_amin(SNOOZE_MINUTE); // modifie le réveil
+056A 0E01      01735         MOVLW   0x01
 056C 6EE5      01736         MOVWF   POSTDEC1
 056E EC00 F000 01737         CALL    _inc_amin
 0572 2AE1      01738         INCF    FSR1L, F
 0574 0000      01739         BANKSEL _snooze
-               01740 ;       .line   450; reveil.c   snooze++; // augmente le compteur de snooze
+               01740 ;       .line   446; reveil.c   snooze++; // augmente le compteur de snooze
 0576 2B00      01741         INCF    _snooze, F, B
-               01742 ;       .line   451; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
+               01742 ;       .line   447; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
 0578 9200      01743         BCF     _LATJbits, 1
-               01744 ;       .line   452; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
+               01744 ;       .line   448; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
 057A 9400      01745         BCF     _LATJbits, 2
-               01746 ;       .line   453; reveil.c   whereami = SNOOZE;
+               01746 ;       .line   449; reveil.c   whereami = SNOOZE;
 057C 0E0B      01747         MOVLW   0x0b
 057E 0000      01748         BANKSEL _whereami
 0580 6F00      01749         MOVWF   _whereami, B
-               01750 ;       .line   456; reveil.c   break;
+               01750 ;       .line   452; reveil.c   break;
 0582 D000      01751         BRA     _00299_DS_
 0584 01752 _00295_DS_:
-               01753 ;       .line   459; reveil.c   if (snooze < SNOOZE_MAX) {
-0584 0E0C      01754         MOVLW   0x0c
+               01753 ;       .line   455; reveil.c   if (snooze < SNOOZE_MAX) {
+0584 0E03      01754         MOVLW   0x03
 0586 0000      01755         BANKSEL _snooze
 0588 5D00      01756         SUBWF   _snooze, W, B
 058A E200      01757         BC      _00299_DS_
-               01758 ;       .line   460; reveil.c   inc_amin(SNOOZE_MINUTE); // modifie le réveil
-058C 0E05      01759         MOVLW   0x05
+               01758 ;       .line   456; reveil.c   inc_amin(SNOOZE_MINUTE); // modifie le réveil
+058C 0E01      01759         MOVLW   0x01
 058E 6EE5      01760         MOVWF   POSTDEC1
 0590 EC00 F000 01761         CALL    _inc_amin
 0594 2AE1      01762         INCF    FSR1L, F
 0596 0000      01763         BANKSEL _snooze
-               01764 ;       .line   461; reveil.c   snooze++; // augmente le compteur de snooze
+               01764 ;       .line   457; reveil.c   snooze++; // augmente le compteur de snooze
 0598 2B00      01765         INCF    _snooze, F, B
 059A 01766 _00299_DS_:
 059A 0000      01767         BANKSEL _button2
-               01768 ;       .line   468; reveil.c   button2 = 0; // remet le flag du bouton 2 à 0
+               01768 ;       .line   464; reveil.c   button2 = 0; // remet le flag du bouton 2 à 0
 059C 6B00      01769         CLRF    _button2, B
 059E 01770 _00305_DS_:
 059E CFE4 F000 01771         MOVFF   PREINC1, r0x03
@@ -1976,9 +1976,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01778 ; ; Starting pCode block
                01779 S_reveil__alarm code
 0000 01780 _alarm:
-               01781 ;       .line   310; reveil.c   void alarm(void)
+               01781 ;       .line   306; reveil.c   void alarm(void)
 0000 CFD9 FFE5 01782         MOVFF   FSR2L, POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 34
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1986,7 +1986,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 0004 CFE1 FFD9 01783         MOVFF   FSR1L, FSR2L
 0008 0000      01784         BANKSEL _thour
-               01785 ;       .line   313; reveil.c   if ((thour == ahour) && (tmin == amin) && alarm_set) {
+               01785 ;       .line   309; reveil.c   if ((thour == ahour) && (tmin == amin) && alarm_set) {
 000A 5100      01786         MOVF    _thour, W, B
 000C 0000      01787         BANKSEL _ahour
 000E 1900      01788         XORWF   _ahour, W, B
@@ -2003,7 +2003,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0020 0000      01799         BANKSEL _alarm_set
 0022 5100      01800         MOVF    _alarm_set, W, B
 0024 E000      01801         BZ      _00228_DS_
-               01802 ;       .line   316; reveil.c   if ((tsec < 31) && (stop_ringing == 0)) {
+               01802 ;       .line   312; reveil.c   if ((tsec < 31) && (stop_ringing == 0)) {
 0026 0E1F      01803         MOVLW   0x1f
 0028 0000      01804         BANKSEL _tsec
 002A 5D00      01805         SUBWF   _tsec, W, B
@@ -2012,7 +2012,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0030 5100      01808         MOVF    _stop_ringing, W, B
 0032 E100      01809         BNZ     _00221_DS_
 0034 0000      01810         BANKSEL _whereami
-               01811 ;       .line   317; reveil.c   if ((whereami == DISPLAY) || (whereami == SNOOZE)) {
+               01811 ;       .line   313; reveil.c   if ((whereami == DISPLAY) || (whereami == SNOOZE)) {
 0036 5100      01812         MOVF    _whereami, W, B
 0038 0A09      01813         XORLW   0x09
 003A E000      01814         BZ      _00210_DS_
@@ -2022,53 +2022,53 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0040 0A0B      01818         XORLW   0x0b
 0042 E100      01819         BNZ     _00228_DS_
 0044 01820 _00210_DS_:
-               01821 ;       .line   318; reveil.c   whereami = ALARM;
+               01821 ;       .line   314; reveil.c   whereami = ALARM;
 0044 0E0A      01822         MOVLW   0x0a
 0046 0000      01823         BANKSEL _whereami
 0048 6F00      01824         MOVWF   _whereami, B
 004A D000      01825         BRA     _00228_DS_
 004C 01826 _00221_DS_:
-               01827 ;       .line   321; reveil.c   } else if (tsec > 30) {
+               01827 ;       .line   317; reveil.c   } else if (tsec > 30) {
 004C 0E1F      01828         MOVLW   0x1f
 004E 0000      01829         BANKSEL _tsec
 0050 5D00      01830         SUBWF   _tsec, W, B
 0052 E300      01831         BNC     _00228_DS_
 0054 0000      01832         BANKSEL _stop_ringing
-               01833 ;       .line   322; reveil.c   stop_ringing = 0; // remet à 0 si l'alarme a été éteinte à la main
+               01833 ;       .line   318; reveil.c   stop_ringing = 0; // remet à 0 si l'alarme a été éteinte à la main
 0056 6B00      01834         CLRF    _stop_ringing, B
-               01835 ;       .line   323; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
+               01835 ;       .line   319; reveil.c   LATJbits.LATJ1 = 0; // switch LED 2 off
 0058 9200      01836         BCF     _LATJbits, 1
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 35
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               01837 ;       .line   324; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
+               01837 ;       .line   320; reveil.c   LATJbits.LATJ2 = 0; // switch LED 3 off
 005A 9400      01838         BCF     _LATJbits, 2
 005C 0000      01839         BANKSEL _snooze
-               01840 ;       .line   326; reveil.c   if (snooze) {
+               01840 ;       .line   322; reveil.c   if (snooze) {
 005E 5100      01841         MOVF    _snooze, W, B
 0060 E000      01842         BZ      _00216_DS_
-               01843 ;       .line   327; reveil.c   ahour = ahour_o; // remet le réveil
+               01843 ;       .line   323; reveil.c   ahour = ahour_o; // remet le réveil
 0062 C000 F000 01844         MOVFF   _ahour_o, _ahour
-               01845 ;       .line   328; reveil.c   amin = amin_o;
+               01845 ;       .line   324; reveil.c   amin = amin_o;
 0066 C000 F000 01846         MOVFF   _amin_o, _amin
 006A 0000      01847         BANKSEL _snooze
-               01848 ;       .line   329; reveil.c   snooze = 0;
+               01848 ;       .line   325; reveil.c   snooze = 0;
 006C 6B00      01849         CLRF    _snooze, B
-               01850 ;       .line   330; reveil.c   whereami = DISPLAY;
+               01850 ;       .line   326; reveil.c   whereami = DISPLAY;
 006E 0E09      01851         MOVLW   0x09
 0070 0000      01852         BANKSEL _whereami
 0072 6F00      01853         MOVWF   _whereami, B
 0074 D000      01854         BRA     _00228_DS_
 0076 01855 _00216_DS_:
 0076 0000      01856         BANKSEL _whereami
-               01857 ;       .line   331; reveil.c   } else if (whereami == ALARM) { // si l'alarme sonnait toujours, on
+               01857 ;       .line   327; reveil.c   } else if (whereami == ALARM) { // si l'alarme sonnait toujours, on
 0078 5100      01858         MOVF    _whereami, W, B
 007A 0A0A      01859         XORLW   0x0a
 007C E100      01860         BNZ     _00228_DS_
-               01861 ;       .line   332; reveil.c   whereami = DISPLAY;         // revient à l'affichage de l'heure
+               01861 ;       .line   328; reveil.c   whereami = DISPLAY;         // revient à l'affichage de l'heure
 007E 0E09      01862         MOVLW   0x09
 0080 0000      01863         BANKSEL _whereami
 0082 6F00      01864         MOVWF   _whereami, B
@@ -2079,7 +2079,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01869 ; ; Starting pCode block
                01870 S_reveil__refresh_lcd   code
 0000 01871 _refresh_lcd:
-               01872 ;       .line   242; reveil.c   void refresh_lcd(void)
+               01872 ;       .line   238; reveil.c   void refresh_lcd(void)
 0000 CFD9 FFE5 01873         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01874         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01875         MOVFF   r0x00, POSTDEC1
@@ -2097,8 +2097,8 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0038 C000 FFE5 01887         MOVFF   r0x0c, POSTDEC1
 003C C000 FFE5 01888         MOVFF   r0x0d, POSTDEC1
 0040 C000 FFE5 01889         MOVFF   r0x0e, POSTDEC1
-               01890 ;       .line   245; reveil.c   switch (whereami) {
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 36
+               01890 ;       .line   241; reveil.c   switch (whereami) {
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2153,12 +2153,12 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00BC EF00 F000 01937         GOTO    _00188_DS_
 00C0 EF00 F000 01938         GOTO    _00189_DS_
 00C4 01939 _00173_DS_:
-               01940 ;       .line   247; reveil.c   sprintf(display, "Do you want to  set the time ?  ");
+               01940 ;       .line   243; reveil.c   sprintf(display, "Do you want to  set the time ?  ");
 00C4 0E00      01941         MOVLW   HIGH(_display)
 00C6 6E00      01942         MOVWF   r0x01
 00C8 0E00      01943         MOVLW   LOW(_display)
 00CA 6E00      01944         MOVWF   r0x00
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 37
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 37
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2181,17 +2181,17 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00E8 EC00 F000 01959         CALL    _sprintf
 00EC 0E06      01960         MOVLW   0x06
 00EE 26E1      01961         ADDWF   FSR1L, F
-               01962 ;       .line   248; reveil.c   break;
+               01962 ;       .line   244; reveil.c   break;
 00F0 EF00 F000 01963         GOTO    _00194_DS_
 00F4 01964 _00174_DS_:
-               01965 ;       .line   251; reveil.c   thour, tmin, tsec);
+               01965 ;       .line   247; reveil.c   thour, tmin, tsec);
 00F4 C000 F000 01966         MOVFF   _tsec, r0x00
 00F8 6A00      01967         CLRF    r0x01
 00FA C000 F000 01968         MOVFF   _tmin, r0x02
 00FE 6A00      01969         CLRF    r0x03
 0100 C000 F000 01970         MOVFF   _thour, r0x04
 0104 6A00      01971         CLRF    r0x05
-               01972 ;       .line   250; reveil.c   sprintf(display, " [%02u]: %02u : %02u                  ",
+               01972 ;       .line   246; reveil.c   sprintf(display, " [%02u]: %02u : %02u                  ",
 0106 0E00      01973         MOVLW   HIGH(_display)
 0108 6E00      01974         MOVWF   r0x07
 010A 0E00      01975         MOVLW   LOW(_display)
@@ -2218,7 +2218,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0134 6EE5      01996         MOVWF   POSTDEC1
 0136 5000      01997         MOVF    r0x08, W
 0138 6EE5      01998         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 38
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 38
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2231,17 +2231,17 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0142 EC00 F000 02003         CALL    _sprintf
 0146 0E0C      02004         MOVLW   0x0c
 0148 26E1      02005         ADDWF   FSR1L, F
-               02006 ;       .line   252; reveil.c   break;
+               02006 ;       .line   248; reveil.c   break;
 014A EF00 F000 02007         GOTO    _00194_DS_
 014E 02008 _00175_DS_:
-               02009 ;       .line   255; reveil.c   thour, tmin, tsec);
+               02009 ;       .line   251; reveil.c   thour, tmin, tsec);
 014E C000 F000 02010         MOVFF   _tsec, r0x00
 0152 6A00      02011         CLRF    r0x01
 0154 C000 F000 02012         MOVFF   _tmin, r0x02
 0158 6A00      02013         CLRF    r0x03
 015A C000 F000 02014         MOVFF   _thour, r0x04
 015E 6A00      02015         CLRF    r0x05
-               02016 ;       .line   254; reveil.c   sprintf(display, "  %02u :[%02u]: %02u                  ",
+               02016 ;       .line   250; reveil.c   sprintf(display, "  %02u :[%02u]: %02u                  ",
 0160 0E00      02017         MOVLW   HIGH(_display)
 0162 6E00      02018         MOVWF   r0x07
 0164 0E00      02019         MOVLW   LOW(_display)
@@ -2275,23 +2275,23 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 019C EC00 F000 02047         CALL    _sprintf
 01A0 0E0C      02048         MOVLW   0x0c
 01A2 26E1      02049         ADDWF   FSR1L, F
-               02050 ;       .line   256; reveil.c   break;
+               02050 ;       .line   252; reveil.c   break;
 01A4 D000      02051         BRA     _00194_DS_
 01A6 02052 _00176_DS_:
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 39
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 39
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               02053 ;       .line   259; reveil.c   thour, tmin, tsec);
+               02053 ;       .line   255; reveil.c   thour, tmin, tsec);
 01A6 C000 F000 02054         MOVFF   _tsec, r0x00
 01AA 6A00      02055         CLRF    r0x01
 01AC C000 F000 02056         MOVFF   _tmin, r0x02
 01B0 6A00      02057         CLRF    r0x03
 01B2 C000 F000 02058         MOVFF   _thour, r0x04
 01B6 6A00      02059         CLRF    r0x05
-               02060 ;       .line   258; reveil.c   sprintf(display, "  %02u : %02u :[%02u]                 ",
+               02060 ;       .line   254; reveil.c   sprintf(display, "  %02u : %02u :[%02u]                 ",
 01B8 0E00      02061         MOVLW   HIGH(_display)
 01BA 6E00      02062         MOVWF   r0x07
 01BC 0E00      02063         MOVLW   LOW(_display)
@@ -2325,10 +2325,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01F4 EC00 F000 02091         CALL    _sprintf
 01F8 0E0C      02092         MOVLW   0x0c
 01FA 26E1      02093         ADDWF   FSR1L, F
-               02094 ;       .line   260; reveil.c   break;
+               02094 ;       .line   256; reveil.c   break;
 01FC D000      02095         BRA     _00194_DS_
 01FE 02096 _00177_DS_:
-               02097 ;       .line   262; reveil.c   sprintf(display, "Do you want to  set the alarm ? ");
+               02097 ;       .line   258; reveil.c   sprintf(display, "Do you want to  set the alarm ? ");
 01FE 0E00      02098         MOVLW   HIGH(_display)
 0200 6E00      02099         MOVWF   r0x01
 0202 0E00      02100         MOVLW   LOW(_display)
@@ -2338,7 +2338,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 020A 0E00      02104         MOVLW   UPPER(__str_4)
 020C 6EE5      02105         MOVWF   POSTDEC1
 020E 0E00      02106         MOVLW   HIGH(__str_4)
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 40
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 40
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2356,14 +2356,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0222 EC00 F000 02116         CALL    _sprintf
 0226 0E06      02117         MOVLW   0x06
 0228 26E1      02118         ADDWF   FSR1L, F
-               02119 ;       .line   263; reveil.c   break;
+               02119 ;       .line   259; reveil.c   break;
 022A D000      02120         BRA     _00194_DS_
 022C 02121 _00178_DS_:
 022C 0000      02122         BANKSEL _alarm_set
-               02123 ;       .line   265; reveil.c   if (alarm_set) {
+               02123 ;       .line   261; reveil.c   if (alarm_set) {
 022E 5100      02124         MOVF    _alarm_set, W, B
 0230 E000      02125         BZ      _00180_DS_
-               02126 ;       .line   266; reveil.c   sprintf(display, "  Alarm [ON ]                   ");
+               02126 ;       .line   262; reveil.c   sprintf(display, "  Alarm [ON ]                   ");
 0232 0E00      02127         MOVLW   HIGH(_display)
 0234 6E00      02128         MOVWF   r0x01
 0236 0E00      02129         MOVLW   LOW(_display)
@@ -2387,7 +2387,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 025C 26E1      02147         ADDWF   FSR1L, F
 025E D000      02148         BRA     _00194_DS_
 0260 02149 _00180_DS_:
-               02150 ;       .line   268; reveil.c   sprintf(display, "  Alarm [OFF]                   ");
+               02150 ;       .line   264; reveil.c   sprintf(display, "  Alarm [OFF]                   ");
 0260 0E00      02151         MOVLW   HIGH(_display)
 0262 6E00      02152         MOVWF   r0x01
 0264 0E00      02153         MOVLW   LOW(_display)
@@ -2398,7 +2398,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 026E 6EE5      02158         MOVWF   POSTDEC1
 0270 0E00      02159         MOVLW   HIGH(__str_6)
 0272 6EE5      02160         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 41
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 41
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2415,15 +2415,15 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0284 EC00 F000 02169         CALL    _sprintf
 0288 0E06      02170         MOVLW   0x06
 028A 26E1      02171         ADDWF   FSR1L, F
-               02172 ;       .line   270; reveil.c   break;
+               02172 ;       .line   266; reveil.c   break;
 028C D000      02173         BRA     _00194_DS_
 028E 02174 _00182_DS_:
-               02175 ;       .line   273; reveil.c   ahour, amin);
+               02175 ;       .line   269; reveil.c   ahour, amin);
 028E C000 F000 02176         MOVFF   _amin, r0x00
 0292 6A00      02177         CLRF    r0x01
 0294 C000 F000 02178         MOVFF   _ahour, r0x02
 0298 6A00      02179         CLRF    r0x03
-               02180 ;       .line   272; reveil.c   sprintf(display, "    Alarm at        [%02u]: %02u    ",
+               02180 ;       .line   268; reveil.c   sprintf(display, "    Alarm at        [%02u]: %02u    ",
 029A 0E00      02181         MOVLW   HIGH(_display)
 029C 6E00      02182         MOVWF   r0x05
 029E 0E00      02183         MOVLW   LOW(_display)
@@ -2453,12 +2453,12 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02CE EC00 F000 02207         CALL    _sprintf
 02D2 0E0A      02208         MOVLW   0x0a
 02D4 26E1      02209         ADDWF   FSR1L, F
-               02210 ;       .line   274; reveil.c   break;
+               02210 ;       .line   270; reveil.c   break;
 02D6 D000      02211         BRA     _00194_DS_
 02D8 02212 _00183_DS_:
-               02213 ;       .line   277; reveil.c   ahour, amin);
+               02213 ;       .line   273; reveil.c   ahour, amin);
 02D8 C000 F000 02214         MOVFF   _amin, r0x00
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 42
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 42
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2467,7 +2467,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02DC 6A00      02215         CLRF    r0x01
 02DE C000 F000 02216         MOVFF   _ahour, r0x02
 02E2 6A00      02217         CLRF    r0x03
-               02218 ;       .line   276; reveil.c   sprintf(display, "    Alarm at         %02u :[%02u]   ",
+               02218 ;       .line   272; reveil.c   sprintf(display, "    Alarm at         %02u :[%02u]   ",
 02E4 0E00      02219         MOVLW   HIGH(_display)
 02E6 6E00      02220         MOVWF   r0x05
 02E8 0E00      02221         MOVLW   LOW(_display)
@@ -2497,14 +2497,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0318 EC00 F000 02245         CALL    _sprintf
 031C 0E0A      02246         MOVLW   0x0a
 031E 26E1      02247         ADDWF   FSR1L, F
-               02248 ;       .line   278; reveil.c   break;
+               02248 ;       .line   274; reveil.c   break;
 0320 D000      02249         BRA     _00194_DS_
 0322 02250 _00184_DS_:
 0322 0000      02251         BANKSEL _alarm_set
-               02252 ;       .line   280; reveil.c   if (alarm_set) {
+               02252 ;       .line   276; reveil.c   if (alarm_set) {
 0324 5100      02253         MOVF    _alarm_set, W, B
 0326 E000      02254         BZ      _00186_DS_
-               02255 ;       .line   282; reveil.c   thour, tmin, tsec, ahour, amin);
+               02255 ;       .line   278; reveil.c   thour, tmin, tsec, ahour, amin);
 0328 C000 F000 02256         MOVFF   _amin, r0x00
 032C 6A00      02257         CLRF    r0x01
 032E C000 F000 02258         MOVFF   _ahour, r0x02
@@ -2515,10 +2515,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 033E 6A00      02263         CLRF    r0x07
 0340 C000 F000 02264         MOVFF   _thour, r0x08
 0344 6A00      02265         CLRF    r0x09
-               02266 ;       .line   281; reveil.c   sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
+               02266 ;       .line   277; reveil.c   sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
 0346 0E00      02267         MOVLW   HIGH(_display)
 0348 6E00      02268         MOVWF   r0x0b
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 43
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 43
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2565,20 +2565,20 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0398 26E1      02307         ADDWF   FSR1L, F
 039A D000      02308         BRA     _00194_DS_
 039C 02309 _00186_DS_:
-               02310 ;       .line   285; reveil.c   thour, tmin, tsec);
+               02310 ;       .line   281; reveil.c   thour, tmin, tsec);
 039C C000 F000 02311         MOVFF   _tsec, r0x00
 03A0 6A00      02312         CLRF    r0x01
 03A2 C000 F000 02313         MOVFF   _tmin, r0x02
 03A6 6A00      02314         CLRF    r0x03
 03A8 C000 F000 02315         MOVFF   _thour, r0x04
 03AC 6A00      02316         CLRF    r0x05
-               02317 ;       .line   284; reveil.c   sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
+               02317 ;       .line   280; reveil.c   sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
 03AE 0E00      02318         MOVLW   HIGH(_display)
 03B0 6E00      02319         MOVWF   r0x07
 03B2 0E00      02320         MOVLW   LOW(_display)
 03B4 6E00      02321         MOVWF   r0x06
 03B6 0E80      02322         MOVLW   0x80
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 44
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 44
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2612,17 +2612,17 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 03EA EC00 F000 02348         CALL    _sprintf
 03EE 0E0C      02349         MOVLW   0x0c
 03F0 26E1      02350         ADDWF   FSR1L, F
-               02351 ;       .line   287; reveil.c   break;
+               02351 ;       .line   283; reveil.c   break;
 03F2 D000      02352         BRA     _00194_DS_
 03F4 02353 _00188_DS_:
-               02354 ;       .line   290; reveil.c   thour, tmin, tsec);
+               02354 ;       .line   286; reveil.c   thour, tmin, tsec);
 03F4 C000 F000 02355         MOVFF   _tsec, r0x00
 03F8 6A00      02356         CLRF    r0x01
 03FA C000 F000 02357         MOVFF   _tmin, r0x02
 03FE 6A00      02358         CLRF    r0x03
 0400 C000 F000 02359         MOVFF   _thour, r0x04
 0404 6A00      02360         CLRF    r0x05
-               02361 ;       .line   289; reveil.c   sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
+               02361 ;       .line   285; reveil.c   sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
 0406 0E00      02362         MOVLW   HIGH(_display)
 0408 6E00      02363         MOVWF   r0x07
 040A 0E00      02364         MOVLW   LOW(_display)
@@ -2638,7 +2638,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 041E 5000      02374         MOVF    r0x02, W
 0420 6EE5      02375         MOVWF   POSTDEC1
 0422 5000      02376         MOVF    r0x05, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 45
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 45
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2662,16 +2662,16 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0442 EC00 F000 02392         CALL    _sprintf
 0446 0E0C      02393         MOVLW   0x0c
 0448 26E1      02394         ADDWF   FSR1L, F
-               02395 ;       .line   291; reveil.c   break;
+               02395 ;       .line   287; reveil.c   break;
 044A D000      02396         BRA     _00194_DS_
 044C 02397 _00189_DS_:
-               02398 ;       .line   293; reveil.c   if (snooze < 10) {
+               02398 ;       .line   289; reveil.c   if (snooze < 10) {
 044C 0E0A      02399         MOVLW   0x0a
 044E 0000      02400         BANKSEL _snooze
 0450 5D00      02401         SUBWF   _snooze, W, B
 0452 B0D8      02402         BTFSC   STATUS, 0
 0454 D000      02403         BRA     _00191_DS_
-               02404 ;       .line   295; reveil.c   thour, tmin, tsec, snooze, ahour_o, amin_o);
+               02404 ;       .line   291; reveil.c   thour, tmin, tsec, snooze, ahour_o, amin_o);
 0456 C000 F000 02405         MOVFF   _amin_o, r0x00
 045A 6A00      02406         CLRF    r0x01
 045C C000 F000 02407         MOVFF   _ahour_o, r0x02
@@ -2684,7 +2684,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0472 6A00      02414         CLRF    r0x09
 0474 C000 F000 02415         MOVFF   _thour, r0x0a
 0478 6A00      02416         CLRF    r0x0b
-               02417 ;       .line   294; reveil.c   sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
+               02417 ;       .line   290; reveil.c   sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
 047A 0E00      02418         MOVLW   HIGH(_display)
 047C 6E00      02419         MOVWF   r0x0d
 047E 0E00      02420         MOVLW   LOW(_display)
@@ -2698,7 +2698,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 048E 5000      02428         MOVF    r0x03, W
 0490 6EE5      02429         MOVWF   POSTDEC1
 0492 5000      02430         MOVF    r0x02, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 46
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 46
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2738,7 +2738,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 04D4 26E1      02462         ADDWF   FSR1L, F
 04D6 D000      02463         BRA     _00194_DS_
 04D8 02464 _00191_DS_:
-               02465 ;       .line   298; reveil.c   thour, tmin, tsec, snooze, ahour_o, amin_o);
+               02465 ;       .line   294; reveil.c   thour, tmin, tsec, snooze, ahour_o, amin_o);
 04D8 C000 F000 02466         MOVFF   _amin_o, r0x00
 04DC 6A00      02467         CLRF    r0x01
 04DE C000 F000 02468         MOVFF   _ahour_o, r0x02
@@ -2751,14 +2751,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 04F4 6A00      02475         CLRF    r0x09
 04F6 C000 F000 02476         MOVFF   _thour, r0x0a
 04FA 6A00      02477         CLRF    r0x0b
-               02478 ;       .line   297; reveil.c   sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
+               02478 ;       .line   293; reveil.c   sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
 04FC 0E00      02479         MOVLW   HIGH(_display)
 04FE 6E00      02480         MOVWF   r0x0d
 0500 0E00      02481         MOVLW   LOW(_display)
 0502 6E00      02482         MOVWF   r0x0c
 0504 0E80      02483         MOVLW   0x80
 0506 6E00      02484         MOVWF   r0x0e
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 47
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 47
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2803,10 +2803,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0550 EC00 F000 02521         CALL    _sprintf
 0554 0E12      02522         MOVLW   0x12
 0556 26E1      02523         ADDWF   FSR1L, F
-               02524 ;       .line   300; reveil.c   break;
+               02524 ;       .line   296; reveil.c   break;
 0558 D000      02525         BRA     _00194_DS_
 055A 02526 _00193_DS_:
-               02527 ;       .line   302; reveil.c   sprintf(display, "**** ERROR ********* ERROR *****");
+               02527 ;       .line   298; reveil.c   sprintf(display, "**** ERROR ********* ERROR *****");
 055A 0E00      02528         MOVLW   HIGH(_display)
 055C 6E00      02529         MOVWF   r0x01
 055E 0E00      02530         MOVLW   LOW(_display)
@@ -2818,7 +2818,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 056A 0E00      02536         MOVLW   HIGH(__str_14)
 056C 6EE5      02537         MOVWF   POSTDEC1
 056E 0E00      02538         MOVLW   LOW(__str_14)
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 48
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 48
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2835,7 +2835,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0582 0E06      02547         MOVLW   0x06
 0584 26E1      02548         ADDWF   FSR1L, F
 0586 02549 _00194_DS_:
-               02550 ;       .line   305; reveil.c   DisplayString(0, display);
+               02550 ;       .line   301; reveil.c   DisplayString(0, display);
 0586 0E00      02551         MOVLW   HIGH(_display)
 0588 6E00      02552         MOVWF   r0x01
 058A 0E00      02553         MOVLW   LOW(_display)
@@ -2874,11 +2874,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                02586 ; ; Starting pCode block
                02587 S_reveil__time  code
 0000 02588 _time:
-               02589 ;       .line   202; reveil.c   void time(void)
+               02589 ;       .line   198; reveil.c   void time(void)
 0000 CFD9 FFE5 02590         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 02591         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 02592         MOVFF   r0x00, POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 49
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 49
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2892,7 +2892,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0020 C000 FFE5 02598         MOVFF   r0x06, POSTDEC1
 0024 C000 FFE5 02599         MOVFF   r0x07, POSTDEC1
 0028 0000      02600         BANKSEL (_overflows + 3)
-               02601 ;       .line   205; reveil.c   sec = overflows/F;
+               02601 ;       .line   201; reveil.c   sec = overflows/F;
 002A 5100      02602         MOVF    (_overflows + 3), W, B
 002C 6EE5      02603         MOVWF   POSTDEC1
 002E 0000      02604         BANKSEL (_overflows + 2)
@@ -2938,7 +2938,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 008E 6EE5      02644         MOVWF   POSTDEC1
 0090 5000      02645         MOVF    r0x02, W
 0092 6EE5      02646         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 50
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 50
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2957,7 +2957,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00B0 0E04      02657         MOVLW   0x04
 00B2 26E1      02658         ADDWF   FSR1L, F
 00B4 0000      02659         BANKSEL (_overflows + 3)
-               02660 ;       .line   206; reveil.c   decisec = ((10*overflows)/F);
+               02660 ;       .line   202; reveil.c   decisec = ((10*overflows)/F);
 00B6 5100      02661         MOVF    (_overflows + 3), W, B
 00B8 6EE5      02662         MOVWF   POSTDEC1
 00BA 0000      02663         BANKSEL (_overflows + 2)
@@ -2998,7 +2998,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 010C CFF4 F000 02698         MOVFF   PRODH, r0x02
 0110 CFE9 F000 02699         MOVFF   FSR0L, r0x03
 0114 0E04      02700         MOVLW   0x04
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 51
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 51
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3044,7 +3044,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 016E CFE9 F000 02738         MOVFF   FSR0L, (_decisec + 3)
 0172 0E04      02739         MOVLW   0x04
 0174 26E1      02740         ADDWF   FSR1L, F
-               02741 ;       .line   207; reveil.c   ds = decisec%10;
+               02741 ;       .line   203; reveil.c   ds = decisec%10;
 0176 0E00      02742         MOVLW   0x00
 0178 6EE5      02743         MOVWF   POSTDEC1
 017A 0E00      02744         MOVLW   0x00
@@ -3058,7 +3058,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 018A 6EE5      02752         MOVWF   POSTDEC1
 018C 0000      02753         BANKSEL (_decisec + 2)
 018E 5100      02754         MOVF    (_decisec + 2), W, B
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 52
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 52
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3081,7 +3081,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01B4 5000      02769         MOVF    r0x00, W
 01B6 0000      02770         BANKSEL _ds
 01B8 6F00      02771         MOVWF   _ds, B
-               02772 ;       .line   208; reveil.c   h = (sec/3600)%24;
+               02772 ;       .line   204; reveil.c   h = (sec/3600)%24;
 01BA 0E00      02773         MOVLW   0x00
 01BC 6EE5      02774         MOVWF   POSTDEC1
 01BE 0E00      02775         MOVLW   0x00
@@ -3118,7 +3118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0204 0E18      02806         MOVLW   0x18
 0206 6EE5      02807         MOVWF   POSTDEC1
 0208 5000      02808         MOVF    r0x03, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 53
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 53
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3141,7 +3141,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 022E 5000      02823         MOVF    r0x04, W
 0230 0000      02824         BANKSEL _h
 0232 6F00      02825         MOVWF   _h, B
-               02826 ;       .line   209; reveil.c   m = (sec-(sec/3600)*3600)/60;
+               02826 ;       .line   205; reveil.c   m = (sec-(sec/3600)*3600)/60;
 0234 5000      02827         MOVF    r0x03, W
 0236 6EE5      02828         MOVWF   POSTDEC1
 0238 5000      02829         MOVF    r0x02, W
@@ -3178,7 +3178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 027E 5900      02860         SUBWFB  (_sec + 2), W, B
 0280 6E00      02861         MOVWF   r0x02
 0282 5000      02862         MOVF    r0x03, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 54
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 54
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3214,7 +3214,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02C2 0000      02890         BANKSEL _m
 02C4 6F00      02891         MOVWF   _m, B
 02C6 0000      02892         BANKSEL _sec
-               02893 ;       .line   210; reveil.c   s = sec-h*3600-m*60;
+               02893 ;       .line   206; reveil.c   s = sec-h*3600-m*60;
 02C8 5100      02894         MOVF    _sec, W, B
 02CA 6E00      02895         MOVWF   r0x00
                02896 ; ;multiply lit val:0x10 by variable _h and store in r0x01
@@ -3238,67 +3238,67 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02E8 0000      02914         BANKSEL _s
 02EA 6F00      02915         MOVWF   _s, B
 02EC 0000      02916         BANKSEL _tsec
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 55
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 55
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               02917 ;       .line   213; reveil.c   if (tsec != s)
+               02917 ;       .line   209; reveil.c   if (tsec != s)
 02EE 5100      02918         MOVF    _tsec, W, B
 02F0 0000      02919         BANKSEL _s
 02F2 1900      02920         XORWF   _s, W, B
 02F4 E000      02921         BZ      _00131_DS_
-               02922 ;       .line   214; reveil.c   tsec = s;
+               02922 ;       .line   210; reveil.c   tsec = s;
 02F6 C000 F000 02923         MOVFF   _s, _tsec
 02FA 02924 _00131_DS_:
 02FA 0000      02925         BANKSEL _tmin
-               02926 ;       .line   215; reveil.c   if (tmin != m)
+               02926 ;       .line   211; reveil.c   if (tmin != m)
 02FC 5100      02927         MOVF    _tmin, W, B
 02FE 0000      02928         BANKSEL _m
 0300 1900      02929         XORWF   _m, W, B
 0302 E000      02930         BZ      _00133_DS_
-               02931 ;       .line   216; reveil.c   tmin = m;
+               02931 ;       .line   212; reveil.c   tmin = m;
 0304 C000 F000 02932         MOVFF   _m, _tmin
 0308 02933 _00133_DS_:
 0308 0000      02934         BANKSEL _thour
-               02935 ;       .line   217; reveil.c   if (thour != h)
+               02935 ;       .line   213; reveil.c   if (thour != h)
 030A 5100      02936         MOVF    _thour, W, B
 030C 0000      02937         BANKSEL _h
 030E 1900      02938         XORWF   _h, W, B
 0310 E000      02939         BZ      _00135_DS_
-               02940 ;       .line   218; reveil.c   thour = h;
+               02940 ;       .line   214; reveil.c   thour = h;
 0312 C000 F000 02941         MOVFF   _h, _thour
 0316 02942 _00135_DS_:
 0316 0000      02943         BANKSEL _on
-               02944 ;       .line   221; reveil.c   if (!on && ds < 5) {
+               02944 ;       .line   217; reveil.c   if (!on && ds < 5) {
 0318 5100      02945         MOVF    _on, W, B
 031A E100      02946         BNZ     _00139_DS_
 031C 0E05      02947         MOVLW   0x05
 031E 0000      02948         BANKSEL _ds
 0320 5D00      02949         SUBWF   _ds, W, B
 0322 E200      02950         BC      _00139_DS_
-               02951 ;       .line   222; reveil.c   LATJbits.LATJ0 = 1;
+               02951 ;       .line   218; reveil.c   LATJbits.LATJ0 = 1;
 0324 8000      02952         BSF     _LATJbits, 0
 0326 0000      02953         BANKSEL _whereami
-               02954 ;       .line   223; reveil.c   if (whereami == ALARM) {
+               02954 ;       .line   219; reveil.c   if (whereami == ALARM) {
 0328 5100      02955         MOVF    _whereami, W, B
 032A 0A0A      02956         XORLW   0x0a
 032C E100      02957         BNZ     _00137_DS_
-               02958 ;       .line   224; reveil.c   LATJbits.LATJ1 = 1;
+               02958 ;       .line   220; reveil.c   LATJbits.LATJ1 = 1;
 032E 8200      02959         BSF     _LATJbits, 1
-               02960 ;       .line   225; reveil.c   LATJbits.LATJ2 = 1;
+               02960 ;       .line   221; reveil.c   LATJbits.LATJ2 = 1;
 0330 8400      02961         BSF     _LATJbits, 2
 0332 02962 _00137_DS_:
-               02963 ;       .line   227; reveil.c   on = 1;
+               02963 ;       .line   223; reveil.c   on = 1;
 0332 0E01      02964         MOVLW   0x01
 0334 0000      02965         BANKSEL _on
 0336 6F00      02966         MOVWF   _on, B
 0338 02967 _00139_DS_:
 0338 0000      02968         BANKSEL _on
-               02969 ;       .line   231; reveil.c   if (on && ds >= 5) {
+               02969 ;       .line   227; reveil.c   if (on && ds >= 5) {
 033A 5100      02970         MOVF    _on, W, B
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 56
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 56
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3309,20 +3309,20 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0340 0000      02973         BANKSEL _ds
 0342 5D00      02974         SUBWF   _ds, W, B
 0344 E300      02975         BNC     _00146_DS_
-               02976 ;       .line   232; reveil.c   LATJbits.LATJ0 = 0;
+               02976 ;       .line   228; reveil.c   LATJbits.LATJ0 = 0;
 0346 9000      02977         BCF     _LATJbits, 0
 0348 0000      02978         BANKSEL _whereami
-               02979 ;       .line   233; reveil.c   if (whereami == ALARM) {
+               02979 ;       .line   229; reveil.c   if (whereami == ALARM) {
 034A 5100      02980         MOVF    _whereami, W, B
 034C 0A0A      02981         XORLW   0x0a
 034E E100      02982         BNZ     _00142_DS_
-               02983 ;       .line   234; reveil.c   LATJbits.LATJ1 = 0;
+               02983 ;       .line   230; reveil.c   LATJbits.LATJ1 = 0;
 0350 9200      02984         BCF     _LATJbits, 1
-               02985 ;       .line   235; reveil.c   LATJbits.LATJ2 = 0;
+               02985 ;       .line   231; reveil.c   LATJbits.LATJ2 = 0;
 0352 9400      02986         BCF     _LATJbits, 2
 0354 02987 _00142_DS_:
 0354 0000      02988         BANKSEL _on
-               02989 ;       .line   237; reveil.c   on = 0;
+               02989 ;       .line   233; reveil.c   on = 0;
 0356 6B00      02990         CLRF    _on, B
 0358 02991 _00146_DS_:
 0358 CFE4 F000 02992         MOVFF   PREINC1, r0x07
@@ -3339,7 +3339,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                03003 ; ; Starting pCode block
                03004 S_reveil__low_isr       code
 0000 03005 _low_isr:
-               03006 ;       .line   136; reveil.c   void low_isr (void) interrupt 2
+               03006 ;       .line   134; reveil.c   void low_isr (void) interrupt 2
 0000 CFE8 FFE5 03007         MOVFF   WREG, POSTDEC1
 0004 CFD8 FFE5 03008         MOVFF   STATUS, POSTDEC1
 0008 CFE0 FFE5 03009         MOVFF   BSR, POSTDEC1
@@ -3351,31 +3351,31 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0020 CFFB FFE5 03015         MOVFF   PCLATU, POSTDEC1
 0024 CFD9 FFE5 03016         MOVFF   FSR2L, POSTDEC1
 0028 CFE1 FFD9 03017         MOVFF   FSR1L, FSR2L
-               03018 ;       .line   139; reveil.c   if(INTCON3bits.INT3F) {
+               03018 ;       .line   137; reveil.c   if(INTCON3bits.INT3F) {
 002C A400      03019         BTFSS   _INTCON3bits, 2
 002E D000      03020         BRA     _00115_DS_
-               03021 ;       .line   140; reveil.c   button1 = 1;
+               03021 ;       .line   138; reveil.c   button1 = 1;
 0030 0E01      03022         MOVLW   0x01
 0032 0000      03023         BANKSEL _button1
 0034 6F00      03024         MOVWF   _button1, B
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 57
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 57
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               03025 ;       .line   141; reveil.c   INTCON3bits.INT3F = 0;
+               03025 ;       .line   139; reveil.c   INTCON3bits.INT3F = 0;
 0036 9400      03026         BCF     _INTCON3bits, 2
 0038 D000      03027         BRA     _00117_DS_
 003A 03028 _00115_DS_:
-               03029 ;       .line   144; reveil.c   } else if(INTCON3bits.INT1F) {
+               03029 ;       .line   142; reveil.c   } else if(INTCON3bits.INT1F) {
 003A A000      03030         BTFSS   _INTCON3bits, 0
 003C D000      03031         BRA     _00117_DS_
-               03032 ;       .line   145; reveil.c   button2 = 1;
+               03032 ;       .line   143; reveil.c   button2 = 1;
 003E 0E01      03033         MOVLW   0x01
 0040 0000      03034         BANKSEL _button2
 0042 6F00      03035         MOVWF   _button2, B
-               03036 ;       .line   146; reveil.c   INTCON3bits.INT1F = 0;
+               03036 ;       .line   144; reveil.c   INTCON3bits.INT1F = 0;
 0044 9000      03037         BCF     _INTCON3bits, 0
 0046 03038 _00117_DS_:
 0046 CFE4 FFD9 03039         MOVFF   PREINC1, FSR2L
@@ -3393,7 +3393,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                03051 ; ; Starting pCode block
                03052 S_reveil__high_isr      code
 0000 03053 _high_isr:
-               03054 ;       .line   125; reveil.c   void high_isr (void) interrupt 1
+               03054 ;       .line   123; reveil.c   void high_isr (void) interrupt 1
 0000 CFE8 FFE5 03055         MOVFF   WREG, POSTDEC1
 0004 CFD8 FFE5 03056         MOVFF   STATUS, POSTDEC1
 0008 CFE0 FFE5 03057         MOVFF   BSR, POSTDEC1
@@ -3405,11 +3405,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0020 CFFB FFE5 03063         MOVFF   PCLATU, POSTDEC1
 0024 CFD9 FFE5 03064         MOVFF   FSR2L, POSTDEC1
 0028 CFE1 FFD9 03065         MOVFF   FSR1L, FSR2L
-               03066 ;       .line   128; reveil.c   if (INTCONbits.T0IF) {
+               03066 ;       .line   126; reveil.c   if (INTCONbits.T0IF) {
 002C A400      03067         BTFSS   _INTCONbits, 2
 002E D000      03068         BRA     _00107_DS_
 0030 0000      03069         BANKSEL _overflows
-               03070 ;       .line   129; reveil.c   overflows++;
+               03070 ;       .line   127; reveil.c   overflows++;
 0032 2B00      03071         INCF    _overflows, F, B
 0034 E300      03072         BNC     _10365_DS_
 0036 0000      03073         BANKSEL (_overflows + 1)
@@ -3418,7 +3418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 003A E300      03076         BNC     _20366_DS_
 003C 0000      03077         BANKSEL (_overflows + 2)
 003E 2B00      03078         INCF    (_overflows + 2), F, B
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 58
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 58
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3429,7 +3429,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0042 0000      03081         BANKSEL (_overflows + 3)
 0044 2B00      03082         INCF    (_overflows + 3), F, B
 0046 03083 _30367_DS_:
-               03084 ;       .line   130; reveil.c   INTCONbits.T0IF = 0;
+               03084 ;       .line   128; reveil.c   INTCONbits.T0IF = 0;
 0046 9400      03085         BCF     _INTCONbits, 2
 0048 03086 _00107_DS_:
 0048 CFE4 FFD9 03087         MOVFF   PREINC1, FSR2L
@@ -3478,7 +3478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D4 2020 2020 03114         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
      2020 2020 
      2020 2020 
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 59
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 59
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3538,7 +3538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 017E 2020 2020 03140         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x5b, 0x25, 0x30, 0x32
      2020 2020 
      255B 3230 
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 60
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 60
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3598,7 +3598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
      6967 676E 
 0236 2021 0000 03166         DB      0x21, 0x20, 0x00
                03167 ; ; Starting pCode block
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 61
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 61
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3649,7 +3649,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                03190 ; access size:     22 (0x0016) bytes
                03191 
                03192 
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 62
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 62
 
 
 SYMBOL TABLE
@@ -3708,7 +3708,7 @@ _00245_DS_                        0000003C
 _00255_DS_                        0000009C
 _00256_DS_                        000000A4
 _00257_DS_                        000000AC
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 63
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 63
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3768,7 +3768,7 @@ _ADCON1                           00000000
 _ADCON1bits                       00000000
 _ADCON2                           00000000
 _ADCON2bits                       00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 64
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 64
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3828,7 +3828,7 @@ _DDRCbits                         00000000
 _DDRD                             00000000
 _DDRDbits                         00000000
 _DDRE                             00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 65
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 65
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3888,7 +3888,7 @@ _EDMASTH                          00000000
 _EDMASTL                          00000000
 _EECON1                           00000000
 _EECON1bits                       00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 66
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 66
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3948,7 +3948,7 @@ _ESTAT                            00000000
 _ESTATbits                        00000000
 _ETXND                            00000000
 _ETXNDH                           00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 67
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 67
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -4008,7 +4008,7 @@ _LCDInit                          00000000
 _LCDText                          00000000
 _LCDUpdate                        00000000
 _MAADR1                           00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 68
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 68
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -4068,7 +4068,7 @@ _PIE2bits                         00000000
 _PIE3                             00000000
 _PIE3bits                         00000000
 _PIR1                             00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 69
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 69
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -4128,7 +4128,7 @@ _RCSTA2                           00000000
 _RCSTA2bits                       00000000
 _RCSTAbits                        00000000
 _SPBRG                            00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 70
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 70
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -4188,7 +4188,7 @@ _TMR1H                            00000000
 _TMR1L                            00000000
 _TMR2                             00000000
 _TMR3H                            00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 71
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 71
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -4248,7 +4248,7 @@ __str_1                           00000094
 __str_10                          000001EA
 __str_11                          00000212
 __str_12                          0000023A
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 72
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 72
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -4308,7 +4308,7 @@ r0x02                             00000002
 r0x03                             00000003
 r0x04                             00000004
 r0x05                             00000005
-gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  20:44:33         PAGE 73
+gpasm-0.13.7 beta               Objects/reveil.asm10-26-2013  21:00:25         PAGE 73
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT

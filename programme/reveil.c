@@ -59,8 +59,8 @@
 #define SNOOZE 11
 
 /* données */
-#define SNOOZE_MINUTE 5 // délai entre 2 répétitions du réveil
-#define SNOOZE_MAX 12 // nombre maximum de répétitions
+#define SNOOZE_MINUTE 1 // délai entre 2 répétitions du réveil
+#define SNOOZE_MAX 3 // nombre maximum de répétitions
 
 #define F 95.365555556 // nombre d'overflows du timer0 en 1 seconde
 
@@ -76,8 +76,6 @@ void inc_amin(BYTE val);
 void DisplayString(BYTE pos, char* text);
 void DisplayWORD(BYTE pos, WORD w);
 size_t strlcpy(char *dst, const char *src, size_t siz);
-
-//BYTE chandelle;
 
 /* les boutons */
 BYTE button1 = 0; // flag pour le boutton 1
@@ -185,8 +183,6 @@ void main() {
     
     LCDInit();
     whereami = TIME_MENU;
-    
-    //chandelle++; // ##### BIZARRE ####
     
     T0CONbits.TMR0ON = 1; // start timer0
     
