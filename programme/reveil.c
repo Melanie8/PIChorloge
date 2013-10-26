@@ -29,7 +29,7 @@
       déclenche (càd lorsque l'état du réveil indiqué dans la variable
       'whereami' a changé);
     - s'il faut déclencher ou arrêter l'alarme;
-    - s'il faut changer d'état ou la valeur d'une variabel suite à
+    - s'il faut changer d'état ou la valeur d'une variable suite à
       l'actionnement d'un bouton.
  
  *****************************************************************************/
@@ -63,7 +63,7 @@
 #define SNOOZE_MINUTE 5 // délai entre 2 répétitions du réveil
 #define SNOOZE_MAX 12 // nombre maximum de répétitions
 
-#define F 95.365555556 // nombre d'overflows du timer0 en 1 seconde
+#define F 95.366 // nombre d'overflows du timer0 en 1 seconde
 
 /* déclarations des fonctions */
 void time(void);
@@ -77,8 +77,6 @@ void inc_amin(BYTE val);
 void DisplayString(BYTE pos, char* text);
 void DisplayWORD(BYTE pos, WORD w);
 size_t strlcpy(char *dst, const char *src, size_t siz);
-
-//BYTE chandelle;
 
 /* les boutons */
 BYTE button1 = 0; // flag pour le boutton 1
@@ -186,8 +184,6 @@ void main() {
     
     LCDInit();
     whereami = TIME_MENU;
-    
-    //chandelle++; // ##### BIZARRE ####
     
     T0CONbits.TMR0ON = 1; // start timer0
     
