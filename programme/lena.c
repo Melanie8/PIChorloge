@@ -37,8 +37,6 @@
 
 void inc_ahour(BYTE val);
 void inc_amin(BYTE val);
-void dec_ahour(BYTE val);
-void dec_amin(BYTE val);
 
 void alarm(void);
 void button(void);
@@ -167,30 +165,6 @@ void main() {
         refresh_lcd();
         alarm();
         button();
-    }
-}
-
-/* Fonction qui décrémente les heures de l'alarme */
-void dec_ahour(BYTE val)
-{
-    // vérifie s'il faut faire une boucle sur les heures
-    if (val > ahour) {
-        ahour = (24+ahour) - val;
-    } else {
-        ahour = ahour - val;
-    }
-
-}
-
-/* Fonction qui décrémente les minutes de l'alarme */
-void dec_amin(BYTE val)
-{
-    // vérifie s'il faut décrémenter les heures
-    if (val > amin) {
-        dec_ahour(1);
-        amin = (60+amin) - val;
-    } else {
-        amin  = amin - val;
     }
 }
 
