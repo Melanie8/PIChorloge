@@ -1,10 +1,34 @@
 /******************************************************************************
  
- FICHIER : reveil.c
+ FICHIER        reveil.c
  ------------------------------------------------------------------------------
- AUTEURS : Lena Peschke et Mélanie Sedda
+ AUTEURS        Lena Peschke et Mélanie Sedda, GR43
  ------------------------------------------------------------------------------
- OBJECTIF : Implémenter un réveil
+ VERSION        26 octobre 2013
+ ------------------------------------------------------------------------------
+ OBJECTIF       Implémenter un réveil pour le pic
+ ------------------------------------------------------------------------------
+ STRATEGIE
+ 
+ Notre réveil se base sur le timer0 pour mesurer le temps qui passe.
+ ++++ EXPLIQUER LE COMPTAGE DES TICKS ++++
+ 
+ Il y a deux routines d'interruptions à des niveaux de priorités différents :
+    - le niveau 1 génère une interruption dès que le timer0 overflow et ne
+      fait que compter le nombre d'overflows qui se sont produits;
+    - le niveau 2 génère une interruption lorsqu'on appuie sur un bouton et
+      modifie le flag du bouton correspondant.
+ 
+ La fonction main vérifie en boucle
+    - si le temps mesuré a changé, càd s'il y a eu assez d'overflows pour
+      ajouter une seconde;
+    - s'il faut changer l'affichage à l'écran, ce qui arrive lorsque le temps
+      a changé, lorsqu'on a appuyé sur un bouton et lorsque l'alarme se
+      déclenche (càd lorsque l'état du réveil indiqué dans la variable
+      'whereami' a changé);
+    - s'il faut déclencher ou arrêter l'alarme;
+    - s'il faut changer d'état ou la valeur d'une variabel suite à
+      l'actionnement d'un bouton.
  
  *****************************************************************************/
 
@@ -53,11 +77,12 @@ size_t strlcpy(char *dst, const char *src, size_t siz);
 
 BYTE chandelle = 1; // ##
 
-/* variables utiles pour le calcul de l'heure actuelle */
+/* variables pour le calcul de l'heure actuelle */
 QWORD overflows = 0; // nombre d'overflows du timer0 depuis le début
 QWORD sec; // nombre de secondes écoulées depuis le début
 QWORD decisec; // nombre de dixièmes de seconde écoulés depuis le début
-BYTE ds; // decisec%10, utile pour pouvoir éteindre les LEDS +- toutes les demi-secondes
+BYTE ds; // decisec%10, utile pour pouvoir éteindre les LEDS +- toutes
+         // les demi-secondes
 BYTE h;
 BYTE m;
 BYTE s;
@@ -171,25 +196,6 @@ void main() {
     }
 }
 
-/* Fonction qui incrémente les heures du réveil */
-void inc_ahour(BYTE val)
-{
-    ahour = (ahour + val) % 24;
-}
-
-/* Fonction qui incrémente les minutes du réveil */
-void inc_amin(BYTE val)
-{
-    // vérifie s'il faut incrémenter les heures
-    BYTE mod_amin;
-    mod_amin = (amin + val) / 60;
-    if (mod_amin) {
-        inc_ahour(mod_amin);
-    }
-    
-    amin = (amin + val) % 60;
-}
-
 /* Fonction qui met à jour l'heure et gère les LED */
 void time(void)
 {
@@ -209,7 +215,7 @@ void time(void)
     if (thour != h)
         thour = h;
     
-    // allumage des LED, dès qu'on peut dans la première demiseconde
+    // allumage des LED, dès qu'on peut dans la première demi-seconde
     if (!on && ds < 5) {
         LATJbits.LATJ0 = 1;
         if (whereami == ALARM) {
@@ -219,7 +225,7 @@ void time(void)
         on = 1;
     }
     
-    // extenction des LED, dès qu'on peut dans la deuxième demiseconde
+    // extinction des LED, dès qu'on peut dans la deuxième demi-seconde
     if (on && ds >= 5) {
         LATJbits.LATJ0 = 0;
         if (whereami == ALARM) {
@@ -234,7 +240,7 @@ void time(void)
 /* Fonction qui gère l'affichage */
 void refresh_lcd(void)
 {
-    // affichage
+    // vérifie dans quel état se trouve le réveil
     switch (whereami) {
         case TIME_MENU:
             sprintf(display, "Do you want to  set the time ?  ");
@@ -290,7 +296,6 @@ void refresh_lcd(void)
                 sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
                         thour, tmin, tsec, snooze, ahour_o, amin_o);
             }
-            
             break;
         default:
             sprintf(display, "**** ERROR ********* ERROR *****");
@@ -369,9 +374,9 @@ void button(void)
                 LATJbits.LATJ2 = 0; // switch LED 3 off
                 whereami = DISPLAY;
                 break;
-            case SNOOZE: // STOP // verifier ##
+            case SNOOZE: // STOP
                 stop_ringing = 1; // le réveil ne doit plus sonner
-                amin = amin_o; // remet le réveil
+                amin = amin_o; // remet le réveil à l'heure d'origine
                 ahour = ahour_o;
                 snooze = 0;
                 LATJbits.LATJ1 = 0; // switch LED 2 off
@@ -381,7 +386,7 @@ void button(void)
             default:
                 break;
         }
-        button1 = 0; // remet le flag du boutton 1 à 0
+        button1 = 0; // remet le flag du bouton 1 à 0
     
     // gère le bouton SELECT/ADD/SNOOZE
     } else if (button2) {
@@ -456,9 +461,29 @@ void button(void)
             default:
                 break;
         }
-        button2 = 0; // remet le flag du boutton 2 à 0
+        button2 = 0; // remet le flag du bouton 2 à 0
     }
 }
+
+/* Fonction qui incrémente les heures du réveil */
+void inc_ahour(BYTE val)
+{
+    ahour = (ahour + val) % 24;
+}
+
+/* Fonction qui incrémente les minutes du réveil */
+void inc_amin(BYTE val)
+{
+    // vérifie s'il faut incrémenter les heures
+    BYTE mod_amin;
+    mod_amin = (amin + val) / 60;
+    if (mod_amin) {
+        inc_ahour(mod_amin);
+    }
+    
+    amin = (amin + val) % 60;
+}
+
 
 #if defined(__SDCC__)
 /*************************************************
@@ -475,7 +500,6 @@ void DisplayString(BYTE pos, char* text)
     
 }
 #endif
-
 
 /*-------------------------------------------------------------------------
  *

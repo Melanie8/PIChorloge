@@ -1,12 +1,14 @@
 /******************************************************************************
  
- FICHIER : findfreq.c
+ FICHIER        findfreq.c
  ------------------------------------------------------------------------------
- AUTEURS : Lena Peschke et Mélanie Sedda
+ AUTEURS        Lena Peschke et Mélanie Sedda, GR43
  ------------------------------------------------------------------------------
- OBJECTIF : Trouver la véritable fréquence de notre pic
+ VERSION        26 octobre 2013
  ------------------------------------------------------------------------------
- STRATEGIE :
+ OBJECTIF       Trouver la véritable fréquence de notre pic
+ ------------------------------------------------------------------------------
+ STRATEGIE
  
  Nous avons configuré le timer1 pour qu'il overflow après 2 secondes.
  L'idée de base est alors de mesurer le nombre de fois que le timer0
