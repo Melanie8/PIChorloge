@@ -236,7 +236,6 @@ void time(void)
         }
         on = 0;
     }
-
 }
 
 /* Fonction qui gère l'affichage */
