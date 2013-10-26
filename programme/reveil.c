@@ -287,7 +287,7 @@ void refresh_lcd(void)
             break;
         case ALARM:
             sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
-                    thour, tmin, tsec); // ***blink***
+                    thour, tmin, tsec);
             break;
         case SNOOZE:
             if (snooze < 10) {
@@ -402,19 +402,19 @@ void button(void)
                 break;
             case SET_HOUR: // ADD
                 if (thour==59)
-                    overflows -= 59*F*86400;
+                    overflows -= 59*F*3600;
                 else
                     overflows += F*3600;
                 break;
             case SET_MINUTE: // ADD
                 if (tmin==59)
-                    overflows -= 59*F*3600;
+                    overflows -= 59*F*60;
                 else
                     overflows += F*60;
                 break;
             case SET_SECOND: // ADD
                 if (tsec==59)
-                    overflows -= 59*F*60;
+                    overflows -= 59*F;
                 else
                     overflows += F;
                 break;

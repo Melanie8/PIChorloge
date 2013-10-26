@@ -1,6 +1,6 @@
 gplink-0.13.7 beta
 Copyright (c) 1998-2005 gputils project
-Listing File Generated: 10-26-2013  20:32:05
+Listing File Generated: 10-26-2013  20:37:05
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-                                           ; This file was generated Sat Oct 26 20:32:05 2013
+                                           ; This file was generated Sat Oct 26 20:37:05 2013
                                            ;--------------------------------------------------------
                                            ; PIC16 port for the Microchip 16-bit core micros
                                            ;--------------------------------------------------------
@@ -1509,7 +1509,7 @@ Address  Value    Disassembly              Source
 000ff4   d047     bra	0x1084               	BRA	_00271_DS_
                                            _00327_DS_:
 000ff6   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	405; reveil.c	overflows -= 59*F*86400;
+                                           ;	.line	405; reveil.c	overflows -= 59*F*3600;
 000ff8   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 000ffa   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 000ffc   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1532,13 +1532,13 @@ Address  Value    Disassembly              Source
 00101e   f003
 001020   0e04     movlw	0x4                	MOVLW	0x04
 001022   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-001024   0e4d     movlw	0x4d               	MOVLW	0x4d
+001024   0e4b     movlw	0x4b               	MOVLW	0x4b
 001026   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001028   0ee7     movlw	0xe7               	MOVLW	0xe7
+001028   0e9a     movlw	0x9a               	MOVLW	0x9a
 00102a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00102c   0ece     movlw	0xce               	MOVLW	0xce
+00102c   0e89     movlw	0x89               	MOVLW	0x89
 00102e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001030   0eb5     movlw	0xb5               	MOVLW	0xb5
+001030   0ece     movlw	0xce               	MOVLW	0xce
 001032   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001034   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 001036   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1663,7 +1663,7 @@ Address  Value    Disassembly              Source
 00111a   d047     bra	0x11aa               	BRA	_00275_DS_
                                            _00329_DS_:
 00111c   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	411; reveil.c	overflows -= 59*F*3600;
+                                           ;	.line	411; reveil.c	overflows -= 59*F*60;
 00111e   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 001120   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001122   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1686,13 +1686,13 @@ Address  Value    Disassembly              Source
 001144   f003
 001146   0e04     movlw	0x4                	MOVLW	0x04
 001148   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-00114a   0e4b     movlw	0x4b               	MOVLW	0x4b
+00114a   0e48     movlw	0x48               	MOVLW	0x48
 00114c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00114e   0e9a     movlw	0x9a               	MOVLW	0x9a
+00114e   0ea4     movlw	0xa4               	MOVLW	0xa4
 001150   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001152   0e89     movlw	0x89               	MOVLW	0x89
+001152   0ed7     movlw	0xd7               	MOVLW	0xd7
 001154   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001156   0ece     movlw	0xce               	MOVLW	0xce
+001156   0e42     movlw	0x42               	MOVLW	0x42
 001158   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00115a   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 00115c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1817,7 +1817,7 @@ Address  Value    Disassembly              Source
 001240   d047     bra	0x12d0               	BRA	_00279_DS_
                                            _00331_DS_:
 001242   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	417; reveil.c	overflows -= 59*F*60;
+                                           ;	.line	417; reveil.c	overflows -= 59*F;
 001244   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 001246   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001248   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1840,13 +1840,13 @@ Address  Value    Disassembly              Source
 00126a   f003
 00126c   0e04     movlw	0x4                	MOVLW	0x04
 00126e   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-001270   0e48     movlw	0x48               	MOVLW	0x48
+001270   0e45     movlw	0x45               	MOVLW	0x45
 001272   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001274   0ea4     movlw	0xa4               	MOVLW	0xa4
+001274   0eaf     movlw	0xaf               	MOVLW	0xaf
 001276   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001278   0ed7     movlw	0xd7               	MOVLW	0xd7
+001278   0ed4     movlw	0xd4               	MOVLW	0xd4
 00127a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00127c   0e42     movlw	0x42               	MOVLW	0x42
+00127c   0e8b     movlw	0x8b               	MOVLW	0x8b
 00127e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001280   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 001282   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1

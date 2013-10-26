@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-; This file was generated Sat Oct 26 20:32:05 2013
+; This file was generated Sat Oct 26 20:37:05 2013
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -1294,7 +1294,7 @@ _00269_DS_:
 	BRA	_00271_DS_
 _00327_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	405; reveil.c	overflows -= 59*F*86400;
+;	.line	405; reveil.c	overflows -= 59*F*3600;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1313,13 +1313,13 @@ _00327_DS_:
 	MOVFF	FSR0L, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-	MOVLW	0x4d
+	MOVLW	0x4b
 	MOVWF	POSTDEC1
-	MOVLW	0xe7
+	MOVLW	0x9a
+	MOVWF	POSTDEC1
+	MOVLW	0x89
 	MOVWF	POSTDEC1
 	MOVLW	0xce
-	MOVWF	POSTDEC1
-	MOVLW	0xb5
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -1424,7 +1424,7 @@ _00273_DS_:
 	BRA	_00275_DS_
 _00329_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	411; reveil.c	overflows -= 59*F*3600;
+;	.line	411; reveil.c	overflows -= 59*F*60;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1443,13 +1443,13 @@ _00329_DS_:
 	MOVFF	FSR0L, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-	MOVLW	0x4b
+	MOVLW	0x48
 	MOVWF	POSTDEC1
-	MOVLW	0x9a
+	MOVLW	0xa4
 	MOVWF	POSTDEC1
-	MOVLW	0x89
+	MOVLW	0xd7
 	MOVWF	POSTDEC1
-	MOVLW	0xce
+	MOVLW	0x42
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -1554,7 +1554,7 @@ _00277_DS_:
 	BRA	_00279_DS_
 _00331_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	417; reveil.c	overflows -= 59*F*60;
+;	.line	417; reveil.c	overflows -= 59*F;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1573,13 +1573,13 @@ _00331_DS_:
 	MOVFF	FSR0L, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-	MOVLW	0x48
+	MOVLW	0x45
 	MOVWF	POSTDEC1
-	MOVLW	0xa4
+	MOVLW	0xaf
 	MOVWF	POSTDEC1
-	MOVLW	0xd7
+	MOVLW	0xd4
 	MOVWF	POSTDEC1
-	MOVLW	0x42
+	MOVLW	0x8b
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
