@@ -168,6 +168,7 @@ void main() {
     }
 }
 
+/* Fonction qui met l'heure à jour et gère l'affichage */
 void refresh_lcd(void)
 {
     sec = overflows/F;
@@ -266,7 +267,7 @@ void refresh_lcd(void)
 }
 
 
-/* Fonction qui met l'heure à jour et lance le réveil */
+/* Fonction qui gère le réveil */
 void alarm(void)
 {
     
