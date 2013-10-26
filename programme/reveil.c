@@ -123,7 +123,6 @@ void high_isr(void) interrupt 1
         overflows++;
         INTCONbits.T0IF = 0;
     }
-    
 }
 
 /* Interruption de priorité basse : liée aux boutons */
@@ -313,6 +312,7 @@ void alarm(void)
             LATJbits.LATJ1 = 0; // switch LED 2 off
             LATJbits.LATJ2 = 0; // switch LED 3 off
             
+            // vérifie si on avait reporté le réveil
             if (snooze) {
                 ahour = ahour_o; // remet le réveil à l'heure d'origine
                 amin = amin_o;
