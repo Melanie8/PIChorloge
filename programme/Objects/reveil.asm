@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-; This file was generated Sat Oct 26 20:25:25 2013
+; This file was generated Sat Oct 26 20:32:05 2013
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -50,7 +50,6 @@
 ;--------------------------------------------------------
 ; extern variables in this module
 ;--------------------------------------------------------
-	extern __divuchar
 	extern __gptrget1
 	extern __gptrput1
 	extern _EBSTCONbits
@@ -482,10 +481,8 @@
 	extern __mullong
 	extern __modulong
 	extern __divulong
-	extern ___fsadd
 	extern ___fssub
-	extern ___uchar2fs
-	extern ___fsmul
+	extern ___fsadd
 	extern __modsint
 	extern __divsint
 ;--------------------------------------------------------
@@ -675,7 +672,7 @@ _00123_DS_:
 ; ; Starting pCode block
 S_reveil__strlcpy	code
 _strlcpy:
-;	.line	540; reveil.c	strlcpy(char *dst, const char *src, size_t siz)
+;	.line	543; reveil.c	strlcpy(char *dst, const char *src, size_t siz)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -716,37 +713,37 @@ _strlcpy:
 	MOVFF	PLUSW2, r0x06
 	MOVLW	0x09
 	MOVFF	PLUSW2, r0x07
-;	.line	542; reveil.c	char       *d = dst;
+;	.line	545; reveil.c	char       *d = dst;
 	MOVFF	r0x00, r0x08
 	MOVFF	r0x01, r0x09
 	MOVFF	r0x02, r0x0a
-;	.line	543; reveil.c	const char *s = src;
+;	.line	546; reveil.c	const char *s = src;
 	MOVFF	r0x03, r0x0b
 	MOVFF	r0x04, r0x0c
 	MOVFF	r0x05, r0x0d
-;	.line	544; reveil.c	size_t      n = siz;
+;	.line	547; reveil.c	size_t      n = siz;
 	MOVFF	r0x06, r0x0e
 	MOVFF	r0x07, r0x0f
-;	.line	547; reveil.c	if (n != 0)
+;	.line	550; reveil.c	if (n != 0)
 	MOVF	r0x06, W
 	IORWF	r0x07, W
 	BTFSC	STATUS, 2
-	BRA	_00359_DS_
-;	.line	549; reveil.c	while (--n != 0)
+	BRA	_00371_DS_
+;	.line	552; reveil.c	while (--n != 0)
 	MOVFF	r0x03, r0x10
 	MOVFF	r0x04, r0x11
 	MOVFF	r0x05, r0x12
 	MOVFF	r0x06, r0x13
 	MOVFF	r0x07, r0x14
-_00355_DS_:
+_00367_DS_:
 	MOVLW	0xff
 	ADDWF	r0x13, F
 	BTFSS	STATUS, 0
 	DECF	r0x14, F
 	MOVF	r0x13, W
 	IORWF	r0x14, W
-	BZ	_00374_DS_
-;	.line	551; reveil.c	if ((*d++ = *s++) == '\0')
+	BZ	_00386_DS_
+;	.line	554; reveil.c	if ((*d++ = *s++) == '\0')
 	MOVFF	r0x10, FSR0L
 	MOVFF	r0x11, PRODL
 	MOVF	r0x12, W
@@ -768,9 +765,9 @@ _00355_DS_:
 	BTFSC	STATUS, 0
 	INCF	r0x02, F
 	MOVF	r0x15, W
-	BNZ	_00355_DS_
-_00374_DS_:
-;	.line	552; reveil.c	break;
+	BNZ	_00367_DS_
+_00386_DS_:
+;	.line	555; reveil.c	break;
 	MOVFF	r0x10, r0x0b
 	MOVFF	r0x11, r0x0c
 	MOVFF	r0x12, r0x0d
@@ -779,28 +776,28 @@ _00374_DS_:
 	MOVFF	r0x02, r0x0a
 	MOVFF	r0x13, r0x0e
 	MOVFF	r0x14, r0x0f
-_00359_DS_:
-;	.line	557; reveil.c	if (n == 0)
+_00371_DS_:
+;	.line	560; reveil.c	if (n == 0)
 	MOVF	r0x0e, W
 	IORWF	r0x0f, W
-	BNZ	_00366_DS_
-;	.line	559; reveil.c	if (siz != 0)
+	BNZ	_00378_DS_
+;	.line	562; reveil.c	if (siz != 0)
 	MOVF	r0x06, W
 	IORWF	r0x07, W
-	BZ	_00373_DS_
-;	.line	560; reveil.c	*d = '\0';          /* NUL-terminate dst */
+	BZ	_00385_DS_
+;	.line	563; reveil.c	*d = '\0';          /* NUL-terminate dst */
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVFF	r0x08, FSR0L
 	MOVFF	r0x09, PRODL
 	MOVF	r0x0a, W
 	CALL	__gptrput1
-_00373_DS_:
-;	.line	561; reveil.c	while (*s++)
+_00385_DS_:
+;	.line	564; reveil.c	while (*s++)
 	MOVFF	r0x0b, r0x00
 	MOVFF	r0x0c, r0x01
 	MOVFF	r0x0d, r0x02
-_00362_DS_:
+_00374_DS_:
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, PRODL
 	MOVF	r0x02, W
@@ -812,12 +809,12 @@ _00362_DS_:
 	BTFSC	STATUS, 0
 	INCF	r0x02, F
 	MOVF	r0x06, W
-	BNZ	_00362_DS_
+	BNZ	_00374_DS_
 	MOVFF	r0x00, r0x0b
 	MOVFF	r0x01, r0x0c
 	MOVFF	r0x02, r0x0d
-_00366_DS_:
-;	.line	567; reveil.c	return (s - src - 1);       /* count does not include NUL */
+_00378_DS_:
+;	.line	570; reveil.c	return (s - src - 1);       /* count does not include NUL */
 	MOVF	r0x03, W
 	SUBWF	r0x0b, W
 	MOVWF	r0x03
@@ -858,7 +855,7 @@ _00366_DS_:
 ; ; Starting pCode block
 S_reveil__DisplayString	code
 _DisplayString:
-;	.line	495; reveil.c	void DisplayString(BYTE pos, char* text)
+;	.line	498; reveil.c	void DisplayString(BYTE pos, char* text)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -877,7 +874,7 @@ _DisplayString:
 	MOVFF	PLUSW2, r0x02
 	MOVLW	0x05
 	MOVFF	PLUSW2, r0x03
-;	.line	497; reveil.c	BYTE l= strlen(text)+1;
+;	.line	500; reveil.c	BYTE l= strlen(text)+1;
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
@@ -890,11 +887,11 @@ _DisplayString:
 	MOVLW	0x03
 	ADDWF	FSR1L, F
 	INCF	r0x04, F
-;	.line	498; reveil.c	BYTE max= 32-pos;
+;	.line	501; reveil.c	BYTE max= 32-pos;
 	MOVF	r0x00, W
 	SUBLW	0x20
 	MOVWF	r0x05
-;	.line	499; reveil.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+;	.line	502; reveil.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
 	CLRF	r0x06
 	MOVLW	LOW(_LCDText)
 	ADDWF	r0x00, F
@@ -908,9 +905,9 @@ _DisplayString:
 	MOVWF	r0x07
 	MOVF	r0x05, W
 	SUBWF	r0x04, W
-	BNC	_00346_DS_
+	BNC	_00358_DS_
 	MOVFF	r0x05, r0x04
-_00346_DS_:
+_00358_DS_:
 	CLRF	r0x05
 	MOVF	r0x05, W
 	MOVWF	POSTDEC1
@@ -931,7 +928,7 @@ _00346_DS_:
 	CALL	_strlcpy
 	MOVLW	0x08
 	ADDWF	FSR1L, F
-;	.line	500; reveil.c	LCDUpdate();
+;	.line	503; reveil.c	LCDUpdate();
 	CALL	_LCDUpdate
 	MOVFF	PREINC1, r0x07
 	MOVFF	PREINC1, r0x06
@@ -947,7 +944,7 @@ _00346_DS_:
 ; ; Starting pCode block
 S_reveil__inc_amin	code
 _inc_amin:
-;	.line	476; reveil.c	void inc_amin(BYTE val)
+;	.line	479; reveil.c	void inc_amin(BYTE val)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -956,7 +953,7 @@ _inc_amin:
 	MOVFF	r0x03, POSTDEC1
 	MOVLW	0x02
 	MOVFF	PLUSW2, r0x00
-;	.line	480; reveil.c	mod_amin = (amin + val) / 60;
+;	.line	483; reveil.c	mod_amin = (amin + val) / 60;
 	MOVFF	_amin, r0x01
 	CLRF	r0x02
 	CLRF	r0x03
@@ -977,16 +974,16 @@ _inc_amin:
 	MOVFF	PRODL, r0x02
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	481; reveil.c	if (mod_amin) {
+;	.line	484; reveil.c	if (mod_amin) {
 	MOVF	r0x01, W
-	BZ	_00337_DS_
-;	.line	482; reveil.c	inc_ahour(mod_amin);
+	BZ	_00349_DS_
+;	.line	485; reveil.c	inc_ahour(mod_amin);
 	MOVF	r0x01, W
 	MOVWF	POSTDEC1
 	CALL	_inc_ahour
 	INCF	FSR1L, F
-_00337_DS_:
-;	.line	485; reveil.c	amin = (amin + val) % 60;
+_00349_DS_:
+;	.line	488; reveil.c	amin = (amin + val) % 60;
 	MOVFF	_amin, r0x01
 	CLRF	r0x02
 	MOVF	r0x01, W
@@ -1019,7 +1016,7 @@ _00337_DS_:
 ; ; Starting pCode block
 S_reveil__inc_ahour	code
 _inc_ahour:
-;	.line	470; reveil.c	void inc_ahour(BYTE val)
+;	.line	473; reveil.c	void inc_ahour(BYTE val)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -1028,7 +1025,7 @@ _inc_ahour:
 	MOVFF	r0x03, POSTDEC1
 	MOVLW	0x02
 	MOVFF	PLUSW2, r0x00
-;	.line	472; reveil.c	ahour = (ahour + val) % 24;
+;	.line	475; reveil.c	ahour = (ahour + val) % 24;
 	MOVFF	_ahour, r0x01
 	CLRF	r0x02
 	CLRF	r0x03
@@ -1069,17 +1066,11 @@ _button:
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
 	MOVFF	r0x03, POSTDEC1
-	MOVFF	r0x04, POSTDEC1
-	MOVFF	r0x05, POSTDEC1
-	MOVFF	r0x06, POSTDEC1
-	MOVFF	r0x07, POSTDEC1
-;	.line	345; reveil.c	BYTE incsec = tsec;
-	MOVFF	_tsec, r0x00
 	BANKSEL	_button1
 ;	.line	348; reveil.c	if (button1) {
 	MOVF	_button1, W, B
 	BTFSC	STATUS, 2
-	BRA	_00297_DS_
+	BRA	_00303_DS_
 ;	.line	349; reveil.c	switch (whereami) {
 	MOVLW	0x01
 	BANKSEL	_whereami
@@ -1093,31 +1084,31 @@ _button:
 	BRA	_00267_DS_
 	BANKSEL	_whereami
 	DECF	_whereami, W, B
-	MOVWF	r0x01
-	MOVFF	r0x08, POSTDEC1
-	MOVFF	r0x09, POSTDEC1
-	CLRF	r0x09
-	RLCF	r0x01, W
-	RLCF	r0x09, F
+	MOVWF	r0x00
+	MOVFF	r0x04, POSTDEC1
+	MOVFF	r0x05, POSTDEC1
+	CLRF	r0x05
+	RLCF	r0x00, W
+	RLCF	r0x05, F
 	RLCF	WREG, W
-	RLCF	r0x09, F
+	RLCF	r0x05, F
 	ANDLW	0xfc
-	MOVWF	r0x08
-	MOVLW	UPPER(_00314_DS_)
+	MOVWF	r0x04
+	MOVLW	UPPER(_00322_DS_)
 	MOVWF	PCLATU
-	MOVLW	HIGH(_00314_DS_)
+	MOVLW	HIGH(_00322_DS_)
 	MOVWF	PCLATH
-	MOVLW	LOW(_00314_DS_)
-	ADDWF	r0x08, F
-	MOVF	r0x09, W
+	MOVLW	LOW(_00322_DS_)
+	ADDWF	r0x04, F
+	MOVF	r0x05, W
 	ADDWFC	PCLATH, F
 	BTFSC	STATUS, 0
 	INCF	PCLATU, F
-	MOVF	r0x08, W
-	MOVFF	PREINC1, r0x09
-	MOVFF	PREINC1, r0x08
+	MOVF	r0x04, W
+	MOVFF	PREINC1, r0x05
+	MOVFF	PREINC1, r0x04
 	MOVWF	PCL
-_00314_DS_:
+_00322_DS_:
 	GOTO	_00255_DS_
 	GOTO	_00256_DS_
 	GOTO	_00257_DS_
@@ -1231,72 +1222,79 @@ _00267_DS_:
 	BANKSEL	_button1
 ;	.line	395; reveil.c	button1 = 0; // remet le flag du bouton 1 à 0
 	CLRF	_button1, B
-	GOTO	_00299_DS_
-_00297_DS_:
+	GOTO	_00305_DS_
+_00303_DS_:
 	BANKSEL	_button2
 ;	.line	398; reveil.c	} else if (button2) {
 	MOVF	_button2, W, B
 	BTFSC	STATUS, 2
-	GOTO	_00299_DS_
+	GOTO	_00305_DS_
 ;	.line	399; reveil.c	switch (whereami) {
 	MOVLW	0x01
 	BANKSEL	_whereami
 	SUBWF	_whereami, W, B
 	BTFSS	STATUS, 0
-	GOTO	_00293_DS_
+	GOTO	_00299_DS_
 	MOVLW	0x0c
 	BANKSEL	_whereami
 	SUBWF	_whereami, W, B
 	BTFSC	STATUS, 0
-	GOTO	_00293_DS_
+	GOTO	_00299_DS_
 	BANKSEL	_whereami
 	DECF	_whereami, W, B
-	MOVWF	r0x01
-	MOVFF	r0x08, POSTDEC1
-	MOVFF	r0x09, POSTDEC1
-	CLRF	r0x09
-	RLCF	r0x01, W
-	RLCF	r0x09, F
+	MOVWF	r0x00
+	MOVFF	r0x04, POSTDEC1
+	MOVFF	r0x05, POSTDEC1
+	CLRF	r0x05
+	RLCF	r0x00, W
+	RLCF	r0x05, F
 	RLCF	WREG, W
-	RLCF	r0x09, F
+	RLCF	r0x05, F
 	ANDLW	0xfc
-	MOVWF	r0x08
-	MOVLW	UPPER(_00317_DS_)
+	MOVWF	r0x04
+	MOVLW	UPPER(_00325_DS_)
 	MOVWF	PCLATU
-	MOVLW	HIGH(_00317_DS_)
+	MOVLW	HIGH(_00325_DS_)
 	MOVWF	PCLATH
-	MOVLW	LOW(_00317_DS_)
-	ADDWF	r0x08, F
-	MOVF	r0x09, W
+	MOVLW	LOW(_00325_DS_)
+	ADDWF	r0x04, F
+	MOVF	r0x05, W
 	ADDWFC	PCLATH, F
 	BTFSC	STATUS, 0
 	INCF	PCLATU, F
-	MOVF	r0x08, W
-	MOVFF	PREINC1, r0x09
-	MOVFF	PREINC1, r0x08
+	MOVF	r0x04, W
+	MOVFF	PREINC1, r0x05
+	MOVFF	PREINC1, r0x04
 	MOVWF	PCL
-_00317_DS_:
+_00325_DS_:
 	GOTO	_00268_DS_
 	GOTO	_00269_DS_
-	GOTO	_00270_DS_
-	GOTO	_00274_DS_
-	GOTO	_00275_DS_
-	GOTO	_00276_DS_
+	GOTO	_00273_DS_
 	GOTO	_00277_DS_
 	GOTO	_00281_DS_
-	GOTO	_00285_DS_
-	GOTO	_00286_DS_
-	GOTO	_00289_DS_
+	GOTO	_00282_DS_
+	GOTO	_00283_DS_
+	GOTO	_00287_DS_
+	GOTO	_00291_DS_
+	GOTO	_00292_DS_
+	GOTO	_00295_DS_
 _00268_DS_:
 ;	.line	401; reveil.c	whereami = SET_HOUR;
 	MOVLW	0x02
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
 ;	.line	402; reveil.c	break;
-	BRA	_00293_DS_
+	GOTO	_00299_DS_
 _00269_DS_:
+	BANKSEL	_thour
+;	.line	404; reveil.c	if (thour==59)
+	MOVF	_thour, W, B
+	XORLW	0x3b
+	BZ	_00327_DS_
+	BRA	_00271_DS_
+_00327_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	404; reveil.c	overflows += F*3600;
+;	.line	405; reveil.c	overflows -= 59*F*86400;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1309,10 +1307,71 @@ _00269_DS_:
 	MOVF	_overflows, W, B
 	MOVWF	POSTDEC1
 	CALL	___ulong2fs
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
-	MOVFF	PRODH, r0x03
-	MOVFF	FSR0L, r0x04
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	MOVLW	0x4d
+	MOVWF	POSTDEC1
+	MOVLW	0xe7
+	MOVWF	POSTDEC1
+	MOVLW	0xce
+	MOVWF	POSTDEC1
+	MOVLW	0xb5
+	MOVWF	POSTDEC1
+	MOVF	r0x03, W
+	MOVWF	POSTDEC1
+	MOVF	r0x02, W
+	MOVWF	POSTDEC1
+	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
+	CALL	___fssub
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
+	MOVLW	0x08
+	ADDWF	FSR1L, F
+	MOVF	r0x03, W
+	MOVWF	POSTDEC1
+	MOVF	r0x02, W
+	MOVWF	POSTDEC1
+	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
+	CALL	___fs2ulong
+	BANKSEL	_overflows
+	MOVWF	_overflows, B
+	MOVFF	PRODL, (_overflows + 1)
+	MOVFF	PRODH, (_overflows + 2)
+	MOVFF	FSR0L, (_overflows + 3)
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	BRA	_00299_DS_
+_00271_DS_:
+	BANKSEL	(_overflows + 3)
+;	.line	407; reveil.c	overflows += F*3600;
+	MOVF	(_overflows + 3), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	(_overflows + 2)
+	MOVF	(_overflows + 2), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	(_overflows + 1)
+	MOVF	(_overflows + 1), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	_overflows
+	MOVF	_overflows, W, B
+	MOVWF	POSTDEC1
+	CALL	___ulong2fs
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	MOVLW	0x48
@@ -1323,28 +1382,28 @@ _00269_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0x80
 	MOVWF	POSTDEC1
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
 	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	CALL	___fsadd
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
-	MOVFF	PRODH, r0x03
-	MOVFF	FSR0L, r0x04
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
 	MOVLW	0x08
 	ADDWF	FSR1L, F
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
 	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	CALL	___fs2ulong
 	BANKSEL	_overflows
@@ -1354,18 +1413,18 @@ _00269_DS_:
 	MOVFF	FSR0L, (_overflows + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	406; reveil.c	break;
-	BRA	_00293_DS_
-_00270_DS_:
-	BANKSEL	_tsec
-;	.line	408; reveil.c	if (tsec==59)
-	MOVF	_tsec, W, B
+;	.line	408; reveil.c	break;
+	BRA	_00299_DS_
+_00273_DS_:
+	BANKSEL	_tmin
+;	.line	410; reveil.c	if (tmin==59)
+	MOVF	_tmin, W, B
 	XORLW	0x3b
-	BZ	_00319_DS_
-	BRA	_00272_DS_
-_00319_DS_:
+	BZ	_00329_DS_
+	BRA	_00275_DS_
+_00329_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	409; reveil.c	overflows -= 59*F*3600;
+;	.line	411; reveil.c	overflows -= 59*F*3600;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1378,10 +1437,10 @@ _00319_DS_:
 	MOVF	_overflows, W, B
 	MOVWF	POSTDEC1
 	CALL	___ulong2fs
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
-	MOVFF	PRODH, r0x03
-	MOVFF	FSR0L, r0x04
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	MOVLW	0x4b
@@ -1392,28 +1451,28 @@ _00319_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0xce
 	MOVWF	POSTDEC1
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
 	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	CALL	___fssub
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
-	MOVFF	PRODH, r0x03
-	MOVFF	FSR0L, r0x04
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
 	MOVLW	0x08
 	ADDWF	FSR1L, F
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
 	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	CALL	___fs2ulong
 	BANKSEL	_overflows
@@ -1423,10 +1482,10 @@ _00319_DS_:
 	MOVFF	FSR0L, (_overflows + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-	BRA	_00293_DS_
-_00272_DS_:
+	BRA	_00299_DS_
+_00275_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	411; reveil.c	overflows += F*60;
+;	.line	413; reveil.c	overflows += F*60;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1439,10 +1498,10 @@ _00272_DS_:
 	MOVF	_overflows, W, B
 	MOVWF	POSTDEC1
 	CALL	___ulong2fs
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
-	MOVFF	PRODH, r0x03
-	MOVFF	FSR0L, r0x04
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	MOVLW	0x45
@@ -1453,28 +1512,28 @@ _00272_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0x77
 	MOVWF	POSTDEC1
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
 	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	CALL	___fsadd
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
-	MOVFF	PRODH, r0x03
-	MOVFF	FSR0L, r0x04
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
 	MOVLW	0x08
 	ADDWF	FSR1L, F
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
 	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	CALL	___fs2ulong
 	BANKSEL	_overflows
@@ -1484,11 +1543,18 @@ _00272_DS_:
 	MOVFF	FSR0L, (_overflows + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	413; reveil.c	break;
-	BRA	_00293_DS_
-_00274_DS_:
+;	.line	414; reveil.c	break;
+	BRA	_00299_DS_
+_00277_DS_:
+	BANKSEL	_tsec
+;	.line	416; reveil.c	if (tsec==59)
+	MOVF	_tsec, W, B
+	XORLW	0x3b
+	BZ	_00331_DS_
+	BRA	_00279_DS_
+_00331_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	415; reveil.c	overflows += F;
+;	.line	417; reveil.c	overflows -= 59*F*60;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1501,10 +1567,71 @@ _00274_DS_:
 	MOVF	_overflows, W, B
 	MOVWF	POSTDEC1
 	CALL	___ulong2fs
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
-	MOVFF	PRODH, r0x03
-	MOVFF	FSR0L, r0x04
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	MOVLW	0x48
+	MOVWF	POSTDEC1
+	MOVLW	0xa4
+	MOVWF	POSTDEC1
+	MOVLW	0xd7
+	MOVWF	POSTDEC1
+	MOVLW	0x42
+	MOVWF	POSTDEC1
+	MOVF	r0x03, W
+	MOVWF	POSTDEC1
+	MOVF	r0x02, W
+	MOVWF	POSTDEC1
+	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
+	CALL	___fssub
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
+	MOVLW	0x08
+	ADDWF	FSR1L, F
+	MOVF	r0x03, W
+	MOVWF	POSTDEC1
+	MOVF	r0x02, W
+	MOVWF	POSTDEC1
+	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
+	CALL	___fs2ulong
+	BANKSEL	_overflows
+	MOVWF	_overflows, B
+	MOVFF	PRODL, (_overflows + 1)
+	MOVFF	PRODH, (_overflows + 2)
+	MOVFF	FSR0L, (_overflows + 3)
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	BRA	_00299_DS_
+_00279_DS_:
+	BANKSEL	(_overflows + 3)
+;	.line	419; reveil.c	overflows += F;
+	MOVF	(_overflows + 3), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	(_overflows + 2)
+	MOVF	(_overflows + 2), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	(_overflows + 1)
+	MOVF	(_overflows + 1), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	_overflows
+	MOVF	_overflows, W, B
+	MOVWF	POSTDEC1
+	CALL	___ulong2fs
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVFF	PRODH, r0x02
+	MOVFF	FSR0L, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	MOVLW	0x42
@@ -1515,112 +1642,15 @@ _00274_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0x2a
 	MOVWF	POSTDEC1
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
 	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	CALL	___fsadd
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
-	MOVFF	PRODH, r0x03
-	MOVFF	FSR0L, r0x04
-	MOVLW	0x08
-	ADDWF	FSR1L, F
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
-	MOVF	r0x03, W
-	MOVWF	POSTDEC1
-	MOVF	r0x02, W
-	MOVWF	POSTDEC1
-	MOVF	r0x01, W
-	MOVWF	POSTDEC1
-	CALL	___fs2ulong
-	BANKSEL	_overflows
-	MOVWF	_overflows, B
-	MOVFF	PRODL, (_overflows + 1)
-	MOVFF	PRODH, (_overflows + 2)
-	MOVFF	FSR0L, (_overflows + 3)
-	MOVLW	0x04
-	ADDWF	FSR1L, F
-;	.line	416; reveil.c	overflows -= (incsec/60)*F*60;
-	MOVLW	0x3c
-	MOVWF	POSTDEC1
-	MOVFF	r0x00, POSTDEC1
-	CALL	__divuchar
-	MOVWF	r0x00
-	MOVF	PREINC1, W
-	MOVF	PREINC1, W
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
-	CALL	___uchar2fs
-	MOVWF	r0x00
-	MOVFF	PRODL, r0x01
-	MOVFF	PRODH, r0x02
-	MOVFF	FSR0L, r0x03
-	INCF	FSR1L, F
-	MOVF	r0x03, W
-	MOVWF	POSTDEC1
-	MOVF	r0x02, W
-	MOVWF	POSTDEC1
-	MOVF	r0x01, W
-	MOVWF	POSTDEC1
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
-	MOVLW	0x45
-	MOVWF	POSTDEC1
-	MOVLW	0xb2
-	MOVWF	POSTDEC1
-	MOVLW	0xcf
-	MOVWF	POSTDEC1
-	MOVLW	0x77
-	MOVWF	POSTDEC1
-	CALL	___fsmul
-	MOVWF	r0x00
-	MOVFF	PRODL, r0x01
-	MOVFF	PRODH, r0x02
-	MOVFF	FSR0L, r0x03
-	MOVLW	0x08
-	ADDWF	FSR1L, F
-	BANKSEL	(_overflows + 3)
-	MOVF	(_overflows + 3), W, B
-	MOVWF	POSTDEC1
-	BANKSEL	(_overflows + 2)
-	MOVF	(_overflows + 2), W, B
-	MOVWF	POSTDEC1
-	BANKSEL	(_overflows + 1)
-	MOVF	(_overflows + 1), W, B
-	MOVWF	POSTDEC1
-	BANKSEL	_overflows
-	MOVF	_overflows, W, B
-	MOVWF	POSTDEC1
-	CALL	___ulong2fs
-	MOVWF	r0x04
-	MOVFF	PRODL, r0x05
-	MOVFF	PRODH, r0x06
-	MOVFF	FSR0L, r0x07
-	MOVLW	0x04
-	ADDWF	FSR1L, F
-	MOVF	r0x03, W
-	MOVWF	POSTDEC1
-	MOVF	r0x02, W
-	MOVWF	POSTDEC1
-	MOVF	r0x01, W
-	MOVWF	POSTDEC1
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
-	MOVF	r0x07, W
-	MOVWF	POSTDEC1
-	MOVF	r0x06, W
-	MOVWF	POSTDEC1
-	MOVF	r0x05, W
-	MOVWF	POSTDEC1
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
-	CALL	___fssub
 	MOVWF	r0x00
 	MOVFF	PRODL, r0x01
 	MOVFF	PRODH, r0x02
@@ -1643,112 +1673,108 @@ _00274_DS_:
 	MOVFF	FSR0L, (_overflows + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	417; reveil.c	break;
-	BRA	_00293_DS_
-_00275_DS_:
-;	.line	419; reveil.c	whereami = SET_ALARM;
+;	.line	420; reveil.c	break;
+	BRA	_00299_DS_
+_00281_DS_:
+;	.line	422; reveil.c	whereami = SET_ALARM;
 	MOVLW	0x06
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	420; reveil.c	break;
-	BRA	_00293_DS_
-_00276_DS_:
-;	.line	422; reveil.c	alarm_set ^= 1;
+;	.line	423; reveil.c	break;
+	BRA	_00299_DS_
+_00282_DS_:
+;	.line	425; reveil.c	alarm_set ^= 1;
 	MOVLW	0x01
 	BANKSEL	_alarm_set
 	XORWF	_alarm_set, F, B
-;	.line	423; reveil.c	break;
-	BRA	_00293_DS_
-_00277_DS_:
+;	.line	426; reveil.c	break;
+	BRA	_00299_DS_
+_00283_DS_:
 	BANKSEL	_ahour
-;	.line	425; reveil.c	if (ahour == 23) {
+;	.line	428; reveil.c	if (ahour == 23) {
 	MOVF	_ahour, W, B
 	XORLW	0x17
-	BNZ	_00279_DS_
-_00322_DS_:
+	BNZ	_00285_DS_
+_00334_DS_:
 	BANKSEL	_ahour
-;	.line	426; reveil.c	ahour = 0;
+;	.line	429; reveil.c	ahour = 0;
 	CLRF	_ahour, B
-	BRA	_00280_DS_
-_00279_DS_:
+	BRA	_00286_DS_
+_00285_DS_:
 	BANKSEL	_ahour
-;	.line	428; reveil.c	ahour++;
+;	.line	431; reveil.c	ahour++;
 	INCF	_ahour, F, B
-_00280_DS_:
-;	.line	430; reveil.c	ahour_o = ahour;
+_00286_DS_:
+;	.line	433; reveil.c	ahour_o = ahour;
 	MOVFF	_ahour, _ahour_o
-;	.line	431; reveil.c	break;
-	BRA	_00293_DS_
-_00281_DS_:
+;	.line	434; reveil.c	break;
+	BRA	_00299_DS_
+_00287_DS_:
 	BANKSEL	_amin
-;	.line	433; reveil.c	if (amin == 59) {
+;	.line	436; reveil.c	if (amin == 59) {
 	MOVF	_amin, W, B
 	XORLW	0x3b
-	BNZ	_00283_DS_
-_00324_DS_:
+	BNZ	_00289_DS_
+_00336_DS_:
 	BANKSEL	_amin
-;	.line	434; reveil.c	amin = 0;
+;	.line	437; reveil.c	amin = 0;
 	CLRF	_amin, B
-	BRA	_00284_DS_
-_00283_DS_:
+	BRA	_00290_DS_
+_00289_DS_:
 	BANKSEL	_amin
-;	.line	436; reveil.c	amin++;
+;	.line	439; reveil.c	amin++;
 	INCF	_amin, F, B
-_00284_DS_:
-;	.line	438; reveil.c	amin_o = amin;
+_00290_DS_:
+;	.line	441; reveil.c	amin_o = amin;
 	MOVFF	_amin, _amin_o
-;	.line	439; reveil.c	break;
-	BRA	_00293_DS_
-_00285_DS_:
 ;	.line	442; reveil.c	break;
-	BRA	_00293_DS_
-_00286_DS_:
-;	.line	445; reveil.c	if (snooze < SNOOZE_MAX) {
+	BRA	_00299_DS_
+_00291_DS_:
+;	.line	445; reveil.c	break;
+	BRA	_00299_DS_
+_00292_DS_:
+;	.line	448; reveil.c	if (snooze < SNOOZE_MAX) {
 	MOVLW	0x0c
 	BANKSEL	_snooze
 	SUBWF	_snooze, W, B
-	BC	_00293_DS_
-;	.line	446; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
+	BC	_00299_DS_
+;	.line	449; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
 	MOVLW	0x05
 	MOVWF	POSTDEC1
 	CALL	_inc_amin
 	INCF	FSR1L, F
 	BANKSEL	_snooze
-;	.line	447; reveil.c	snooze++; // augmente le compteur de snooze
+;	.line	450; reveil.c	snooze++; // augmente le compteur de snooze
 	INCF	_snooze, F, B
-;	.line	448; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+;	.line	451; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 	BCF	_LATJbits, 1
-;	.line	449; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+;	.line	452; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 	BCF	_LATJbits, 2
-;	.line	450; reveil.c	whereami = SNOOZE;
+;	.line	453; reveil.c	whereami = SNOOZE;
 	MOVLW	0x0b
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	453; reveil.c	break;
-	BRA	_00293_DS_
-_00289_DS_:
-;	.line	456; reveil.c	if (snooze < SNOOZE_MAX) {
+;	.line	456; reveil.c	break;
+	BRA	_00299_DS_
+_00295_DS_:
+;	.line	459; reveil.c	if (snooze < SNOOZE_MAX) {
 	MOVLW	0x0c
 	BANKSEL	_snooze
 	SUBWF	_snooze, W, B
-	BC	_00293_DS_
-;	.line	457; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
+	BC	_00299_DS_
+;	.line	460; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
 	MOVLW	0x05
 	MOVWF	POSTDEC1
 	CALL	_inc_amin
 	INCF	FSR1L, F
 	BANKSEL	_snooze
-;	.line	458; reveil.c	snooze++; // augmente le compteur de snooze
+;	.line	461; reveil.c	snooze++; // augmente le compteur de snooze
 	INCF	_snooze, F, B
-_00293_DS_:
-	BANKSEL	_button2
-;	.line	465; reveil.c	button2 = 0; // remet le flag du bouton 2 à 0
-	CLRF	_button2, B
 _00299_DS_:
-	MOVFF	PREINC1, r0x07
-	MOVFF	PREINC1, r0x06
-	MOVFF	PREINC1, r0x05
-	MOVFF	PREINC1, r0x04
+	BANKSEL	_button2
+;	.line	468; reveil.c	button2 = 0; // remet le flag du bouton 2 à 0
+	CLRF	_button2, B
+_00305_DS_:
 	MOVFF	PREINC1, r0x03
 	MOVFF	PREINC1, r0x02
 	MOVFF	PREINC1, r0x01
@@ -3050,18 +3076,18 @@ _high_isr:
 	BANKSEL	_overflows
 ;	.line	129; reveil.c	overflows++;
 	INCF	_overflows, F, B
-	BNC	_10353_DS_
+	BNC	_10365_DS_
 	BANKSEL	(_overflows + 1)
 	INCF	(_overflows + 1), F, B
-_10353_DS_:
-	BNC	_20354_DS_
+_10365_DS_:
+	BNC	_20366_DS_
 	BANKSEL	(_overflows + 2)
 	INCF	(_overflows + 2), F, B
-_20354_DS_:
-	BNC	_30355_DS_
+_20366_DS_:
+	BNC	_30367_DS_
 	BANKSEL	(_overflows + 3)
 	INCF	(_overflows + 3), F, B
-_30355_DS_:
+_30367_DS_:
 ;	.line	130; reveil.c	INTCONbits.T0IF = 0;
 	BCF	_INTCONbits, 2
 _00107_DS_:
@@ -3165,8 +3191,8 @@ __str_14:
 
 
 ; Statistics:
-; code size:	 5394 (0x1512) bytes ( 4.12%)
-;           	 2697 (0x0a89) words
+; code size:	 5428 (0x1534) bytes ( 4.14%)
+;           	 2714 (0x0a9a) words
 ; udata size:	   45 (0x002d) bytes ( 1.17%)
 ; access size:	   22 (0x0016) bytes
 

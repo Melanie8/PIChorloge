@@ -401,19 +401,22 @@ void button(void)
                 whereami = SET_HOUR;
                 break;
             case SET_HOUR: // ADD
-                overflows += F*3600;
-                //overflows -= (inchour/24)*F*3600;
+                if (thour==59)
+                    overflows -= 59*F*86400;
+                else
+                    overflows += F*3600;
                 break;
             case SET_MINUTE: // ADD
-                if (tsec==59)
+                if (tmin==59)
                     overflows -= 59*F*3600;
                 else
                     overflows += F*60;
-                //overflows -= (incmin/60)*F*3600;
                 break;
             case SET_SECOND: // ADD
-                overflows += F;
-                overflows -= (incsec/60)*F*60;
+                if (tsec==59)
+                    overflows -= 59*F*60;
+                else
+                    overflows += F;
                 break;
             case ALARM_MENU: // SELECT
                 whereami = SET_ALARM;
