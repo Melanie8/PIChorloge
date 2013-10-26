@@ -62,25 +62,25 @@
 #include "Include/LCDBlocking.h"
 #include "Include/TCPIP_Stack/Delay.h"
 
-void DisplayString(BYTE pos, char* text);
+void DisplayString(BYTE pos, char *text);
 size_t strlcpy(char *dst, const char *src, size_t siz);
 
 /* strings pour le LCD */
-char s[16];
-char t[16];
+CHAR s[16];
+CHAR t[16];
 
 /* stockage de la valeur dans timer0 */
-unsigned int low;
-unsigned int high;
-unsigned int value;
+UINT low;
+UINT high;
+UINT value;
 
 /* nombre d'overflows du timer0 */
-unsigned int overflows = 0;
+UINT overflows = 0;
 
 /* nombre de secondes qu'on veut laisser passer (doit être un nombre pair)
  * et de secondes déjà passées */
-unsigned int N = 600;
-unsigned int seconds = 0;
+UINT N = 600;
+UINT seconds = 0;
 
 
 /* routine d'interruption */
@@ -147,7 +147,7 @@ void main(void) {
     /* départ! */
     DisplayString(0,"C'est parti!");
     T1CONbits.TMR1ON = 1; //enable timer1
-	T0CONbits.TMR0ON = 1;  //enable timer0
+	T0CONbits.TMR0ON = 1; //enable timer0
     
 }
 
