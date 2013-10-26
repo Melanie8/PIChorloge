@@ -24,18 +24,15 @@ APP_HEADERS=Include/GenericTypeDefs.h \
    Include/Compiler.h \
    Include/HardwareProfile.h
 
-lena : Objects/lena.o $(OBJECTS)
-	$(LD) $(LDFLAGS) Objects/lena.o $(OBJECTS)
-
-melanie : Objects/melanie.o $(OBJECTS)
-	$(LD) $(LDFLAGS) Objects/melanie.o $(OBJECTS)
+reveil : Objects/reveil.o $(OBJECTS)
+	$(LD) $(LDFLAGS) Objects/reveil.o $(OBJECTS)
 
 findfreq : Objects/findfreq.o $(OBJECTS)
 	$(LD) $(LDFLAGS) Objects/findfreq.o $(OBJECTS)
 
-Objects/lena.o : lena.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
+Objects/reveil.o : reveil.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
    $(APP_HEADERS) $(TCPIP_HEADERS)
-	$(CC) $(CFLAGS) lena.c
+	$(CC) $(CFLAGS) reveil.c
 
 Objects/melanie.o : melanie.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
    $(APP_HEADERS) $(TCPIP_HEADERS)
@@ -44,6 +41,7 @@ Objects/melanie.o : melanie.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
 Objects/findfreq.o : findfreq.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
    $(APP_HEADERS) $(TCPIP_HEADERS)
 	$(CC) $(CFLAGS) findfreq.c
+
 
 Objects/LCDBlocking.o : TCPIP_Stack/LCDBlocking.c $(SDCC_HEADERS)  \
    $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)
@@ -56,5 +54,4 @@ Objects/Tick.o : TCPIP_Stack/Tick.c  $(SDCC_HEADERS)  \
               -L/usr/local/lib/pic16  TCPIP_Stack/Tick.c
 
 clean : 
-	$(RM) -rf *.o
-
+	$(RM) -rf *.o *.cod *.lst Objects/*.asm Objects/*.lst Objects/*.o
