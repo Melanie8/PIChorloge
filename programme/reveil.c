@@ -116,7 +116,7 @@ CHAR display[32];
 
 
 /* Interruption de priorité haute : liée au temps */
-void high_isr (void) interrupt 1
+void high_isr(void) interrupt 1
 {
     // incrémente juste overflows
     if (INTCONbits.T0IF) {
@@ -127,7 +127,7 @@ void high_isr (void) interrupt 1
 }
 
 /* Interruption de priorité basse : liée aux boutons */
-void low_isr (void) interrupt 2
+void low_isr(void) interrupt 2
 {
     // bouton 1
     if (INTCON3bits.INT3F) {
@@ -142,7 +142,7 @@ void low_isr (void) interrupt 2
 }
 
 /* Fonction main */
-void main()
+void main(void)
 {
     /* bits d'interruption */
     RCONbits.IPEN       = 1; // enable interrupts priority levels

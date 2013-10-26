@@ -64,9 +64,6 @@
 #include "Include/LCDBlocking.h"
 #include "helper.h"
 
-void DisplayString(BYTE pos, char *text);
-size_t strlcpy(char *dst, const char *src, size_t siz);
-
 /* strings pour le LCD */
 CHAR s[16];
 CHAR t[16];
@@ -85,17 +82,17 @@ UINT N = 600;
 UINT seconds = 0;
 
 
-/* routine d'interruption */
-void timer_overflow() interrupt 1 {
+/* Routine d'interruption */
+void timer_overflow(void) interrupt 1 {
     
     // si le timer0 overflow, on incrémente notre compteur
-    if(INTCONbits.TMR0IF){
+    if (INTCONbits.TMR0IF) {
         overflows ++;
 		INTCONbits.TMR0IF = 0;
 	}
     
     // si le timer1 overflow, on incrémente de 2 le nombre de secondes passées
-	if(PIR1bits.TMR1IF){
+	if (PIR1bits.TMR1IF) {
         seconds = seconds+2;
         
         // si on a atteint le nombre de secondes voulues, on affiche overflows
