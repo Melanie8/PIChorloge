@@ -39,7 +39,7 @@
 %\renewcommand\headrulewidth{0.3pt} % Size of the header rule
 %\renewcommand\footrulewidth{0.3pt} % Size of the footer rule
 
-%\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
 
 %--------------------------------------------------------------------------
 %	CODE INCLUSION CONFIGURATION
@@ -59,7 +59,7 @@
  
 %	HEADING SECTIONS
 \null
-\vspace{2cm}
+\vspace{1cm}
 \textsc{\Large Université Catholique de Louvain}\\[1cm] % Name of your university/college
 \textsc{\large LINGI1113 \\[0.3cm] Systèmes informatiques 2}\\[0.5cm] % Major heading such as course name
 %\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
@@ -81,10 +81,13 @@
 
 %	AUTHOR SECTION
 
-\large 
+\large
+\begin{centering}
+Groupe G43\\
+\end{centering}
 {\begin{tabular}{lll}
-\textsc{Peschke} & Lena & 5826-11-00\\
-\textsc{Sedda} & Mélanie & 2246-11-00\\
+\textsc{Peschke} & Lena & 5826 11 00\\
+\textsc{Sedda} & Mélanie & 2246 11 00\\
 \end{tabular}}
 \\[1cm]
 
@@ -92,11 +95,11 @@
 {\begin{tabular}{ll}
 \textit{Professeur} : & Marc Lobelle \\
 \end{tabular}}
-\\[0.7cm]
+\\[1cm]
 
 %	DATE SECTION
 
-{\normalsize \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+{\normalsize \today} % Date, change the \today to a set date if you want to be precise
 
 \newpage
 
@@ -129,25 +132,33 @@ Le réveil se compose de~:
 \item[1] bouton SELECT/ADD/SNOOZE (bouton 2)
 \end{itemize}
 
-Il comporte un mode d'affichage, un menu de l'horloge et un menu du réveil.
+Il comporte un mode d'affichage, un menu de l'horloge et un menu de l'alarme.
 
-\subsection{Première utilisation}
-Par défaut, l'horloge commence à 00~:~00~:~00, l'alarme est désactivée et réglée pour 00~:~00.
-Lors de la mise sous tension du réveil, vous entrez dans le menu de l'horloge.
-Poussez SELECT si vous désirez changer l'heure, NEXT sinon.
-Dans le premier cas, vous pouvez alors incrémenter les heures en appuyant sur ADD. Pour passer aux minutes et ensuite aux secondes, il suffit d'appuyer sur NEXT. Les crochets vous indiquent quelle valeur est en cours de modification.
-Arrivé aux secondes, le bouton NEXT vous donne accès au menu de l'alarme, ou vous vous trouvez aussi si vous n'avez pas changé l'heure. Pour quitter le menu, poussez le bouton NEXT; pour régler l'alarme, poussez le bouton SELECT. En appuyant sur ADD, vous pouvez activer ou désactiver l'alarme. L'écran vous indique l'état actuel par ON ou OFF. Le bouton NEXT vous fait accéder à l'heure de l'alarme, dont vous pouvez changer la valeur en poussant sur ADD. NEXT vous permet de modifier les minutes avec le bouton ADD. Enfin, le bouton NEXT vous fait quitter le menu et vous amène à l'affichage de l'heure.
+\subsection{Réglages}
 
-\subsection{L'affichage}
-Le réveil affiche l'heure sous le format hh~:~mm~:~ss sur la première ligne de l'écran. La seconde indique si l'alarme est mise (Alarm ON) ou non (Alarm OFF) et à quelle heure elle est réglée. Pour accéder au menu, il suffit d'appuyer sur le bouton MENU et de le parcourir avec les boutons NEXT et SELECT. La LED jaune clignote en continu toutes les secondes pour afficher le bon fonctionnement du réveil.
+\paragraph{Première utilisation}
+Par défaut, l'horloge commence à 00~:~00~:~00, l'alarme est désactivée et réglée pour 00~:~00. Lors de la mise sous tension du réveil, vous entrez dans le menu de l'horloge.
+
+\paragraph{Menu de l'horloge} Poussez sur le bouton MENU pour entrer dans le menu de l'horloge. Pour passer au menu de l'alarme, appuyez sur NEXT, sinon poussez sur SELECT pour changer l'heure.
+Vous pouvez maintenant incrémenter les heures en appuyant sur ADD. Pour passer aux minutes et ensuite aux secondes, il suffit d'appuyer sur NEXT successivement, et de les augmenter en poussant ADD. Les crochets vous indiquent quelle valeur est en cours de modification.
+Arrivé aux secondes, le bouton NEXT vous donne accès au menu de l'alarme.
+
+\paragraph{Menu du l'alarme} Si vous désirez revenir à l'affichage de l'heure, poussez le bouton NEXT; pour régler l'alarme, poussez le bouton SELECT. En appuyant sur ADD, vous pouvez activer ou désactiver l'alarme. L'écran vous indique l'état actuel par ON ou OFF. Le bouton NEXT vous fait accéder à l'heure de l'alarme, dont vous pouvez changer la valeur en poussant sur ADD. NEXT vous permet de passer aux minutes, que vous pouvez également modifier avec le bouton ADD. Enfin, le bouton NEXT vous fait quitter le menu et vous amène à l'affichage de l'heure.
+
+\paragraph{L'affichage}
+Le réveil affiche l'heure sous le format hh~:~mm~:~ss sur la première ligne de l'écran. La seconde ligne indique si l'alarme est mise (Alarm ON) ou non (Alarm OFF) et à quelle heure elle est réglée. Pour accéder au menu, il suffit d'appuyer sur le bouton MENU et de le parcourir avec les boutons NEXT et SELECT. La LED jaune clignote en continu toutes les secondes pour afficher le bon fonctionnement du réveil.
 
 \subsection{Le réveil}
-Lorsque le réveil sonne, les deux LED rouges clignotent. La sonnerie dure 30 secondes, délai après lequel le réveil s'éteint automatiquement. Il reste activé pour une prochaine utilisation le lendemain.
-Lors de l'alarme, il y a deux options possibles. Soit vous souhaitez l'éteindre; il suffit alors d'appuyer sur STOP. Le réveil sonnera à nouveau dans 24 heures. Soit vous désirez reporter le réveil de 5 minutes; appuyez alors sur SNOOZE. L'écran vous affiche maintenant l'heure en cours, le nombre de snoozes effectués et l'heure de réveil d'origine. Pendant le mode snooze, ou à chaque fois que le réveil sonne à nouveau, vous pouvez reporter le réveil de 5 minutes supplémentaires, jusqu'à un maximum de 60 minutes au total. Vous pouvez aussi à tout moment appuyer sur STOP, ce qui aura pour effet de revenir à l'affichage normal de l'heure et de remettre l'alarme à l'heure d'origine pour une nouvelle utilisation le lendemain.
+Lorsque le réveil sonne, les deux LED rouges clignotent toutes les secondes. La sonnerie dure 30 secondes, délai après lequel le réveil s'éteint automatiquement. Il reste activé pour une prochaine utilisation le lendemain.
+
+Lors de l'alarme, il y a deux options possibles~:
+\begin{description}
+\item[stop] Soit vous souhaitez l'éteindre; il suffit alors d'appuyer sur STOP. Le réveil sonnera à nouveau dans 24 heures.
+\item[snooze] Soit vous désirez reporter le réveil de 5 minutes; appuyez alors sur SNOOZE. L'écran vous affiche maintenant l'heure en cours, le nombre de snoozes effectués et l'heure de réveil d'origine. Pendant le mode snooze, ou à chaque fois que le réveil sonne à nouveau, vous pouvez reporter le réveil de 5 minutes supplémentaires, jusqu'à un maximum de 60 minutes au total. Vous pouvez aussi à tout moment appuyer sur STOP, ce qui aura pour effet d'arrêter le réveil, de revenir à l'affichage normal de l'heure et de remettre l'alarme à l'heure d'origine pour une nouvelle utilisation le lendemain.
+\end{description}
 
 Il n'est pas possible d'accéder au menu tant que le réveil n'a pas été éteint. De même, tant que vous êtes dans le menu, le réveil ne sonne pas, pour ne pas interférer avec d'éventuels changements en cours.
 
-\pagebreak
 \section{Documentation pour l'installateur}
 % Les instructions décrivant comment compiler, installer sur le PIC et tester votre programme (documentation pour l'installateur)
 Le dossier comprend deux programmes~:
@@ -175,7 +186,6 @@ Pour quitter le client tftp, tapez
 \end{verbatim}
 Le programme se lance automatiquement sur le PIC. Pour le faire redémarrez, appuyer sur le bouton ``reset''.
 
-\pagebreak
 
 \section{Documentation pour le programmeur}
 % Tout ce qui est nécessaire à un programmeur qui devrait adapter votre programme (documentation pour le programmeur), c'est-à dire, par exemple:
@@ -187,7 +197,7 @@ Le programme se lance automatiquement sur le PIC. Pour le faire redémarrez, app
     \subsection{Spécifications}
     \subsection{Fréquence du PIC}
     \subsection{Choix d'implémentation}
-    \subsubsection{Mesure des secondes}
+    \subsubsection{Mesure du temps}
     \subsubsection{Interruptions}
     \subsection{Détails techniques}
     

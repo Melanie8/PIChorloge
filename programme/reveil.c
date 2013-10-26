@@ -2,7 +2,7 @@
  
  FICHIER        reveil.c
  ------------------------------------------------------------------------------
- AUTEURS        Lena Peschke et Mélanie Sedda, GR43
+ AUTEURS        Lena Peschke et Mélanie Sedda, G43
  ------------------------------------------------------------------------------
  VERSION        26 octobre 2013
  ------------------------------------------------------------------------------
@@ -11,6 +11,8 @@
  STRATEGIE
  
  Notre réveil se base sur le timer0 pour mesurer le temps qui passe.
+ Connaissant la fréquence de celui-ci, il compte le nombre d'overflows et
+ vérifie si une seconde est passée pour mettre à jour l'heure de l'horloge.
  ++++ EXPLIQUER LE COMPTAGE DES TICKS ++++
  
  Il y a deux routines d'interruptions à des niveaux de priorités différents :
