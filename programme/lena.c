@@ -171,6 +171,25 @@ void main() {
     }
 }
 
+/* Fonction qui incrémente les heures du réveil */
+void inc_ahour(BYTE val)
+{
+    ahour = (ahour + val) % 24;
+}
+
+/* Fonction qui incrémente les minutes du réveil */
+void inc_amin(BYTE val)
+{
+    // vérifie s'il faut incrémenter les heures
+    BYTE mod_amin;
+    mod_amin = (amin + val) / 60;
+    if (mod_amin) {
+        inc_ahour(mod_amin);
+    }
+    
+    amin = (amin + val) % 60;
+}
+
 /* Fonction qui met à jour l'heure et gère les LED */
 void time(void)
 {
