@@ -62,7 +62,6 @@
 #include <stdlib.h>
 
 #include "Include/LCDBlocking.h"
-//#include "Include/TCPIP_Stack/Delay.h"
 #include "helper.h"
 
 void DisplayString(BYTE pos, char *text);
