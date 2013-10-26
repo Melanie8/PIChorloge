@@ -1,8 +1,10 @@
 /******************************************************************************
  
- Auteurs : Lena Peschke et Mélanie Sedda
- ------------------------------------------------------
- Objectif : Trouver la véritable fréquence de notre pic
+ FICHIER : reveil.c
+ ------------------------------------------------------------------------------
+ AUTEURS : Lena Peschke et Mélanie Sedda
+ ------------------------------------------------------------------------------
+ OBJECTIF : Implémenter un réveil
  
  *****************************************************************************/
 
@@ -17,7 +19,7 @@
 #include "Include/LCDBlocking.h"
 #include "Include/TCPIP_Stack/Delay.h"
 
-// states
+/* états du réveil */
 #define TIME_MENU 1
 #define SET_HOUR 2
 #define SET_MINUTE 3
@@ -30,17 +32,20 @@
 #define ALARM 10
 #define SNOOZE 11
 
-#define SNOOZE_MINUTE 5
-#define SNOOZE_MAX 12
+/* données */
+#define SNOOZE_MINUTE 5 // délai entre 2 répétitions du réveil
+#define SNOOZE_MAX 12 // nombre maximum de répétitions
 
-#define F 95.365555556
+#define F 95.365555556 // nombre d'overflows du timer0 en 1 seconde
 
+/* déclarations des fonctions */
 void inc_ahour(BYTE val);
 void inc_amin(BYTE val);
 
+void time(void);
+void refresh_lcd(void);
 void alarm(void);
 void button(void);
-void refresh_lcd(void);
 
 void DisplayString(BYTE pos, char* text);
 void DisplayWORD(BYTE pos, WORD w);
@@ -48,13 +53,11 @@ size_t strlcpy(char *dst, const char *src, size_t siz);
 
 BYTE chandelle = 1; // ##
 
-/* compteur du nombre d'overflows du timer0 */
-QWORD overflows = 0;
-
 /* variables utiles pour le calcul de l'heure actuelle */
-QWORD sec;
-QWORD decisec;
-WORD ds;
+QWORD overflows = 0; // nombre d'overflows du timer0 depuis le début
+QWORD sec; // nombre de secondes écoulées depuis le début
+QWORD decisec; // nombre de dixièmes de seconde écoulés depuis le début
+BYTE ds; // decisec%10, utile pour pouvoir éteindre les LEDS +- toutes les demi-secondes
 BYTE h;
 BYTE m;
 BYTE s;
@@ -87,14 +90,14 @@ BYTE on = 0;
 BYTE button1 = 0; // flag pour le boutton 1
 BYTE button2 = 0; // flag pour le bouton 2
 
-/* string pour l'affichage sur le LCD */
+/* buffer pour l'affichage sur le LCD */
 CHAR display[32];
 
 
 /* Interruption de priorité haute : liée au temps */
 void high_isr (void) interrupt 1
 {
-    // après chaque overflow, on incrémente overflows
+    // incrémente juste overflows
     if (INTCONbits.T0IF) {
         overflows++;
         INTCONbits.T0IF = 0;
@@ -105,19 +108,19 @@ void high_isr (void) interrupt 1
 /* Interruption de priorité basse : liée aux boutons */
 void low_isr (void) interrupt 2
 {
-    // Button 1
+    // bouton 1
     if(INTCON3bits.INT3F) {
         button1 = 1;
-        INTCON3bits.INT3F = 0;   //clear INT1 flag
+        INTCON3bits.INT3F = 0;
         
-        // Button 2
+    // bouton 2
     } else if(INTCON3bits.INT1F) {
         button2 = 1;
         INTCON3bits.INT1F = 0;
     }
 }
 
-
+/* Fonction main */
 void main() {
     
     /* bits d'interruption */
@@ -153,24 +156,25 @@ void main() {
     INTCON3bits.INT1IP  = 0; //low priority
     INTCON2bits.INT3IP  = 0; //low priority
     
-    //////////////////////////////////////////////
-    
     LCDInit();
     whereami = TIME_MENU;
     
     chandelle++; // ##### BIZARRE ####
     
     T0CONbits.TMR0ON = 1; // start timer0
+    
     while (1) {
+        time();
         refresh_lcd();
         alarm();
         button();
     }
 }
 
-/* Fonction qui met l'heure à jour et gère l'affichage */
-void refresh_lcd(void)
+/* Fonction qui met à jour l'heure et gère les LED */
+void time(void)
 {
+    // calcul de la nouvelle heure
     sec = overflows/F;
     decisec = ((10*overflows)/F);
     ds = decisec%10;
@@ -178,23 +182,7 @@ void refresh_lcd(void)
     m = (sec-(sec/3600)*3600)/60;
     s = sec-m*60;
     
-    if (!on && ds < 5) {
-        LED0_IO ^= 1;
-        if (whereami == ALARM) {
-            LED1_IO ^= 1;
-            LED2_IO ^= 1;
-        }
-        on = 1;
-    }
-    if (on && ds >= 5) {
-        LED0_IO ^= 1;
-        if (whereami == ALARM) {
-            LED1_IO ^= 1;
-            LED2_IO ^= 1;
-        }
-        on = 0;
-    }
-    
+    // si l'heure a changé par rapport à la dernière calculée, on la change
     if (tsec != s)
         tsec = s;
     if (tmin != m)
@@ -202,6 +190,32 @@ void refresh_lcd(void)
     if (thour != h)
         thour = h;
     
+    // allumage des LED, dès qu'on peut dans la première demiseconde
+    if (!on && ds < 5) {
+        LATJbits.LATJ0 = 1;
+        if (whereami == ALARM) {
+            LATJbits.LATJ1 = 1;
+            LATJbits.LATJ2 = 1;
+        }
+        on = 1;
+    }
+    
+    // extenction des LED, dès qu'on peut dans la deuxième demiseconde
+    if (on && ds >= 5) {
+        LATJbits.LATJ0 = 0;
+        if (whereami == ALARM) {
+            LATJbits.LATJ1 = 0;
+            LATJbits.LATJ2 = 0;
+        }
+        on = 0;
+    }
+
+}
+
+/* Fonction qui gère l'affichage */
+void refresh_lcd(void)
+{
+    // affichage
     switch (whereami) {
         case TIME_MENU:
             sprintf(display, "Do you want to  set the time ?  ");
@@ -270,7 +284,6 @@ void refresh_lcd(void)
 /* Fonction qui gère le réveil */
 void alarm(void)
 {
-    
     // vérifie si l'heure de réveil est atteinte et si l'alarme est mise
     if ((thour == ahour) && (tmin == amin) && alarm_set) {
         // vérifie que l'alarme n'est pas encore finie, qu'elle n'a pas encore

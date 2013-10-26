@@ -4,7 +4,7 @@
  ------------------------------------------------------------------------------
  AUTEURS : Lena Peschke et Mélanie Sedda
  ------------------------------------------------------------------------------
- OBJECTIFS : Trouver la véritable fréquence de notre pic
+ OBJECTIF : Trouver la véritable fréquence de notre pic
  ------------------------------------------------------------------------------
  STRATEGIE :
  
