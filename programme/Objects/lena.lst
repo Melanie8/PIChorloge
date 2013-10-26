@@ -1,0 +1,4114 @@
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00001 ;--------------------------------------------------------
+               00002 ; File Created by SDCC : free open source ANSI-C Compiler
+               00003 ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
+               00004 ; This file was generated Sat Oct 26 19:26:19 2013
+               00005 ;--------------------------------------------------------
+               00006 ; PIC16 port for the Microchip 16-bit core micros
+               00007 ;--------------------------------------------------------
+               00008         list    p=18f97j60
+               00009 
+               00010         radix dec
+               00011 
+               00012 ;--------------------------------------------------------
+               00013 ; public variables in this module
+               00014 ;--------------------------------------------------------
+               00015         global _inc_ahour
+               00016         global _inc_amin
+               00017         global _time
+               00018         global _refresh_lcd
+               00019         global _alarm
+               00020         global _button
+               00021         global _DisplayString
+               00022         global _strlcpy
+               00023         global _chandelle
+               00024         global _overflows
+               00025         global _sec
+               00026         global _decisec
+               00027         global _ds
+               00028         global _h
+               00029         global _m
+               00030         global _s
+               00031         global _thour
+               00032         global _tmin
+               00033         global _tsec
+               00034         global _ahour
+               00035         global _amin
+               00036         global _ahour_o
+               00037         global _amin_o
+               00038         global _alarm_set
+               00039         global _snooze
+               00040         global _stop_ringing
+               00041         global _whereami
+               00042         global _on
+               00043         global _button1
+               00044         global _button2
+               00045         global _display
+               00046         global _high_isr
+               00047         global _low_isr
+               00048         global _main
+               00049 
+               00050 ;--------------------------------------------------------
+               00051 ; extern variables in this module
+               00052 ;--------------------------------------------------------
+               00053         extern __gptrget1
+               00054         extern __gptrput1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00055         extern _EBSTCONbits
+               00056         extern _MISTATbits
+               00057         extern _EFLOCONbits
+               00058         extern _MACON1bits
+               00059         extern _MACON2bits
+               00060         extern _MACON3bits
+               00061         extern _MACON4bits
+               00062         extern _MACLCON1bits
+               00063         extern _MACLCON2bits
+               00064         extern _MICONbits
+               00065         extern _MICMDbits
+               00066         extern _EWOLIEbits
+               00067         extern _EWOLIRbits
+               00068         extern _ERXFCONbits
+               00069         extern _EIEbits
+               00070         extern _ESTATbits
+               00071         extern _ECON2bits
+               00072         extern _EIRbits
+               00073         extern _EDATAbits
+               00074         extern _SSP2CON2bits
+               00075         extern _SSP2CON1bits
+               00076         extern _SSP2STATbits
+               00077         extern _ECCP2DELbits
+               00078         extern _ECCP2ASbits
+               00079         extern _ECCP3DELbits
+               00080         extern _ECCP3ASbits
+               00081         extern _RCSTA2bits
+               00082         extern _TXSTA2bits
+               00083         extern _CCP5CONbits
+               00084         extern _CCP4CONbits
+               00085         extern _T4CONbits
+               00086         extern _ECCP1DELbits
+               00087         extern _BAUDCON2bits
+               00088         extern _BAUDCTL2bits
+               00089         extern _BAUDCONbits
+               00090         extern _BAUDCON1bits
+               00091         extern _BAUDCTLbits
+               00092         extern _BAUDCTL1bits
+               00093         extern _PORTAbits
+               00094         extern _PORTBbits
+               00095         extern _PORTCbits
+               00096         extern _PORTDbits
+               00097         extern _PORTEbits
+               00098         extern _PORTFbits
+               00099         extern _PORTGbits
+               00100         extern _PORTHbits
+               00101         extern _PORTJbits
+               00102         extern _LATAbits
+               00103         extern _LATBbits
+               00104         extern _LATCbits
+               00105         extern _LATDbits
+               00106         extern _LATEbits
+               00107         extern _LATFbits
+               00108         extern _LATGbits
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00109         extern _LATHbits
+               00110         extern _LATJbits
+               00111         extern _DDRAbits
+               00112         extern _TRISAbits
+               00113         extern _DDRBbits
+               00114         extern _TRISBbits
+               00115         extern _DDRCbits
+               00116         extern _TRISCbits
+               00117         extern _DDRDbits
+               00118         extern _TRISDbits
+               00119         extern _DDREbits
+               00120         extern _TRISEbits
+               00121         extern _DDRFbits
+               00122         extern _TRISFbits
+               00123         extern _DDRGbits
+               00124         extern _TRISGbits
+               00125         extern _DDRHbits
+               00126         extern _TRISHbits
+               00127         extern _DDRJbits
+               00128         extern _TRISJbits
+               00129         extern _OSCTUNEbits
+               00130         extern _MEMCONbits
+               00131         extern _PIE1bits
+               00132         extern _PIR1bits
+               00133         extern _IPR1bits
+               00134         extern _PIE2bits
+               00135         extern _PIR2bits
+               00136         extern _IPR2bits
+               00137         extern _PIE3bits
+               00138         extern _PIR3bits
+               00139         extern _IPR3bits
+               00140         extern _EECON1bits
+               00141         extern _RCSTAbits
+               00142         extern _RCSTA1bits
+               00143         extern _TXSTAbits
+               00144         extern _TXSTA1bits
+               00145         extern _PSPCONbits
+               00146         extern _T3CONbits
+               00147         extern _CMCONbits
+               00148         extern _CVRCONbits
+               00149         extern _ECCP1ASbits
+               00150         extern _CCP3CONbits
+               00151         extern _ECCP3CONbits
+               00152         extern _CCP2CONbits
+               00153         extern _ECCP2CONbits
+               00154         extern _CCP1CONbits
+               00155         extern _ECCP1CONbits
+               00156         extern _ADCON2bits
+               00157         extern _ADCON1bits
+               00158         extern _ADCON0bits
+               00159         extern _SSP1CON2bits
+               00160         extern _SSPCON2bits
+               00161         extern _SSP1CON1bits
+               00162         extern _SSPCON1bits
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00163         extern _SSP1STATbits
+               00164         extern _SSPSTATbits
+               00165         extern _T2CONbits
+               00166         extern _T1CONbits
+               00167         extern _RCONbits
+               00168         extern _WDTCONbits
+               00169         extern _ECON1bits
+               00170         extern _OSCCONbits
+               00171         extern _T0CONbits
+               00172         extern _STATUSbits
+               00173         extern _INTCON3bits
+               00174         extern _INTCON2bits
+               00175         extern _INTCONbits
+               00176         extern _STKPTRbits
+               00177         extern _stdin
+               00178         extern _stdout
+               00179         extern _LCDText
+               00180         extern _MAADR5
+               00181         extern _MAADR6
+               00182         extern _MAADR3
+               00183         extern _MAADR4
+               00184         extern _MAADR1
+               00185         extern _MAADR2
+               00186         extern _EBSTSD
+               00187         extern _EBSTCON
+               00188         extern _EBSTCS
+               00189         extern _EBSTCSL
+               00190         extern _EBSTCSH
+               00191         extern _MISTAT
+               00192         extern _EFLOCON
+               00193         extern _EPAUS
+               00194         extern _EPAUSL
+               00195         extern _EPAUSH
+               00196         extern _MACON1
+               00197         extern _MACON2
+               00198         extern _MACON3
+               00199         extern _MACON4
+               00200         extern _MABBIPG
+               00201         extern _MAIPG
+               00202         extern _MAIPGL
+               00203         extern _MAIPGH
+               00204         extern _MACLCON1
+               00205         extern _MACLCON2
+               00206         extern _MAMXFL
+               00207         extern _MAMXFLL
+               00208         extern _MAMXFLH
+               00209         extern _MICON
+               00210         extern _MICMD
+               00211         extern _MIREGADR
+               00212         extern _MIWR
+               00213         extern _MIWRL
+               00214         extern _MIWRH
+               00215         extern _MIRD
+               00216         extern _MIRDL
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00217         extern _MIRDH
+               00218         extern _EHT0
+               00219         extern _EHT1
+               00220         extern _EHT2
+               00221         extern _EHT3
+               00222         extern _EHT4
+               00223         extern _EHT5
+               00224         extern _EHT6
+               00225         extern _EHT7
+               00226         extern _EPMM0
+               00227         extern _EPMM1
+               00228         extern _EPMM2
+               00229         extern _EPMM3
+               00230         extern _EPMM4
+               00231         extern _EPMM5
+               00232         extern _EPMM6
+               00233         extern _EPMM7
+               00234         extern _EPMCS
+               00235         extern _EPMCSL
+               00236         extern _EPMCSH
+               00237         extern _EPMO
+               00238         extern _EPMOL
+               00239         extern _EPMOH
+               00240         extern _EWOLIE
+               00241         extern _EWOLIR
+               00242         extern _ERXFCON
+               00243         extern _EPKTCNT
+               00244         extern _EWRPT
+               00245         extern _EWRPTL
+               00246         extern _EWRPTH
+               00247         extern _ETXST
+               00248         extern _ETXSTL
+               00249         extern _ETXSTH
+               00250         extern _ETXND
+               00251         extern _ETXNDL
+               00252         extern _ETXNDH
+               00253         extern _ERXST
+               00254         extern _ERXSTL
+               00255         extern _ERXSTH
+               00256         extern _ERXND
+               00257         extern _ERXNDL
+               00258         extern _ERXNDH
+               00259         extern _ERXRDPT
+               00260         extern _ERXRDPTL
+               00261         extern _ERXRDPTH
+               00262         extern _ERXWRPT
+               00263         extern _ERXWRPTL
+               00264         extern _ERXWRPTH
+               00265         extern _EDMAST
+               00266         extern _EDMASTL
+               00267         extern _EDMASTH
+               00268         extern _EDMAND
+               00269         extern _EDMANDL
+               00270         extern _EDMANDH
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00271         extern _EDMADST
+               00272         extern _EDMADSTL
+               00273         extern _EDMADSTH
+               00274         extern _EDMACS
+               00275         extern _EDMACSL
+               00276         extern _EDMACSH
+               00277         extern _EIE
+               00278         extern _ESTAT
+               00279         extern _ECON2
+               00280         extern _EIR
+               00281         extern _EDATA
+               00282         extern _SSP2CON2
+               00283         extern _SSP2CON1
+               00284         extern _SSP2STAT
+               00285         extern _SSP2ADD
+               00286         extern _SSP2BUF
+               00287         extern _ECCP2DEL
+               00288         extern _ECCP2AS
+               00289         extern _ECCP3DEL
+               00290         extern _ECCP3AS
+               00291         extern _RCSTA2
+               00292         extern _TXSTA2
+               00293         extern _TXREG2
+               00294         extern _RCREG2
+               00295         extern _SPBRG2
+               00296         extern _CCP5CON
+               00297         extern _CCPR5
+               00298         extern _CCPR5L
+               00299         extern _CCPR5H
+               00300         extern _CCP4CON
+               00301         extern _CCPR4
+               00302         extern _CCPR4L
+               00303         extern _CCPR4H
+               00304         extern _T4CON
+               00305         extern _PR4
+               00306         extern _TMR4
+               00307         extern _ECCP1DEL
+               00308         extern _ERDPT
+               00309         extern _ERDPTL
+               00310         extern _ERDPTH
+               00311         extern _BAUDCON2
+               00312         extern _BAUDCTL2
+               00313         extern _SPBRGH2
+               00314         extern _BAUDCON
+               00315         extern _BAUDCON1
+               00316         extern _BAUDCTL
+               00317         extern _BAUDCTL1
+               00318         extern _SPBRGH
+               00319         extern _SPBRGH1
+               00320         extern _PORTA
+               00321         extern _PORTB
+               00322         extern _PORTC
+               00323         extern _PORTD
+               00324         extern _PORTE
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00325         extern _PORTF
+               00326         extern _PORTG
+               00327         extern _PORTH
+               00328         extern _PORTJ
+               00329         extern _LATA
+               00330         extern _LATB
+               00331         extern _LATC
+               00332         extern _LATD
+               00333         extern _LATE
+               00334         extern _LATF
+               00335         extern _LATG
+               00336         extern _LATH
+               00337         extern _LATJ
+               00338         extern _DDRA
+               00339         extern _TRISA
+               00340         extern _DDRB
+               00341         extern _TRISB
+               00342         extern _DDRC
+               00343         extern _TRISC
+               00344         extern _DDRD
+               00345         extern _TRISD
+               00346         extern _DDRE
+               00347         extern _TRISE
+               00348         extern _DDRF
+               00349         extern _TRISF
+               00350         extern _DDRG
+               00351         extern _TRISG
+               00352         extern _DDRH
+               00353         extern _TRISH
+               00354         extern _DDRJ
+               00355         extern _TRISJ
+               00356         extern _OSCTUNE
+               00357         extern _MEMCON
+               00358         extern _PIE1
+               00359         extern _PIR1
+               00360         extern _IPR1
+               00361         extern _PIE2
+               00362         extern _PIR2
+               00363         extern _IPR2
+               00364         extern _PIE3
+               00365         extern _PIR3
+               00366         extern _IPR3
+               00367         extern _EECON1
+               00368         extern _EECON2
+               00369         extern _RCSTA
+               00370         extern _RCSTA1
+               00371         extern _TXSTA
+               00372         extern _TXSTA1
+               00373         extern _TXREG
+               00374         extern _TXREG1
+               00375         extern _RCREG
+               00376         extern _RCREG1
+               00377         extern _SPBRG
+               00378         extern _SPBRG1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00379         extern _PSPCON
+               00380         extern _T3CON
+               00381         extern _TMR3L
+               00382         extern _TMR3H
+               00383         extern _CMCON
+               00384         extern _CVRCON
+               00385         extern _ECCP1AS
+               00386         extern _CCP3CON
+               00387         extern _ECCP3CON
+               00388         extern _CCPR3
+               00389         extern _CCPR3L
+               00390         extern _CCPR3H
+               00391         extern _CCP2CON
+               00392         extern _ECCP2CON
+               00393         extern _CCPR2
+               00394         extern _CCPR2L
+               00395         extern _CCPR2H
+               00396         extern _CCP1CON
+               00397         extern _ECCP1CON
+               00398         extern _CCPR1
+               00399         extern _CCPR1L
+               00400         extern _CCPR1H
+               00401         extern _ADCON2
+               00402         extern _ADCON1
+               00403         extern _ADCON0
+               00404         extern _ADRES
+               00405         extern _ADRESL
+               00406         extern _ADRESH
+               00407         extern _SSP1CON2
+               00408         extern _SSPCON2
+               00409         extern _SSP1CON1
+               00410         extern _SSPCON1
+               00411         extern _SSP1STAT
+               00412         extern _SSPSTAT
+               00413         extern _SSP1ADD
+               00414         extern _SSPADD
+               00415         extern _SSP1BUF
+               00416         extern _SSPBUF
+               00417         extern _T2CON
+               00418         extern _PR2
+               00419         extern _TMR2
+               00420         extern _T1CON
+               00421         extern _TMR1L
+               00422         extern _TMR1H
+               00423         extern _RCON
+               00424         extern _WDTCON
+               00425         extern _ECON1
+               00426         extern _OSCCON
+               00427         extern _T0CON
+               00428         extern _TMR0L
+               00429         extern _TMR0H
+               00430         extern _STATUS
+               00431         extern _FSR2L
+               00432         extern _FSR2H
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00433         extern _PLUSW2
+               00434         extern _PREINC2
+               00435         extern _POSTDEC2
+               00436         extern _POSTINC2
+               00437         extern _INDF2
+               00438         extern _BSR
+               00439         extern _FSR1L
+               00440         extern _FSR1H
+               00441         extern _PLUSW1
+               00442         extern _PREINC1
+               00443         extern _POSTDEC1
+               00444         extern _POSTINC1
+               00445         extern _INDF1
+               00446         extern _WREG
+               00447         extern _FSR0L
+               00448         extern _FSR0H
+               00449         extern _PLUSW0
+               00450         extern _PREINC0
+               00451         extern _POSTDEC0
+               00452         extern _POSTINC0
+               00453         extern _INDF0
+               00454         extern _INTCON3
+               00455         extern _INTCON2
+               00456         extern _INTCON
+               00457         extern _PROD
+               00458         extern _PRODL
+               00459         extern _PRODH
+               00460         extern _TABLAT
+               00461         extern _TBLPTR
+               00462         extern _TBLPTRL
+               00463         extern _TBLPTRH
+               00464         extern _TBLPTRU
+               00465         extern _PC
+               00466         extern _PCL
+               00467         extern _PCLATH
+               00468         extern _PCLATU
+               00469         extern _STKPTR
+               00470         extern _TOS
+               00471         extern _TOSL
+               00472         extern _TOSH
+               00473         extern _TOSU
+               00474         extern _sprintf
+               00475         extern _strlen
+               00476         extern _LCDInit
+               00477         extern _LCDUpdate
+               00478         extern __modsint
+               00479         extern __divsint
+               00480         extern ___ulong2fs
+               00481         extern ___fsdiv
+               00482         extern ___fs2ulong
+               00483         extern __mullong
+               00484         extern __modulong
+               00485         extern __divulong
+               00486         extern ___fsadd
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00487 ;--------------------------------------------------------
+               00488 ;       Equates to used internal registers
+               00489 ;--------------------------------------------------------
+  00000FD8     00490 STATUS  equ     0xfd8
+  00000FF9     00491 PCL     equ     0xff9
+  00000FFA     00492 PCLATH  equ     0xffa
+  00000FFB     00493 PCLATU  equ     0xffb
+  00000FE8     00494 WREG    equ     0xfe8
+  00000FE0     00495 BSR     equ     0xfe0
+  00000FE9     00496 FSR0L   equ     0xfe9
+  00000FEA     00497 FSR0H   equ     0xfea
+  00000FE1     00498 FSR1L   equ     0xfe1
+  00000FD9     00499 FSR2L   equ     0xfd9
+  00000FE5     00500 POSTDEC1        equ     0xfe5
+  00000FE4     00501 PREINC1 equ     0xfe4
+  00000FDB     00502 PLUSW2  equ     0xfdb
+  00000FF3     00503 PRODL   equ     0xff3
+  00000FF4     00504 PRODH   equ     0xff4
+               00505 
+               00506 
+               00507         idata
+               00508 _chandelle      db      0x01
+               00509 _overflows      db      0x00, 0x00, 0x00, 0x00
+               00510 _thour  db      0x00
+               00511 _tmin   db      0x00
+               00512 _tsec   db      0x00
+               00513 _ahour  db      0x00
+               00514 _amin   db      0x00
+               00515 _ahour_o        db      0x00
+               00516 _amin_o db      0x00
+               00517 _alarm_set      db      0x00
+               00518 _snooze db      0x00
+               00519 _stop_ringing   db      0x00
+               00520 _whereami       db      0x00
+               00521 _on     db      0x00
+               00522 _button1        db      0x00
+               00523 _button2        db      0x00
+               00524 
+               00525 
+               00526 ; Internal registers
+               00527 .registers      udata_ovr       0x0000
+               00528 r0x00   res     1
+               00529 r0x01   res     1
+               00530 r0x02   res     1
+               00531 r0x03   res     1
+               00532 r0x04   res     1
+               00533 r0x05   res     1
+               00534 r0x06   res     1
+               00535 r0x07   res     1
+               00536 r0x08   res     1
+               00537 r0x09   res     1
+               00538 r0x0a   res     1
+               00539 r0x0b   res     1
+               00540 r0x0c   res     1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00541 r0x0d   res     1
+               00542 r0x0e   res     1
+               00543 r0x0f   res     1
+               00544 r0x10   res     1
+               00545 r0x11   res     1
+               00546 r0x12   res     1
+               00547 r0x13   res     1
+               00548 r0x14   res     1
+               00549 r0x15   res     1
+               00550 
+               00551 udata_lena_0    udata
+               00552 _sec    res     4
+               00553 
+               00554 udata_lena_1    udata
+               00555 _decisec        res     4
+               00556 
+               00557 udata_lena_2    udata
+               00558 _ds     res     1
+               00559 
+               00560 udata_lena_3    udata
+               00561 _h      res     1
+               00562 
+               00563 udata_lena_4    udata
+               00564 _m      res     1
+               00565 
+               00566 udata_lena_5    udata
+               00567 _s      res     1
+               00568 
+               00569 udata_lena_6    udata
+               00570 _display        res     32
+               00571 
+               00572 ;--------------------------------------------------------
+               00573 ; interrupt vector 
+               00574 ;--------------------------------------------------------
+               00575 
+               00576 ;--------------------------------------------------------
+               00577 ; global & static initialisations
+               00578 ;--------------------------------------------------------
+               00579 ; ; Starting pCode block for absolute section
+               00580 ; ;-----------------------------------------
+               00581 S_lena_ivec_0x1_high_isr        code    0X000008
+0008 00582 ivec_0x1_high_isr:
+0008 EF00 F000 00583         GOTO    _high_isr
+               00584 
+               00585 ; ; Starting pCode block for absolute section
+               00586 ; ;-----------------------------------------
+               00587 S_lena_ivec_0x2_low_isr code    0X000018
+0018 00588 ivec_0x2_low_isr:
+0018 EF00 F000 00589         GOTO    _low_isr
+               00590 
+               00591 ; I code from now on!
+               00592 ; ; Starting pCode block
+               00593 S_lena__main    code
+0000 00594 _main:
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00595 ;       .line   127; lena.c     RCONbits.IPEN       = 1; //enable interrupts priority levels
+0000 8E00      00596         BSF     _RCONbits, 7
+               00597 ;       .line   128; lena.c     INTCONbits.GIE      = 1; //enables all high-priority interrupts
+0002 8E00      00598         BSF     _INTCONbits, 7
+               00599 ;       .line   129; lena.c     INTCONbits.PEIE     = 1; //enables all low-priority peripheral interrupts
+0004 8C00      00600         BSF     _INTCONbits, 6
+               00601 ;       .line   132; lena.c     T0CONbits.TMR0ON    = 1; //enables Timer0
+0006 8E00      00602         BSF     _T0CONbits, 7
+               00603 ;       .line   133; lena.c     INTCONbits.TMR0IE   = 1; //enables the TMR0 overflow interrupt
+0008 8A00      00604         BSF     _INTCONbits, 5
+               00605 ;       .line   134; lena.c     INTCONbits.TMR0IF   = 0; //clear Timer0 overflow bit
+000A 9400      00606         BCF     _INTCONbits, 2
+               00607 ;       .line   135; lena.c     INTCON2bits.TMR0IP  = 1; //high priority
+000C 8400      00608         BSF     _INTCON2bits, 2
+               00609 ;       .line   136; lena.c     T0CONbits.T08BIT    = 0; //timer0 is configured as a 16-bit timer/counter
+000E 9C00      00610         BCF     _T0CONbits, 6
+               00611 ;       .line   137; lena.c     T0CONbits.T0CS      = 0; //internal instruction cycle clock (CLKO)
+0010 9A00      00612         BCF     _T0CONbits, 5
+               00613 ;       .line   138; lena.c     T0CONbits.PSA       = 1; //timer0 prescaler is not assigned
+0012 8600      00614         BSF     _T0CONbits, 3
+               00615 ;       .line   139; lena.c     TMR0L = 0;    TMR0H = 0;
+0014 6A00      00616         CLRF    _TMR0L
+0016 6A00      00617         CLRF    _TMR0H
+               00618 ;       .line   142; lena.c     LED0_TRIS = 0; //configure 1st led pin as output (yellow)
+0018 9000      00619         BCF     _TRISJbits, 0
+               00620 ;       .line   143; lena.c     LED1_TRIS = 0; //configure 2nd led pin as output (red)
+001A 9200      00621         BCF     _TRISJbits, 1
+               00622 ;       .line   144; lena.c     LED2_TRIS = 0; //configure 3rd led pin as output (red)
+001C 9400      00623         BCF     _TRISJbits, 2
+               00624 ;       .line   145; lena.c     LATJbits.LATJ0 = 0; // switch LED 1 off
+001E 9000      00625         BCF     _LATJbits, 0
+               00626 ;       .line   146; lena.c     LATJbits.LATJ1 = 0; // switch LED 2 off
+0020 9200      00627         BCF     _LATJbits, 1
+               00628 ;       .line   147; lena.c     LATJbits.LATJ2 = 0; // switch LED 3 off
+0022 9400      00629         BCF     _LATJbits, 2
+               00630 ;       .line   150; lena.c     BUTTON0_TRIS        = 1; //configure 1st button as input
+0024 8600      00631         BSF     _TRISBbits, 3
+               00632 ;       .line   151; lena.c     BUTTON1_TRIS        = 1; //configure 2nd button as input
+0026 8200      00633         BSF     _TRISBbits, 1
+               00634 ;       .line   152; lena.c     INTCON3bits.INT3E   = 1; //enable INT3 interrupt (button 1)
+0028 8A00      00635         BSF     _INTCON3bits, 5
+               00636 ;       .line   153; lena.c     INTCON3bits.INT3F   = 0; //clear INT3 flag
+002A 9400      00637         BCF     _INTCON3bits, 2
+               00638 ;       .line   154; lena.c     INTCON3bits.INT1E   = 1; //enable INT1 interrupt (button 2)
+002C 8600      00639         BSF     _INTCON3bits, 3
+               00640 ;       .line   155; lena.c     INTCON3bits.INT1F   = 0; //clear INT1 flag
+002E 9000      00641         BCF     _INTCON3bits, 0
+               00642 ;       .line   156; lena.c     INTCON3bits.INT1IP  = 0; //low priority
+0030 9C00      00643         BCF     _INTCON3bits, 6
+               00644 ;       .line   157; lena.c     INTCON2bits.INT3IP  = 0; //low priority
+0032 9200      00645         BCF     _INTCON2bits, 1
+               00646 ;       .line   159; lena.c     LCDInit();
+0034 EC00 F000 00647         CALL    _LCDInit
+               00648 ;       .line   160; lena.c     whereami = TIME_MENU;
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0038 0E01      00649         MOVLW   0x01
+003A 0000      00650         BANKSEL _whereami
+003C 6F00      00651         MOVWF   _whereami, B
+003E 0000      00652         BANKSEL _chandelle
+               00653 ;       .line   162; lena.c     chandelle++; // ##### BIZARRE ####
+0040 2B00      00654         INCF    _chandelle, F, B
+               00655 ;       .line   164; lena.c     T0CONbits.TMR0ON = 1; // start timer0
+0042 8E00      00656         BSF     _T0CONbits, 7
+0044 00657 _00123_DS_:
+               00658 ;       .line   167; lena.c     time();
+0044 EC00 F000 00659         CALL    _time
+               00660 ;       .line   168; lena.c     refresh_lcd();
+0048 EC00 F000 00661         CALL    _refresh_lcd
+               00662 ;       .line   169; lena.c     alarm();
+004C EC00 F000 00663         CALL    _alarm
+               00664 ;       .line   170; lena.c     button();
+0050 EC00 F000 00665         CALL    _button
+0054 D000      00666         BRA     _00123_DS_
+0056 0012      00667         RETURN  
+               00668 
+               00669 ; ; Starting pCode block
+               00670 S_lena__strlcpy code
+0000 00671 _strlcpy:
+               00672 ;       .line   518; lena.c     strlcpy(char *dst, const char *src, size_t siz)
+0000 CFD9 FFE5 00673         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00674         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00675         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00676         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00677         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00678         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 00679         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 00680         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 00681         MOVFF   r0x06, POSTDEC1
+0024 C000 FFE5 00682         MOVFF   r0x07, POSTDEC1
+0028 C000 FFE5 00683         MOVFF   r0x08, POSTDEC1
+002C C000 FFE5 00684         MOVFF   r0x09, POSTDEC1
+0030 C000 FFE5 00685         MOVFF   r0x0a, POSTDEC1
+0034 C000 FFE5 00686         MOVFF   r0x0b, POSTDEC1
+0038 C000 FFE5 00687         MOVFF   r0x0c, POSTDEC1
+003C C000 FFE5 00688         MOVFF   r0x0d, POSTDEC1
+0040 C000 FFE5 00689         MOVFF   r0x0e, POSTDEC1
+0044 C000 FFE5 00690         MOVFF   r0x0f, POSTDEC1
+0048 C000 FFE5 00691         MOVFF   r0x10, POSTDEC1
+004C C000 FFE5 00692         MOVFF   r0x11, POSTDEC1
+0050 C000 FFE5 00693         MOVFF   r0x12, POSTDEC1
+0054 C000 FFE5 00694         MOVFF   r0x13, POSTDEC1
+0058 C000 FFE5 00695         MOVFF   r0x14, POSTDEC1
+005C C000 FFE5 00696         MOVFF   r0x15, POSTDEC1
+0060 0E02      00697         MOVLW   0x02
+0062 CFDB F000 00698         MOVFF   PLUSW2, r0x00
+0066 0E03      00699         MOVLW   0x03
+0068 CFDB F000 00700         MOVFF   PLUSW2, r0x01
+006C 0E04      00701         MOVLW   0x04
+006E CFDB F000 00702         MOVFF   PLUSW2, r0x02
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0072 0E05      00703         MOVLW   0x05
+0074 CFDB F000 00704         MOVFF   PLUSW2, r0x03
+0078 0E06      00705         MOVLW   0x06
+007A CFDB F000 00706         MOVFF   PLUSW2, r0x04
+007E 0E07      00707         MOVLW   0x07
+0080 CFDB F000 00708         MOVFF   PLUSW2, r0x05
+0084 0E08      00709         MOVLW   0x08
+0086 CFDB F000 00710         MOVFF   PLUSW2, r0x06
+008A 0E09      00711         MOVLW   0x09
+008C CFDB F000 00712         MOVFF   PLUSW2, r0x07
+               00713 ;       .line   520; lena.c     char       *d = dst;
+0090 C000 F000 00714         MOVFF   r0x00, r0x08
+0094 C000 F000 00715         MOVFF   r0x01, r0x09
+0098 C000 F000 00716         MOVFF   r0x02, r0x0a
+               00717 ;       .line   521; lena.c     const char *s = src;
+009C C000 F000 00718         MOVFF   r0x03, r0x0b
+00A0 C000 F000 00719         MOVFF   r0x04, r0x0c
+00A4 C000 F000 00720         MOVFF   r0x05, r0x0d
+               00721 ;       .line   522; lena.c     size_t      n = siz;
+00A8 C000 F000 00722         MOVFF   r0x06, r0x0e
+00AC C000 F000 00723         MOVFF   r0x07, r0x0f
+               00724 ;       .line   525; lena.c     if (n != 0)
+00B0 5000      00725         MOVF    r0x06, W
+00B2 1000      00726         IORWF   r0x07, W
+00B4 B4D8      00727         BTFSC   STATUS, 2
+00B6 D000      00728         BRA     _00353_DS_
+               00729 ;       .line   527; lena.c     while (--n != 0)
+00B8 C000 F000 00730         MOVFF   r0x03, r0x10
+00BC C000 F000 00731         MOVFF   r0x04, r0x11
+00C0 C000 F000 00732         MOVFF   r0x05, r0x12
+00C4 C000 F000 00733         MOVFF   r0x06, r0x13
+00C8 C000 F000 00734         MOVFF   r0x07, r0x14
+00CC 00735 _00349_DS_:
+00CC 0EFF      00736         MOVLW   0xff
+00CE 2600      00737         ADDWF   r0x13, F
+00D0 A0D8      00738         BTFSS   STATUS, 0
+00D2 0600      00739         DECF    r0x14, F
+00D4 5000      00740         MOVF    r0x13, W
+00D6 1000      00741         IORWF   r0x14, W
+00D8 E000      00742         BZ      _00368_DS_
+               00743 ;       .line   529; lena.c     if ((*d++ = *s++) == '\0')
+00DA C000 FFE9 00744         MOVFF   r0x10, FSR0L
+00DE C000 FFF3 00745         MOVFF   r0x11, PRODL
+00E2 5000      00746         MOVF    r0x12, W
+00E4 EC00 F000 00747         CALL    __gptrget1
+00E8 6E00      00748         MOVWF   r0x15
+00EA 2A00      00749         INCF    r0x10, F
+00EC B0D8      00750         BTFSC   STATUS, 0
+00EE 2A00      00751         INCF    r0x11, F
+00F0 B0D8      00752         BTFSC   STATUS, 0
+00F2 2A00      00753         INCF    r0x12, F
+00F4 C000 FFE5 00754         MOVFF   r0x15, POSTDEC1
+00F8 C000 FFE9 00755         MOVFF   r0x00, FSR0L
+00FC C000 FFF3 00756         MOVFF   r0x01, PRODL
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0100 5000      00757         MOVF    r0x02, W
+0102 EC00 F000 00758         CALL    __gptrput1
+0106 2A00      00759         INCF    r0x00, F
+0108 B0D8      00760         BTFSC   STATUS, 0
+010A 2A00      00761         INCF    r0x01, F
+010C B0D8      00762         BTFSC   STATUS, 0
+010E 2A00      00763         INCF    r0x02, F
+0110 5000      00764         MOVF    r0x15, W
+0112 E100      00765         BNZ     _00349_DS_
+0114 00766 _00368_DS_:
+               00767 ;       .line   530; lena.c     break;
+0114 C000 F000 00768         MOVFF   r0x10, r0x0b
+0118 C000 F000 00769         MOVFF   r0x11, r0x0c
+011C C000 F000 00770         MOVFF   r0x12, r0x0d
+0120 C000 F000 00771         MOVFF   r0x00, r0x08
+0124 C000 F000 00772         MOVFF   r0x01, r0x09
+0128 C000 F000 00773         MOVFF   r0x02, r0x0a
+012C C000 F000 00774         MOVFF   r0x13, r0x0e
+0130 C000 F000 00775         MOVFF   r0x14, r0x0f
+0134 00776 _00353_DS_:
+               00777 ;       .line   535; lena.c     if (n == 0)
+0134 5000      00778         MOVF    r0x0e, W
+0136 1000      00779         IORWF   r0x0f, W
+0138 E100      00780         BNZ     _00360_DS_
+               00781 ;       .line   537; lena.c     if (siz != 0)
+013A 5000      00782         MOVF    r0x06, W
+013C 1000      00783         IORWF   r0x07, W
+013E E000      00784         BZ      _00367_DS_
+               00785 ;       .line   538; lena.c     *d = '\0';          /* NUL-terminate dst */
+0140 0E00      00786         MOVLW   0x00
+0142 6EE5      00787         MOVWF   POSTDEC1
+0144 C000 FFE9 00788         MOVFF   r0x08, FSR0L
+0148 C000 FFF3 00789         MOVFF   r0x09, PRODL
+014C 5000      00790         MOVF    r0x0a, W
+014E EC00 F000 00791         CALL    __gptrput1
+0152 00792 _00367_DS_:
+               00793 ;       .line   539; lena.c     while (*s++)
+0152 C000 F000 00794         MOVFF   r0x0b, r0x00
+0156 C000 F000 00795         MOVFF   r0x0c, r0x01
+015A C000 F000 00796         MOVFF   r0x0d, r0x02
+015E 00797 _00356_DS_:
+015E C000 FFE9 00798         MOVFF   r0x00, FSR0L
+0162 C000 FFF3 00799         MOVFF   r0x01, PRODL
+0166 5000      00800         MOVF    r0x02, W
+0168 EC00 F000 00801         CALL    __gptrget1
+016C 6E00      00802         MOVWF   r0x06
+016E 2A00      00803         INCF    r0x00, F
+0170 B0D8      00804         BTFSC   STATUS, 0
+0172 2A00      00805         INCF    r0x01, F
+0174 B0D8      00806         BTFSC   STATUS, 0
+0176 2A00      00807         INCF    r0x02, F
+0178 5000      00808         MOVF    r0x06, W
+017A E100      00809         BNZ     _00356_DS_
+017C C000 F000 00810         MOVFF   r0x00, r0x0b
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0180 C000 F000 00811         MOVFF   r0x01, r0x0c
+0184 C000 F000 00812         MOVFF   r0x02, r0x0d
+0188 00813 _00360_DS_:
+               00814 ;       .line   545; lena.c     return (s - src - 1);       /* count does not include NUL */
+0188 5000      00815         MOVF    r0x03, W
+018A 5C00      00816         SUBWF   r0x0b, W
+018C 6E00      00817         MOVWF   r0x03
+018E 5000      00818         MOVF    r0x04, W
+0190 5800      00819         SUBWFB  r0x0c, W
+0192 6E00      00820         MOVWF   r0x04
+0194 0EFF      00821         MOVLW   0xff
+0196 2600      00822         ADDWF   r0x03, F
+0198 A0D8      00823         BTFSS   STATUS, 0
+019A 0600      00824         DECF    r0x04, F
+019C C000 FFF3 00825         MOVFF   r0x04, PRODL
+01A0 5000      00826         MOVF    r0x03, W
+01A2 CFE4 F000 00827         MOVFF   PREINC1, r0x15
+01A6 CFE4 F000 00828         MOVFF   PREINC1, r0x14
+01AA CFE4 F000 00829         MOVFF   PREINC1, r0x13
+01AE CFE4 F000 00830         MOVFF   PREINC1, r0x12
+01B2 CFE4 F000 00831         MOVFF   PREINC1, r0x11
+01B6 CFE4 F000 00832         MOVFF   PREINC1, r0x10
+01BA CFE4 F000 00833         MOVFF   PREINC1, r0x0f
+01BE CFE4 F000 00834         MOVFF   PREINC1, r0x0e
+01C2 CFE4 F000 00835         MOVFF   PREINC1, r0x0d
+01C6 CFE4 F000 00836         MOVFF   PREINC1, r0x0c
+01CA CFE4 F000 00837         MOVFF   PREINC1, r0x0b
+01CE CFE4 F000 00838         MOVFF   PREINC1, r0x0a
+01D2 CFE4 F000 00839         MOVFF   PREINC1, r0x09
+01D6 CFE4 F000 00840         MOVFF   PREINC1, r0x08
+01DA CFE4 F000 00841         MOVFF   PREINC1, r0x07
+01DE CFE4 F000 00842         MOVFF   PREINC1, r0x06
+01E2 CFE4 F000 00843         MOVFF   PREINC1, r0x05
+01E6 CFE4 F000 00844         MOVFF   PREINC1, r0x04
+01EA CFE4 F000 00845         MOVFF   PREINC1, r0x03
+01EE CFE4 F000 00846         MOVFF   PREINC1, r0x02
+01F2 CFE4 F000 00847         MOVFF   PREINC1, r0x01
+01F6 CFE4 F000 00848         MOVFF   PREINC1, r0x00
+01FA CFE4 FFD9 00849         MOVFF   PREINC1, FSR2L
+01FE 0012      00850         RETURN  
+               00851 
+               00852 ; ; Starting pCode block
+               00853 S_lena__DisplayString   code
+0000 00854 _DisplayString:
+               00855 ;       .line   472; lena.c     void DisplayString(BYTE pos, char* text)
+0000 CFD9 FFE5 00856         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00857         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00858         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00859         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00860         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00861         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 00862         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 00863         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 00864         MOVFF   r0x06, POSTDEC1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0024 C000 FFE5 00865         MOVFF   r0x07, POSTDEC1
+0028 0E02      00866         MOVLW   0x02
+002A CFDB F000 00867         MOVFF   PLUSW2, r0x00
+002E 0E03      00868         MOVLW   0x03
+0030 CFDB F000 00869         MOVFF   PLUSW2, r0x01
+0034 0E04      00870         MOVLW   0x04
+0036 CFDB F000 00871         MOVFF   PLUSW2, r0x02
+003A 0E05      00872         MOVLW   0x05
+003C CFDB F000 00873         MOVFF   PLUSW2, r0x03
+               00874 ;       .line   474; lena.c     BYTE l= strlen(text)+1;
+0040 5000      00875         MOVF    r0x03, W
+0042 6EE5      00876         MOVWF   POSTDEC1
+0044 5000      00877         MOVF    r0x02, W
+0046 6EE5      00878         MOVWF   POSTDEC1
+0048 5000      00879         MOVF    r0x01, W
+004A 6EE5      00880         MOVWF   POSTDEC1
+004C EC00 F000 00881         CALL    _strlen
+0050 6E00      00882         MOVWF   r0x04
+0052 CFF3 F000 00883         MOVFF   PRODL, r0x05
+0056 0E03      00884         MOVLW   0x03
+0058 26E1      00885         ADDWF   FSR1L, F
+005A 2A00      00886         INCF    r0x04, F
+               00887 ;       .line   475; lena.c     BYTE max= 32-pos;
+005C 5000      00888         MOVF    r0x00, W
+005E 0820      00889         SUBLW   0x20
+0060 6E00      00890         MOVWF   r0x05
+               00891 ;       .line   476; lena.c     strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+0062 6A00      00892         CLRF    r0x06
+0064 0E00      00893         MOVLW   LOW(_LCDText)
+0066 2600      00894         ADDWF   r0x00, F
+0068 0E00      00895         MOVLW   HIGH(_LCDText)
+006A 2200      00896         ADDWFC  r0x06, F
+006C 5000      00897         MOVF    r0x06, W
+006E 6E00      00898         MOVWF   r0x06
+0070 5000      00899         MOVF    r0x00, W
+0072 6E00      00900         MOVWF   r0x00
+0074 0E80      00901         MOVLW   0x80
+0076 6E00      00902         MOVWF   r0x07
+0078 5000      00903         MOVF    r0x05, W
+007A 5C00      00904         SUBWF   r0x04, W
+007C E300      00905         BNC     _00340_DS_
+007E C000 F000 00906         MOVFF   r0x05, r0x04
+0082 00907 _00340_DS_:
+0082 6A00      00908         CLRF    r0x05
+0084 5000      00909         MOVF    r0x05, W
+0086 6EE5      00910         MOVWF   POSTDEC1
+0088 5000      00911         MOVF    r0x04, W
+008A 6EE5      00912         MOVWF   POSTDEC1
+008C 5000      00913         MOVF    r0x03, W
+008E 6EE5      00914         MOVWF   POSTDEC1
+0090 5000      00915         MOVF    r0x02, W
+0092 6EE5      00916         MOVWF   POSTDEC1
+0094 5000      00917         MOVF    r0x01, W
+0096 6EE5      00918         MOVWF   POSTDEC1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0098 5000      00919         MOVF    r0x07, W
+009A 6EE5      00920         MOVWF   POSTDEC1
+009C 5000      00921         MOVF    r0x06, W
+009E 6EE5      00922         MOVWF   POSTDEC1
+00A0 5000      00923         MOVF    r0x00, W
+00A2 6EE5      00924         MOVWF   POSTDEC1
+00A4 EC00 F000 00925         CALL    _strlcpy
+00A8 0E08      00926         MOVLW   0x08
+00AA 26E1      00927         ADDWF   FSR1L, F
+               00928 ;       .line   477; lena.c     LCDUpdate();
+00AC EC00 F000 00929         CALL    _LCDUpdate
+00B0 CFE4 F000 00930         MOVFF   PREINC1, r0x07
+00B4 CFE4 F000 00931         MOVFF   PREINC1, r0x06
+00B8 CFE4 F000 00932         MOVFF   PREINC1, r0x05
+00BC CFE4 F000 00933         MOVFF   PREINC1, r0x04
+00C0 CFE4 F000 00934         MOVFF   PREINC1, r0x03
+00C4 CFE4 F000 00935         MOVFF   PREINC1, r0x02
+00C8 CFE4 F000 00936         MOVFF   PREINC1, r0x01
+00CC CFE4 F000 00937         MOVFF   PREINC1, r0x00
+00D0 CFE4 FFD9 00938         MOVFF   PREINC1, FSR2L
+00D4 0012      00939         RETURN  
+               00940 
+               00941 ; ; Starting pCode block
+               00942 S_lena__button  code
+0000 00943 _button:
+               00944 ;       .line   334; lena.c     void button(void)
+0000 CFD9 FFE5 00945         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00946         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00947         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00948         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00949         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00950         MOVFF   r0x03, POSTDEC1
+0018 0000      00951         BANKSEL _button1
+               00952 ;       .line   337; lena.c     if (button1) {
+001A 5100      00953         MOVF    _button1, W, B
+001C B4D8      00954         BTFSC   STATUS, 2
+001E D000      00955         BRA     _00306_DS_
+               00956 ;       .line   338; lena.c     switch (whereami) {
+0020 0E01      00957         MOVLW   0x01
+0022 0000      00958         BANKSEL _whereami
+0024 5D00      00959         SUBWF   _whereami, W, B
+0026 A0D8      00960         BTFSS   STATUS, 0
+0028 D000      00961         BRA     _00279_DS_
+002A 0E0C      00962         MOVLW   0x0c
+002C 0000      00963         BANKSEL _whereami
+002E 5D00      00964         SUBWF   _whereami, W, B
+0030 B0D8      00965         BTFSC   STATUS, 0
+0032 D000      00966         BRA     _00279_DS_
+0034 0000      00967         BANKSEL _whereami
+0036 0500      00968         DECF    _whereami, W, B
+0038 6E00      00969         MOVWF   r0x00
+003A C000 FFE5 00970         MOVFF   r0x04, POSTDEC1
+003E C000 FFE5 00971         MOVFF   r0x05, POSTDEC1
+0042 6A00      00972         CLRF    r0x05
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0044 3400      00973         RLCF    r0x00, W
+0046 3600      00974         RLCF    r0x05, F
+0048 34E8      00975         RLCF    WREG, W
+004A 3600      00976         RLCF    r0x05, F
+004C 0BFC      00977         ANDLW   0xfc
+004E 6E00      00978         MOVWF   r0x04
+0050 0E00      00979         MOVLW   UPPER(_00322_DS_)
+0052 6EFB      00980         MOVWF   PCLATU
+0054 0E00      00981         MOVLW   HIGH(_00322_DS_)
+0056 6EFA      00982         MOVWF   PCLATH
+0058 0E00      00983         MOVLW   LOW(_00322_DS_)
+005A 2600      00984         ADDWF   r0x04, F
+005C 5000      00985         MOVF    r0x05, W
+005E 22FA      00986         ADDWFC  PCLATH, F
+0060 B0D8      00987         BTFSC   STATUS, 0
+0062 2AFB      00988         INCF    PCLATU, F
+0064 5000      00989         MOVF    r0x04, W
+0066 CFE4 F000 00990         MOVFF   PREINC1, r0x05
+006A CFE4 F000 00991         MOVFF   PREINC1, r0x04
+006E 6EF9      00992         MOVWF   PCL
+0070 00993 _00322_DS_:
+0070 EF00 F000 00994         GOTO    _00267_DS_
+0074 EF00 F000 00995         GOTO    _00268_DS_
+0078 EF00 F000 00996         GOTO    _00269_DS_
+007C EF00 F000 00997         GOTO    _00270_DS_
+0080 EF00 F000 00998         GOTO    _00271_DS_
+0084 EF00 F000 00999         GOTO    _00272_DS_
+0088 EF00 F000 01000         GOTO    _00273_DS_
+008C EF00 F000 01001         GOTO    _00274_DS_
+0090 EF00 F000 01002         GOTO    _00275_DS_
+0094 EF00 F000 01003         GOTO    _00276_DS_
+0098 EF00 F000 01004         GOTO    _00277_DS_
+009C 01005 _00267_DS_:
+               01006 ;       .line   340; lena.c     whereami = ALARM_MENU;
+009C 0E05      01007         MOVLW   0x05
+009E 0000      01008         BANKSEL _whereami
+00A0 6F00      01009         MOVWF   _whereami, B
+               01010 ;       .line   341; lena.c     break;
+00A2 D000      01011         BRA     _00279_DS_
+00A4 01012 _00268_DS_:
+               01013 ;       .line   343; lena.c     whereami = SET_MINUTE;
+00A4 0E03      01014         MOVLW   0x03
+00A6 0000      01015         BANKSEL _whereami
+00A8 6F00      01016         MOVWF   _whereami, B
+               01017 ;       .line   344; lena.c     break;
+00AA D000      01018         BRA     _00279_DS_
+00AC 01019 _00269_DS_:
+               01020 ;       .line   346; lena.c     whereami = SET_SECOND;
+00AC 0E04      01021         MOVLW   0x04
+00AE 0000      01022         BANKSEL _whereami
+00B0 6F00      01023         MOVWF   _whereami, B
+               01024 ;       .line   347; lena.c     break;
+00B2 D000      01025         BRA     _00279_DS_
+00B4 01026 _00270_DS_:
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               01027 ;       .line   349; lena.c     whereami = ALARM_MENU;
+00B4 0E05      01028         MOVLW   0x05
+00B6 0000      01029         BANKSEL _whereami
+00B8 6F00      01030         MOVWF   _whereami, B
+               01031 ;       .line   350; lena.c     break;
+00BA D000      01032         BRA     _00279_DS_
+00BC 01033 _00271_DS_:
+               01034 ;       .line   352; lena.c     whereami = DISPLAY;
+00BC 0E09      01035         MOVLW   0x09
+00BE 0000      01036         BANKSEL _whereami
+00C0 6F00      01037         MOVWF   _whereami, B
+               01038 ;       .line   353; lena.c     break;
+00C2 D000      01039         BRA     _00279_DS_
+00C4 01040 _00272_DS_:
+               01041 ;       .line   355; lena.c     whereami = SET_A_HOUR;
+00C4 0E07      01042         MOVLW   0x07
+00C6 0000      01043         BANKSEL _whereami
+00C8 6F00      01044         MOVWF   _whereami, B
+               01045 ;       .line   356; lena.c     break;
+00CA D000      01046         BRA     _00279_DS_
+00CC 01047 _00273_DS_:
+               01048 ;       .line   358; lena.c     whereami = SET_A_MIN;
+00CC 0E08      01049         MOVLW   0x08
+00CE 0000      01050         BANKSEL _whereami
+00D0 6F00      01051         MOVWF   _whereami, B
+               01052 ;       .line   359; lena.c     break;
+00D2 D000      01053         BRA     _00279_DS_
+00D4 01054 _00274_DS_:
+               01055 ;       .line   361; lena.c     whereami = DISPLAY;
+00D4 0E09      01056         MOVLW   0x09
+00D6 0000      01057         BANKSEL _whereami
+00D8 6F00      01058         MOVWF   _whereami, B
+               01059 ;       .line   362; lena.c     break;
+00DA D000      01060         BRA     _00279_DS_
+00DC 01061 _00275_DS_:
+               01062 ;       .line   364; lena.c     whereami = TIME_MENU;
+00DC 0E01      01063         MOVLW   0x01
+00DE 0000      01064         BANKSEL _whereami
+00E0 6F00      01065         MOVWF   _whereami, B
+               01066 ;       .line   365; lena.c     break;
+00E2 D000      01067         BRA     _00279_DS_
+00E4 01068 _00276_DS_:
+               01069 ;       .line   367; lena.c     stop_ringing = 1;
+00E4 0E01      01070         MOVLW   0x01
+00E6 0000      01071         BANKSEL _stop_ringing
+00E8 6F00      01072         MOVWF   _stop_ringing, B
+               01073 ;       .line   368; lena.c     LATJbits.LATJ1 = 0; // switch LED 2 off
+00EA 9200      01074         BCF     _LATJbits, 1
+               01075 ;       .line   369; lena.c     LATJbits.LATJ2 = 0; // switch LED 3 off
+00EC 9400      01076         BCF     _LATJbits, 2
+               01077 ;       .line   370; lena.c     whereami = DISPLAY;
+00EE 0E09      01078         MOVLW   0x09
+00F0 0000      01079         BANKSEL _whereami
+00F2 6F00      01080         MOVWF   _whereami, B
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               01081 ;       .line   371; lena.c     break;
+00F4 D000      01082         BRA     _00279_DS_
+00F6 01083 _00277_DS_:
+               01084 ;       .line   373; lena.c     stop_ringing = 1; // le réveil ne doit plus sonner
+00F6 0E01      01085         MOVLW   0x01
+00F8 0000      01086         BANKSEL _stop_ringing
+00FA 6F00      01087         MOVWF   _stop_ringing, B
+               01088 ;       .line   374; lena.c     amin = amin_o; // remet le réveil
+00FC C000 F000 01089         MOVFF   _amin_o, _amin
+               01090 ;       .line   375; lena.c     ahour = ahour_o;
+0100 C000 F000 01091         MOVFF   _ahour_o, _ahour
+0104 0000      01092         BANKSEL _snooze
+               01093 ;       .line   376; lena.c     snooze = 0;
+0106 6B00      01094         CLRF    _snooze, B
+               01095 ;       .line   377; lena.c     LATJbits.LATJ1 = 0; // switch LED 2 off
+0108 9200      01096         BCF     _LATJbits, 1
+               01097 ;       .line   378; lena.c     LATJbits.LATJ2 = 0; // switch LED 3 off
+010A 9400      01098         BCF     _LATJbits, 2
+               01099 ;       .line   379; lena.c     whereami = DISPLAY;
+010C 0E09      01100         MOVLW   0x09
+010E 0000      01101         BANKSEL _whereami
+0110 6F00      01102         MOVWF   _whereami, B
+0112 01103 _00279_DS_:
+0112 0000      01104         BANKSEL _button1
+               01105 ;       .line   384; lena.c     button1 = 0; // remet le flag du boutton 1 à 0
+0114 6B00      01106         CLRF    _button1, B
+0116 D000      01107         BRA     _00308_DS_
+0118 01108 _00306_DS_:
+0118 0000      01109         BANKSEL _button2
+               01110 ;       .line   387; lena.c     } else if (button2) {
+011A 5100      01111         MOVF    _button2, W, B
+011C B4D8      01112         BTFSC   STATUS, 2
+011E D000      01113         BRA     _00308_DS_
+               01114 ;       .line   388; lena.c     switch (whereami) {
+0120 0E01      01115         MOVLW   0x01
+0122 0000      01116         BANKSEL _whereami
+0124 5D00      01117         SUBWF   _whereami, W, B
+0126 A0D8      01118         BTFSS   STATUS, 0
+0128 D000      01119         BRA     _00302_DS_
+012A 0E0C      01120         MOVLW   0x0c
+012C 0000      01121         BANKSEL _whereami
+012E 5D00      01122         SUBWF   _whereami, W, B
+0130 B0D8      01123         BTFSC   STATUS, 0
+0132 D000      01124         BRA     _00302_DS_
+0134 0000      01125         BANKSEL _whereami
+0136 0500      01126         DECF    _whereami, W, B
+0138 6E00      01127         MOVWF   r0x00
+013A C000 FFE5 01128         MOVFF   r0x04, POSTDEC1
+013E C000 FFE5 01129         MOVFF   r0x05, POSTDEC1
+0142 6A00      01130         CLRF    r0x05
+0144 3400      01131         RLCF    r0x00, W
+0146 3600      01132         RLCF    r0x05, F
+0148 34E8      01133         RLCF    WREG, W
+014A 3600      01134         RLCF    r0x05, F
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+014C 0BFC      01135         ANDLW   0xfc
+014E 6E00      01136         MOVWF   r0x04
+0150 0E00      01137         MOVLW   UPPER(_00325_DS_)
+0152 6EFB      01138         MOVWF   PCLATU
+0154 0E00      01139         MOVLW   HIGH(_00325_DS_)
+0156 6EFA      01140         MOVWF   PCLATH
+0158 0E00      01141         MOVLW   LOW(_00325_DS_)
+015A 2600      01142         ADDWF   r0x04, F
+015C 5000      01143         MOVF    r0x05, W
+015E 22FA      01144         ADDWFC  PCLATH, F
+0160 B0D8      01145         BTFSC   STATUS, 0
+0162 2AFB      01146         INCF    PCLATU, F
+0164 5000      01147         MOVF    r0x04, W
+0166 CFE4 F000 01148         MOVFF   PREINC1, r0x05
+016A CFE4 F000 01149         MOVFF   PREINC1, r0x04
+016E 6EF9      01150         MOVWF   PCL
+0170 01151 _00325_DS_:
+0170 EF00 F000 01152         GOTO    _00280_DS_
+0174 EF00 F000 01153         GOTO    _00281_DS_
+0178 EF00 F000 01154         GOTO    _00282_DS_
+017C EF00 F000 01155         GOTO    _00283_DS_
+0180 EF00 F000 01156         GOTO    _00284_DS_
+0184 EF00 F000 01157         GOTO    _00285_DS_
+0188 EF00 F000 01158         GOTO    _00286_DS_
+018C EF00 F000 01159         GOTO    _00290_DS_
+0190 EF00 F000 01160         GOTO    _00294_DS_
+0194 EF00 F000 01161         GOTO    _00295_DS_
+0198 EF00 F000 01162         GOTO    _00298_DS_
+019C 01163 _00280_DS_:
+               01164 ;       .line   390; lena.c     whereami = SET_HOUR;
+019C 0E02      01165         MOVLW   0x02
+019E 0000      01166         BANKSEL _whereami
+01A0 6F00      01167         MOVWF   _whereami, B
+               01168 ;       .line   391; lena.c     break;
+01A2 D000      01169         BRA     _00302_DS_
+01A4 01170 _00281_DS_:
+01A4 0000      01171         BANKSEL (_overflows + 3)
+               01172 ;       .line   397; lena.c     overflows += F*3600;
+01A6 5100      01173         MOVF    (_overflows + 3), W, B
+01A8 6EE5      01174         MOVWF   POSTDEC1
+01AA 0000      01175         BANKSEL (_overflows + 2)
+01AC 5100      01176         MOVF    (_overflows + 2), W, B
+01AE 6EE5      01177         MOVWF   POSTDEC1
+01B0 0000      01178         BANKSEL (_overflows + 1)
+01B2 5100      01179         MOVF    (_overflows + 1), W, B
+01B4 6EE5      01180         MOVWF   POSTDEC1
+01B6 0000      01181         BANKSEL _overflows
+01B8 5100      01182         MOVF    _overflows, W, B
+01BA 6EE5      01183         MOVWF   POSTDEC1
+01BC EC00 F000 01184         CALL    ___ulong2fs
+01C0 6E00      01185         MOVWF   r0x00
+01C2 CFF3 F000 01186         MOVFF   PRODL, r0x01
+01C6 CFF4 F000 01187         MOVFF   PRODH, r0x02
+01CA CFE9 F000 01188         MOVFF   FSR0L, r0x03
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+01CE 0E04      01189         MOVLW   0x04
+01D0 26E1      01190         ADDWF   FSR1L, F
+01D2 0E48      01191         MOVLW   0x48
+01D4 6EE5      01192         MOVWF   POSTDEC1
+01D6 0EA7      01193         MOVLW   0xa7
+01D8 6EE5      01194         MOVWF   POSTDEC1
+01DA 0EA2      01195         MOVLW   0xa2
+01DC 6EE5      01196         MOVWF   POSTDEC1
+01DE 0E80      01197         MOVLW   0x80
+01E0 6EE5      01198         MOVWF   POSTDEC1
+01E2 5000      01199         MOVF    r0x03, W
+01E4 6EE5      01200         MOVWF   POSTDEC1
+01E6 5000      01201         MOVF    r0x02, W
+01E8 6EE5      01202         MOVWF   POSTDEC1
+01EA 5000      01203         MOVF    r0x01, W
+01EC 6EE5      01204         MOVWF   POSTDEC1
+01EE 5000      01205         MOVF    r0x00, W
+01F0 6EE5      01206         MOVWF   POSTDEC1
+01F2 EC00 F000 01207         CALL    ___fsadd
+01F6 6E00      01208         MOVWF   r0x00
+01F8 CFF3 F000 01209         MOVFF   PRODL, r0x01
+01FC CFF4 F000 01210         MOVFF   PRODH, r0x02
+0200 CFE9 F000 01211         MOVFF   FSR0L, r0x03
+0204 0E08      01212         MOVLW   0x08
+0206 26E1      01213         ADDWF   FSR1L, F
+0208 5000      01214         MOVF    r0x03, W
+020A 6EE5      01215         MOVWF   POSTDEC1
+020C 5000      01216         MOVF    r0x02, W
+020E 6EE5      01217         MOVWF   POSTDEC1
+0210 5000      01218         MOVF    r0x01, W
+0212 6EE5      01219         MOVWF   POSTDEC1
+0214 5000      01220         MOVF    r0x00, W
+0216 6EE5      01221         MOVWF   POSTDEC1
+0218 EC00 F000 01222         CALL    ___fs2ulong
+021C 0000      01223         BANKSEL _overflows
+021E 6F00      01224         MOVWF   _overflows, B
+0220 CFF3 F000 01225         MOVFF   PRODL, (_overflows + 1)
+0224 CFF4 F000 01226         MOVFF   PRODH, (_overflows + 2)
+0228 CFE9 F000 01227         MOVFF   FSR0L, (_overflows + 3)
+022C 0E04      01228         MOVLW   0x04
+022E 26E1      01229         ADDWF   FSR1L, F
+               01230 ;       .line   398; lena.c     break;
+0230 D000      01231         BRA     _00302_DS_
+0232 01232 _00282_DS_:
+0232 0000      01233         BANKSEL (_overflows + 3)
+               01234 ;       .line   405; lena.c     overflows += F*60;
+0234 5100      01235         MOVF    (_overflows + 3), W, B
+0236 6EE5      01236         MOVWF   POSTDEC1
+0238 0000      01237         BANKSEL (_overflows + 2)
+023A 5100      01238         MOVF    (_overflows + 2), W, B
+023C 6EE5      01239         MOVWF   POSTDEC1
+023E 0000      01240         BANKSEL (_overflows + 1)
+0240 5100      01241         MOVF    (_overflows + 1), W, B
+0242 6EE5      01242         MOVWF   POSTDEC1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0244 0000      01243         BANKSEL _overflows
+0246 5100      01244         MOVF    _overflows, W, B
+0248 6EE5      01245         MOVWF   POSTDEC1
+024A EC00 F000 01246         CALL    ___ulong2fs
+024E 6E00      01247         MOVWF   r0x00
+0250 CFF3 F000 01248         MOVFF   PRODL, r0x01
+0254 CFF4 F000 01249         MOVFF   PRODH, r0x02
+0258 CFE9 F000 01250         MOVFF   FSR0L, r0x03
+025C 0E04      01251         MOVLW   0x04
+025E 26E1      01252         ADDWF   FSR1L, F
+0260 0E45      01253         MOVLW   0x45
+0262 6EE5      01254         MOVWF   POSTDEC1
+0264 0EB2      01255         MOVLW   0xb2
+0266 6EE5      01256         MOVWF   POSTDEC1
+0268 0ECF      01257         MOVLW   0xcf
+026A 6EE5      01258         MOVWF   POSTDEC1
+026C 0E77      01259         MOVLW   0x77
+026E 6EE5      01260         MOVWF   POSTDEC1
+0270 5000      01261         MOVF    r0x03, W
+0272 6EE5      01262         MOVWF   POSTDEC1
+0274 5000      01263         MOVF    r0x02, W
+0276 6EE5      01264         MOVWF   POSTDEC1
+0278 5000      01265         MOVF    r0x01, W
+027A 6EE5      01266         MOVWF   POSTDEC1
+027C 5000      01267         MOVF    r0x00, W
+027E 6EE5      01268         MOVWF   POSTDEC1
+0280 EC00 F000 01269         CALL    ___fsadd
+0284 6E00      01270         MOVWF   r0x00
+0286 CFF3 F000 01271         MOVFF   PRODL, r0x01
+028A CFF4 F000 01272         MOVFF   PRODH, r0x02
+028E CFE9 F000 01273         MOVFF   FSR0L, r0x03
+0292 0E08      01274         MOVLW   0x08
+0294 26E1      01275         ADDWF   FSR1L, F
+0296 5000      01276         MOVF    r0x03, W
+0298 6EE5      01277         MOVWF   POSTDEC1
+029A 5000      01278         MOVF    r0x02, W
+029C 6EE5      01279         MOVWF   POSTDEC1
+029E 5000      01280         MOVF    r0x01, W
+02A0 6EE5      01281         MOVWF   POSTDEC1
+02A2 5000      01282         MOVF    r0x00, W
+02A4 6EE5      01283         MOVWF   POSTDEC1
+02A6 EC00 F000 01284         CALL    ___fs2ulong
+02AA 0000      01285         BANKSEL _overflows
+02AC 6F00      01286         MOVWF   _overflows, B
+02AE CFF3 F000 01287         MOVFF   PRODL, (_overflows + 1)
+02B2 CFF4 F000 01288         MOVFF   PRODH, (_overflows + 2)
+02B6 CFE9 F000 01289         MOVFF   FSR0L, (_overflows + 3)
+02BA 0E04      01290         MOVLW   0x04
+02BC 26E1      01291         ADDWF   FSR1L, F
+               01292 ;       .line   406; lena.c     break;
+02BE D000      01293         BRA     _00302_DS_
+02C0 01294 _00283_DS_:
+02C0 0000      01295         BANKSEL (_overflows + 3)
+               01296 ;       .line   413; lena.c     overflows += F;
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 25
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+02C2 5100      01297         MOVF    (_overflows + 3), W, B
+02C4 6EE5      01298         MOVWF   POSTDEC1
+02C6 0000      01299         BANKSEL (_overflows + 2)
+02C8 5100      01300         MOVF    (_overflows + 2), W, B
+02CA 6EE5      01301         MOVWF   POSTDEC1
+02CC 0000      01302         BANKSEL (_overflows + 1)
+02CE 5100      01303         MOVF    (_overflows + 1), W, B
+02D0 6EE5      01304         MOVWF   POSTDEC1
+02D2 0000      01305         BANKSEL _overflows
+02D4 5100      01306         MOVF    _overflows, W, B
+02D6 6EE5      01307         MOVWF   POSTDEC1
+02D8 EC00 F000 01308         CALL    ___ulong2fs
+02DC 6E00      01309         MOVWF   r0x00
+02DE CFF3 F000 01310         MOVFF   PRODL, r0x01
+02E2 CFF4 F000 01311         MOVFF   PRODH, r0x02
+02E6 CFE9 F000 01312         MOVFF   FSR0L, r0x03
+02EA 0E04      01313         MOVLW   0x04
+02EC 26E1      01314         ADDWF   FSR1L, F
+02EE 0E42      01315         MOVLW   0x42
+02F0 6EE5      01316         MOVWF   POSTDEC1
+02F2 0EBE      01317         MOVLW   0xbe
+02F4 6EE5      01318         MOVWF   POSTDEC1
+02F6 0EBB      01319         MOVLW   0xbb
+02F8 6EE5      01320         MOVWF   POSTDEC1
+02FA 0E2A      01321         MOVLW   0x2a
+02FC 6EE5      01322         MOVWF   POSTDEC1
+02FE 5000      01323         MOVF    r0x03, W
+0300 6EE5      01324         MOVWF   POSTDEC1
+0302 5000      01325         MOVF    r0x02, W
+0304 6EE5      01326         MOVWF   POSTDEC1
+0306 5000      01327         MOVF    r0x01, W
+0308 6EE5      01328         MOVWF   POSTDEC1
+030A 5000      01329         MOVF    r0x00, W
+030C 6EE5      01330         MOVWF   POSTDEC1
+030E EC00 F000 01331         CALL    ___fsadd
+0312 6E00      01332         MOVWF   r0x00
+0314 CFF3 F000 01333         MOVFF   PRODL, r0x01
+0318 CFF4 F000 01334         MOVFF   PRODH, r0x02
+031C CFE9 F000 01335         MOVFF   FSR0L, r0x03
+0320 0E08      01336         MOVLW   0x08
+0322 26E1      01337         ADDWF   FSR1L, F
+0324 5000      01338         MOVF    r0x03, W
+0326 6EE5      01339         MOVWF   POSTDEC1
+0328 5000      01340         MOVF    r0x02, W
+032A 6EE5      01341         MOVWF   POSTDEC1
+032C 5000      01342         MOVF    r0x01, W
+032E 6EE5      01343         MOVWF   POSTDEC1
+0330 5000      01344         MOVF    r0x00, W
+0332 6EE5      01345         MOVWF   POSTDEC1
+0334 EC00 F000 01346         CALL    ___fs2ulong
+0338 0000      01347         BANKSEL _overflows
+033A 6F00      01348         MOVWF   _overflows, B
+033C CFF3 F000 01349         MOVFF   PRODL, (_overflows + 1)
+0340 CFF4 F000 01350         MOVFF   PRODH, (_overflows + 2)
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 26
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0344 CFE9 F000 01351         MOVFF   FSR0L, (_overflows + 3)
+0348 0E04      01352         MOVLW   0x04
+034A 26E1      01353         ADDWF   FSR1L, F
+               01354 ;       .line   414; lena.c     break;
+034C D000      01355         BRA     _00302_DS_
+034E 01356 _00284_DS_:
+               01357 ;       .line   416; lena.c     whereami = SET_ALARM;
+034E 0E06      01358         MOVLW   0x06
+0350 0000      01359         BANKSEL _whereami
+0352 6F00      01360         MOVWF   _whereami, B
+               01361 ;       .line   417; lena.c     break;
+0354 D000      01362         BRA     _00302_DS_
+0356 01363 _00285_DS_:
+               01364 ;       .line   419; lena.c     alarm_set ^= 1;
+0356 0E01      01365         MOVLW   0x01
+0358 0000      01366         BANKSEL _alarm_set
+035A 1B00      01367         XORWF   _alarm_set, F, B
+               01368 ;       .line   420; lena.c     break;
+035C D000      01369         BRA     _00302_DS_
+035E 01370 _00286_DS_:
+035E 0000      01371         BANKSEL _ahour
+               01372 ;       .line   422; lena.c     if (ahour == 23) {
+0360 5100      01373         MOVF    _ahour, W, B
+0362 0A17      01374         XORLW   0x17
+0364 E100      01375         BNZ     _00288_DS_
+0366 01376 _00328_DS_:
+0366 0000      01377         BANKSEL _ahour
+               01378 ;       .line   423; lena.c     ahour = 0;
+0368 6B00      01379         CLRF    _ahour, B
+036A D000      01380         BRA     _00289_DS_
+036C 01381 _00288_DS_:
+036C 0000      01382         BANKSEL _ahour
+               01383 ;       .line   425; lena.c     ahour++;
+036E 2B00      01384         INCF    _ahour, F, B
+0370 01385 _00289_DS_:
+               01386 ;       .line   427; lena.c     ahour_o = ahour;
+0370 C000 F000 01387         MOVFF   _ahour, _ahour_o
+               01388 ;       .line   428; lena.c     break;
+0374 D000      01389         BRA     _00302_DS_
+0376 01390 _00290_DS_:
+0376 0000      01391         BANKSEL _amin
+               01392 ;       .line   430; lena.c     if (amin == 59) {
+0378 5100      01393         MOVF    _amin, W, B
+037A 0A3B      01394         XORLW   0x3b
+037C E100      01395         BNZ     _00292_DS_
+037E 01396 _00330_DS_:
+037E 0000      01397         BANKSEL _amin
+               01398 ;       .line   431; lena.c     amin = 0;
+0380 6B00      01399         CLRF    _amin, B
+0382 D000      01400         BRA     _00293_DS_
+0384 01401 _00292_DS_:
+0384 0000      01402         BANKSEL _amin
+               01403 ;       .line   433; lena.c     amin++;
+0386 2B00      01404         INCF    _amin, F, B
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 27
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0388 01405 _00293_DS_:
+               01406 ;       .line   435; lena.c     amin_o = amin;
+0388 C000 F000 01407         MOVFF   _amin, _amin_o
+               01408 ;       .line   436; lena.c     break;
+038C D000      01409         BRA     _00302_DS_
+038E 01410 _00294_DS_:
+               01411 ;       .line   439; lena.c     break;
+038E D000      01412         BRA     _00302_DS_
+0390 01413 _00295_DS_:
+               01414 ;       .line   442; lena.c     if (snooze < SNOOZE_MAX) {
+0390 0E0C      01415         MOVLW   0x0c
+0392 0000      01416         BANKSEL _snooze
+0394 5D00      01417         SUBWF   _snooze, W, B
+0396 E200      01418         BC      _00302_DS_
+               01419 ;       .line   443; lena.c     inc_amin(SNOOZE_MINUTE); // modifie le réveil
+0398 0E05      01420         MOVLW   0x05
+039A 6EE5      01421         MOVWF   POSTDEC1
+039C EC00 F000 01422         CALL    _inc_amin
+03A0 2AE1      01423         INCF    FSR1L, F
+03A2 0000      01424         BANKSEL _snooze
+               01425 ;       .line   444; lena.c     snooze++; // augmente le compteur de snooze
+03A4 2B00      01426         INCF    _snooze, F, B
+               01427 ;       .line   445; lena.c     LATJbits.LATJ1 = 0; // switch LED 2 off
+03A6 9200      01428         BCF     _LATJbits, 1
+               01429 ;       .line   446; lena.c     LATJbits.LATJ2 = 0; // switch LED 3 off
+03A8 9400      01430         BCF     _LATJbits, 2
+               01431 ;       .line   447; lena.c     whereami = SNOOZE;
+03AA 0E0B      01432         MOVLW   0x0b
+03AC 0000      01433         BANKSEL _whereami
+03AE 6F00      01434         MOVWF   _whereami, B
+               01435 ;       .line   450; lena.c     break;
+03B0 D000      01436         BRA     _00302_DS_
+03B2 01437 _00298_DS_:
+               01438 ;       .line   453; lena.c     if (snooze < SNOOZE_MAX) {
+03B2 0E0C      01439         MOVLW   0x0c
+03B4 0000      01440         BANKSEL _snooze
+03B6 5D00      01441         SUBWF   _snooze, W, B
+03B8 E200      01442         BC      _00302_DS_
+               01443 ;       .line   454; lena.c     inc_amin(SNOOZE_MINUTE); // modifie le réveil
+03BA 0E05      01444         MOVLW   0x05
+03BC 6EE5      01445         MOVWF   POSTDEC1
+03BE EC00 F000 01446         CALL    _inc_amin
+03C2 2AE1      01447         INCF    FSR1L, F
+03C4 0000      01448         BANKSEL _snooze
+               01449 ;       .line   455; lena.c     snooze++; // augmente le compteur de snooze
+03C6 2B00      01450         INCF    _snooze, F, B
+03C8 01451 _00302_DS_:
+03C8 0000      01452         BANKSEL _button2
+               01453 ;       .line   462; lena.c     button2 = 0; // remet le flag du boutton 2 à 0
+03CA 6B00      01454         CLRF    _button2, B
+03CC 01455 _00308_DS_:
+03CC CFE4 F000 01456         MOVFF   PREINC1, r0x03
+03D0 CFE4 F000 01457         MOVFF   PREINC1, r0x02
+03D4 CFE4 F000 01458         MOVFF   PREINC1, r0x01
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 28
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+03D8 CFE4 F000 01459         MOVFF   PREINC1, r0x00
+03DC CFE4 FFD9 01460         MOVFF   PREINC1, FSR2L
+03E0 0012      01461         RETURN  
+               01462 
+               01463 ; ; Starting pCode block
+               01464 S_lena__alarm   code
+0000 01465 _alarm:
+               01466 ;       .line   304; lena.c     void alarm(void)
+0000 CFD9 FFE5 01467         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 01468         MOVFF   FSR1L, FSR2L
+0008 0000      01469         BANKSEL _thour
+               01470 ;       .line   307; lena.c     if ((thour == ahour) && (tmin == amin) && alarm_set) {
+000A 5100      01471         MOVF    _thour, W, B
+000C 0000      01472         BANKSEL _ahour
+000E 1900      01473         XORWF   _ahour, W, B
+0010 E000      01474         BZ      _00252_DS_
+0012 D000      01475         BRA     _00240_DS_
+0014 01476 _00252_DS_:
+0014 0000      01477         BANKSEL _tmin
+0016 5100      01478         MOVF    _tmin, W, B
+0018 0000      01479         BANKSEL _amin
+001A 1900      01480         XORWF   _amin, W, B
+001C E000      01481         BZ      _00254_DS_
+001E D000      01482         BRA     _00240_DS_
+0020 01483 _00254_DS_:
+0020 0000      01484         BANKSEL _alarm_set
+0022 5100      01485         MOVF    _alarm_set, W, B
+0024 E000      01486         BZ      _00240_DS_
+               01487 ;       .line   310; lena.c     if ((tsec < 31) && (stop_ringing == 0)) {
+0026 0E1F      01488         MOVLW   0x1f
+0028 0000      01489         BANKSEL _tsec
+002A 5D00      01490         SUBWF   _tsec, W, B
+002C E200      01491         BC      _00233_DS_
+002E 0000      01492         BANKSEL _stop_ringing
+0030 5100      01493         MOVF    _stop_ringing, W, B
+0032 E100      01494         BNZ     _00233_DS_
+0034 0000      01495         BANKSEL _whereami
+               01496 ;       .line   311; lena.c     if ((whereami == DISPLAY) || (whereami == SNOOZE)) {
+0036 5100      01497         MOVF    _whereami, W, B
+0038 0A09      01498         XORLW   0x09
+003A E000      01499         BZ      _00222_DS_
+003C 01500 _00257_DS_:
+003C 0000      01501         BANKSEL _whereami
+003E 5100      01502         MOVF    _whereami, W, B
+0040 0A0B      01503         XORLW   0x0b
+0042 E100      01504         BNZ     _00240_DS_
+0044 01505 _00222_DS_:
+               01506 ;       .line   312; lena.c     whereami = ALARM;
+0044 0E0A      01507         MOVLW   0x0a
+0046 0000      01508         BANKSEL _whereami
+0048 6F00      01509         MOVWF   _whereami, B
+004A D000      01510         BRA     _00240_DS_
+004C 01511 _00233_DS_:
+               01512 ;       .line   315; lena.c     } else if (tsec > 30) {
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 29
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+004C 0E1F      01513         MOVLW   0x1f
+004E 0000      01514         BANKSEL _tsec
+0050 5D00      01515         SUBWF   _tsec, W, B
+0052 E300      01516         BNC     _00240_DS_
+0054 0000      01517         BANKSEL _stop_ringing
+               01518 ;       .line   316; lena.c     stop_ringing = 0; // remet à 0 si l'alarme a été éteinte à la main
+0056 6B00      01519         CLRF    _stop_ringing, B
+               01520 ;       .line   317; lena.c     LATJbits.LATJ1 = 0; // switch LED 2 off
+0058 9200      01521         BCF     _LATJbits, 1
+               01522 ;       .line   318; lena.c     LATJbits.LATJ2 = 0; // switch LED 3 off
+005A 9400      01523         BCF     _LATJbits, 2
+005C 0000      01524         BANKSEL _snooze
+               01525 ;       .line   320; lena.c     if (snooze) {
+005E 5100      01526         MOVF    _snooze, W, B
+0060 E000      01527         BZ      _00228_DS_
+               01528 ;       .line   321; lena.c     ahour = ahour_o; // remet le réveil
+0062 C000 F000 01529         MOVFF   _ahour_o, _ahour
+               01530 ;       .line   322; lena.c     amin = amin_o;
+0066 C000 F000 01531         MOVFF   _amin_o, _amin
+006A 0000      01532         BANKSEL _snooze
+               01533 ;       .line   323; lena.c     snooze = 0;
+006C 6B00      01534         CLRF    _snooze, B
+               01535 ;       .line   324; lena.c     whereami = DISPLAY;
+006E 0E09      01536         MOVLW   0x09
+0070 0000      01537         BANKSEL _whereami
+0072 6F00      01538         MOVWF   _whereami, B
+0074 D000      01539         BRA     _00240_DS_
+0076 01540 _00228_DS_:
+0076 0000      01541         BANKSEL _whereami
+               01542 ;       .line   325; lena.c     } else if (whereami == ALARM) { // si l'alarme sonnait toujours, on
+0078 5100      01543         MOVF    _whereami, W, B
+007A 0A0A      01544         XORLW   0x0a
+007C E100      01545         BNZ     _00240_DS_
+               01546 ;       .line   326; lena.c     whereami = DISPLAY;         // revient à l'affichage de l'heure
+007E 0E09      01547         MOVLW   0x09
+0080 0000      01548         BANKSEL _whereami
+0082 6F00      01549         MOVWF   _whereami, B
+0084 01550 _00240_DS_:
+0084 CFE4 FFD9 01551         MOVFF   PREINC1, FSR2L
+0088 0012      01552         RETURN  
+               01553 
+               01554 ; ; Starting pCode block
+               01555 S_lena__refresh_lcd     code
+0000 01556 _refresh_lcd:
+               01557 ;       .line   235; lena.c     void refresh_lcd(void)
+0000 CFD9 FFE5 01558         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 01559         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 01560         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 01561         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 01562         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 01563         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 01564         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 01565         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 01566         MOVFF   r0x06, POSTDEC1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 30
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0024 C000 FFE5 01567         MOVFF   r0x07, POSTDEC1
+0028 C000 FFE5 01568         MOVFF   r0x08, POSTDEC1
+002C C000 FFE5 01569         MOVFF   r0x09, POSTDEC1
+0030 C000 FFE5 01570         MOVFF   r0x0a, POSTDEC1
+0034 C000 FFE5 01571         MOVFF   r0x0b, POSTDEC1
+0038 C000 FFE5 01572         MOVFF   r0x0c, POSTDEC1
+003C C000 FFE5 01573         MOVFF   r0x0d, POSTDEC1
+0040 C000 FFE5 01574         MOVFF   r0x0e, POSTDEC1
+               01575 ;       .line   238; lena.c     switch (whereami) {
+0044 0E01      01576         MOVLW   0x01
+0046 0000      01577         BANKSEL _whereami
+0048 5D00      01578         SUBWF   _whereami, W, B
+004A A0D8      01579         BTFSS   STATUS, 0
+004C EF00 F000 01580         GOTO    _00205_DS_
+0050 0E0C      01581         MOVLW   0x0c
+0052 0000      01582         BANKSEL _whereami
+0054 5D00      01583         SUBWF   _whereami, W, B
+0056 B0D8      01584         BTFSC   STATUS, 0
+0058 EF00 F000 01585         GOTO    _00205_DS_
+005C 0000      01586         BANKSEL _whereami
+005E 0500      01587         DECF    _whereami, W, B
+0060 6E00      01588         MOVWF   r0x00
+0062 C000 FFE5 01589         MOVFF   r0x0f, POSTDEC1
+0066 C000 FFE5 01590         MOVFF   r0x10, POSTDEC1
+006A 6A00      01591         CLRF    r0x10
+006C 3400      01592         RLCF    r0x00, W
+006E 3600      01593         RLCF    r0x10, F
+0070 34E8      01594         RLCF    WREG, W
+0072 3600      01595         RLCF    r0x10, F
+0074 0BFC      01596         ANDLW   0xfc
+0076 6E00      01597         MOVWF   r0x0f
+0078 0E00      01598         MOVLW   UPPER(_00216_DS_)
+007A 6EFB      01599         MOVWF   PCLATU
+007C 0E00      01600         MOVLW   HIGH(_00216_DS_)
+007E 6EFA      01601         MOVWF   PCLATH
+0080 0E00      01602         MOVLW   LOW(_00216_DS_)
+0082 2600      01603         ADDWF   r0x0f, F
+0084 5000      01604         MOVF    r0x10, W
+0086 22FA      01605         ADDWFC  PCLATH, F
+0088 B0D8      01606         BTFSC   STATUS, 0
+008A 2AFB      01607         INCF    PCLATU, F
+008C 5000      01608         MOVF    r0x0f, W
+008E CFE4 F000 01609         MOVFF   PREINC1, r0x10
+0092 CFE4 F000 01610         MOVFF   PREINC1, r0x0f
+0096 6EF9      01611         MOVWF   PCL
+0098 01612 _00216_DS_:
+0098 EF00 F000 01613         GOTO    _00185_DS_
+009C EF00 F000 01614         GOTO    _00186_DS_
+00A0 EF00 F000 01615         GOTO    _00187_DS_
+00A4 EF00 F000 01616         GOTO    _00188_DS_
+00A8 EF00 F000 01617         GOTO    _00189_DS_
+00AC EF00 F000 01618         GOTO    _00190_DS_
+00B0 EF00 F000 01619         GOTO    _00194_DS_
+00B4 EF00 F000 01620         GOTO    _00195_DS_
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 31
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+00B8 EF00 F000 01621         GOTO    _00196_DS_
+00BC EF00 F000 01622         GOTO    _00200_DS_
+00C0 EF00 F000 01623         GOTO    _00201_DS_
+00C4 01624 _00185_DS_:
+               01625 ;       .line   240; lena.c     sprintf(display, "Do you want to  set the time ?  ");
+00C4 0E00      01626         MOVLW   HIGH(_display)
+00C6 6E00      01627         MOVWF   r0x01
+00C8 0E00      01628         MOVLW   LOW(_display)
+00CA 6E00      01629         MOVWF   r0x00
+00CC 0E80      01630         MOVLW   0x80
+00CE 6E00      01631         MOVWF   r0x02
+00D0 0E00      01632         MOVLW   UPPER(__str_0)
+00D2 6EE5      01633         MOVWF   POSTDEC1
+00D4 0E00      01634         MOVLW   HIGH(__str_0)
+00D6 6EE5      01635         MOVWF   POSTDEC1
+00D8 0E00      01636         MOVLW   LOW(__str_0)
+00DA 6EE5      01637         MOVWF   POSTDEC1
+00DC 5000      01638         MOVF    r0x02, W
+00DE 6EE5      01639         MOVWF   POSTDEC1
+00E0 5000      01640         MOVF    r0x01, W
+00E2 6EE5      01641         MOVWF   POSTDEC1
+00E4 5000      01642         MOVF    r0x00, W
+00E6 6EE5      01643         MOVWF   POSTDEC1
+00E8 EC00 F000 01644         CALL    _sprintf
+00EC 0E06      01645         MOVLW   0x06
+00EE 26E1      01646         ADDWF   FSR1L, F
+               01647 ;       .line   241; lena.c     break;
+00F0 EF00 F000 01648         GOTO    _00206_DS_
+00F4 01649 _00186_DS_:
+               01650 ;       .line   244; lena.c     thour, tmin, tsec);
+00F4 C000 F000 01651         MOVFF   _tsec, r0x00
+00F8 6A00      01652         CLRF    r0x01
+00FA C000 F000 01653         MOVFF   _tmin, r0x02
+00FE 6A00      01654         CLRF    r0x03
+0100 C000 F000 01655         MOVFF   _thour, r0x04
+0104 6A00      01656         CLRF    r0x05
+               01657 ;       .line   243; lena.c     sprintf(display, " [%02u]: %02u : %02u                  ",
+0106 0E00      01658         MOVLW   HIGH(_display)
+0108 6E00      01659         MOVWF   r0x07
+010A 0E00      01660         MOVLW   LOW(_display)
+010C 6E00      01661         MOVWF   r0x06
+010E 0E80      01662         MOVLW   0x80
+0110 6E00      01663         MOVWF   r0x08
+0112 5000      01664         MOVF    r0x01, W
+0114 6EE5      01665         MOVWF   POSTDEC1
+0116 5000      01666         MOVF    r0x00, W
+0118 6EE5      01667         MOVWF   POSTDEC1
+011A 5000      01668         MOVF    r0x03, W
+011C 6EE5      01669         MOVWF   POSTDEC1
+011E 5000      01670         MOVF    r0x02, W
+0120 6EE5      01671         MOVWF   POSTDEC1
+0122 5000      01672         MOVF    r0x05, W
+0124 6EE5      01673         MOVWF   POSTDEC1
+0126 5000      01674         MOVF    r0x04, W
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 32
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0128 6EE5      01675         MOVWF   POSTDEC1
+012A 0E00      01676         MOVLW   UPPER(__str_1)
+012C 6EE5      01677         MOVWF   POSTDEC1
+012E 0E00      01678         MOVLW   HIGH(__str_1)
+0130 6EE5      01679         MOVWF   POSTDEC1
+0132 0E00      01680         MOVLW   LOW(__str_1)
+0134 6EE5      01681         MOVWF   POSTDEC1
+0136 5000      01682         MOVF    r0x08, W
+0138 6EE5      01683         MOVWF   POSTDEC1
+013A 5000      01684         MOVF    r0x07, W
+013C 6EE5      01685         MOVWF   POSTDEC1
+013E 5000      01686         MOVF    r0x06, W
+0140 6EE5      01687         MOVWF   POSTDEC1
+0142 EC00 F000 01688         CALL    _sprintf
+0146 0E0C      01689         MOVLW   0x0c
+0148 26E1      01690         ADDWF   FSR1L, F
+               01691 ;       .line   245; lena.c     break;
+014A EF00 F000 01692         GOTO    _00206_DS_
+014E 01693 _00187_DS_:
+               01694 ;       .line   248; lena.c     thour, tmin, tsec);
+014E C000 F000 01695         MOVFF   _tsec, r0x00
+0152 6A00      01696         CLRF    r0x01
+0154 C000 F000 01697         MOVFF   _tmin, r0x02
+0158 6A00      01698         CLRF    r0x03
+015A C000 F000 01699         MOVFF   _thour, r0x04
+015E 6A00      01700         CLRF    r0x05
+               01701 ;       .line   247; lena.c     sprintf(display, "  %02u :[%02u]: %02u                  ",
+0160 0E00      01702         MOVLW   HIGH(_display)
+0162 6E00      01703         MOVWF   r0x07
+0164 0E00      01704         MOVLW   LOW(_display)
+0166 6E00      01705         MOVWF   r0x06
+0168 0E80      01706         MOVLW   0x80
+016A 6E00      01707         MOVWF   r0x08
+016C 5000      01708         MOVF    r0x01, W
+016E 6EE5      01709         MOVWF   POSTDEC1
+0170 5000      01710         MOVF    r0x00, W
+0172 6EE5      01711         MOVWF   POSTDEC1
+0174 5000      01712         MOVF    r0x03, W
+0176 6EE5      01713         MOVWF   POSTDEC1
+0178 5000      01714         MOVF    r0x02, W
+017A 6EE5      01715         MOVWF   POSTDEC1
+017C 5000      01716         MOVF    r0x05, W
+017E 6EE5      01717         MOVWF   POSTDEC1
+0180 5000      01718         MOVF    r0x04, W
+0182 6EE5      01719         MOVWF   POSTDEC1
+0184 0E00      01720         MOVLW   UPPER(__str_2)
+0186 6EE5      01721         MOVWF   POSTDEC1
+0188 0E00      01722         MOVLW   HIGH(__str_2)
+018A 6EE5      01723         MOVWF   POSTDEC1
+018C 0E00      01724         MOVLW   LOW(__str_2)
+018E 6EE5      01725         MOVWF   POSTDEC1
+0190 5000      01726         MOVF    r0x08, W
+0192 6EE5      01727         MOVWF   POSTDEC1
+0194 5000      01728         MOVF    r0x07, W
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 33
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0196 6EE5      01729         MOVWF   POSTDEC1
+0198 5000      01730         MOVF    r0x06, W
+019A 6EE5      01731         MOVWF   POSTDEC1
+019C EC00 F000 01732         CALL    _sprintf
+01A0 0E0C      01733         MOVLW   0x0c
+01A2 26E1      01734         ADDWF   FSR1L, F
+               01735 ;       .line   249; lena.c     break;
+01A4 D000      01736         BRA     _00206_DS_
+01A6 01737 _00188_DS_:
+               01738 ;       .line   252; lena.c     thour, tmin, tsec);
+01A6 C000 F000 01739         MOVFF   _tsec, r0x00
+01AA 6A00      01740         CLRF    r0x01
+01AC C000 F000 01741         MOVFF   _tmin, r0x02
+01B0 6A00      01742         CLRF    r0x03
+01B2 C000 F000 01743         MOVFF   _thour, r0x04
+01B6 6A00      01744         CLRF    r0x05
+               01745 ;       .line   251; lena.c     sprintf(display, "  %02u : %02u :[%02u]                 ",
+01B8 0E00      01746         MOVLW   HIGH(_display)
+01BA 6E00      01747         MOVWF   r0x07
+01BC 0E00      01748         MOVLW   LOW(_display)
+01BE 6E00      01749         MOVWF   r0x06
+01C0 0E80      01750         MOVLW   0x80
+01C2 6E00      01751         MOVWF   r0x08
+01C4 5000      01752         MOVF    r0x01, W
+01C6 6EE5      01753         MOVWF   POSTDEC1
+01C8 5000      01754         MOVF    r0x00, W
+01CA 6EE5      01755         MOVWF   POSTDEC1
+01CC 5000      01756         MOVF    r0x03, W
+01CE 6EE5      01757         MOVWF   POSTDEC1
+01D0 5000      01758         MOVF    r0x02, W
+01D2 6EE5      01759         MOVWF   POSTDEC1
+01D4 5000      01760         MOVF    r0x05, W
+01D6 6EE5      01761         MOVWF   POSTDEC1
+01D8 5000      01762         MOVF    r0x04, W
+01DA 6EE5      01763         MOVWF   POSTDEC1
+01DC 0E00      01764         MOVLW   UPPER(__str_3)
+01DE 6EE5      01765         MOVWF   POSTDEC1
+01E0 0E00      01766         MOVLW   HIGH(__str_3)
+01E2 6EE5      01767         MOVWF   POSTDEC1
+01E4 0E00      01768         MOVLW   LOW(__str_3)
+01E6 6EE5      01769         MOVWF   POSTDEC1
+01E8 5000      01770         MOVF    r0x08, W
+01EA 6EE5      01771         MOVWF   POSTDEC1
+01EC 5000      01772         MOVF    r0x07, W
+01EE 6EE5      01773         MOVWF   POSTDEC1
+01F0 5000      01774         MOVF    r0x06, W
+01F2 6EE5      01775         MOVWF   POSTDEC1
+01F4 EC00 F000 01776         CALL    _sprintf
+01F8 0E0C      01777         MOVLW   0x0c
+01FA 26E1      01778         ADDWF   FSR1L, F
+               01779 ;       .line   253; lena.c     break;
+01FC D000      01780         BRA     _00206_DS_
+01FE 01781 _00189_DS_:
+               01782 ;       .line   255; lena.c     sprintf(display, "Do you want to  set the alarm ? ");
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 34
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+01FE 0E00      01783         MOVLW   HIGH(_display)
+0200 6E00      01784         MOVWF   r0x01
+0202 0E00      01785         MOVLW   LOW(_display)
+0204 6E00      01786         MOVWF   r0x00
+0206 0E80      01787         MOVLW   0x80
+0208 6E00      01788         MOVWF   r0x02
+020A 0E00      01789         MOVLW   UPPER(__str_4)
+020C 6EE5      01790         MOVWF   POSTDEC1
+020E 0E00      01791         MOVLW   HIGH(__str_4)
+0210 6EE5      01792         MOVWF   POSTDEC1
+0212 0E00      01793         MOVLW   LOW(__str_4)
+0214 6EE5      01794         MOVWF   POSTDEC1
+0216 5000      01795         MOVF    r0x02, W
+0218 6EE5      01796         MOVWF   POSTDEC1
+021A 5000      01797         MOVF    r0x01, W
+021C 6EE5      01798         MOVWF   POSTDEC1
+021E 5000      01799         MOVF    r0x00, W
+0220 6EE5      01800         MOVWF   POSTDEC1
+0222 EC00 F000 01801         CALL    _sprintf
+0226 0E06      01802         MOVLW   0x06
+0228 26E1      01803         ADDWF   FSR1L, F
+               01804 ;       .line   256; lena.c     break;
+022A D000      01805         BRA     _00206_DS_
+022C 01806 _00190_DS_:
+022C 0000      01807         BANKSEL _alarm_set
+               01808 ;       .line   258; lena.c     if (alarm_set) {
+022E 5100      01809         MOVF    _alarm_set, W, B
+0230 E000      01810         BZ      _00192_DS_
+               01811 ;       .line   259; lena.c     sprintf(display, "  Alarm [ON ]                   ");
+0232 0E00      01812         MOVLW   HIGH(_display)
+0234 6E00      01813         MOVWF   r0x01
+0236 0E00      01814         MOVLW   LOW(_display)
+0238 6E00      01815         MOVWF   r0x00
+023A 0E80      01816         MOVLW   0x80
+023C 6E00      01817         MOVWF   r0x02
+023E 0E00      01818         MOVLW   UPPER(__str_5)
+0240 6EE5      01819         MOVWF   POSTDEC1
+0242 0E00      01820         MOVLW   HIGH(__str_5)
+0244 6EE5      01821         MOVWF   POSTDEC1
+0246 0E00      01822         MOVLW   LOW(__str_5)
+0248 6EE5      01823         MOVWF   POSTDEC1
+024A 5000      01824         MOVF    r0x02, W
+024C 6EE5      01825         MOVWF   POSTDEC1
+024E 5000      01826         MOVF    r0x01, W
+0250 6EE5      01827         MOVWF   POSTDEC1
+0252 5000      01828         MOVF    r0x00, W
+0254 6EE5      01829         MOVWF   POSTDEC1
+0256 EC00 F000 01830         CALL    _sprintf
+025A 0E06      01831         MOVLW   0x06
+025C 26E1      01832         ADDWF   FSR1L, F
+025E D000      01833         BRA     _00206_DS_
+0260 01834 _00192_DS_:
+               01835 ;       .line   261; lena.c     sprintf(display, "  Alarm [OFF]                   ");
+0260 0E00      01836         MOVLW   HIGH(_display)
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 35
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0262 6E00      01837         MOVWF   r0x01
+0264 0E00      01838         MOVLW   LOW(_display)
+0266 6E00      01839         MOVWF   r0x00
+0268 0E80      01840         MOVLW   0x80
+026A 6E00      01841         MOVWF   r0x02
+026C 0E00      01842         MOVLW   UPPER(__str_6)
+026E 6EE5      01843         MOVWF   POSTDEC1
+0270 0E00      01844         MOVLW   HIGH(__str_6)
+0272 6EE5      01845         MOVWF   POSTDEC1
+0274 0E00      01846         MOVLW   LOW(__str_6)
+0276 6EE5      01847         MOVWF   POSTDEC1
+0278 5000      01848         MOVF    r0x02, W
+027A 6EE5      01849         MOVWF   POSTDEC1
+027C 5000      01850         MOVF    r0x01, W
+027E 6EE5      01851         MOVWF   POSTDEC1
+0280 5000      01852         MOVF    r0x00, W
+0282 6EE5      01853         MOVWF   POSTDEC1
+0284 EC00 F000 01854         CALL    _sprintf
+0288 0E06      01855         MOVLW   0x06
+028A 26E1      01856         ADDWF   FSR1L, F
+               01857 ;       .line   263; lena.c     break;
+028C D000      01858         BRA     _00206_DS_
+028E 01859 _00194_DS_:
+               01860 ;       .line   266; lena.c     ahour, amin);
+028E C000 F000 01861         MOVFF   _amin, r0x00
+0292 6A00      01862         CLRF    r0x01
+0294 C000 F000 01863         MOVFF   _ahour, r0x02
+0298 6A00      01864         CLRF    r0x03
+               01865 ;       .line   265; lena.c     sprintf(display, "    Alarm at        [%02u]: %02u    ",
+029A 0E00      01866         MOVLW   HIGH(_display)
+029C 6E00      01867         MOVWF   r0x05
+029E 0E00      01868         MOVLW   LOW(_display)
+02A0 6E00      01869         MOVWF   r0x04
+02A2 0E80      01870         MOVLW   0x80
+02A4 6E00      01871         MOVWF   r0x06
+02A6 5000      01872         MOVF    r0x01, W
+02A8 6EE5      01873         MOVWF   POSTDEC1
+02AA 5000      01874         MOVF    r0x00, W
+02AC 6EE5      01875         MOVWF   POSTDEC1
+02AE 5000      01876         MOVF    r0x03, W
+02B0 6EE5      01877         MOVWF   POSTDEC1
+02B2 5000      01878         MOVF    r0x02, W
+02B4 6EE5      01879         MOVWF   POSTDEC1
+02B6 0E00      01880         MOVLW   UPPER(__str_7)
+02B8 6EE5      01881         MOVWF   POSTDEC1
+02BA 0E00      01882         MOVLW   HIGH(__str_7)
+02BC 6EE5      01883         MOVWF   POSTDEC1
+02BE 0E00      01884         MOVLW   LOW(__str_7)
+02C0 6EE5      01885         MOVWF   POSTDEC1
+02C2 5000      01886         MOVF    r0x06, W
+02C4 6EE5      01887         MOVWF   POSTDEC1
+02C6 5000      01888         MOVF    r0x05, W
+02C8 6EE5      01889         MOVWF   POSTDEC1
+02CA 5000      01890         MOVF    r0x04, W
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 36
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+02CC 6EE5      01891         MOVWF   POSTDEC1
+02CE EC00 F000 01892         CALL    _sprintf
+02D2 0E0A      01893         MOVLW   0x0a
+02D4 26E1      01894         ADDWF   FSR1L, F
+               01895 ;       .line   267; lena.c     break;
+02D6 D000      01896         BRA     _00206_DS_
+02D8 01897 _00195_DS_:
+               01898 ;       .line   270; lena.c     ahour, amin);
+02D8 C000 F000 01899         MOVFF   _amin, r0x00
+02DC 6A00      01900         CLRF    r0x01
+02DE C000 F000 01901         MOVFF   _ahour, r0x02
+02E2 6A00      01902         CLRF    r0x03
+               01903 ;       .line   269; lena.c     sprintf(display, "    Alarm at         %02u :[%02u]   ",
+02E4 0E00      01904         MOVLW   HIGH(_display)
+02E6 6E00      01905         MOVWF   r0x05
+02E8 0E00      01906         MOVLW   LOW(_display)
+02EA 6E00      01907         MOVWF   r0x04
+02EC 0E80      01908         MOVLW   0x80
+02EE 6E00      01909         MOVWF   r0x06
+02F0 5000      01910         MOVF    r0x01, W
+02F2 6EE5      01911         MOVWF   POSTDEC1
+02F4 5000      01912         MOVF    r0x00, W
+02F6 6EE5      01913         MOVWF   POSTDEC1
+02F8 5000      01914         MOVF    r0x03, W
+02FA 6EE5      01915         MOVWF   POSTDEC1
+02FC 5000      01916         MOVF    r0x02, W
+02FE 6EE5      01917         MOVWF   POSTDEC1
+0300 0E00      01918         MOVLW   UPPER(__str_8)
+0302 6EE5      01919         MOVWF   POSTDEC1
+0304 0E00      01920         MOVLW   HIGH(__str_8)
+0306 6EE5      01921         MOVWF   POSTDEC1
+0308 0E00      01922         MOVLW   LOW(__str_8)
+030A 6EE5      01923         MOVWF   POSTDEC1
+030C 5000      01924         MOVF    r0x06, W
+030E 6EE5      01925         MOVWF   POSTDEC1
+0310 5000      01926         MOVF    r0x05, W
+0312 6EE5      01927         MOVWF   POSTDEC1
+0314 5000      01928         MOVF    r0x04, W
+0316 6EE5      01929         MOVWF   POSTDEC1
+0318 EC00 F000 01930         CALL    _sprintf
+031C 0E0A      01931         MOVLW   0x0a
+031E 26E1      01932         ADDWF   FSR1L, F
+               01933 ;       .line   271; lena.c     break;
+0320 D000      01934         BRA     _00206_DS_
+0322 01935 _00196_DS_:
+0322 0000      01936         BANKSEL _alarm_set
+               01937 ;       .line   273; lena.c     if (alarm_set) {
+0324 5100      01938         MOVF    _alarm_set, W, B
+0326 E000      01939         BZ      _00198_DS_
+               01940 ;       .line   275; lena.c     thour, tmin, tsec, ahour, amin);
+0328 C000 F000 01941         MOVFF   _amin, r0x00
+032C 6A00      01942         CLRF    r0x01
+032E C000 F000 01943         MOVFF   _ahour, r0x02
+0332 6A00      01944         CLRF    r0x03
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 37
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0334 C000 F000 01945         MOVFF   _tsec, r0x04
+0338 6A00      01946         CLRF    r0x05
+033A C000 F000 01947         MOVFF   _tmin, r0x06
+033E 6A00      01948         CLRF    r0x07
+0340 C000 F000 01949         MOVFF   _thour, r0x08
+0344 6A00      01950         CLRF    r0x09
+               01951 ;       .line   274; lena.c     sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
+0346 0E00      01952         MOVLW   HIGH(_display)
+0348 6E00      01953         MOVWF   r0x0b
+034A 0E00      01954         MOVLW   LOW(_display)
+034C 6E00      01955         MOVWF   r0x0a
+034E 0E80      01956         MOVLW   0x80
+0350 6E00      01957         MOVWF   r0x0c
+0352 5000      01958         MOVF    r0x01, W
+0354 6EE5      01959         MOVWF   POSTDEC1
+0356 5000      01960         MOVF    r0x00, W
+0358 6EE5      01961         MOVWF   POSTDEC1
+035A 5000      01962         MOVF    r0x03, W
+035C 6EE5      01963         MOVWF   POSTDEC1
+035E 5000      01964         MOVF    r0x02, W
+0360 6EE5      01965         MOVWF   POSTDEC1
+0362 5000      01966         MOVF    r0x05, W
+0364 6EE5      01967         MOVWF   POSTDEC1
+0366 5000      01968         MOVF    r0x04, W
+0368 6EE5      01969         MOVWF   POSTDEC1
+036A 5000      01970         MOVF    r0x07, W
+036C 6EE5      01971         MOVWF   POSTDEC1
+036E 5000      01972         MOVF    r0x06, W
+0370 6EE5      01973         MOVWF   POSTDEC1
+0372 5000      01974         MOVF    r0x09, W
+0374 6EE5      01975         MOVWF   POSTDEC1
+0376 5000      01976         MOVF    r0x08, W
+0378 6EE5      01977         MOVWF   POSTDEC1
+037A 0E00      01978         MOVLW   UPPER(__str_9)
+037C 6EE5      01979         MOVWF   POSTDEC1
+037E 0E00      01980         MOVLW   HIGH(__str_9)
+0380 6EE5      01981         MOVWF   POSTDEC1
+0382 0E00      01982         MOVLW   LOW(__str_9)
+0384 6EE5      01983         MOVWF   POSTDEC1
+0386 5000      01984         MOVF    r0x0c, W
+0388 6EE5      01985         MOVWF   POSTDEC1
+038A 5000      01986         MOVF    r0x0b, W
+038C 6EE5      01987         MOVWF   POSTDEC1
+038E 5000      01988         MOVF    r0x0a, W
+0390 6EE5      01989         MOVWF   POSTDEC1
+0392 EC00 F000 01990         CALL    _sprintf
+0396 0E10      01991         MOVLW   0x10
+0398 26E1      01992         ADDWF   FSR1L, F
+039A D000      01993         BRA     _00206_DS_
+039C 01994 _00198_DS_:
+               01995 ;       .line   278; lena.c     thour, tmin, tsec);
+039C C000 F000 01996         MOVFF   _tsec, r0x00
+03A0 6A00      01997         CLRF    r0x01
+03A2 C000 F000 01998         MOVFF   _tmin, r0x02
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 38
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+03A6 6A00      01999         CLRF    r0x03
+03A8 C000 F000 02000         MOVFF   _thour, r0x04
+03AC 6A00      02001         CLRF    r0x05
+               02002 ;       .line   277; lena.c     sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
+03AE 0E00      02003         MOVLW   HIGH(_display)
+03B0 6E00      02004         MOVWF   r0x07
+03B2 0E00      02005         MOVLW   LOW(_display)
+03B4 6E00      02006         MOVWF   r0x06
+03B6 0E80      02007         MOVLW   0x80
+03B8 6E00      02008         MOVWF   r0x08
+03BA 5000      02009         MOVF    r0x01, W
+03BC 6EE5      02010         MOVWF   POSTDEC1
+03BE 5000      02011         MOVF    r0x00, W
+03C0 6EE5      02012         MOVWF   POSTDEC1
+03C2 5000      02013         MOVF    r0x03, W
+03C4 6EE5      02014         MOVWF   POSTDEC1
+03C6 5000      02015         MOVF    r0x02, W
+03C8 6EE5      02016         MOVWF   POSTDEC1
+03CA 5000      02017         MOVF    r0x05, W
+03CC 6EE5      02018         MOVWF   POSTDEC1
+03CE 5000      02019         MOVF    r0x04, W
+03D0 6EE5      02020         MOVWF   POSTDEC1
+03D2 0E00      02021         MOVLW   UPPER(__str_10)
+03D4 6EE5      02022         MOVWF   POSTDEC1
+03D6 0E00      02023         MOVLW   HIGH(__str_10)
+03D8 6EE5      02024         MOVWF   POSTDEC1
+03DA 0E00      02025         MOVLW   LOW(__str_10)
+03DC 6EE5      02026         MOVWF   POSTDEC1
+03DE 5000      02027         MOVF    r0x08, W
+03E0 6EE5      02028         MOVWF   POSTDEC1
+03E2 5000      02029         MOVF    r0x07, W
+03E4 6EE5      02030         MOVWF   POSTDEC1
+03E6 5000      02031         MOVF    r0x06, W
+03E8 6EE5      02032         MOVWF   POSTDEC1
+03EA EC00 F000 02033         CALL    _sprintf
+03EE 0E0C      02034         MOVLW   0x0c
+03F0 26E1      02035         ADDWF   FSR1L, F
+               02036 ;       .line   280; lena.c     break;
+03F2 D000      02037         BRA     _00206_DS_
+03F4 02038 _00200_DS_:
+               02039 ;       .line   283; lena.c     thour, tmin, tsec); // ***blink***
+03F4 C000 F000 02040         MOVFF   _tsec, r0x00
+03F8 6A00      02041         CLRF    r0x01
+03FA C000 F000 02042         MOVFF   _tmin, r0x02
+03FE 6A00      02043         CLRF    r0x03
+0400 C000 F000 02044         MOVFF   _thour, r0x04
+0404 6A00      02045         CLRF    r0x05
+               02046 ;       .line   282; lena.c     sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
+0406 0E00      02047         MOVLW   HIGH(_display)
+0408 6E00      02048         MOVWF   r0x07
+040A 0E00      02049         MOVLW   LOW(_display)
+040C 6E00      02050         MOVWF   r0x06
+040E 0E80      02051         MOVLW   0x80
+0410 6E00      02052         MOVWF   r0x08
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 39
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0412 5000      02053         MOVF    r0x01, W
+0414 6EE5      02054         MOVWF   POSTDEC1
+0416 5000      02055         MOVF    r0x00, W
+0418 6EE5      02056         MOVWF   POSTDEC1
+041A 5000      02057         MOVF    r0x03, W
+041C 6EE5      02058         MOVWF   POSTDEC1
+041E 5000      02059         MOVF    r0x02, W
+0420 6EE5      02060         MOVWF   POSTDEC1
+0422 5000      02061         MOVF    r0x05, W
+0424 6EE5      02062         MOVWF   POSTDEC1
+0426 5000      02063         MOVF    r0x04, W
+0428 6EE5      02064         MOVWF   POSTDEC1
+042A 0E00      02065         MOVLW   UPPER(__str_11)
+042C 6EE5      02066         MOVWF   POSTDEC1
+042E 0E00      02067         MOVLW   HIGH(__str_11)
+0430 6EE5      02068         MOVWF   POSTDEC1
+0432 0E00      02069         MOVLW   LOW(__str_11)
+0434 6EE5      02070         MOVWF   POSTDEC1
+0436 5000      02071         MOVF    r0x08, W
+0438 6EE5      02072         MOVWF   POSTDEC1
+043A 5000      02073         MOVF    r0x07, W
+043C 6EE5      02074         MOVWF   POSTDEC1
+043E 5000      02075         MOVF    r0x06, W
+0440 6EE5      02076         MOVWF   POSTDEC1
+0442 EC00 F000 02077         CALL    _sprintf
+0446 0E0C      02078         MOVLW   0x0c
+0448 26E1      02079         ADDWF   FSR1L, F
+               02080 ;       .line   284; lena.c     break;
+044A D000      02081         BRA     _00206_DS_
+044C 02082 _00201_DS_:
+               02083 ;       .line   286; lena.c     if (snooze < 10) {
+044C 0E0A      02084         MOVLW   0x0a
+044E 0000      02085         BANKSEL _snooze
+0450 5D00      02086         SUBWF   _snooze, W, B
+0452 B0D8      02087         BTFSC   STATUS, 0
+0454 D000      02088         BRA     _00203_DS_
+               02089 ;       .line   288; lena.c     thour, tmin, tsec, snooze, ahour_o, amin_o);
+0456 C000 F000 02090         MOVFF   _amin_o, r0x00
+045A 6A00      02091         CLRF    r0x01
+045C C000 F000 02092         MOVFF   _ahour_o, r0x02
+0460 6A00      02093         CLRF    r0x03
+0462 C000 F000 02094         MOVFF   _snooze, r0x04
+0466 6A00      02095         CLRF    r0x05
+0468 C000 F000 02096         MOVFF   _tsec, r0x06
+046C 6A00      02097         CLRF    r0x07
+046E C000 F000 02098         MOVFF   _tmin, r0x08
+0472 6A00      02099         CLRF    r0x09
+0474 C000 F000 02100         MOVFF   _thour, r0x0a
+0478 6A00      02101         CLRF    r0x0b
+               02102 ;       .line   287; lena.c     sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
+047A 0E00      02103         MOVLW   HIGH(_display)
+047C 6E00      02104         MOVWF   r0x0d
+047E 0E00      02105         MOVLW   LOW(_display)
+0480 6E00      02106         MOVWF   r0x0c
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 40
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0482 0E80      02107         MOVLW   0x80
+0484 6E00      02108         MOVWF   r0x0e
+0486 5000      02109         MOVF    r0x01, W
+0488 6EE5      02110         MOVWF   POSTDEC1
+048A 5000      02111         MOVF    r0x00, W
+048C 6EE5      02112         MOVWF   POSTDEC1
+048E 5000      02113         MOVF    r0x03, W
+0490 6EE5      02114         MOVWF   POSTDEC1
+0492 5000      02115         MOVF    r0x02, W
+0494 6EE5      02116         MOVWF   POSTDEC1
+0496 5000      02117         MOVF    r0x05, W
+0498 6EE5      02118         MOVWF   POSTDEC1
+049A 5000      02119         MOVF    r0x04, W
+049C 6EE5      02120         MOVWF   POSTDEC1
+049E 5000      02121         MOVF    r0x07, W
+04A0 6EE5      02122         MOVWF   POSTDEC1
+04A2 5000      02123         MOVF    r0x06, W
+04A4 6EE5      02124         MOVWF   POSTDEC1
+04A6 5000      02125         MOVF    r0x09, W
+04A8 6EE5      02126         MOVWF   POSTDEC1
+04AA 5000      02127         MOVF    r0x08, W
+04AC 6EE5      02128         MOVWF   POSTDEC1
+04AE 5000      02129         MOVF    r0x0b, W
+04B0 6EE5      02130         MOVWF   POSTDEC1
+04B2 5000      02131         MOVF    r0x0a, W
+04B4 6EE5      02132         MOVWF   POSTDEC1
+04B6 0E00      02133         MOVLW   UPPER(__str_12)
+04B8 6EE5      02134         MOVWF   POSTDEC1
+04BA 0E00      02135         MOVLW   HIGH(__str_12)
+04BC 6EE5      02136         MOVWF   POSTDEC1
+04BE 0E00      02137         MOVLW   LOW(__str_12)
+04C0 6EE5      02138         MOVWF   POSTDEC1
+04C2 5000      02139         MOVF    r0x0e, W
+04C4 6EE5      02140         MOVWF   POSTDEC1
+04C6 5000      02141         MOVF    r0x0d, W
+04C8 6EE5      02142         MOVWF   POSTDEC1
+04CA 5000      02143         MOVF    r0x0c, W
+04CC 6EE5      02144         MOVWF   POSTDEC1
+04CE EC00 F000 02145         CALL    _sprintf
+04D2 0E12      02146         MOVLW   0x12
+04D4 26E1      02147         ADDWF   FSR1L, F
+04D6 D000      02148         BRA     _00206_DS_
+04D8 02149 _00203_DS_:
+               02150 ;       .line   291; lena.c     thour, tmin, tsec, snooze, ahour_o, amin_o);
+04D8 C000 F000 02151         MOVFF   _amin_o, r0x00
+04DC 6A00      02152         CLRF    r0x01
+04DE C000 F000 02153         MOVFF   _ahour_o, r0x02
+04E2 6A00      02154         CLRF    r0x03
+04E4 C000 F000 02155         MOVFF   _snooze, r0x04
+04E8 6A00      02156         CLRF    r0x05
+04EA C000 F000 02157         MOVFF   _tsec, r0x06
+04EE 6A00      02158         CLRF    r0x07
+04F0 C000 F000 02159         MOVFF   _tmin, r0x08
+04F4 6A00      02160         CLRF    r0x09
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 41
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+04F6 C000 F000 02161         MOVFF   _thour, r0x0a
+04FA 6A00      02162         CLRF    r0x0b
+               02163 ;       .line   290; lena.c     sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
+04FC 0E00      02164         MOVLW   HIGH(_display)
+04FE 6E00      02165         MOVWF   r0x0d
+0500 0E00      02166         MOVLW   LOW(_display)
+0502 6E00      02167         MOVWF   r0x0c
+0504 0E80      02168         MOVLW   0x80
+0506 6E00      02169         MOVWF   r0x0e
+0508 5000      02170         MOVF    r0x01, W
+050A 6EE5      02171         MOVWF   POSTDEC1
+050C 5000      02172         MOVF    r0x00, W
+050E 6EE5      02173         MOVWF   POSTDEC1
+0510 5000      02174         MOVF    r0x03, W
+0512 6EE5      02175         MOVWF   POSTDEC1
+0514 5000      02176         MOVF    r0x02, W
+0516 6EE5      02177         MOVWF   POSTDEC1
+0518 5000      02178         MOVF    r0x05, W
+051A 6EE5      02179         MOVWF   POSTDEC1
+051C 5000      02180         MOVF    r0x04, W
+051E 6EE5      02181         MOVWF   POSTDEC1
+0520 5000      02182         MOVF    r0x07, W
+0522 6EE5      02183         MOVWF   POSTDEC1
+0524 5000      02184         MOVF    r0x06, W
+0526 6EE5      02185         MOVWF   POSTDEC1
+0528 5000      02186         MOVF    r0x09, W
+052A 6EE5      02187         MOVWF   POSTDEC1
+052C 5000      02188         MOVF    r0x08, W
+052E 6EE5      02189         MOVWF   POSTDEC1
+0530 5000      02190         MOVF    r0x0b, W
+0532 6EE5      02191         MOVWF   POSTDEC1
+0534 5000      02192         MOVF    r0x0a, W
+0536 6EE5      02193         MOVWF   POSTDEC1
+0538 0E00      02194         MOVLW   UPPER(__str_13)
+053A 6EE5      02195         MOVWF   POSTDEC1
+053C 0E00      02196         MOVLW   HIGH(__str_13)
+053E 6EE5      02197         MOVWF   POSTDEC1
+0540 0E00      02198         MOVLW   LOW(__str_13)
+0542 6EE5      02199         MOVWF   POSTDEC1
+0544 5000      02200         MOVF    r0x0e, W
+0546 6EE5      02201         MOVWF   POSTDEC1
+0548 5000      02202         MOVF    r0x0d, W
+054A 6EE5      02203         MOVWF   POSTDEC1
+054C 5000      02204         MOVF    r0x0c, W
+054E 6EE5      02205         MOVWF   POSTDEC1
+0550 EC00 F000 02206         CALL    _sprintf
+0554 0E12      02207         MOVLW   0x12
+0556 26E1      02208         ADDWF   FSR1L, F
+               02209 ;       .line   294; lena.c     break;
+0558 D000      02210         BRA     _00206_DS_
+055A 02211 _00205_DS_:
+               02212 ;       .line   296; lena.c     sprintf(display, "**** ERROR ********* ERROR *****");
+055A 0E00      02213         MOVLW   HIGH(_display)
+055C 6E00      02214         MOVWF   r0x01
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 42
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+055E 0E00      02215         MOVLW   LOW(_display)
+0560 6E00      02216         MOVWF   r0x00
+0562 0E80      02217         MOVLW   0x80
+0564 6E00      02218         MOVWF   r0x02
+0566 0E00      02219         MOVLW   UPPER(__str_14)
+0568 6EE5      02220         MOVWF   POSTDEC1
+056A 0E00      02221         MOVLW   HIGH(__str_14)
+056C 6EE5      02222         MOVWF   POSTDEC1
+056E 0E00      02223         MOVLW   LOW(__str_14)
+0570 6EE5      02224         MOVWF   POSTDEC1
+0572 5000      02225         MOVF    r0x02, W
+0574 6EE5      02226         MOVWF   POSTDEC1
+0576 5000      02227         MOVF    r0x01, W
+0578 6EE5      02228         MOVWF   POSTDEC1
+057A 5000      02229         MOVF    r0x00, W
+057C 6EE5      02230         MOVWF   POSTDEC1
+057E EC00 F000 02231         CALL    _sprintf
+0582 0E06      02232         MOVLW   0x06
+0584 26E1      02233         ADDWF   FSR1L, F
+0586 02234 _00206_DS_:
+               02235 ;       .line   299; lena.c     DisplayString(0, display);
+0586 0E00      02236         MOVLW   HIGH(_display)
+0588 6E00      02237         MOVWF   r0x01
+058A 0E00      02238         MOVLW   LOW(_display)
+058C 6E00      02239         MOVWF   r0x00
+058E 0E80      02240         MOVLW   0x80
+0590 6E00      02241         MOVWF   r0x02
+0592 5000      02242         MOVF    r0x02, W
+0594 6EE5      02243         MOVWF   POSTDEC1
+0596 5000      02244         MOVF    r0x01, W
+0598 6EE5      02245         MOVWF   POSTDEC1
+059A 5000      02246         MOVF    r0x00, W
+059C 6EE5      02247         MOVWF   POSTDEC1
+059E 0E00      02248         MOVLW   0x00
+05A0 6EE5      02249         MOVWF   POSTDEC1
+05A2 EC00 F000 02250         CALL    _DisplayString
+05A6 0E04      02251         MOVLW   0x04
+05A8 26E1      02252         ADDWF   FSR1L, F
+05AA CFE4 F000 02253         MOVFF   PREINC1, r0x0e
+05AE CFE4 F000 02254         MOVFF   PREINC1, r0x0d
+05B2 CFE4 F000 02255         MOVFF   PREINC1, r0x0c
+05B6 CFE4 F000 02256         MOVFF   PREINC1, r0x0b
+05BA CFE4 F000 02257         MOVFF   PREINC1, r0x0a
+05BE CFE4 F000 02258         MOVFF   PREINC1, r0x09
+05C2 CFE4 F000 02259         MOVFF   PREINC1, r0x08
+05C6 CFE4 F000 02260         MOVFF   PREINC1, r0x07
+05CA CFE4 F000 02261         MOVFF   PREINC1, r0x06
+05CE CFE4 F000 02262         MOVFF   PREINC1, r0x05
+05D2 CFE4 F000 02263         MOVFF   PREINC1, r0x04
+05D6 CFE4 F000 02264         MOVFF   PREINC1, r0x03
+05DA CFE4 F000 02265         MOVFF   PREINC1, r0x02
+05DE CFE4 F000 02266         MOVFF   PREINC1, r0x01
+05E2 CFE4 F000 02267         MOVFF   PREINC1, r0x00
+05E6 CFE4 FFD9 02268         MOVFF   PREINC1, FSR2L
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 43
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+05EA 0012      02269         RETURN  
+               02270 
+               02271 ; ; Starting pCode block
+               02272 S_lena__time    code
+0000 02273 _time:
+               02274 ;       .line   194; lena.c     void time(void)
+0000 CFD9 FFE5 02275         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 02276         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 02277         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 02278         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 02279         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 02280         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 02281         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 02282         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 02283         MOVFF   r0x06, POSTDEC1
+0024 C000 FFE5 02284         MOVFF   r0x07, POSTDEC1
+0028 0000      02285         BANKSEL (_overflows + 3)
+               02286 ;       .line   197; lena.c     sec = overflows/F;
+002A 5100      02287         MOVF    (_overflows + 3), W, B
+002C 6EE5      02288         MOVWF   POSTDEC1
+002E 0000      02289         BANKSEL (_overflows + 2)
+0030 5100      02290         MOVF    (_overflows + 2), W, B
+0032 6EE5      02291         MOVWF   POSTDEC1
+0034 0000      02292         BANKSEL (_overflows + 1)
+0036 5100      02293         MOVF    (_overflows + 1), W, B
+0038 6EE5      02294         MOVWF   POSTDEC1
+003A 0000      02295         BANKSEL _overflows
+003C 5100      02296         MOVF    _overflows, W, B
+003E 6EE5      02297         MOVWF   POSTDEC1
+0040 EC00 F000 02298         CALL    ___ulong2fs
+0044 6E00      02299         MOVWF   r0x00
+0046 CFF3 F000 02300         MOVFF   PRODL, r0x01
+004A CFF4 F000 02301         MOVFF   PRODH, r0x02
+004E CFE9 F000 02302         MOVFF   FSR0L, r0x03
+0052 0E04      02303         MOVLW   0x04
+0054 26E1      02304         ADDWF   FSR1L, F
+0056 0E42      02305         MOVLW   0x42
+0058 6EE5      02306         MOVWF   POSTDEC1
+005A 0EBE      02307         MOVLW   0xbe
+005C 6EE5      02308         MOVWF   POSTDEC1
+005E 0EBB      02309         MOVLW   0xbb
+0060 6EE5      02310         MOVWF   POSTDEC1
+0062 0E2A      02311         MOVLW   0x2a
+0064 6EE5      02312         MOVWF   POSTDEC1
+0066 5000      02313         MOVF    r0x03, W
+0068 6EE5      02314         MOVWF   POSTDEC1
+006A 5000      02315         MOVF    r0x02, W
+006C 6EE5      02316         MOVWF   POSTDEC1
+006E 5000      02317         MOVF    r0x01, W
+0070 6EE5      02318         MOVWF   POSTDEC1
+0072 5000      02319         MOVF    r0x00, W
+0074 6EE5      02320         MOVWF   POSTDEC1
+0076 EC00 F000 02321         CALL    ___fsdiv
+007A 6E00      02322         MOVWF   r0x00
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 44
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+007C CFF3 F000 02323         MOVFF   PRODL, r0x01
+0080 CFF4 F000 02324         MOVFF   PRODH, r0x02
+0084 CFE9 F000 02325         MOVFF   FSR0L, r0x03
+0088 0E08      02326         MOVLW   0x08
+008A 26E1      02327         ADDWF   FSR1L, F
+008C 5000      02328         MOVF    r0x03, W
+008E 6EE5      02329         MOVWF   POSTDEC1
+0090 5000      02330         MOVF    r0x02, W
+0092 6EE5      02331         MOVWF   POSTDEC1
+0094 5000      02332         MOVF    r0x01, W
+0096 6EE5      02333         MOVWF   POSTDEC1
+0098 5000      02334         MOVF    r0x00, W
+009A 6EE5      02335         MOVWF   POSTDEC1
+009C EC00 F000 02336         CALL    ___fs2ulong
+00A0 0000      02337         BANKSEL _sec
+00A2 6F00      02338         MOVWF   _sec, B
+00A4 CFF3 F000 02339         MOVFF   PRODL, (_sec + 1)
+00A8 CFF4 F000 02340         MOVFF   PRODH, (_sec + 2)
+00AC CFE9 F000 02341         MOVFF   FSR0L, (_sec + 3)
+00B0 0E04      02342         MOVLW   0x04
+00B2 26E1      02343         ADDWF   FSR1L, F
+00B4 0000      02344         BANKSEL (_overflows + 3)
+               02345 ;       .line   198; lena.c     decisec = ((10*overflows)/F);
+00B6 5100      02346         MOVF    (_overflows + 3), W, B
+00B8 6EE5      02347         MOVWF   POSTDEC1
+00BA 0000      02348         BANKSEL (_overflows + 2)
+00BC 5100      02349         MOVF    (_overflows + 2), W, B
+00BE 6EE5      02350         MOVWF   POSTDEC1
+00C0 0000      02351         BANKSEL (_overflows + 1)
+00C2 5100      02352         MOVF    (_overflows + 1), W, B
+00C4 6EE5      02353         MOVWF   POSTDEC1
+00C6 0000      02354         BANKSEL _overflows
+00C8 5100      02355         MOVF    _overflows, W, B
+00CA 6EE5      02356         MOVWF   POSTDEC1
+00CC 0E00      02357         MOVLW   0x00
+00CE 6EE5      02358         MOVWF   POSTDEC1
+00D0 0E00      02359         MOVLW   0x00
+00D2 6EE5      02360         MOVWF   POSTDEC1
+00D4 0E00      02361         MOVLW   0x00
+00D6 6EE5      02362         MOVWF   POSTDEC1
+00D8 0E0A      02363         MOVLW   0x0a
+00DA 6EE5      02364         MOVWF   POSTDEC1
+00DC EC00 F000 02365         CALL    __mullong
+00E0 6E00      02366         MOVWF   r0x00
+00E2 CFF3 F000 02367         MOVFF   PRODL, r0x01
+00E6 CFF4 F000 02368         MOVFF   PRODH, r0x02
+00EA CFE9 F000 02369         MOVFF   FSR0L, r0x03
+00EE 0E08      02370         MOVLW   0x08
+00F0 26E1      02371         ADDWF   FSR1L, F
+00F2 5000      02372         MOVF    r0x03, W
+00F4 6EE5      02373         MOVWF   POSTDEC1
+00F6 5000      02374         MOVF    r0x02, W
+00F8 6EE5      02375         MOVWF   POSTDEC1
+00FA 5000      02376         MOVF    r0x01, W
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 45
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+00FC 6EE5      02377         MOVWF   POSTDEC1
+00FE 5000      02378         MOVF    r0x00, W
+0100 6EE5      02379         MOVWF   POSTDEC1
+0102 EC00 F000 02380         CALL    ___ulong2fs
+0106 6E00      02381         MOVWF   r0x00
+0108 CFF3 F000 02382         MOVFF   PRODL, r0x01
+010C CFF4 F000 02383         MOVFF   PRODH, r0x02
+0110 CFE9 F000 02384         MOVFF   FSR0L, r0x03
+0114 0E04      02385         MOVLW   0x04
+0116 26E1      02386         ADDWF   FSR1L, F
+0118 0E42      02387         MOVLW   0x42
+011A 6EE5      02388         MOVWF   POSTDEC1
+011C 0EBE      02389         MOVLW   0xbe
+011E 6EE5      02390         MOVWF   POSTDEC1
+0120 0EBB      02391         MOVLW   0xbb
+0122 6EE5      02392         MOVWF   POSTDEC1
+0124 0E2A      02393         MOVLW   0x2a
+0126 6EE5      02394         MOVWF   POSTDEC1
+0128 5000      02395         MOVF    r0x03, W
+012A 6EE5      02396         MOVWF   POSTDEC1
+012C 5000      02397         MOVF    r0x02, W
+012E 6EE5      02398         MOVWF   POSTDEC1
+0130 5000      02399         MOVF    r0x01, W
+0132 6EE5      02400         MOVWF   POSTDEC1
+0134 5000      02401         MOVF    r0x00, W
+0136 6EE5      02402         MOVWF   POSTDEC1
+0138 EC00 F000 02403         CALL    ___fsdiv
+013C 6E00      02404         MOVWF   r0x00
+013E CFF3 F000 02405         MOVFF   PRODL, r0x01
+0142 CFF4 F000 02406         MOVFF   PRODH, r0x02
+0146 CFE9 F000 02407         MOVFF   FSR0L, r0x03
+014A 0E08      02408         MOVLW   0x08
+014C 26E1      02409         ADDWF   FSR1L, F
+014E 5000      02410         MOVF    r0x03, W
+0150 6EE5      02411         MOVWF   POSTDEC1
+0152 5000      02412         MOVF    r0x02, W
+0154 6EE5      02413         MOVWF   POSTDEC1
+0156 5000      02414         MOVF    r0x01, W
+0158 6EE5      02415         MOVWF   POSTDEC1
+015A 5000      02416         MOVF    r0x00, W
+015C 6EE5      02417         MOVWF   POSTDEC1
+015E EC00 F000 02418         CALL    ___fs2ulong
+0162 0000      02419         BANKSEL _decisec
+0164 6F00      02420         MOVWF   _decisec, B
+0166 CFF3 F000 02421         MOVFF   PRODL, (_decisec + 1)
+016A CFF4 F000 02422         MOVFF   PRODH, (_decisec + 2)
+016E CFE9 F000 02423         MOVFF   FSR0L, (_decisec + 3)
+0172 0E04      02424         MOVLW   0x04
+0174 26E1      02425         ADDWF   FSR1L, F
+               02426 ;       .line   199; lena.c     ds = decisec%10;
+0176 0E00      02427         MOVLW   0x00
+0178 6EE5      02428         MOVWF   POSTDEC1
+017A 0E00      02429         MOVLW   0x00
+017C 6EE5      02430         MOVWF   POSTDEC1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 46
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+017E 0E00      02431         MOVLW   0x00
+0180 6EE5      02432         MOVWF   POSTDEC1
+0182 0E0A      02433         MOVLW   0x0a
+0184 6EE5      02434         MOVWF   POSTDEC1
+0186 0000      02435         BANKSEL (_decisec + 3)
+0188 5100      02436         MOVF    (_decisec + 3), W, B
+018A 6EE5      02437         MOVWF   POSTDEC1
+018C 0000      02438         BANKSEL (_decisec + 2)
+018E 5100      02439         MOVF    (_decisec + 2), W, B
+0190 6EE5      02440         MOVWF   POSTDEC1
+0192 0000      02441         BANKSEL (_decisec + 1)
+0194 5100      02442         MOVF    (_decisec + 1), W, B
+0196 6EE5      02443         MOVWF   POSTDEC1
+0198 0000      02444         BANKSEL _decisec
+019A 5100      02445         MOVF    _decisec, W, B
+019C 6EE5      02446         MOVWF   POSTDEC1
+019E EC00 F000 02447         CALL    __modulong
+01A2 6E00      02448         MOVWF   r0x00
+01A4 CFF3 F000 02449         MOVFF   PRODL, r0x01
+01A8 CFF4 F000 02450         MOVFF   PRODH, r0x02
+01AC CFE9 F000 02451         MOVFF   FSR0L, r0x03
+01B0 0E08      02452         MOVLW   0x08
+01B2 26E1      02453         ADDWF   FSR1L, F
+01B4 5000      02454         MOVF    r0x00, W
+01B6 0000      02455         BANKSEL _ds
+01B8 6F00      02456         MOVWF   _ds, B
+               02457 ;       .line   200; lena.c     h = (sec/3600)%24;
+01BA 0E00      02458         MOVLW   0x00
+01BC 6EE5      02459         MOVWF   POSTDEC1
+01BE 0E00      02460         MOVLW   0x00
+01C0 6EE5      02461         MOVWF   POSTDEC1
+01C2 0E0E      02462         MOVLW   0x0e
+01C4 6EE5      02463         MOVWF   POSTDEC1
+01C6 0E10      02464         MOVLW   0x10
+01C8 6EE5      02465         MOVWF   POSTDEC1
+01CA 0000      02466         BANKSEL (_sec + 3)
+01CC 5100      02467         MOVF    (_sec + 3), W, B
+01CE 6EE5      02468         MOVWF   POSTDEC1
+01D0 0000      02469         BANKSEL (_sec + 2)
+01D2 5100      02470         MOVF    (_sec + 2), W, B
+01D4 6EE5      02471         MOVWF   POSTDEC1
+01D6 0000      02472         BANKSEL (_sec + 1)
+01D8 5100      02473         MOVF    (_sec + 1), W, B
+01DA 6EE5      02474         MOVWF   POSTDEC1
+01DC 0000      02475         BANKSEL _sec
+01DE 5100      02476         MOVF    _sec, W, B
+01E0 6EE5      02477         MOVWF   POSTDEC1
+01E2 EC00 F000 02478         CALL    __divulong
+01E6 6E00      02479         MOVWF   r0x00
+01E8 CFF3 F000 02480         MOVFF   PRODL, r0x01
+01EC CFF4 F000 02481         MOVFF   PRODH, r0x02
+01F0 CFE9 F000 02482         MOVFF   FSR0L, r0x03
+01F4 0E08      02483         MOVLW   0x08
+01F6 26E1      02484         ADDWF   FSR1L, F
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 47
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+01F8 0E00      02485         MOVLW   0x00
+01FA 6EE5      02486         MOVWF   POSTDEC1
+01FC 0E00      02487         MOVLW   0x00
+01FE 6EE5      02488         MOVWF   POSTDEC1
+0200 0E00      02489         MOVLW   0x00
+0202 6EE5      02490         MOVWF   POSTDEC1
+0204 0E18      02491         MOVLW   0x18
+0206 6EE5      02492         MOVWF   POSTDEC1
+0208 5000      02493         MOVF    r0x03, W
+020A 6EE5      02494         MOVWF   POSTDEC1
+020C 5000      02495         MOVF    r0x02, W
+020E 6EE5      02496         MOVWF   POSTDEC1
+0210 5000      02497         MOVF    r0x01, W
+0212 6EE5      02498         MOVWF   POSTDEC1
+0214 5000      02499         MOVF    r0x00, W
+0216 6EE5      02500         MOVWF   POSTDEC1
+0218 EC00 F000 02501         CALL    __modulong
+021C 6E00      02502         MOVWF   r0x04
+021E CFF3 F000 02503         MOVFF   PRODL, r0x05
+0222 CFF4 F000 02504         MOVFF   PRODH, r0x06
+0226 CFE9 F000 02505         MOVFF   FSR0L, r0x07
+022A 0E08      02506         MOVLW   0x08
+022C 26E1      02507         ADDWF   FSR1L, F
+022E 5000      02508         MOVF    r0x04, W
+0230 0000      02509         BANKSEL _h
+0232 6F00      02510         MOVWF   _h, B
+               02511 ;       .line   201; lena.c     m = (sec-(sec/3600)*3600)/60;
+0234 5000      02512         MOVF    r0x03, W
+0236 6EE5      02513         MOVWF   POSTDEC1
+0238 5000      02514         MOVF    r0x02, W
+023A 6EE5      02515         MOVWF   POSTDEC1
+023C 5000      02516         MOVF    r0x01, W
+023E 6EE5      02517         MOVWF   POSTDEC1
+0240 5000      02518         MOVF    r0x00, W
+0242 6EE5      02519         MOVWF   POSTDEC1
+0244 0E00      02520         MOVLW   0x00
+0246 6EE5      02521         MOVWF   POSTDEC1
+0248 0E00      02522         MOVLW   0x00
+024A 6EE5      02523         MOVWF   POSTDEC1
+024C 0E0E      02524         MOVLW   0x0e
+024E 6EE5      02525         MOVWF   POSTDEC1
+0250 0E10      02526         MOVLW   0x10
+0252 6EE5      02527         MOVWF   POSTDEC1
+0254 EC00 F000 02528         CALL    __mullong
+0258 6E00      02529         MOVWF   r0x00
+025A CFF3 F000 02530         MOVFF   PRODL, r0x01
+025E CFF4 F000 02531         MOVFF   PRODH, r0x02
+0262 CFE9 F000 02532         MOVFF   FSR0L, r0x03
+0266 0E08      02533         MOVLW   0x08
+0268 26E1      02534         ADDWF   FSR1L, F
+026A 5000      02535         MOVF    r0x00, W
+026C 0000      02536         BANKSEL _sec
+026E 5D00      02537         SUBWF   _sec, W, B
+0270 6E00      02538         MOVWF   r0x00
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 48
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0272 5000      02539         MOVF    r0x01, W
+0274 0000      02540         BANKSEL (_sec + 1)
+0276 5900      02541         SUBWFB  (_sec + 1), W, B
+0278 6E00      02542         MOVWF   r0x01
+027A 5000      02543         MOVF    r0x02, W
+027C 0000      02544         BANKSEL (_sec + 2)
+027E 5900      02545         SUBWFB  (_sec + 2), W, B
+0280 6E00      02546         MOVWF   r0x02
+0282 5000      02547         MOVF    r0x03, W
+0284 0000      02548         BANKSEL (_sec + 3)
+0286 5900      02549         SUBWFB  (_sec + 3), W, B
+0288 6E00      02550         MOVWF   r0x03
+028A 0E00      02551         MOVLW   0x00
+028C 6EE5      02552         MOVWF   POSTDEC1
+028E 0E00      02553         MOVLW   0x00
+0290 6EE5      02554         MOVWF   POSTDEC1
+0292 0E00      02555         MOVLW   0x00
+0294 6EE5      02556         MOVWF   POSTDEC1
+0296 0E3C      02557         MOVLW   0x3c
+0298 6EE5      02558         MOVWF   POSTDEC1
+029A 5000      02559         MOVF    r0x03, W
+029C 6EE5      02560         MOVWF   POSTDEC1
+029E 5000      02561         MOVF    r0x02, W
+02A0 6EE5      02562         MOVWF   POSTDEC1
+02A2 5000      02563         MOVF    r0x01, W
+02A4 6EE5      02564         MOVWF   POSTDEC1
+02A6 5000      02565         MOVF    r0x00, W
+02A8 6EE5      02566         MOVWF   POSTDEC1
+02AA EC00 F000 02567         CALL    __divulong
+02AE 6E00      02568         MOVWF   r0x00
+02B0 CFF3 F000 02569         MOVFF   PRODL, r0x01
+02B4 CFF4 F000 02570         MOVFF   PRODH, r0x02
+02B8 CFE9 F000 02571         MOVFF   FSR0L, r0x03
+02BC 0E08      02572         MOVLW   0x08
+02BE 26E1      02573         ADDWF   FSR1L, F
+02C0 5000      02574         MOVF    r0x00, W
+02C2 0000      02575         BANKSEL _m
+02C4 6F00      02576         MOVWF   _m, B
+02C6 0000      02577         BANKSEL _sec
+               02578 ;       .line   202; lena.c     s = sec-h*3600-m*60;
+02C8 5100      02579         MOVF    _sec, W, B
+02CA 6E00      02580         MOVWF   r0x00
+               02581 ; ;multiply lit val:0x10 by variable _h and store in r0x01
+               02582 ; ;Unrolled 8 X 8 multiplication
+               02583 ; ;FIXME: the function does not support result==WREG
+02CC 0000      02584         BANKSEL _h
+02CE 5100      02585         MOVF    _h, W, B
+02D0 0D10      02586         MULLW   0x10
+02D2 CFF3 F000 02587         MOVFF   PRODL, r0x01
+02D6 5000      02588         MOVF    r0x01, W
+02D8 5E00      02589         SUBWF   r0x00, F
+               02590 ; ;multiply lit val:0x3c by variable _m and store in r0x01
+               02591 ; ;Unrolled 8 X 8 multiplication
+               02592 ; ;FIXME: the function does not support result==WREG
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 49
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+02DA 0000      02593         BANKSEL _m
+02DC 5100      02594         MOVF    _m, W, B
+02DE 0D3C      02595         MULLW   0x3c
+02E0 CFF3 F000 02596         MOVFF   PRODL, r0x01
+02E4 5000      02597         MOVF    r0x01, W
+02E6 5C00      02598         SUBWF   r0x00, W
+02E8 0000      02599         BANKSEL _s
+02EA 6F00      02600         MOVWF   _s, B
+02EC 0000      02601         BANKSEL _tsec
+               02602 ;       .line   205; lena.c     if (tsec != s)
+02EE 5100      02603         MOVF    _tsec, W, B
+02F0 0000      02604         BANKSEL _s
+02F2 1900      02605         XORWF   _s, W, B
+02F4 E000      02606         BZ      _00143_DS_
+               02607 ;       .line   206; lena.c     tsec = s;
+02F6 C000 F000 02608         MOVFF   _s, _tsec
+02FA 02609 _00143_DS_:
+02FA 0000      02610         BANKSEL _tmin
+               02611 ;       .line   207; lena.c     if (tmin != m)
+02FC 5100      02612         MOVF    _tmin, W, B
+02FE 0000      02613         BANKSEL _m
+0300 1900      02614         XORWF   _m, W, B
+0302 E000      02615         BZ      _00145_DS_
+               02616 ;       .line   208; lena.c     tmin = m;
+0304 C000 F000 02617         MOVFF   _m, _tmin
+0308 02618 _00145_DS_:
+0308 0000      02619         BANKSEL _thour
+               02620 ;       .line   209; lena.c     if (thour != h)
+030A 5100      02621         MOVF    _thour, W, B
+030C 0000      02622         BANKSEL _h
+030E 1900      02623         XORWF   _h, W, B
+0310 E000      02624         BZ      _00147_DS_
+               02625 ;       .line   210; lena.c     thour = h;
+0312 C000 F000 02626         MOVFF   _h, _thour
+0316 02627 _00147_DS_:
+0316 0000      02628         BANKSEL _on
+               02629 ;       .line   213; lena.c     if (!on && ds < 5) {
+0318 5100      02630         MOVF    _on, W, B
+031A E100      02631         BNZ     _00151_DS_
+031C 0E05      02632         MOVLW   0x05
+031E 0000      02633         BANKSEL _ds
+0320 5D00      02634         SUBWF   _ds, W, B
+0322 E200      02635         BC      _00151_DS_
+               02636 ;       .line   214; lena.c     LATJbits.LATJ0 = 1;
+0324 8000      02637         BSF     _LATJbits, 0
+0326 0000      02638         BANKSEL _whereami
+               02639 ;       .line   215; lena.c     if (whereami == ALARM) {
+0328 5100      02640         MOVF    _whereami, W, B
+032A 0A0A      02641         XORLW   0x0a
+032C E100      02642         BNZ     _00149_DS_
+               02643 ;       .line   216; lena.c     LATJbits.LATJ1 = 1;
+032E 8200      02644         BSF     _LATJbits, 1
+               02645 ;       .line   217; lena.c     LATJbits.LATJ2 = 1;
+0330 8400      02646         BSF     _LATJbits, 2
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 50
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0332 02647 _00149_DS_:
+               02648 ;       .line   219; lena.c     on = 1;
+0332 0E01      02649         MOVLW   0x01
+0334 0000      02650         BANKSEL _on
+0336 6F00      02651         MOVWF   _on, B
+0338 02652 _00151_DS_:
+0338 0000      02653         BANKSEL _on
+               02654 ;       .line   223; lena.c     if (on && ds >= 5) {
+033A 5100      02655         MOVF    _on, W, B
+033C E000      02656         BZ      _00158_DS_
+033E 0E05      02657         MOVLW   0x05
+0340 0000      02658         BANKSEL _ds
+0342 5D00      02659         SUBWF   _ds, W, B
+0344 E300      02660         BNC     _00158_DS_
+               02661 ;       .line   224; lena.c     LATJbits.LATJ0 = 0;
+0346 9000      02662         BCF     _LATJbits, 0
+0348 0000      02663         BANKSEL _whereami
+               02664 ;       .line   225; lena.c     if (whereami == ALARM) {
+034A 5100      02665         MOVF    _whereami, W, B
+034C 0A0A      02666         XORLW   0x0a
+034E E100      02667         BNZ     _00154_DS_
+               02668 ;       .line   226; lena.c     LATJbits.LATJ1 = 0;
+0350 9200      02669         BCF     _LATJbits, 1
+               02670 ;       .line   227; lena.c     LATJbits.LATJ2 = 0;
+0352 9400      02671         BCF     _LATJbits, 2
+0354 02672 _00154_DS_:
+0354 0000      02673         BANKSEL _on
+               02674 ;       .line   229; lena.c     on = 0;
+0356 6B00      02675         CLRF    _on, B
+0358 02676 _00158_DS_:
+0358 CFE4 F000 02677         MOVFF   PREINC1, r0x07
+035C CFE4 F000 02678         MOVFF   PREINC1, r0x06
+0360 CFE4 F000 02679         MOVFF   PREINC1, r0x05
+0364 CFE4 F000 02680         MOVFF   PREINC1, r0x04
+0368 CFE4 F000 02681         MOVFF   PREINC1, r0x03
+036C CFE4 F000 02682         MOVFF   PREINC1, r0x02
+0370 CFE4 F000 02683         MOVFF   PREINC1, r0x01
+0374 CFE4 F000 02684         MOVFF   PREINC1, r0x00
+0378 CFE4 FFD9 02685         MOVFF   PREINC1, FSR2L
+037C 0012      02686         RETURN  
+               02687 
+               02688 ; ; Starting pCode block
+               02689 S_lena__inc_amin        code
+0000 02690 _inc_amin:
+               02691 ;       .line   181; lena.c     void inc_amin(BYTE val)
+0000 CFD9 FFE5 02692         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 02693         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 02694         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 02695         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 02696         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 02697         MOVFF   r0x03, POSTDEC1
+0018 0E02      02698         MOVLW   0x02
+001A CFDB F000 02699         MOVFF   PLUSW2, r0x00
+               02700 ;       .line   185; lena.c     mod_amin = (amin + val) / 60;
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 51
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+001E C000 F000 02701         MOVFF   _amin, r0x01
+0022 6A00      02702         CLRF    r0x02
+0024 6A00      02703         CLRF    r0x03
+0026 5000      02704         MOVF    r0x00, W
+0028 2600      02705         ADDWF   r0x01, F
+002A 5000      02706         MOVF    r0x03, W
+002C 2200      02707         ADDWFC  r0x02, F
+002E 0E00      02708         MOVLW   0x00
+0030 6EE5      02709         MOVWF   POSTDEC1
+0032 0E3C      02710         MOVLW   0x3c
+0034 6EE5      02711         MOVWF   POSTDEC1
+0036 5000      02712         MOVF    r0x02, W
+0038 6EE5      02713         MOVWF   POSTDEC1
+003A 5000      02714         MOVF    r0x01, W
+003C 6EE5      02715         MOVWF   POSTDEC1
+003E EC00 F000 02716         CALL    __divsint
+0042 6E00      02717         MOVWF   r0x01
+0044 CFF3 F000 02718         MOVFF   PRODL, r0x02
+0048 0E04      02719         MOVLW   0x04
+004A 26E1      02720         ADDWF   FSR1L, F
+               02721 ;       .line   186; lena.c     if (mod_amin) {
+004C 5000      02722         MOVF    r0x01, W
+004E E000      02723         BZ      _00136_DS_
+               02724 ;       .line   187; lena.c     inc_ahour(mod_amin);
+0050 5000      02725         MOVF    r0x01, W
+0052 6EE5      02726         MOVWF   POSTDEC1
+0054 EC00 F000 02727         CALL    _inc_ahour
+0058 2AE1      02728         INCF    FSR1L, F
+005A 02729 _00136_DS_:
+               02730 ;       .line   190; lena.c     amin = (amin + val) % 60;
+005A C000 F000 02731         MOVFF   _amin, r0x01
+005E 6A00      02732         CLRF    r0x02
+0060 5000      02733         MOVF    r0x01, W
+0062 2600      02734         ADDWF   r0x00, F
+0064 5000      02735         MOVF    r0x02, W
+0066 2200      02736         ADDWFC  r0x03, F
+0068 0E00      02737         MOVLW   0x00
+006A 6EE5      02738         MOVWF   POSTDEC1
+006C 0E3C      02739         MOVLW   0x3c
+006E 6EE5      02740         MOVWF   POSTDEC1
+0070 5000      02741         MOVF    r0x03, W
+0072 6EE5      02742         MOVWF   POSTDEC1
+0074 5000      02743         MOVF    r0x00, W
+0076 6EE5      02744         MOVWF   POSTDEC1
+0078 EC00 F000 02745         CALL    __modsint
+007C 6E00      02746         MOVWF   r0x00
+007E CFF3 F000 02747         MOVFF   PRODL, r0x01
+0082 0E04      02748         MOVLW   0x04
+0084 26E1      02749         ADDWF   FSR1L, F
+0086 5000      02750         MOVF    r0x00, W
+0088 0000      02751         BANKSEL _amin
+008A 6F00      02752         MOVWF   _amin, B
+008C CFE4 F000 02753         MOVFF   PREINC1, r0x03
+0090 CFE4 F000 02754         MOVFF   PREINC1, r0x02
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 52
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0094 CFE4 F000 02755         MOVFF   PREINC1, r0x01
+0098 CFE4 F000 02756         MOVFF   PREINC1, r0x00
+009C CFE4 FFD9 02757         MOVFF   PREINC1, FSR2L
+00A0 0012      02758         RETURN  
+               02759 
+               02760 ; ; Starting pCode block
+               02761 S_lena__inc_ahour       code
+0000 02762 _inc_ahour:
+               02763 ;       .line   175; lena.c     void inc_ahour(BYTE val)
+0000 CFD9 FFE5 02764         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 02765         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 02766         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 02767         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 02768         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 02769         MOVFF   r0x03, POSTDEC1
+0018 0E02      02770         MOVLW   0x02
+001A CFDB F000 02771         MOVFF   PLUSW2, r0x00
+               02772 ;       .line   177; lena.c     ahour = (ahour + val) % 24;
+001E C000 F000 02773         MOVFF   _ahour, r0x01
+0022 6A00      02774         CLRF    r0x02
+0024 6A00      02775         CLRF    r0x03
+0026 5000      02776         MOVF    r0x00, W
+0028 2600      02777         ADDWF   r0x01, F
+002A 5000      02778         MOVF    r0x03, W
+002C 2200      02779         ADDWFC  r0x02, F
+002E 0E00      02780         MOVLW   0x00
+0030 6EE5      02781         MOVWF   POSTDEC1
+0032 0E18      02782         MOVLW   0x18
+0034 6EE5      02783         MOVWF   POSTDEC1
+0036 5000      02784         MOVF    r0x02, W
+0038 6EE5      02785         MOVWF   POSTDEC1
+003A 5000      02786         MOVF    r0x01, W
+003C 6EE5      02787         MOVWF   POSTDEC1
+003E EC00 F000 02788         CALL    __modsint
+0042 6E00      02789         MOVWF   r0x00
+0044 CFF3 F000 02790         MOVFF   PRODL, r0x01
+0048 0E04      02791         MOVLW   0x04
+004A 26E1      02792         ADDWF   FSR1L, F
+004C 5000      02793         MOVF    r0x00, W
+004E 0000      02794         BANKSEL _ahour
+0050 6F00      02795         MOVWF   _ahour, B
+0052 CFE4 F000 02796         MOVFF   PREINC1, r0x03
+0056 CFE4 F000 02797         MOVFF   PREINC1, r0x02
+005A CFE4 F000 02798         MOVFF   PREINC1, r0x01
+005E CFE4 F000 02799         MOVFF   PREINC1, r0x00
+0062 CFE4 FFD9 02800         MOVFF   PREINC1, FSR2L
+0066 0012      02801         RETURN  
+               02802 
+               02803 ; ; Starting pCode block
+               02804 S_lena__low_isr code
+0000 02805 _low_isr:
+               02806 ;       .line   109; lena.c     void low_isr (void) interrupt 2
+0000 CFE8 FFE5 02807         MOVFF   WREG, POSTDEC1
+0004 CFD8 FFE5 02808         MOVFF   STATUS, POSTDEC1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 53
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0008 CFE0 FFE5 02809         MOVFF   BSR, POSTDEC1
+000C CFF3 FFE5 02810         MOVFF   PRODL, POSTDEC1
+0010 CFF4 FFE5 02811         MOVFF   PRODH, POSTDEC1
+0014 CFE9 FFE5 02812         MOVFF   FSR0L, POSTDEC1
+0018 CFEA FFE5 02813         MOVFF   FSR0H, POSTDEC1
+001C CFFA FFE5 02814         MOVFF   PCLATH, POSTDEC1
+0020 CFFB FFE5 02815         MOVFF   PCLATU, POSTDEC1
+0024 CFD9 FFE5 02816         MOVFF   FSR2L, POSTDEC1
+0028 CFE1 FFD9 02817         MOVFF   FSR1L, FSR2L
+               02818 ;       .line   112; lena.c     if(INTCON3bits.INT3F) {
+002C A400      02819         BTFSS   _INTCON3bits, 2
+002E D000      02820         BRA     _00115_DS_
+               02821 ;       .line   113; lena.c     button1 = 1;
+0030 0E01      02822         MOVLW   0x01
+0032 0000      02823         BANKSEL _button1
+0034 6F00      02824         MOVWF   _button1, B
+               02825 ;       .line   114; lena.c     INTCON3bits.INT3F = 0;
+0036 9400      02826         BCF     _INTCON3bits, 2
+0038 D000      02827         BRA     _00117_DS_
+003A 02828 _00115_DS_:
+               02829 ;       .line   117; lena.c     } else if(INTCON3bits.INT1F) {
+003A A000      02830         BTFSS   _INTCON3bits, 0
+003C D000      02831         BRA     _00117_DS_
+               02832 ;       .line   118; lena.c     button2 = 1;
+003E 0E01      02833         MOVLW   0x01
+0040 0000      02834         BANKSEL _button2
+0042 6F00      02835         MOVWF   _button2, B
+               02836 ;       .line   119; lena.c     INTCON3bits.INT1F = 0;
+0044 9000      02837         BCF     _INTCON3bits, 0
+0046 02838 _00117_DS_:
+0046 CFE4 FFD9 02839         MOVFF   PREINC1, FSR2L
+004A CFE4 FFFB 02840         MOVFF   PREINC1, PCLATU
+004E CFE4 FFFA 02841         MOVFF   PREINC1, PCLATH
+0052 CFE4 FFEA 02842         MOVFF   PREINC1, FSR0H
+0056 CFE4 FFE9 02843         MOVFF   PREINC1, FSR0L
+005A CFE4 FFF4 02844         MOVFF   PREINC1, PRODH
+005E CFE4 FFF3 02845         MOVFF   PREINC1, PRODL
+0062 CFE4 FFE0 02846         MOVFF   PREINC1, BSR
+0066 CFE4 FFD8 02847         MOVFF   PREINC1, STATUS
+006A CFE4 FFE8 02848         MOVFF   PREINC1, WREG
+006E 0010      02849         RETFIE  
+               02850 
+               02851 ; ; Starting pCode block
+               02852 S_lena__high_isr        code
+0000 02853 _high_isr:
+               02854 ;       .line   98; lena.c      void high_isr (void) interrupt 1
+0000 CFE8 FFE5 02855         MOVFF   WREG, POSTDEC1
+0004 CFD8 FFE5 02856         MOVFF   STATUS, POSTDEC1
+0008 CFE0 FFE5 02857         MOVFF   BSR, POSTDEC1
+000C CFF3 FFE5 02858         MOVFF   PRODL, POSTDEC1
+0010 CFF4 FFE5 02859         MOVFF   PRODH, POSTDEC1
+0014 CFE9 FFE5 02860         MOVFF   FSR0L, POSTDEC1
+0018 CFEA FFE5 02861         MOVFF   FSR0H, POSTDEC1
+001C CFFA FFE5 02862         MOVFF   PCLATH, POSTDEC1
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 54
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+0020 CFFB FFE5 02863         MOVFF   PCLATU, POSTDEC1
+0024 CFD9 FFE5 02864         MOVFF   FSR2L, POSTDEC1
+0028 CFE1 FFD9 02865         MOVFF   FSR1L, FSR2L
+               02866 ;       .line   101; lena.c     if (INTCONbits.T0IF) {
+002C A400      02867         BTFSS   _INTCONbits, 2
+002E D000      02868         BRA     _00107_DS_
+0030 0000      02869         BANKSEL _overflows
+               02870 ;       .line   102; lena.c     overflows++;
+0032 2B00      02871         INCF    _overflows, F, B
+0034 E300      02872         BNC     _10347_DS_
+0036 0000      02873         BANKSEL (_overflows + 1)
+0038 2B00      02874         INCF    (_overflows + 1), F, B
+003A 02875 _10347_DS_:
+003A E300      02876         BNC     _20348_DS_
+003C 0000      02877         BANKSEL (_overflows + 2)
+003E 2B00      02878         INCF    (_overflows + 2), F, B
+0040 02879 _20348_DS_:
+0040 E300      02880         BNC     _30349_DS_
+0042 0000      02881         BANKSEL (_overflows + 3)
+0044 2B00      02882         INCF    (_overflows + 3), F, B
+0046 02883 _30349_DS_:
+               02884 ;       .line   103; lena.c     INTCONbits.T0IF = 0;
+0046 9400      02885         BCF     _INTCONbits, 2
+0048 02886 _00107_DS_:
+0048 CFE4 FFD9 02887         MOVFF   PREINC1, FSR2L
+004C CFE4 FFFB 02888         MOVFF   PREINC1, PCLATU
+0050 CFE4 FFFA 02889         MOVFF   PREINC1, PCLATH
+0054 CFE4 FFEA 02890         MOVFF   PREINC1, FSR0H
+0058 CFE4 FFE9 02891         MOVFF   PREINC1, FSR0L
+005C CFE4 FFF4 02892         MOVFF   PREINC1, PRODH
+0060 CFE4 FFF3 02893         MOVFF   PREINC1, PRODL
+0064 CFE4 FFE0 02894         MOVFF   PREINC1, BSR
+0068 CFE4 FFD8 02895         MOVFF   PREINC1, STATUS
+006C CFE4 FFE8 02896         MOVFF   PREINC1, WREG
+0070 0010      02897         RETFIE  
+               02898 
+               02899 ; ; Starting pCode block
+0072 02900 __str_0:
+0072 6F44 7920 02901         DB      0x44, 0x6f, 0x20, 0x79, 0x6f, 0x75, 0x20, 0x77, 0x61, 0x6e, 0x74, 0x20
+     756F 7720 
+     6E61 2074 
+007E 6F74 2020 02902         DB      0x74, 0x6f, 0x20, 0x20, 0x73, 0x65, 0x74, 0x20, 0x74, 0x68, 0x65, 0x20
+     6573 2074 
+     6874 2065 
+008A 6974 656D 02903         DB      0x74, 0x69, 0x6d, 0x65, 0x20, 0x3f, 0x20, 0x20, 0x00
+     3F20 2020 
+     0000      
+               02904 ; ; Starting pCode block
+0094 02905 __str_1:
+0094 5B20 3025 02906         DB      0x20, 0x5b, 0x25, 0x30, 0x32, 0x75, 0x5d, 0x3a, 0x20, 0x25, 0x30, 0x32
+     7532 3A5D 
+     2520 3230 
+00A0 2075 203A 02907         DB      0x75, 0x20, 0x3a, 0x20, 0x25, 0x30, 0x32, 0x75, 0x20, 0x20, 0x20, 0x20
+     3025 7532 
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 55
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+     2020 2020 
+00AC 2020 2020 02908         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
+     2020 2020 
+     2020 2020 
+00B8 2020 0000 02909         DB      0x20, 0x20, 0x00
+               02910 ; ; Starting pCode block
+00BC 02911 __str_2:
+00BC 2020 3025 02912         DB      0x20, 0x20, 0x25, 0x30, 0x32, 0x75, 0x20, 0x3a, 0x5b, 0x25, 0x30, 0x32
+     7532 3A20 
+     255B 3230 
+00C8 5D75 203A 02913         DB      0x75, 0x5d, 0x3a, 0x20, 0x25, 0x30, 0x32, 0x75, 0x20, 0x20, 0x20, 0x20
+     3025 7532 
+     2020 2020 
+00D4 2020 2020 02914         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
+     2020 2020 
+     2020 2020 
+00E0 2020 0000 02915         DB      0x20, 0x20, 0x00
+               02916 ; ; Starting pCode block
+00E4 02917 __str_3:
+00E4 2020 3025 02918         DB      0x20, 0x20, 0x25, 0x30, 0x32, 0x75, 0x20, 0x3a, 0x20, 0x25, 0x30, 0x32
+     7532 3A20 
+     2520 3230 
+00F0 2075 5B3A 02919         DB      0x75, 0x20, 0x3a, 0x5b, 0x25, 0x30, 0x32, 0x75, 0x5d, 0x20, 0x20, 0x20
+     3025 7532 
+     205D 2020 
+00FC 2020 2020 02920         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
+     2020 2020 
+     2020 2020 
+0108 2020 0000 02921         DB      0x20, 0x20, 0x00
+               02922 ; ; Starting pCode block
+010C 02923 __str_4:
+010C 6F44 7920 02924         DB      0x44, 0x6f, 0x20, 0x79, 0x6f, 0x75, 0x20, 0x77, 0x61, 0x6e, 0x74, 0x20
+     756F 7720 
+     6E61 2074 
+0118 6F74 2020 02925         DB      0x74, 0x6f, 0x20, 0x20, 0x73, 0x65, 0x74, 0x20, 0x74, 0x68, 0x65, 0x20
+     6573 2074 
+     6874 2065 
+0124 6C61 7261 02926         DB      0x61, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x3f, 0x20, 0x00
+     206D 203F 
+     0000      
+               02927 ; ; Starting pCode block
+012E 02928 __str_5:
+012E 2020 6C41 02929         DB      0x20, 0x20, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x5b, 0x4f, 0x4e, 0x20
+     7261 206D 
+     4F5B 204E 
+013A 205D 2020 02930         DB      0x5d, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
+     2020 2020 
+     2020 2020 
+0146 2020 2020 02931         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x00
+     2020 2020 
+     0000      
+               02932 ; ; Starting pCode block
+0150 02933 __str_6:
+0150 2020 6C41 02934         DB      0x20, 0x20, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x5b, 0x4f, 0x46, 0x46
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 56
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+     7261 206D 
+     4F5B 4646 
+015C 205D 2020 02935         DB      0x5d, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
+     2020 2020 
+     2020 2020 
+0168 2020 2020 02936         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x00
+     2020 2020 
+     0000      
+               02937 ; ; Starting pCode block
+0172 02938 __str_7:
+0172 2020 2020 02939         DB      0x20, 0x20, 0x20, 0x20, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x61, 0x74
+     6C41 7261 
+     206D 7461 
+017E 2020 2020 02940         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x5b, 0x25, 0x30, 0x32
+     2020 2020 
+     255B 3230 
+018A 5D75 203A 02941         DB      0x75, 0x5d, 0x3a, 0x20, 0x25, 0x30, 0x32, 0x75, 0x20, 0x20, 0x20, 0x20
+     3025 7532 
+     2020 2020 
+0196 0000      02942         DB      0x00
+               02943 ; ; Starting pCode block
+0198 02944 __str_8:
+0198 2020 2020 02945         DB      0x20, 0x20, 0x20, 0x20, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x61, 0x74
+     6C41 7261 
+     206D 7461 
+01A4 2020 2020 02946         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x25, 0x30, 0x32
+     2020 2020 
+     2520 3230 
+01B0 2075 5B3A 02947         DB      0x75, 0x20, 0x3a, 0x5b, 0x25, 0x30, 0x32, 0x75, 0x5d, 0x20, 0x20, 0x20
+     3025 7532 
+     205D 2020 
+01BC 0000      02948         DB      0x00
+               02949 ; ; Starting pCode block
+01BE 02950 __str_9:
+01BE 2020 2020 02951         DB      0x20, 0x20, 0x20, 0x20, 0x25, 0x30, 0x32, 0x75, 0x3a, 0x25, 0x30, 0x32
+     3025 7532 
+     253A 3230 
+01CA 3A75 3025 02952         DB      0x75, 0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x20, 0x20, 0x20, 0x41, 0x6c
+     7532 2020 
+     2020 6C41 
+01D6 7261 206D 02953         DB      0x61, 0x72, 0x6d, 0x20, 0x4f, 0x4e, 0x20, 0x20, 0x25, 0x30, 0x32, 0x75
+     4E4F 2020 
+     3025 7532 
+01E2 253A 3230 02954         DB      0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x00
+     2075 0000 
+               02955 ; ; Starting pCode block
+01EA 02956 __str_10:
+01EA 2020 2020 02957         DB      0x20, 0x20, 0x20, 0x20, 0x25, 0x30, 0x32, 0x75, 0x3a, 0x25, 0x30, 0x32
+     3025 7532 
+     253A 3230 
+01F6 3A75 3025 02958         DB      0x75, 0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
+     7532 2020 
+     2020 2020 
+0202 4120 616C 02959         DB      0x20, 0x41, 0x6c, 0x61, 0x72, 0x6d, 0x20, 0x20, 0x4f, 0x46, 0x46, 0x20
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 57
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+     6D72 2020 
+     464F 2046 
+020E 2020 0000 02960         DB      0x20, 0x20, 0x00
+               02961 ; ; Starting pCode block
+0212 02962 __str_11:
+0212 2020 2020 02963         DB      0x20, 0x20, 0x20, 0x20, 0x25, 0x30, 0x32, 0x75, 0x3a, 0x25, 0x30, 0x32
+     3025 7532 
+     253A 3230 
+021E 3A75 3025 02964         DB      0x75, 0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
+     7532 2020 
+     2020 2020 
+022A 2049 6D61 02965         DB      0x49, 0x20, 0x61, 0x6d, 0x20, 0x72, 0x69, 0x6e, 0x67, 0x69, 0x6e, 0x67
+     7220 6E69 
+     6967 676E 
+0236 2021 0000 02966         DB      0x21, 0x20, 0x00
+               02967 ; ; Starting pCode block
+023A 02968 __str_12:
+023A 2020 2020 02969         DB      0x20, 0x20, 0x20, 0x20, 0x25, 0x30, 0x32, 0x75, 0x3a, 0x25, 0x30, 0x32
+     3025 7532 
+     253A 3230 
+0246 3A75 3025 02970         DB      0x75, 0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x20, 0x20, 0x20, 0x53, 0x6e
+     7532 2020 
+     2020 6E53 
+0252 6F6F 657A 02971         DB      0x6f, 0x6f, 0x7a, 0x65, 0x20, 0x25, 0x75, 0x20, 0x20, 0x25, 0x30, 0x32
+     2520 2075 
+     2520 3230 
+025E 3A75 3025 02972         DB      0x75, 0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x00
+     7532 0020 
+               02973 ; ; Starting pCode block
+0266 02974 __str_13:
+0266 2020 2020 02975         DB      0x20, 0x20, 0x20, 0x20, 0x25, 0x30, 0x32, 0x75, 0x3a, 0x25, 0x30, 0x32
+     3025 7532 
+     253A 3230 
+0272 3A75 3025 02976         DB      0x75, 0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x20, 0x20, 0x20, 0x53, 0x6e
+     7532 2020 
+     2020 6E53 
+027E 6F6F 657A 02977         DB      0x6f, 0x6f, 0x7a, 0x65, 0x20, 0x25, 0x75, 0x20, 0x25, 0x30, 0x32, 0x75
+     2520 2075 
+     3025 7532 
+028A 253A 3230 02978         DB      0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x00
+     2075 0000 
+               02979 ; ; Starting pCode block
+0292 02980 __str_14:
+0292 2A2A 2A2A 02981         DB      0x2a, 0x2a, 0x2a, 0x2a, 0x20, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x20, 0x2a
+     4520 5252 
+     524F 2A20 
+029E 2A2A 2A2A 02982         DB      0x2a, 0x2a, 0x2a, 0x2a, 0x2a, 0x2a, 0x2a, 0x2a, 0x20, 0x45, 0x52, 0x52
+     2A2A 2A2A 
+     4520 5252 
+02AA 524F 2A20 02983         DB      0x4f, 0x52, 0x20, 0x2a, 0x2a, 0x2a, 0x2a, 0x2a, 0x00
+     2A2A 2A2A 
+     0000      
+               02984 
+               02985 
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 58
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               02986 ; Statistics:
+               02987 ; code size:     4962 (0x1362) bytes ( 3.79%)
+               02988 ;                2481 (0x09b1) words
+               02989 ; udata size:      44 (0x002c) bytes ( 1.15%)
+               02990 ; access size:     22 (0x0016) bytes
+               02991 
+               02992 
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 59
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BSR                               00000FE0
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1L                             00000FE1
+FSR2L                             00000FD9
+PCL                               00000FF9
+PCLATH                            00000FFA
+PCLATU                            00000FFB
+PLUSW2                            00000FDB
+POSTDEC1                          00000FE5
+PREINC1                           00000FE4
+PRODH                             00000FF4
+PRODL                             00000FF3
+STATUS                            00000FD8
+WREG                              00000FE8
+_00107_DS_                        00000048
+_00115_DS_                        0000003A
+_00117_DS_                        00000046
+_00123_DS_                        00000044
+_00136_DS_                        0000005A
+_00143_DS_                        000002FA
+_00145_DS_                        00000308
+_00147_DS_                        00000316
+_00149_DS_                        00000332
+_00151_DS_                        00000338
+_00154_DS_                        00000354
+_00158_DS_                        00000358
+_00185_DS_                        000000C4
+_00186_DS_                        000000F4
+_00187_DS_                        0000014E
+_00188_DS_                        000001A6
+_00189_DS_                        000001FE
+_00190_DS_                        0000022C
+_00192_DS_                        00000260
+_00194_DS_                        0000028E
+_00195_DS_                        000002D8
+_00196_DS_                        00000322
+_00198_DS_                        0000039C
+_00200_DS_                        000003F4
+_00201_DS_                        0000044C
+_00203_DS_                        000004D8
+_00205_DS_                        0000055A
+_00206_DS_                        00000586
+_00216_DS_                        00000098
+_00222_DS_                        00000044
+_00228_DS_                        00000076
+_00233_DS_                        0000004C
+_00240_DS_                        00000084
+_00252_DS_                        00000014
+_00254_DS_                        00000020
+_00257_DS_                        0000003C
+_00267_DS_                        0000009C
+_00268_DS_                        000000A4
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 60
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_00269_DS_                        000000AC
+_00270_DS_                        000000B4
+_00271_DS_                        000000BC
+_00272_DS_                        000000C4
+_00273_DS_                        000000CC
+_00274_DS_                        000000D4
+_00275_DS_                        000000DC
+_00276_DS_                        000000E4
+_00277_DS_                        000000F6
+_00279_DS_                        00000112
+_00280_DS_                        0000019C
+_00281_DS_                        000001A4
+_00282_DS_                        00000232
+_00283_DS_                        000002C0
+_00284_DS_                        0000034E
+_00285_DS_                        00000356
+_00286_DS_                        0000035E
+_00288_DS_                        0000036C
+_00289_DS_                        00000370
+_00290_DS_                        00000376
+_00292_DS_                        00000384
+_00293_DS_                        00000388
+_00294_DS_                        0000038E
+_00295_DS_                        00000390
+_00298_DS_                        000003B2
+_00302_DS_                        000003C8
+_00306_DS_                        00000118
+_00308_DS_                        000003CC
+_00322_DS_                        00000070
+_00325_DS_                        00000170
+_00328_DS_                        00000366
+_00330_DS_                        0000037E
+_00340_DS_                        00000082
+_00349_DS_                        000000CC
+_00353_DS_                        00000134
+_00356_DS_                        0000015E
+_00360_DS_                        00000188
+_00367_DS_                        00000152
+_00368_DS_                        00000114
+_10347_DS_                        0000003A
+_20348_DS_                        00000040
+_30349_DS_                        00000046
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_BAUDCON                          00000000
+_BAUDCON1                         00000000
+_BAUDCON1bits                     00000000
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 61
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_BAUDCON2                         00000000
+_BAUDCON2bits                     00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTL1                         00000000
+_BAUDCTL1bits                     00000000
+_BAUDCTL2                         00000000
+_BAUDCTL2bits                     00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+_CCP3CON                          00000000
+_CCP3CONbits                      00000000
+_CCP4CON                          00000000
+_CCP4CONbits                      00000000
+_CCP5CON                          00000000
+_CCP5CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CCPR3                            00000000
+_CCPR3H                           00000000
+_CCPR3L                           00000000
+_CCPR4                            00000000
+_CCPR4H                           00000000
+_CCPR4L                           00000000
+_CCPR5                            00000000
+_CCPR5H                           00000000
+_CCPR5L                           00000000
+_CMCON                            00000000
+_CMCONbits                        00000000
+_CVRCON                           00000000
+_CVRCONbits                       00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+_DDRCbits                         00000000
+_DDRD                             00000000
+_DDRDbits                         00000000
+_DDRE                             00000000
+_DDREbits                         00000000
+_DDRF                             00000000
+_DDRFbits                         00000000
+_DDRG                             00000000
+_DDRGbits                         00000000
+_DDRH                             00000000
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 62
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_DDRHbits                         00000000
+_DDRJ                             00000000
+_DDRJbits                         00000000
+_DisplayString                    00000000
+_EBSTCON                          00000000
+_EBSTCONbits                      00000000
+_EBSTCS                           00000000
+_EBSTCSH                          00000000
+_EBSTCSL                          00000000
+_EBSTSD                           00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP1CON                         00000000
+_ECCP1CONbits                     00000000
+_ECCP1DEL                         00000000
+_ECCP1DELbits                     00000000
+_ECCP2AS                          00000000
+_ECCP2ASbits                      00000000
+_ECCP2CON                         00000000
+_ECCP2CONbits                     00000000
+_ECCP2DEL                         00000000
+_ECCP2DELbits                     00000000
+_ECCP3AS                          00000000
+_ECCP3ASbits                      00000000
+_ECCP3CON                         00000000
+_ECCP3CONbits                     00000000
+_ECCP3DEL                         00000000
+_ECCP3DELbits                     00000000
+_ECON1                            00000000
+_ECON1bits                        00000000
+_ECON2                            00000000
+_ECON2bits                        00000000
+_EDATA                            00000000
+_EDATAbits                        00000000
+_EDMACS                           00000000
+_EDMACSH                          00000000
+_EDMACSL                          00000000
+_EDMADST                          00000000
+_EDMADSTH                         00000000
+_EDMADSTL                         00000000
+_EDMAND                           00000000
+_EDMANDH                          00000000
+_EDMANDL                          00000000
+_EDMAST                           00000000
+_EDMASTH                          00000000
+_EDMASTL                          00000000
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EFLOCON                          00000000
+_EFLOCONbits                      00000000
+_EHT0                             00000000
+_EHT1                             00000000
+_EHT2                             00000000
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 63
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_EHT3                             00000000
+_EHT4                             00000000
+_EHT5                             00000000
+_EHT6                             00000000
+_EHT7                             00000000
+_EIE                              00000000
+_EIEbits                          00000000
+_EIR                              00000000
+_EIRbits                          00000000
+_EPAUS                            00000000
+_EPAUSH                           00000000
+_EPAUSL                           00000000
+_EPKTCNT                          00000000
+_EPMCS                            00000000
+_EPMCSH                           00000000
+_EPMCSL                           00000000
+_EPMM0                            00000000
+_EPMM1                            00000000
+_EPMM2                            00000000
+_EPMM3                            00000000
+_EPMM4                            00000000
+_EPMM5                            00000000
+_EPMM6                            00000000
+_EPMM7                            00000000
+_EPMO                             00000000
+_EPMOH                            00000000
+_EPMOL                            00000000
+_ERDPT                            00000000
+_ERDPTH                           00000000
+_ERDPTL                           00000000
+_ERXFCON                          00000000
+_ERXFCONbits                      00000000
+_ERXND                            00000000
+_ERXNDH                           00000000
+_ERXNDL                           00000000
+_ERXRDPT                          00000000
+_ERXRDPTH                         00000000
+_ERXRDPTL                         00000000
+_ERXST                            00000000
+_ERXSTH                           00000000
+_ERXSTL                           00000000
+_ERXWRPT                          00000000
+_ERXWRPTH                         00000000
+_ERXWRPTL                         00000000
+_ESTAT                            00000000
+_ESTATbits                        00000000
+_ETXND                            00000000
+_ETXNDH                           00000000
+_ETXNDL                           00000000
+_ETXST                            00000000
+_ETXSTH                           00000000
+_ETXSTL                           00000000
+_EWOLIE                           00000000
+_EWOLIEbits                       00000000
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 64
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_EWOLIR                           00000000
+_EWOLIRbits                       00000000
+_EWRPT                            00000000
+_EWRPTH                           00000000
+_EWRPTL                           00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_IPR3                             00000000
+_IPR3bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LATD                             00000000
+_LATDbits                         00000000
+_LATE                             00000000
+_LATEbits                         00000000
+_LATF                             00000000
+_LATFbits                         00000000
+_LATG                             00000000
+_LATGbits                         00000000
+_LATH                             00000000
+_LATHbits                         00000000
+_LATJ                             00000000
+_LATJbits                         00000000
+_LCDInit                          00000000
+_LCDText                          00000000
+_LCDUpdate                        00000000
+_MAADR1                           00000000
+_MAADR2                           00000000
+_MAADR3                           00000000
+_MAADR4                           00000000
+_MAADR5                           00000000
+_MAADR6                           00000000
+_MABBIPG                          00000000
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 65
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_MACLCON1                         00000000
+_MACLCON1bits                     00000000
+_MACLCON2                         00000000
+_MACLCON2bits                     00000000
+_MACON1                           00000000
+_MACON1bits                       00000000
+_MACON2                           00000000
+_MACON2bits                       00000000
+_MACON3                           00000000
+_MACON3bits                       00000000
+_MACON4                           00000000
+_MACON4bits                       00000000
+_MAIPG                            00000000
+_MAIPGH                           00000000
+_MAIPGL                           00000000
+_MAMXFL                           00000000
+_MAMXFLH                          00000000
+_MAMXFLL                          00000000
+_MEMCON                           00000000
+_MEMCONbits                       00000000
+_MICMD                            00000000
+_MICMDbits                        00000000
+_MICON                            00000000
+_MICONbits                        00000000
+_MIRD                             00000000
+_MIRDH                            00000000
+_MIRDL                            00000000
+_MIREGADR                         00000000
+_MISTAT                           00000000
+_MISTATbits                       00000000
+_MIWR                             00000000
+_MIWRH                            00000000
+_MIWRL                            00000000
+_OSCCON                           00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIE3                             00000000
+_PIE3bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PIR3                             00000000
+_PIR3bits                         00000000
+_PLUSW0                           00000000
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 66
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PORTA                            00000000
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTD                            00000000
+_PORTDbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_PORTF                            00000000
+_PORTFbits                        00000000
+_PORTG                            00000000
+_PORTGbits                        00000000
+_PORTH                            00000000
+_PORTHbits                        00000000
+_PORTJ                            00000000
+_PORTJbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+_PR2                              00000000
+_PR4                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_PSPCON                           00000000
+_PSPCONbits                       00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCREG1                           00000000
+_RCREG2                           00000000
+_RCSTA                            00000000
+_RCSTA1                           00000000
+_RCSTA1bits                       00000000
+_RCSTA2                           00000000
+_RCSTA2bits                       00000000
+_RCSTAbits                        00000000
+_SPBRG                            00000000
+_SPBRG1                           00000000
+_SPBRG2                           00000000
+_SPBRGH                           00000000
+_SPBRGH1                          00000000
+_SPBRGH2                          00000000
+_SSP1ADD                          00000000
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 67
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_SSP1BUF                          00000000
+_SSP1CON1                         00000000
+_SSP1CON1bits                     00000000
+_SSP1CON2                         00000000
+_SSP1CON2bits                     00000000
+_SSP1STAT                         00000000
+_SSP1STATbits                     00000000
+_SSP2ADD                          00000000
+_SSP2BUF                          00000000
+_SSP2CON1                         00000000
+_SSP2CON1bits                     00000000
+_SSP2CON2                         00000000
+_SSP2CON2bits                     00000000
+_SSP2STAT                         00000000
+_SSP2STATbits                     00000000
+_SSPADD                           00000000
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_T4CON                            00000000
+_T4CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TMR4                             00000000
+_TOS                              00000000
+_TOSH                             00000000
+_TOSL                             00000000
+_TOSU                             00000000
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 68
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_TRISA                            00000000
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISD                            00000000
+_TRISDbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TRISF                            00000000
+_TRISFbits                        00000000
+_TRISG                            00000000
+_TRISGbits                        00000000
+_TRISH                            00000000
+_TRISHbits                        00000000
+_TRISJ                            00000000
+_TRISJbits                        00000000
+_TXREG                            00000000
+_TXREG1                           00000000
+_TXREG2                           00000000
+_TXSTA                            00000000
+_TXSTA1                           00000000
+_TXSTA1bits                       00000000
+_TXSTA2                           00000000
+_TXSTA2bits                       00000000
+_TXSTAbits                        00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+_WREG                             00000000
+__18F97J60                        00000001
+___fs2ulong                       00000000
+___fsadd                          00000000
+___fsdiv                          00000000
+___ulong2fs                       00000000
+__divsint                         00000000
+__divulong                        00000000
+__gptrget1                        00000000
+__gptrput1                        00000000
+__modsint                         00000000
+__modulong                        00000000
+__mullong                         00000000
+__str_0                           00000072
+__str_1                           00000094
+__str_10                          000001EA
+__str_11                          00000212
+__str_12                          0000023A
+__str_13                          00000266
+__str_14                          00000292
+__str_2                           000000BC
+__str_3                           000000E4
+__str_4                           0000010C
+__str_5                           0000012E
+__str_6                           00000150
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 69
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+__str_7                           00000172
+__str_8                           00000198
+__str_9                           000001BE
+_ahour                            00000008
+_ahour_o                          0000000A
+_alarm                            00000000
+_alarm_set                        0000000C
+_amin                             00000009
+_amin_o                           0000000B
+_button                           00000000
+_button1                          00000011
+_button2                          00000012
+_chandelle                        00000000
+_decisec                          00000000
+_display                          00000000
+_ds                               00000000
+_h                                00000000
+_high_isr                         00000000
+_inc_ahour                        00000000
+_inc_amin                         00000000
+_low_isr                          00000000
+_m                                00000000
+_main                             00000000
+_on                               00000010
+_overflows                        00000001
+_refresh_lcd                      00000000
+_s                                00000000
+_sec                              00000000
+_snooze                           0000000D
+_sprintf                          00000000
+_stdin                            00000000
+_stdout                           00000000
+_stop_ringing                     0000000E
+_strlcpy                          00000000
+_strlen                           00000000
+_thour                            00000005
+_time                             00000000
+_tmin                             00000006
+_tsec                             00000007
+_whereami                         0000000F
+ivec_0x1_high_isr                 00000008
+ivec_0x2_low_isr                  00000018
+r0x00                             00000000
+r0x01                             00000001
+r0x02                             00000002
+r0x03                             00000003
+r0x04                             00000004
+r0x05                             00000005
+r0x06                             00000006
+r0x07                             00000007
+r0x08                             00000008
+r0x09                             00000009
+r0x0a                             0000000A
+r0x0b                             0000000B
+gpasm-0.13.7 beta               Objects/lena.asm10-26-2013  19:26:19         PAGE 70
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+r0x0c                             0000000C
+r0x0d                             0000000D
+r0x0e                             0000000E
+r0x0f                             0000000F
+r0x10                             00000010
+r0x11                             00000011
+r0x12                             00000012
+r0x13                             00000013
+r0x14                             00000014
+r0x15                             00000015
+
+
+Errors   :       0
+Warnings :       0 reported,       0 suppressed
+Messages :       0 reported,       0 suppressed
+

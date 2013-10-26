@@ -207,7 +207,7 @@ void time(void)
     ds = decisec%10;
     h = (sec/3600)%24;
     m = (sec-(sec/3600)*3600)/60;
-    s = sec-m*60;
+    s = sec-h*3600-m*60;
     
     // si l'heure a changé par rapport à la dernière calculée, on la change
     if (tsec != s)
@@ -397,24 +397,13 @@ void button(void)
                 whereami = SET_HOUR;
                 break;
             case SET_HOUR: // ADD
-                thour++;
-                if (thour == 24) {
-                    thour = 0;
-                }
+                overflows += F*3600;
                 break;
             case SET_MINUTE: // ADD
-                if (tmin == 59) {
-                    tmin = 0;
-                } else {
-                    tmin++;
-                }
+                overflows += F*60;
                 break;
             case SET_SECOND: // ADD
-                if (tsec == 59) {
-                    tsec = 0;
-                } else {
-                    tsec++;
-                }
+                overflows += F;
                 break;
             case ALARM_MENU: // SELECT
                 whereami = SET_ALARM;
