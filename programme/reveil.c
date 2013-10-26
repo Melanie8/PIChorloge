@@ -65,13 +65,13 @@
 #define F 95.365555556 // nombre d'overflows du timer0 en 1 seconde
 
 /* déclarations des fonctions */
-void inc_ahour(BYTE val);
-void inc_amin(BYTE val);
-
 void time(void);
 void refresh_lcd(void);
 void alarm(void);
 void button(void);
+
+void inc_ahour(BYTE val);
+void inc_amin(BYTE val);
 
 void DisplayString(BYTE pos, char* text);
 void DisplayWORD(BYTE pos, WORD w);
