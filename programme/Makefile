@@ -18,40 +18,35 @@ SDCC_HEADERS=/usr/local/share/sdcc/include/string.h \
 SDCC_PIC16_HEADERS=/usr/local/share/sdcc/include/pic16/pic18f97j60.h
 
 TCPIP_HEADERS=   Include/TCPIP_Stack/ETH97J60.h \
-   Include/TCPIP_Stack/LCDBlocking.h 
+   Include/TCPIP_Stack/LCDBlocking.h  
 
 APP_HEADERS=Include/GenericTypeDefs.h \
    Include/Compiler.h \
-   Include/HardwareProfile.h
+   Include/HardwareProfile.h \
+   helper.h
 
-reveil : Objects/reveil.o $(OBJECTS)
-	$(LD) $(LDFLAGS) Objects/reveil.o $(OBJECTS)
+reveil : Objects/reveil.o Objects/helper.o $(OBJECTS)
+	$(LD) $(LDFLAGS) Objects/reveil.o Objects/helper.o $(OBJECTS)
 
-findfreq : Objects/findfreq.o $(OBJECTS)
-	$(LD) $(LDFLAGS) Objects/findfreq.o $(OBJECTS)
+findfreq : Objects/findfreq.o Objects/helper.o $(OBJECTS)
+	$(LD) $(LDFLAGS) Objects/findfreq.o Objects/helper.o $(OBJECTS)
 
 Objects/reveil.o : reveil.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
    $(APP_HEADERS) $(TCPIP_HEADERS)
 	$(CC) $(CFLAGS) reveil.c
 
-Objects/melanie.o : melanie.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
-   $(APP_HEADERS) $(TCPIP_HEADERS)
-	$(CC) $(CFLAGS) melanie.c
-
 Objects/findfreq.o : findfreq.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
    $(APP_HEADERS) $(TCPIP_HEADERS)
 	$(CC) $(CFLAGS) findfreq.c
 
+Objects/helper.o : helper.c $(SDCC_HEADERS) $(SDCC_PIC16_HEADERS) \
+   $(APP_HEADERS) $(TCPIP_HEADERS)
+	$(CC) $(CFLAGS) helper.c
 
 Objects/LCDBlocking.o : TCPIP_Stack/LCDBlocking.c $(SDCC_HEADERS)  \
    $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)
 	$(CC) -c -mpic16 -p18f97j60  -o"Objects/LCDBlocking.o" \
               -L/usr/local/lib/pic16  TCPIP_Stack/LCDBlocking.c
 
-Objects/Tick.o : TCPIP_Stack/Tick.c  $(SDCC_HEADERS)  \
-   $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)
-	$(CC) -c -mpic16 -p18f97j60  -o"Objects/Tick.o" \
-              -L/usr/local/lib/pic16  TCPIP_Stack/Tick.c
-
 clean : 
-	$(RM) -rf *.o *.cod *.lst Objects/*.asm Objects/*.lst Objects/*.o
+	$(RM) -rf *.o *.cod *.lst Objects/*.*
