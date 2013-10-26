@@ -40,22 +40,14 @@
 #define SNOOZE_MINUTE 5
 #define SNOOZE_MAX 12 // tester avec une autre valeur ##
 
-/* OPS est le nombre d'overflows du timer0 en 1 seconde, que nous avons mesuré
- * dans findfreq. Pour être plus précis, toutes les PER pseudosecondes (càd après
- * PER*OPS overflows), il faudra retirer CUT nombre d'overflows
- */
-#define OPS 95
-#define PER 5
-#define CUT 2
+#define F 95.365555556
 
-void inc_tsec(BYTE val);
 void inc_ahour(BYTE val);
 void inc_amin(BYTE val);
 void dec_ahour(BYTE val);
 void dec_amin(BYTE val);
-void manageseconds(void);
 
-void time(void);
+void alarm(void);
 void button(void);
 void refresh_lcd(void);
 
@@ -65,38 +57,47 @@ size_t strlcpy(char *dst, const char *src, size_t siz);
 
 BYTE chandelle = 1; // ##
 
-/* l'heure actuelle */
+/* compteur du nombre d'overflows du timer0 */
+QWORD overflows = 0;
+
+/* variables utiles pour le calcul de l'heure actuelle */
+QWORD sec;
+QWORD decisec;
+WORD ds;
+BYTE h;
+BYTE m;
+BYTE s;
+
+/* la dernière heure affichée */
 BYTE thour = 0;
 BYTE tmin = 0;
 BYTE tsec = 0;
 
-/* l'heure de l'alarme */
-BYTE alarm_set = 0; // indique si l'alarme est mise
+/* l'heure de l'alarme (si on snooze, elle change) */
 BYTE ahour = 0;
 BYTE amin = 0;
 
-/* l'heure originelle de l'alarme */
+/* l'heure originelle de l'alarme (si on snooze, elle ne change pas) */
 BYTE ahour_o = 0;
 BYTE amin_o = 0;
 
 /* l'état de l'alarme */
+BYTE alarm_set = 0; // indique si l'alarme est mise
 BYTE snooze = 0; // compteur du nombre de snooze
 BYTE stop_ringing = 0; // indique si on a eteint le réveil
 
 /* l'état du réveil */
 BYTE whereami = 0;
 
-/* seconde et demi-seconde */
-BYTE new_time = 0; // compteur de secondes
-BYTE halfsecond = 0; // flag demi-seconde
+/* état de la led jaune */
+BYTE on = 0;
 
 /* les boutons */
 BYTE button1 = 0; // flag pour le boutton 1
 BYTE button2 = 0; // flag pour le bouton 2
 
-/* variables utiles pour que la seconde soit précise */
-int overflows = 0; // nombre d'overflows du timer0
-int pseudoseconds = 0; // compteur du nombre de secondes écoulées présumées sur base de OPS, utile pour savoir quand on devra décrémenter overflows de CUT pour retrouver notre précision d'une seconde (cela se fera quand pseudoseconds vaudra PER et il sera alors remis à 0)
+/* string pour l'affichage sur le LCD */
+CHAR display[32];
 
 
 /* Interruption de priorité haute : liée au temps */
@@ -105,16 +106,6 @@ void high_isr (void) interrupt 1
     // après chaque overflow, on incrémente overflows
     if (INTCONbits.T0IF) {
         overflows++;
-        // quand on est au demi-overflow, on met le flag halfsecond à 1 (juste utile pour les LED)
-        if (overflows == OPS/2) {
-            halfsecond = 1;
-        }
-        // quand on overflow, on incrémente nos compteurs de nombres de secondes (celui lié à la modification de l'heure actuelle et celui lié au réglage précis de la seconde) et on remets le nombre d'overflows à 0
-        if (overflows == OPS) {
-            pseudoseconds++;
-            new_time++;
-            overflows = 0;
-        }
         INTCONbits.T0IF = 0;
     }
     
@@ -170,8 +161,6 @@ void main() {
     INTCON3bits.INT1F   = 0; //clear INT1 flag
     INTCON3bits.INT1IP  = 0; //low priority
     INTCON2bits.INT3IP  = 0; //low priority
-    //INTCON2bits.INTEDG1 = 0; //INT1 interrupts on falling edge ?????
-    //INTCON2bits.INTEDG3 = 0; //INT3 interrupts on falling edge ?????
     
     //////////////////////////////////////////////
     
@@ -182,32 +171,10 @@ void main() {
     
     T0CONbits.TMR0ON = 1; // start timer0
     while (1) {
-        time();
-        manageseconds();
-        button();
         refresh_lcd();
+        alarm();
+        button();
     }
-}
-
-
-/* Fonction qui incrémente les secondes de l'horloge */
-void inc_tsec(BYTE val)
-{
-    BYTE mod_tsec;
-    BYTE mod_tmin;
-    
-    mod_tsec = (tsec + val) / 60;
-    if (mod_tsec) {
-        
-        mod_tmin = (tmin + mod_tsec) / 60;
-        if (mod_tmin) {
-            thour = (thour + mod_tmin) % 24;
-        }
-        
-        tmin = (tmin + mod_tsec) % 60;
-    }
-    
-    tsec = (tsec + val) % 60;
 }
 
 /* Fonction qui incrémente les heures du réveil */
@@ -253,22 +220,107 @@ void dec_amin(BYTE val)
     }
 }
 
-/* Fonction qui met l'heure à jour et lance le réveil */
-void time(void)
+void refresh_lcd(void)
 {
-    // on fait d'office clignoter la LED jaune avec une période de 1s
-    if (halfsecond) {
+    sec = overflows/F;
+    decisec = ((10*overflows)/F);
+    ds = decisec%10;
+    h = (sec/3600)%24;
+    m = (sec-(sec/3600)*3600)/60;
+    s = sec-m*60;
+    
+    if (!on && ds < 5) {
         LED0_IO ^= 1;
-        halfsecond = 0;
+        if (whereami == ALARM) {
+            LED1_IO ^= 1;
+            LED2_IO ^= 1;
+        }
+        on = 1;
+    }
+    if (on && ds >= 5) {
+        LED0_IO ^= 1;
+        if (whereami == ALARM) {
+            LED1_IO ^= 1;
+            LED2_IO ^= 1;
+        }
+        on = 0;
     }
     
-    // vérifie si min. 1 seconde est passée
-    if (new_time) {
-        inc_tsec(new_time);
-        new_time = 0;
-        
-        LED0_IO ^= 1;
+    if (tsec != s)
+        tsec = s;
+    if (tmin != m)
+        tmin = m;
+    if (thour != h)
+        thour = h;
+    
+    switch (whereami) {
+        case TIME_MENU:
+            sprintf(display, "Do you want to  set the time ?  ");
+            break;
+        case SET_HOUR:
+            sprintf(display, " [%02u]: %02u : %02u                  ",
+                    thour, tmin, tsec);
+            break;
+        case SET_MINUTE:
+            sprintf(display, "  %02u :[%02u]: %02u                  ",
+                    thour, tmin, tsec);
+            break;
+        case SET_SECOND:
+            sprintf(display, "  %02u : %02u :[%02u]                 ",
+                    thour, tmin, tsec);
+            break;
+        case ALARM_MENU:
+            sprintf(display, "Do you want to  set the alarm ? ");
+            break;
+        case SET_ALARM:
+            if (alarm_set) {
+                sprintf(display, "  Alarm [ON ]                   ");
+            } else {
+                sprintf(display, "  Alarm [OFF]                   ");
+            }
+            break;
+        case SET_A_HOUR:
+            sprintf(display, "    Alarm at        [%02u]: %02u    ",
+                    ahour, amin);
+            break;
+        case SET_A_MIN:
+            sprintf(display, "    Alarm at         %02u :[%02u]   ",
+                    ahour, amin);
+            break;
+        case DISPLAY:
+            if (alarm_set) {
+                sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
+                        thour, tmin, tsec, ahour, amin);
+            } else {
+                sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
+                        thour, tmin, tsec);
+            }
+            break;
+        case ALARM:
+            sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
+                    thour, tmin, tsec); // ***blink***
+            break;
+        case SNOOZE:
+            if (snooze < 10) {
+                sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
+                        thour, tmin, tsec, snooze, ahour_o, amin_o);
+            } else {
+                sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
+                        thour, tmin, tsec, snooze, ahour_o, amin_o);
+            }
+            
+            break;
+        default:
+            sprintf(display, "**** ERROR ********* ERROR *****");
+            break;
     }
+    DisplayString(0, display);
+}
+
+
+/* Fonction qui met l'heure à jour et lance le réveil */
+void alarm(void)
+{
     
     // vérifie si l'heure de réveil est atteinte et si l'alarme est mise
     if ((thour == ahour) && (tmin == amin) && alarm_set) {
@@ -277,10 +329,6 @@ void time(void)
         if ((tsec < 31) && (stop_ringing == 0)) {
             if ((whereami == DISPLAY) || (whereami == SNOOZE)) {
                 whereami = ALARM;
-            }
-            if (whereami == ALARM) {
-                LED1_IO ^= 1; //change state of red leds
-                LED2_IO ^= 1; //change state of red leds
             }
         // éteint l'alarme au bout de 30 secondes 
         } else if (tsec > 30) {
@@ -298,14 +346,6 @@ void time(void)
                                             // normal
             }
         }
-    }
-}
-
-/* fonction qui gère la correction pour que la seconde soit précise */
-void manageseconds() {
-    if (pseudoseconds >= PER) {
-        overflows = overflows - CUT;
-        pseudoseconds = pseudoseconds - PER;
     }
 }
 
@@ -437,74 +477,6 @@ void button(void)
         }
         button2 = 0; // remet le flag du boutton 2 à 0
     }
-}
-
-void refresh_lcd(void)
-{
-    CHAR display[32]; // buffer pour l'affichage
-    
-    switch (whereami) {
-        case TIME_MENU:
-            sprintf(display, "Do you want to  set the time ?  ");
-            break;
-        case SET_HOUR:
-            sprintf(display, " [%02u]: %02u : %02u                  ",
-                    thour, tmin, tsec);
-            break;
-        case SET_MINUTE:
-            sprintf(display, "  %02u :[%02u]: %02u                  ",
-                    thour, tmin, tsec);
-            break;
-        case SET_SECOND:
-            sprintf(display, "  %02u : %02u :[%02u]                 ",
-                    thour, tmin, tsec);
-            break;
-        case ALARM_MENU:
-            sprintf(display, "Do you want to  set the alarm ? ");
-            break;
-        case SET_ALARM:
-            if (alarm_set) {
-                sprintf(display, "  Alarm [ON ]                   ");
-            } else {
-                sprintf(display, "  Alarm [OFF]                   ");
-            }
-            break;
-        case SET_A_HOUR:
-            sprintf(display, "    Alarm at        [%02u]: %02u    ",
-                    ahour, amin);
-            break;
-        case SET_A_MIN:
-            sprintf(display, "    Alarm at         %02u :[%02u]   ",
-                    ahour, amin);
-            break;
-        case DISPLAY:
-            if (alarm_set) {
-                sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
-                        thour, tmin, tsec, ahour, amin);
-            } else {
-                sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
-                        thour, tmin, tsec);
-            }
-            break;
-        case ALARM:
-            sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
-                    thour, tmin, tsec); // ***blink***
-            break;
-        case SNOOZE:
-            if (snooze < 10) {
-                sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
-                        thour, tmin, tsec, snooze, ahour_o, amin_o);
-            } else {
-                sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
-                        thour, tmin, tsec, snooze, ahour_o, amin_o);
-            }
-            
-            break;
-        default:
-            sprintf(display, "**** ERROR ********* ERROR *****");
-            break;
-    }
-    DisplayString(0, display);
 }
 
 #if defined(__SDCC__)
