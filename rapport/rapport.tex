@@ -118,6 +118,8 @@
 %--------------------------------------------------------------------------
 
 \section{Documentation pour l'utilisateur}
+% Le mode d'emploi de votre programme lorsqu'il est installé sur le PIC (documentation pour l'utilisateur)
+
 Le réveil se compose de~:
 \begin{itemize}
 \item[1] écran LCD
@@ -127,24 +129,66 @@ Le réveil se compose de~:
 \item[1] bouton SELECT/ADD/SNOOZE (bouton 2)
 \end{itemize}
 
+Il comporte un mode d'affichage, un menu de l'horloge et un menu du réveil.
+
 \subsection{Première utilisation}
 Par défaut, l'horloge commence à 00~:~00~:~00, l'alarme est désactivée et réglée pour 00~:~00.
-Lors de la mise sous tension du réveil, vous entrez dans le menu de l'horloge. Poussez SELECT si vous désirez changer l'heure, NEXT sinon.
+Lors de la mise sous tension du réveil, vous entrez dans le menu de l'horloge.
+Poussez SELECT si vous désirez changer l'heure, NEXT sinon.
 Dans le premier cas, vous pouvez alors incrémenter les heures en appuyant sur ADD. Pour passer aux minutes et ensuite aux secondes, il suffit d'appuyer sur NEXT. Les crochets vous indiquent quelle valeur est en cours de modification.
-Arrivé aux secondes, le bouton NEXT vous donne accès au menu de l'alarme, ou vous vous trouvez aussi si vous n'avez pas changé l'heure. Pour quitter le menu, poussez le bouton NEXT; pour régler l'alarme, poussez le bouton SELECT. En appuyant sur ADD, vous pouvez activer ou désactiver l'alarme. L'écran vous indique l'état actuel par ON ou OFF. Le bouton NEXT vous fait accéder à l'heure de l'alarme, dont vous pouvez changer la valeur en poussant sur ADD. NEXT vous permet de modifier les secondes avec le bouton ADD. Enfin, le bouton NEXT vous fait quitter le menu.
+Arrivé aux secondes, le bouton NEXT vous donne accès au menu de l'alarme, ou vous vous trouvez aussi si vous n'avez pas changé l'heure. Pour quitter le menu, poussez le bouton NEXT; pour régler l'alarme, poussez le bouton SELECT. En appuyant sur ADD, vous pouvez activer ou désactiver l'alarme. L'écran vous indique l'état actuel par ON ou OFF. Le bouton NEXT vous fait accéder à l'heure de l'alarme, dont vous pouvez changer la valeur en poussant sur ADD. NEXT vous permet de modifier les minutes avec le bouton ADD. Enfin, le bouton NEXT vous fait quitter le menu et vous amène à l'affichage de l'heure.
 
 \subsection{L'affichage}
-Le réveil affiche l'heure sous le format HH~:~MM~:~SS sur la première ligne de l'écran. La seconde indique si l'alarme est mise (Alarm ON) ou non (Alarm OFF) et à quelle heure elle est réglée. Pour accéder au menu, il suffit d'appuyer sur le bouton MENU et de le parcourir avec les boutons NEXT et SELECT. La LED jaune clignote en continu pour afficher le bon fonctionnement du réveil.
+Le réveil affiche l'heure sous le format hh~:~mm~:~ss sur la première ligne de l'écran. La seconde indique si l'alarme est mise (Alarm ON) ou non (Alarm OFF) et à quelle heure elle est réglée. Pour accéder au menu, il suffit d'appuyer sur le bouton MENU et de le parcourir avec les boutons NEXT et SELECT. La LED jaune clignote en continu toutes les secondes pour afficher le bon fonctionnement du réveil.
 
 \subsection{Le réveil}
-Lorsque le réveil sonne en faisant clignoter les deux LED rouges, il y a deux options possibles. Soit vous souhaitez l'éteindre; il suffit alors d'appuyer sur STOP. Le réveil sonnera à nouveau dans 24 heures. Soit vous désirez reporter le réveil de 5 minutes; appuyez alors sur SNOOZE. L'écran vous affiche maintenant l'heure en cours, le nombre de snobes effectués et l'heure de réveil d'origine. Pendant le mode snooze, ou à chaque fois que le réveil sonne à nouveau, vous pouvez reporter le réveil de 5 minutes supplémentaires, jusqu'à un maximum de 60 minutes au total. Vous pouvez aussi à tout moment appuyer sur STOP, ce qui aura pour effet de revenir à l'affichage normal de l'heure et de remettre l'alarme à l'heure d'origine pour une nouvelle utilisation le lendemain.
+Lorsque le réveil sonne, les deux LED rouges clignotent. La sonnerie dure 30 secondes, délai après lequel le réveil s'éteint automatiquement. Il reste activé pour une prochaine utilisation le lendemain.
+Lors de l'alarme, il y a deux options possibles. Soit vous souhaitez l'éteindre; il suffit alors d'appuyer sur STOP. Le réveil sonnera à nouveau dans 24 heures. Soit vous désirez reporter le réveil de 5 minutes; appuyez alors sur SNOOZE. L'écran vous affiche maintenant l'heure en cours, le nombre de snoozes effectués et l'heure de réveil d'origine. Pendant le mode snooze, ou à chaque fois que le réveil sonne à nouveau, vous pouvez reporter le réveil de 5 minutes supplémentaires, jusqu'à un maximum de 60 minutes au total. Vous pouvez aussi à tout moment appuyer sur STOP, ce qui aura pour effet de revenir à l'affichage normal de l'heure et de remettre l'alarme à l'heure d'origine pour une nouvelle utilisation le lendemain.
 
 Il n'est pas possible d'accéder au menu tant que le réveil n'a pas été éteint. De même, tant que vous êtes dans le menu, le réveil ne sonne pas, pour ne pas interférer avec d'éventuels changements en cours.
 
-
+\pagebreak
 \section{Documentation pour l'installateur}
+% Les instructions décrivant comment compiler, installer sur le PIC et tester votre programme (documentation pour l'installateur)
+Le dossier comprend deux programmes~:
+\begin{itemize}
+\item \texttt{alarm.c}, le réveil % #### CHANGER LE NOM ####
+\item \texttt{findfreq.c} pour déterminer la fréquence du PIC.
+\end{itemize}
+Les instructions suivantes décrivent les étapes à suivre pour installer le réveil sur le PIC. La procédure est la même pour le second programme, il faut juste changer le nom.
 
+\subsection{Compilation}
+Pour compiler \texttt{alarm.c}, allez dans le dossier \texttt{PIChorloge/programme/} et tapez la commande \texttt{make alarm} dans le terminal.
+
+\subsection{Installation}
+Commencez par brancher le câble d'alimentation du PIC au routeur et mettez-le sous tension (220V AC). Branchez le PIC au port 3 du routeur à l'aide d'un des câbles ethernet; branchez ensuite votre ordinateur au port 2 du routeur avec l'autre câble ethernet. La LED du port 2 du routeur doit s'allumer.
+
+Dans le terminal, tapez les commandes suivantes pour vous connecter au routeur et transférer le fichier \texttt{alarm.hex} au PIC~:
+\begin{verbatim}
+    my_computer $ tftp 192.168.97.60
+    my_computer $ tftp> put alarm.hex
+\end{verbatim}
+Avant d'appuyer sur ``enter'' pour le seconde commande, resetter le PIC (petit bouton derrière le port ethernet) et attendez que le LED du port 3 du routeur s'allume. Vous avez à présent 3 secondes pour faire le transfert.\\
+Pour quitter le client tftp, tapez
+\begin{verbatim}
+    my_computer $ tftp> quit
+\end{verbatim}
+Le programme se lance automatiquement sur le PIC. Pour le faire redémarrez, appuyer sur le bouton ``reset''.
+
+\pagebreak
 
 \section{Documentation pour le programmeur}
-
+% Tout ce qui est nécessaire à un programmeur qui devrait adapter votre programme (documentation pour le programmeur), c'est-à dire, par exemple:
+	% Quelle est la fonction du programme (spécification)
+    % Quels sont les choix structurels du programme (p. ex. il fonctionne par interruptions et pourquoi)
+    % Quelle méthode avez-vous choisie pour mesurer des délais au moyen des timers du PIC et pourquoi
+    % Quels sont les autres décisions d'implémentation que vous avez prises et pourquoi vous avez fait ces choix là plutôt que d'autres (même si la raison est que c'est la première idée qui vous est passée par la tête!)
+    % Quels sont les détails techniques du PIC qu'il faut avoir en tête pour comprendre le programme
+    \subsection{Spécifications}
+    \subsection{Fréquence du PIC}
+    \subsection{Choix d'implémentation}
+    \subsubsection{Mesure des secondes}
+    \subsubsection{Interruptions}
+    \subsection{Détails techniques}
+    
 \end{document}
