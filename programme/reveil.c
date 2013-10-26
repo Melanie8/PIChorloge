@@ -29,7 +29,7 @@
       déclenche (càd lorsque l'état du réveil indiqué dans la variable
       'whereami' a changé);
     - s'il faut déclencher ou arrêter l'alarme;
-    - s'il faut changer d'état ou la valeur d'une variabel suite à
+    - s'il faut changer d'état ou la valeur d'une variable suite à
       l'actionnement d'un bouton.
  
  *****************************************************************************/
