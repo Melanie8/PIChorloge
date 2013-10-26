@@ -405,8 +405,11 @@ void button(void)
                 //overflows -= (inchour/24)*F*3600;
                 break;
             case SET_MINUTE: // ADD
-                overflows += F*60;
-                overflows -= (incmin/60)*F*3600;
+                if (tsec==59)
+                    overflows -= 59*F*3600;
+                else
+                    overflows += F*60;
+                //overflows -= (incmin/60)*F*3600;
                 break;
             case SET_SECOND: // ADD
                 overflows += F;
