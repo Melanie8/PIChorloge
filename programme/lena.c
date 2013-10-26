@@ -1,17 +1,10 @@
-/*H*********************************************************************H*
- *
- * FILENAME :       reveil.c
- *
- * DESCRIPTION :    
- *
- * NOTES :
- *
- * AUTHOR :         Lena Peschke
- *                  Mélanie Sedda
- *
- * DATE :           Oct. 21st 2013
- *
- *H*********************************************************************H*/
+/******************************************************************************
+ 
+ Auteurs : Lena Peschke et Mélanie Sedda
+ ------------------------------------------------------
+ Objectif : Trouver la véritable fréquence de notre pic
+ 
+ *****************************************************************************/
 
 #define __18F97J60
 #define __SDCC__
@@ -38,7 +31,7 @@
 #define SNOOZE 11
 
 #define SNOOZE_MINUTE 5
-#define SNOOZE_MAX 12 // tester avec une autre valeur ##
+#define SNOOZE_MAX 12
 
 #define F 95.365555556
 
@@ -175,25 +168,6 @@ void main() {
         alarm();
         button();
     }
-}
-
-/* Fonction qui incrémente les heures du réveil */
-void inc_ahour(BYTE val)
-{
-    ahour = (ahour + val) % 24;
-}
-
-/* Fonction qui incrémente les minutes du réveil */
-void inc_amin(BYTE val)
-{
-    // vérifie s'il faut incrémenter les heures
-    BYTE mod_amin;
-    mod_amin = (amin + val) / 60;
-    if (mod_amin) {
-        inc_ahour(mod_amin);
-    }
-    
-    amin = (amin + val) % 60;
 }
 
 /* Fonction qui décrémente les heures de l'alarme */
@@ -388,11 +362,11 @@ void button(void)
                 LATJbits.LATJ2 = 0; // switch LED 3 off
                 whereami = DISPLAY;
                 break;
-            case SNOOZE: // STOP // à vérifier ##
+            case SNOOZE: // STOP // verifier ##
+                stop_ringing = 1; // le réveil ne doit plus sonner
                 amin = amin_o; // remet le réveil
                 ahour = ahour_o;
                 snooze = 0;
-                stop_ringing = 0; // le réveil doit sonner à nouveau 
                 LATJbits.LATJ1 = 0; // switch LED 2 off
                 LATJbits.LATJ2 = 0; // switch LED 3 off
                 whereami = DISPLAY;

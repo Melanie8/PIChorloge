@@ -1,7 +1,12 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
+<<<<<<< HEAD
 ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
 ; This file was generated Sat Oct 26 15:30:39 2013
+=======
+; Version 2.9.4 #5595 (Oct 17 2013) (Mac OS X ppc)
+; This file was generated Fri Oct 25 17:07:08 2013
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -12,10 +17,18 @@
 ;--------------------------------------------------------
 ; public variables in this module
 ;--------------------------------------------------------
+<<<<<<< HEAD
 	global _inc_ahour
 	global _inc_amin
 	global _dec_ahour
 	global _dec_amin
+=======
+	global _inc_tsec
+	global _inc_amin
+	global _time
+	global _manageseconds
+	global _button
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	global _refresh_lcd
 	global _alarm
 	global _button
@@ -643,19 +656,40 @@ _main:
 	BCF	_INTCON3bits, 6
 ;	.line	163; lena.c	INTCON2bits.INT3IP  = 0; //low priority
 	BCF	_INTCON2bits, 1
+<<<<<<< HEAD
 ;	.line	167; lena.c	LCDInit();
 	CALL	_LCDInit
 ;	.line	168; lena.c	whereami = TIME_MENU;
+=======
+;	.line	176; lena.c	LCDInit();
+	CALL	_LCDInit
+;	.line	177; lena.c	whereami = TIME_MENU;
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x01
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
 	BANKSEL	_chandelle
+<<<<<<< HEAD
 ;	.line	170; lena.c	chandelle++; // ##### BIZARRE ####
 	INCF	_chandelle, F, B
 ;	.line	172; lena.c	T0CONbits.TMR0ON = 1; // start timer0
 	BSF	_T0CONbits, 7
 _00123_DS_:
 ;	.line	174; lena.c	refresh_lcd();
+=======
+;	.line	179; lena.c	chandelle++; // ##### BIZARRE ####
+	INCF	_chandelle, F, B
+;	.line	181; lena.c	T0CONbits.TMR0ON = 1; // start timer0
+	BSF	_T0CONbits, 7
+_00135_DS_:
+;	.line	183; lena.c	time();
+	CALL	_time
+;	.line	184; lena.c	manageseconds();
+	CALL	_manageseconds
+;	.line	185; lena.c	button();
+	CALL	_button
+;	.line	186; lena.c	refresh_lcd();
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	CALL	_refresh_lcd
 ;	.line	175; lena.c	alarm();
 	CALL	_alarm
@@ -667,7 +701,11 @@ _00123_DS_:
 ; ; Starting pCode block
 S_lena__strlcpy	code
 _strlcpy:
+<<<<<<< HEAD
 ;	.line	542; lena.c	strlcpy(char *dst, const char *src, size_t siz)
+=======
+;	.line	530; lena.c	strlcpy(char *dst, const char *src, size_t siz)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -708,6 +746,7 @@ _strlcpy:
 	MOVFF	PLUSW2, r0x06
 	MOVLW	0x09
 	MOVFF	PLUSW2, r0x07
+<<<<<<< HEAD
 ;	.line	544; lena.c	char       *d = dst;
 	MOVFF	r0x00, r0x08
 	MOVFF	r0x01, r0x09
@@ -725,20 +764,48 @@ _strlcpy:
 	BTFSC	STATUS, 2
 	BRA	_00392_DS_
 ;	.line	551; lena.c	while (--n != 0)
+=======
+;	.line	532; lena.c	char       *d = dst;
+	MOVFF	r0x00, r0x08
+	MOVFF	r0x01, r0x09
+	MOVFF	r0x02, r0x0a
+;	.line	533; lena.c	const char *s = src;
+	MOVFF	r0x03, r0x0b
+	MOVFF	r0x04, r0x0c
+	MOVFF	r0x05, r0x0d
+;	.line	534; lena.c	size_t      n = siz;
+	MOVFF	r0x06, r0x0e
+	MOVFF	r0x07, r0x0f
+;	.line	537; lena.c	if (n != 0)
+	MOVF	r0x06, W
+	IORWF	r0x07, W
+	BTFSC	STATUS, 2
+	BRA	_00368_DS_
+;	.line	539; lena.c	while (--n != 0)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	r0x03, r0x10
 	MOVFF	r0x04, r0x11
 	MOVFF	r0x05, r0x12
 	MOVFF	r0x06, r0x13
 	MOVFF	r0x07, r0x14
+<<<<<<< HEAD
 _00388_DS_:
+=======
+_00364_DS_:
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0xff
 	ADDWF	r0x13, F
 	BTFSS	STATUS, 0
 	DECF	r0x14, F
 	MOVF	r0x13, W
 	IORWF	r0x14, W
+<<<<<<< HEAD
 	BZ	_00407_DS_
 ;	.line	553; lena.c	if ((*d++ = *s++) == '\0')
+=======
+	BZ	_00383_DS_
+;	.line	541; lena.c	if ((*d++ = *s++) == '\0')
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	r0x10, FSR0L
 	MOVFF	r0x11, PRODL
 	MOVF	r0x12, W
@@ -760,9 +827,15 @@ _00388_DS_:
 	BTFSC	STATUS, 0
 	INCF	r0x02, F
 	MOVF	r0x15, W
+<<<<<<< HEAD
 	BNZ	_00388_DS_
 _00407_DS_:
 ;	.line	554; lena.c	break;
+=======
+	BNZ	_00364_DS_
+_00383_DS_:
+;	.line	542; lena.c	break;
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	r0x10, r0x0b
 	MOVFF	r0x11, r0x0c
 	MOVFF	r0x12, r0x0d
@@ -771,6 +844,7 @@ _00407_DS_:
 	MOVFF	r0x02, r0x0a
 	MOVFF	r0x13, r0x0e
 	MOVFF	r0x14, r0x0f
+<<<<<<< HEAD
 _00392_DS_:
 ;	.line	559; lena.c	if (n == 0)
 	MOVF	r0x0e, W
@@ -781,18 +855,39 @@ _00392_DS_:
 	IORWF	r0x07, W
 	BZ	_00406_DS_
 ;	.line	562; lena.c	*d = '\0';          /* NUL-terminate dst */
+=======
+_00368_DS_:
+;	.line	547; lena.c	if (n == 0)
+	MOVF	r0x0e, W
+	IORWF	r0x0f, W
+	BNZ	_00375_DS_
+;	.line	549; lena.c	if (siz != 0)
+	MOVF	r0x06, W
+	IORWF	r0x07, W
+	BZ	_00382_DS_
+;	.line	550; lena.c	*d = '\0';          /* NUL-terminate dst */
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVFF	r0x08, FSR0L
 	MOVFF	r0x09, PRODL
 	MOVF	r0x0a, W
 	CALL	__gptrput1
+<<<<<<< HEAD
 _00406_DS_:
 ;	.line	563; lena.c	while (*s++)
 	MOVFF	r0x0b, r0x00
 	MOVFF	r0x0c, r0x01
 	MOVFF	r0x0d, r0x02
 _00395_DS_:
+=======
+_00382_DS_:
+;	.line	551; lena.c	while (*s++)
+	MOVFF	r0x0b, r0x00
+	MOVFF	r0x0c, r0x01
+	MOVFF	r0x0d, r0x02
+_00371_DS_:
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, PRODL
 	MOVF	r0x02, W
@@ -804,12 +899,21 @@ _00395_DS_:
 	BTFSC	STATUS, 0
 	INCF	r0x02, F
 	MOVF	r0x06, W
+<<<<<<< HEAD
 	BNZ	_00395_DS_
 	MOVFF	r0x00, r0x0b
 	MOVFF	r0x01, r0x0c
 	MOVFF	r0x02, r0x0d
 _00399_DS_:
 ;	.line	569; lena.c	return (s - src - 1);       /* count does not include NUL */
+=======
+	BNZ	_00371_DS_
+	MOVFF	r0x00, r0x0b
+	MOVFF	r0x01, r0x0c
+	MOVFF	r0x02, r0x0d
+_00375_DS_:
+;	.line	557; lena.c	return (s - src - 1);       /* count does not include NUL */
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVF	r0x03, W
 	SUBWF	r0x0b, W
 	MOVWF	r0x03
@@ -850,7 +954,11 @@ _00399_DS_:
 ; ; Starting pCode block
 S_lena__DisplayString	code
 _DisplayString:
+<<<<<<< HEAD
 ;	.line	496; lena.c	void DisplayString(BYTE pos, char* text)
+=======
+;	.line	484; lena.c	void DisplayString(BYTE pos, char* text)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -869,7 +977,11 @@ _DisplayString:
 	MOVFF	PLUSW2, r0x02
 	MOVLW	0x05
 	MOVFF	PLUSW2, r0x03
+<<<<<<< HEAD
 ;	.line	498; lena.c	BYTE l= strlen(text)+1;
+=======
+;	.line	486; lena.c	BYTE l= strlen(text)+1;
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
@@ -882,11 +994,19 @@ _DisplayString:
 	MOVLW	0x03
 	ADDWF	FSR1L, F
 	INCF	r0x04, F
+<<<<<<< HEAD
 ;	.line	499; lena.c	BYTE max= 32-pos;
 	MOVF	r0x00, W
 	SUBLW	0x20
 	MOVWF	r0x05
 ;	.line	500; lena.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+=======
+;	.line	487; lena.c	BYTE max= 32-pos;
+	MOVF	r0x00, W
+	SUBLW	0x20
+	MOVWF	r0x05
+;	.line	488; lena.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	CLRF	r0x06
 	MOVLW	LOW(_LCDText)
 	ADDWF	r0x00, F
@@ -900,9 +1020,15 @@ _DisplayString:
 	MOVWF	r0x07
 	MOVF	r0x05, W
 	SUBWF	r0x04, W
+<<<<<<< HEAD
 	BNC	_00379_DS_
 	MOVFF	r0x05, r0x04
 _00379_DS_:
+=======
+	BNC	_00355_DS_
+	MOVFF	r0x05, r0x04
+_00355_DS_:
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	CLRF	r0x05
 	MOVF	r0x05, W
 	MOVWF	POSTDEC1
@@ -923,7 +1049,11 @@ _00379_DS_:
 	CALL	_strlcpy
 	MOVLW	0x08
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 ;	.line	501; lena.c	LCDUpdate();
+=======
+;	.line	489; lena.c	LCDUpdate();
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	CALL	_LCDUpdate
 	MOVFF	PREINC1, r0x07
 	MOVFF	PREINC1, r0x06
@@ -937,6 +1067,7 @@ _00379_DS_:
 	RETURN	
 
 ; ; Starting pCode block
+<<<<<<< HEAD
 S_lena__button	code
 _button:
 ;	.line	361; lena.c	void button(void)
@@ -949,16 +1080,47 @@ _button:
 	BTFSC	STATUS, 2
 	BRA	_00336_DS_
 ;	.line	365; lena.c	switch (whereami) {
+=======
+S_lena__refresh_lcd	code
+_refresh_lcd:
+;	.line	410; lena.c	void refresh_lcd(void)
+	MOVFF	FSR2L, POSTDEC1
+	MOVFF	FSR1L, FSR2L
+	MOVFF	r0x00, POSTDEC1
+	MOVFF	r0x01, POSTDEC1
+	MOVFF	r0x02, POSTDEC1
+	MOVFF	r0x03, POSTDEC1
+	MOVFF	r0x04, POSTDEC1
+	MOVFF	r0x05, POSTDEC1
+	MOVFF	r0x06, POSTDEC1
+	MOVFF	r0x07, POSTDEC1
+	MOVFF	r0x08, POSTDEC1
+	MOVFF	r0x09, POSTDEC1
+	MOVFF	r0x0a, POSTDEC1
+	MOVFF	r0x0b, POSTDEC1
+	MOVFF	r0x0c, POSTDEC1
+	MOVFF	r0x0d, POSTDEC1
+	MOVFF	r0x0e, POSTDEC1
+;	.line	414; lena.c	switch (whereami) {
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x01
 	BANKSEL	_whereami
 	SUBWF	_whereami, W, B
 	BTFSS	STATUS, 0
+<<<<<<< HEAD
 	BRA	_00301_DS_
+=======
+	GOTO	_00335_DS_
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x0c
 	BANKSEL	_whereami
 	SUBWF	_whereami, W, B
 	BTFSC	STATUS, 0
+<<<<<<< HEAD
 	BRA	_00301_DS_
+=======
+	GOTO	_00335_DS_
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	BANKSEL	_whereami
 	DECF	_whereami, W, B
 	MOVWF	r0x00
@@ -970,6 +1132,7 @@ _button:
 	RLCF	WREG, W
 	RLCF	r0x02, F
 	ANDLW	0xfc
+<<<<<<< HEAD
 	MOVWF	r0x01
 	MOVLW	UPPER(_00355_DS_)
 	MOVWF	PCLATU
@@ -978,6 +1141,16 @@ _button:
 	MOVLW	LOW(_00355_DS_)
 	ADDWF	r0x01, F
 	MOVF	r0x02, W
+=======
+	MOVWF	r0x0f
+	MOVLW	UPPER(_00346_DS_)
+	MOVWF	PCLATU
+	MOVLW	HIGH(_00346_DS_)
+	MOVWF	PCLATH
+	MOVLW	LOW(_00346_DS_)
+	ADDWF	r0x0f, F
+	MOVF	r0x10, W
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	ADDWFC	PCLATH, F
 	BTFSC	STATUS, 0
 	INCF	PCLATU, F
@@ -985,6 +1158,7 @@ _button:
 	MOVFF	PREINC1, r0x02
 	MOVFF	PREINC1, r0x01
 	MOVWF	PCL
+<<<<<<< HEAD
 _00355_DS_:
 	GOTO	_00289_DS_
 	GOTO	_00290_DS_
@@ -1118,6 +1292,25 @@ _00336_DS_:
 	BRA	_00332_DS_
 	BANKSEL	_whereami
 	DECF	_whereami, W, B
+=======
+_00346_DS_:
+	GOTO	_00315_DS_
+	GOTO	_00316_DS_
+	GOTO	_00317_DS_
+	GOTO	_00318_DS_
+	GOTO	_00319_DS_
+	GOTO	_00320_DS_
+	GOTO	_00324_DS_
+	GOTO	_00325_DS_
+	GOTO	_00326_DS_
+	GOTO	_00330_DS_
+	GOTO	_00331_DS_
+_00315_DS_:
+;	.line	416; lena.c	sprintf(display, "Do you want to  set the time ?  ");
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x01
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	r0x00
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
@@ -1214,6 +1407,7 @@ _00312_DS_:
 _00314_DS_:
 ;	.line	440; lena.c	whereami = SET_ALARM;
 	MOVLW	0x06
+<<<<<<< HEAD
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
 ;	.line	441; lena.c	break;
@@ -1276,6 +1470,35 @@ _00325_DS_:
 	BC	_00332_DS_
 ;	.line	467; lena.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
 	MOVLW	0x05
+=======
+	ADDWF	FSR1L, F
+;	.line	417; lena.c	break;
+	GOTO	_00336_DS_
+_00316_DS_:
+;	.line	420; lena.c	thour, tmin, tsec);
+	MOVFF	_tsec, r0x00
+	CLRF	r0x01
+	MOVFF	_tmin, r0x02
+	CLRF	r0x03
+	MOVFF	_thour, r0x04
+	CLRF	r0x05
+;	.line	419; lena.c	sprintf(display, " [%02u]: %02u : %02u                  ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x07
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x06
+	MOVLW	0x80
+	MOVWF	r0x08
+	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
+	MOVF	r0x03, W
+	MOVWF	POSTDEC1
+	MOVF	r0x02, W
+	MOVWF	POSTDEC1
+	MOVF	r0x05, W
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	POSTDEC1
 	CALL	_inc_amin
 	INCF	FSR1L, F
@@ -1451,7 +1674,31 @@ _refresh_lcd:
 	MOVWF	POSTDEC1
 	MOVLW	0xbe
 	MOVWF	POSTDEC1
+<<<<<<< HEAD
 	MOVLW	0xbb
+=======
+	CALL	_sprintf
+	MOVLW	0x0c
+	ADDWF	FSR1L, F
+;	.line	421; lena.c	break;
+	GOTO	_00336_DS_
+_00317_DS_:
+;	.line	424; lena.c	thour, tmin, tsec);
+	MOVFF	_tsec, r0x00
+	CLRF	r0x01
+	MOVFF	_tmin, r0x02
+	CLRF	r0x03
+	MOVFF	_thour, r0x04
+	CLRF	r0x05
+;	.line	423; lena.c	sprintf(display, "  %02u :[%02u]: %02u                  ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x07
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x06
+	MOVLW	0x80
+	MOVWF	r0x08
+	MOVF	r0x01, W
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	POSTDEC1
 	MOVLW	0x2a
 	MOVWF	POSTDEC1
@@ -1459,6 +1706,45 @@ _refresh_lcd:
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
+<<<<<<< HEAD
+=======
+	MOVF	r0x05, W
+	MOVWF	POSTDEC1
+	MOVF	r0x04, W
+	MOVWF	POSTDEC1
+	MOVLW	UPPER(__str_2)
+	MOVWF	POSTDEC1
+	MOVLW	HIGH(__str_2)
+	MOVWF	POSTDEC1
+	MOVLW	LOW(__str_2)
+	MOVWF	POSTDEC1
+	MOVF	r0x08, W
+	MOVWF	POSTDEC1
+	MOVF	r0x07, W
+	MOVWF	POSTDEC1
+	MOVF	r0x06, W
+	MOVWF	POSTDEC1
+	CALL	_sprintf
+	MOVLW	0x0c
+	ADDWF	FSR1L, F
+;	.line	425; lena.c	break;
+	BRA	_00336_DS_
+_00318_DS_:
+;	.line	428; lena.c	thour, tmin, tsec);
+	MOVFF	_tsec, r0x00
+	CLRF	r0x01
+	MOVFF	_tmin, r0x02
+	CLRF	r0x03
+	MOVFF	_thour, r0x04
+	CLRF	r0x05
+;	.line	427; lena.c	sprintf(display, "  %02u : %02u :[%02u]                 ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x07
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x06
+	MOVLW	0x80
+	MOVWF	r0x08
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVF	r0x01, W
 	MOVWF	POSTDEC1
 	MOVF	r0x00, W
@@ -1503,7 +1789,24 @@ _refresh_lcd:
 	MOVWF	POSTDEC1
 	MOVLW	0x00
 	MOVWF	POSTDEC1
+<<<<<<< HEAD
 	MOVLW	0x00
+=======
+	CALL	_sprintf
+	MOVLW	0x0c
+	ADDWF	FSR1L, F
+;	.line	429; lena.c	break;
+	BRA	_00336_DS_
+_00319_DS_:
+;	.line	431; lena.c	sprintf(display, "Do you want to  set the alarm ? ");
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x01
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x00
+	MOVLW	0x80
+	MOVWF	r0x02
+	MOVLW	UPPER(__str_4)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	POSTDEC1
 	MOVLW	0x0a
 	MOVWF	POSTDEC1
@@ -1522,7 +1825,24 @@ _refresh_lcd:
 	MOVWF	POSTDEC1
 	MOVF	r0x00, W
 	MOVWF	POSTDEC1
+<<<<<<< HEAD
 	CALL	___ulong2fs
+=======
+	CALL	_sprintf
+	MOVLW	0x06
+	ADDWF	FSR1L, F
+;	.line	432; lena.c	break;
+	BRA	_00336_DS_
+_00320_DS_:
+	BANKSEL	_alarm_set
+;	.line	434; lena.c	if (alarm_set) {
+	MOVF	_alarm_set, W, B
+	BZ	_00322_DS_
+;	.line	435; lena.c	sprintf(display, "  Alarm [ON ]                   ");
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x01
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	r0x00
 	MOVFF	PRODL, r0x01
 	MOVFF	PRODH, r0x02
@@ -1545,7 +1865,19 @@ _refresh_lcd:
 	MOVWF	POSTDEC1
 	MOVF	r0x00, W
 	MOVWF	POSTDEC1
+<<<<<<< HEAD
 	CALL	___fsdiv
+=======
+	CALL	_sprintf
+	MOVLW	0x06
+	ADDWF	FSR1L, F
+	BRA	_00336_DS_
+_00322_DS_:
+;	.line	437; lena.c	sprintf(display, "  Alarm [OFF]                   ");
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x01
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	r0x00
 	MOVFF	PRODL, r0x01
 	MOVFF	PRODH, r0x02
@@ -1568,8 +1900,31 @@ _refresh_lcd:
 	MOVFF	FSR0L, (_decisec + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 ;	.line	227; lena.c	ds = decisec%10;
 	MOVLW	0x00
+=======
+;	.line	439; lena.c	break;
+	BRA	_00336_DS_
+_00324_DS_:
+;	.line	442; lena.c	ahour, amin);
+	MOVFF	_amin, r0x00
+	CLRF	r0x01
+	MOVFF	_ahour, r0x02
+	CLRF	r0x03
+;	.line	441; lena.c	sprintf(display, "    Alarm at        [%02u]: %02u    ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x05
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x04
+	MOVLW	0x80
+	MOVWF	r0x06
+	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
+	MOVF	r0x03, W
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	POSTDEC1
 	MOVLW	0x00
 	MOVWF	POSTDEC1
@@ -1596,9 +1951,27 @@ _refresh_lcd:
 	MOVFF	FSR0L, r0x03
 	MOVLW	0x08
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 	MOVF	r0x00, W
 	BANKSEL	_ds
 	MOVWF	_ds, B
+=======
+;	.line	443; lena.c	break;
+	BRA	_00336_DS_
+_00325_DS_:
+;	.line	446; lena.c	ahour, amin);
+	MOVFF	_amin, r0x00
+	CLRF	r0x01
+	MOVFF	_ahour, r0x02
+	CLRF	r0x03
+;	.line	445; lena.c	sprintf(display, "    Alarm at         %02u :[%02u]   ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x05
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x04
+	MOVLW	0x80
+	MOVWF	r0x06
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVF	r0x01, W
 	BANKSEL	(_ds + 1)
 	MOVWF	(_ds + 1), B
@@ -1642,6 +2015,37 @@ _refresh_lcd:
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
+<<<<<<< HEAD
+=======
+	CALL	_sprintf
+	MOVLW	0x0a
+	ADDWF	FSR1L, F
+;	.line	447; lena.c	break;
+	BRA	_00336_DS_
+_00326_DS_:
+	BANKSEL	_alarm_set
+;	.line	449; lena.c	if (alarm_set) {
+	MOVF	_alarm_set, W, B
+	BZ	_00328_DS_
+;	.line	451; lena.c	thour, tmin, tsec, ahour, amin);
+	MOVFF	_amin, r0x00
+	CLRF	r0x01
+	MOVFF	_ahour, r0x02
+	CLRF	r0x03
+	MOVFF	_tsec, r0x04
+	CLRF	r0x05
+	MOVFF	_tmin, r0x06
+	CLRF	r0x07
+	MOVFF	_thour, r0x08
+	CLRF	r0x09
+;	.line	450; lena.c	sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x0b
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x0a
+	MOVLW	0x80
+	MOVWF	r0x0c
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVF	r0x01, W
 	MOVWF	POSTDEC1
 	MOVF	r0x00, W
@@ -1967,18 +2371,29 @@ _00180_DS_:
 	CALL	_sprintf
 	MOVLW	0x06
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 ;	.line	259; lena.c	break;
 	GOTO	_00201_DS_
 _00181_DS_:
 ;	.line	262; lena.c	thour, tmin, tsec);
+=======
+	BRA	_00336_DS_
+_00328_DS_:
+;	.line	454; lena.c	thour, tmin, tsec);
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	_tsec, r0x00
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
 	CLRF	r0x03
 	MOVFF	_thour, r0x04
 	CLRF	r0x05
+<<<<<<< HEAD
 ;	.line	261; lena.c	sprintf(display, " [%02u]: %02u : %02u                  ",
 	MOVLW	HIGH(_display)
+=======
+;	.line	453; lena.c	sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
 	MOVWF	r0x06
@@ -2011,18 +2426,30 @@ _00181_DS_:
 	CALL	_sprintf
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 ;	.line	263; lena.c	break;
 	GOTO	_00201_DS_
 _00182_DS_:
 ;	.line	266; lena.c	thour, tmin, tsec);
+=======
+;	.line	456; lena.c	break;
+	BRA	_00336_DS_
+_00330_DS_:
+;	.line	459; lena.c	thour, tmin, tsec); // ***blink***
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	_tsec, r0x00
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
 	CLRF	r0x03
 	MOVFF	_thour, r0x04
 	CLRF	r0x05
+<<<<<<< HEAD
 ;	.line	265; lena.c	sprintf(display, "  %02u :[%02u]: %02u                  ",
 	MOVLW	HIGH(_display)
+=======
+;	.line	458; lena.c	sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
 	MOVWF	r0x06
@@ -2055,21 +2482,49 @@ _00182_DS_:
 	CALL	_sprintf
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 ;	.line	267; lena.c	break;
 	BRA	_00201_DS_
 _00183_DS_:
 ;	.line	270; lena.c	thour, tmin, tsec);
 	MOVFF	_tsec, r0x00
+=======
+;	.line	460; lena.c	break;
+	BRA	_00336_DS_
+_00331_DS_:
+;	.line	462; lena.c	if (snooze < 10) {
+	MOVLW	0x0a
+	BANKSEL	_snooze
+	SUBWF	_snooze, W, B
+	BTFSC	STATUS, 0
+	BRA	_00333_DS_
+;	.line	464; lena.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
+	MOVFF	_amin_o, r0x00
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
 	CLRF	r0x03
 	MOVFF	_thour, r0x04
 	CLRF	r0x05
+<<<<<<< HEAD
 ;	.line	269; lena.c	sprintf(display, "  %02u : %02u :[%02u]                 ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
 	MOVWF	r0x06
+=======
+	MOVFF	_tsec, r0x06
+	CLRF	r0x07
+	MOVFF	_tmin, r0x08
+	CLRF	r0x09
+	MOVFF	_thour, r0x0a
+	CLRF	r0x0b
+;	.line	463; lena.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x0d
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x0c
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x80
 	MOVWF	r0x08
 	MOVF	r0x01, W
@@ -2153,6 +2608,7 @@ _00185_DS_:
 	CALL	_sprintf
 	MOVLW	0x06
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 	BRA	_00201_DS_
 _00187_DS_:
 ;	.line	279; lena.c	sprintf(display, "  Alarm [OFF]                   ");
@@ -2182,6 +2638,12 @@ _00187_DS_:
 _00189_DS_:
 ;	.line	284; lena.c	ahour, amin);
 	MOVFF	_amin, r0x00
+=======
+	BRA	_00336_DS_
+_00333_DS_:
+;	.line	467; lena.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
+	MOVFF	_amin_o, r0x00
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	CLRF	r0x01
 	MOVFF	_ahour, r0x02
 	CLRF	r0x03
@@ -2271,11 +2733,21 @@ _00191_DS_:
 	CLRF	r0x07
 	MOVFF	_thour, r0x08
 	CLRF	r0x09
+<<<<<<< HEAD
 ;	.line	292; lena.c	sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x0b
 	MOVLW	LOW(_display)
 	MOVWF	r0x0a
+=======
+	MOVFF	_thour, r0x0a
+	CLRF	r0x0b
+;	.line	466; lena.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x0d
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x0c
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x80
 	MOVWF	r0x0c
 	MOVF	r0x01, W
@@ -2313,6 +2785,7 @@ _00191_DS_:
 	CALL	_sprintf
 	MOVLW	0x10
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 	BRA	_00201_DS_
 _00193_DS_:
 ;	.line	296; lena.c	thour, tmin, tsec);
@@ -2327,6 +2800,16 @@ _00193_DS_:
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
 	MOVWF	r0x06
+=======
+;	.line	470; lena.c	break;
+	BRA	_00336_DS_
+_00335_DS_:
+;	.line	472; lena.c	sprintf(display, "**** ERROR ********* ERROR *****");
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x01
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x00
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x80
 	MOVWF	r0x08
 	MOVF	r0x01, W
@@ -2356,6 +2839,7 @@ _00193_DS_:
 	CALL	_sprintf
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 ;	.line	298; lena.c	break;
 	BRA	_00201_DS_
 _00195_DS_:
@@ -2371,6 +2855,14 @@ _00195_DS_:
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
 	MOVWF	r0x06
+=======
+_00336_DS_:
+;	.line	475; lena.c	DisplayString(0, display);
+	MOVLW	HIGH(_refresh_lcd_display_1_1)
+	MOVWF	r0x01
+	MOVLW	LOW(_refresh_lcd_display_1_1)
+	MOVWF	r0x00
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x80
 	MOVWF	r0x08
 	MOVF	r0x01, W
@@ -2379,6 +2871,7 @@ _00195_DS_:
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
+<<<<<<< HEAD
 	MOVF	r0x02, W
 	MOVWF	POSTDEC1
 	MOVF	r0x05, W
@@ -2398,6 +2891,388 @@ _00195_DS_:
 	MOVF	r0x06, W
 	MOVWF	POSTDEC1
 	CALL	_sprintf
+=======
+	CALL	_DisplayString
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	MOVFF	PREINC1, r0x0e
+	MOVFF	PREINC1, r0x0d
+	MOVFF	PREINC1, r0x0c
+	MOVFF	PREINC1, r0x0b
+	MOVFF	PREINC1, r0x0a
+	MOVFF	PREINC1, r0x09
+	MOVFF	PREINC1, r0x08
+	MOVFF	PREINC1, r0x07
+	MOVFF	PREINC1, r0x06
+	MOVFF	PREINC1, r0x05
+	MOVFF	PREINC1, r0x04
+	MOVFF	PREINC1, r0x03
+	MOVFF	PREINC1, r0x02
+	MOVFF	PREINC1, r0x01
+	MOVFF	PREINC1, r0x00
+	MOVFF	PREINC1, FSR2L
+	RETURN	
+
+; ; Starting pCode block
+S_lena__button	code
+_button:
+;	.line	281; lena.c	void button(void)
+	MOVFF	FSR2L, POSTDEC1
+	MOVFF	FSR1L, FSR2L
+	MOVFF	r0x00, POSTDEC1
+	BANKSEL	_button1
+;	.line	284; lena.c	if (button1) {
+	MOVF	_button1, W, B
+	BTFSC	STATUS, 2
+	BRA	_00275_DS_
+;	.line	285; lena.c	switch (whereami) {
+	MOVLW	0x01
+	BANKSEL	_whereami
+	SUBWF	_whereami, W, B
+	BTFSS	STATUS, 0
+	BRA	_00240_DS_
+	MOVLW	0x0c
+	BANKSEL	_whereami
+	SUBWF	_whereami, W, B
+	BTFSC	STATUS, 0
+	BRA	_00240_DS_
+	BANKSEL	_whereami
+	DECF	_whereami, W, B
+	MOVWF	r0x00
+	MOVFF	r0x01, POSTDEC1
+	MOVFF	r0x02, POSTDEC1
+	CLRF	r0x02
+	RLCF	r0x00, W
+	RLCF	r0x02, F
+	RLCF	WREG, W
+	RLCF	r0x02, F
+	ANDLW	0xfc
+	MOVWF	r0x01
+	MOVLW	UPPER(_00294_DS_)
+	MOVWF	PCLATU
+	MOVLW	HIGH(_00294_DS_)
+	MOVWF	PCLATH
+	MOVLW	LOW(_00294_DS_)
+	ADDWF	r0x01, F
+	MOVF	r0x02, W
+	ADDWFC	PCLATH, F
+	BTFSC	STATUS, 0
+	INCF	PCLATU, F
+	MOVF	r0x01, W
+	MOVFF	PREINC1, r0x02
+	MOVFF	PREINC1, r0x01
+	MOVWF	PCL
+_00294_DS_:
+	GOTO	_00228_DS_
+	GOTO	_00229_DS_
+	GOTO	_00230_DS_
+	GOTO	_00231_DS_
+	GOTO	_00232_DS_
+	GOTO	_00233_DS_
+	GOTO	_00234_DS_
+	GOTO	_00235_DS_
+	GOTO	_00236_DS_
+	GOTO	_00237_DS_
+	GOTO	_00238_DS_
+_00228_DS_:
+;	.line	287; lena.c	whereami = ALARM_MENU;
+	MOVLW	0x05
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	288; lena.c	break;
+	BRA	_00240_DS_
+_00229_DS_:
+;	.line	290; lena.c	whereami = SET_MINUTE;
+	MOVLW	0x03
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	291; lena.c	break;
+	BRA	_00240_DS_
+_00230_DS_:
+;	.line	293; lena.c	whereami = SET_SECOND;
+	MOVLW	0x04
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	294; lena.c	break;
+	BRA	_00240_DS_
+_00231_DS_:
+;	.line	296; lena.c	whereami = ALARM_MENU;
+	MOVLW	0x05
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	297; lena.c	break;
+	BRA	_00240_DS_
+_00232_DS_:
+;	.line	299; lena.c	whereami = DISPLAY;
+	MOVLW	0x09
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	300; lena.c	break;
+	BRA	_00240_DS_
+_00233_DS_:
+;	.line	302; lena.c	whereami = SET_A_HOUR;
+	MOVLW	0x07
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	303; lena.c	break;
+	BRA	_00240_DS_
+_00234_DS_:
+;	.line	305; lena.c	whereami = SET_A_MIN;
+	MOVLW	0x08
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	306; lena.c	break;
+	BRA	_00240_DS_
+_00235_DS_:
+;	.line	308; lena.c	whereami = DISPLAY;
+	MOVLW	0x09
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	309; lena.c	break;
+	BRA	_00240_DS_
+_00236_DS_:
+;	.line	311; lena.c	whereami = TIME_MENU;
+	MOVLW	0x01
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	312; lena.c	break;
+	BRA	_00240_DS_
+_00237_DS_:
+;	.line	314; lena.c	stop_ringing = 1;
+	MOVLW	0x01
+	BANKSEL	_stop_ringing
+	MOVWF	_stop_ringing, B
+;	.line	315; lena.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+	BCF	_LATJbits, 1
+;	.line	316; lena.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+	BCF	_LATJbits, 2
+;	.line	317; lena.c	whereami = DISPLAY;
+	MOVLW	0x09
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	318; lena.c	break;
+	BRA	_00240_DS_
+_00238_DS_:
+;	.line	320; lena.c	stop_ringing = 1; // le réveil ne doit plus sonner
+	MOVLW	0x01
+	BANKSEL	_stop_ringing
+	MOVWF	_stop_ringing, B
+;	.line	321; lena.c	amin = amin_o; // remet le réveil
+	MOVFF	_amin_o, _amin
+;	.line	322; lena.c	ahour = ahour_o;
+	MOVFF	_ahour_o, _ahour
+	BANKSEL	_snooze
+;	.line	323; lena.c	snooze = 0;
+	CLRF	_snooze, B
+;	.line	324; lena.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+	BCF	_LATJbits, 1
+;	.line	325; lena.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+	BCF	_LATJbits, 2
+;	.line	326; lena.c	whereami = DISPLAY;
+	MOVLW	0x09
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+_00240_DS_:
+	BANKSEL	_button1
+;	.line	331; lena.c	button1 = 0; // remet le flag du boutton 1 à 0
+	CLRF	_button1, B
+	BRA	_00277_DS_
+_00275_DS_:
+	BANKSEL	_button2
+;	.line	334; lena.c	} else if (button2) {
+	MOVF	_button2, W, B
+	BTFSC	STATUS, 2
+	BRA	_00277_DS_
+;	.line	335; lena.c	switch (whereami) {
+	MOVLW	0x01
+	BANKSEL	_whereami
+	SUBWF	_whereami, W, B
+	BTFSS	STATUS, 0
+	BRA	_00271_DS_
+	MOVLW	0x0c
+	BANKSEL	_whereami
+	SUBWF	_whereami, W, B
+	BTFSC	STATUS, 0
+	BRA	_00271_DS_
+	BANKSEL	_whereami
+	DECF	_whereami, W, B
+	MOVWF	r0x00
+	MOVFF	r0x01, POSTDEC1
+	MOVFF	r0x02, POSTDEC1
+	CLRF	r0x02
+	RLCF	r0x00, W
+	RLCF	r0x02, F
+	RLCF	WREG, W
+	RLCF	r0x02, F
+	ANDLW	0xfc
+	MOVWF	r0x01
+	MOVLW	UPPER(_00297_DS_)
+	MOVWF	PCLATU
+	MOVLW	HIGH(_00297_DS_)
+	MOVWF	PCLATH
+	MOVLW	LOW(_00297_DS_)
+	ADDWF	r0x01, F
+	MOVF	r0x02, W
+	ADDWFC	PCLATH, F
+	BTFSC	STATUS, 0
+	INCF	PCLATU, F
+	MOVF	r0x01, W
+	MOVFF	PREINC1, r0x02
+	MOVFF	PREINC1, r0x01
+	MOVWF	PCL
+_00297_DS_:
+	GOTO	_00241_DS_
+	GOTO	_00242_DS_
+	GOTO	_00245_DS_
+	GOTO	_00249_DS_
+	GOTO	_00253_DS_
+	GOTO	_00254_DS_
+	GOTO	_00255_DS_
+	GOTO	_00259_DS_
+	GOTO	_00263_DS_
+	GOTO	_00264_DS_
+	GOTO	_00267_DS_
+_00241_DS_:
+;	.line	337; lena.c	whereami = SET_HOUR;
+	MOVLW	0x02
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	338; lena.c	break;
+	BRA	_00271_DS_
+_00242_DS_:
+	BANKSEL	_thour
+;	.line	340; lena.c	thour++;
+	INCF	_thour, F, B
+	BANKSEL	_thour
+;	.line	341; lena.c	if (thour == 24) {
+	MOVF	_thour, W, B
+	XORLW	0x18
+	BZ	_00299_DS_
+	BRA	_00271_DS_
+_00299_DS_:
+	BANKSEL	_thour
+;	.line	342; lena.c	thour = 0;
+	CLRF	_thour, B
+;	.line	344; lena.c	break;
+	BRA	_00271_DS_
+_00245_DS_:
+	BANKSEL	_tmin
+;	.line	346; lena.c	if (tmin == 59) {
+	MOVF	_tmin, W, B
+	XORLW	0x3b
+	BNZ	_00247_DS_
+_00301_DS_:
+	BANKSEL	_tmin
+;	.line	347; lena.c	tmin = 0;
+	CLRF	_tmin, B
+	BRA	_00271_DS_
+_00247_DS_:
+	BANKSEL	_tmin
+;	.line	349; lena.c	tmin++;
+	INCF	_tmin, F, B
+;	.line	351; lena.c	break;
+	BRA	_00271_DS_
+_00249_DS_:
+	BANKSEL	_tsec
+;	.line	353; lena.c	if (tsec == 59) {
+	MOVF	_tsec, W, B
+	XORLW	0x3b
+	BNZ	_00251_DS_
+_00303_DS_:
+	BANKSEL	_tsec
+;	.line	354; lena.c	tsec = 0;
+	CLRF	_tsec, B
+	BRA	_00271_DS_
+_00251_DS_:
+	BANKSEL	_tsec
+;	.line	356; lena.c	tsec++;
+	INCF	_tsec, F, B
+;	.line	358; lena.c	break;
+	BRA	_00271_DS_
+_00253_DS_:
+;	.line	360; lena.c	whereami = SET_ALARM;
+	MOVLW	0x06
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	361; lena.c	break;
+	BRA	_00271_DS_
+_00254_DS_:
+;	.line	363; lena.c	alarm_set ^= 1;
+	MOVLW	0x01
+	BANKSEL	_alarm_set
+	XORWF	_alarm_set, F, B
+;	.line	364; lena.c	break;
+	BRA	_00271_DS_
+_00255_DS_:
+	BANKSEL	_ahour
+;	.line	366; lena.c	if (ahour == 23) {
+	MOVF	_ahour, W, B
+	XORLW	0x17
+	BNZ	_00257_DS_
+_00306_DS_:
+	BANKSEL	_ahour
+;	.line	367; lena.c	ahour = 0;
+	CLRF	_ahour, B
+	BRA	_00258_DS_
+_00257_DS_:
+	BANKSEL	_ahour
+;	.line	369; lena.c	ahour++;
+	INCF	_ahour, F, B
+_00258_DS_:
+;	.line	371; lena.c	ahour_o = ahour;
+	MOVFF	_ahour, _ahour_o
+;	.line	372; lena.c	break;
+	BRA	_00271_DS_
+_00259_DS_:
+	BANKSEL	_amin
+;	.line	374; lena.c	if (amin == 59) {
+	MOVF	_amin, W, B
+	XORLW	0x3b
+	BNZ	_00261_DS_
+_00308_DS_:
+	BANKSEL	_amin
+;	.line	375; lena.c	amin = 0;
+	CLRF	_amin, B
+	BRA	_00262_DS_
+_00261_DS_:
+	BANKSEL	_amin
+;	.line	377; lena.c	amin++;
+	INCF	_amin, F, B
+_00262_DS_:
+;	.line	379; lena.c	amin_o = amin;
+	MOVFF	_amin, _amin_o
+;	.line	380; lena.c	break;
+	BRA	_00271_DS_
+_00263_DS_:
+;	.line	383; lena.c	break;
+	BRA	_00271_DS_
+_00264_DS_:
+;	.line	386; lena.c	if (snooze < SNOOZE_MAX) {
+	MOVLW	0x0c
+	BANKSEL	_snooze
+	SUBWF	_snooze, W, B
+	BC	_00271_DS_
+;	.line	387; lena.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
+	MOVLW	0x05
+	MOVWF	POSTDEC1
+	CALL	_inc_amin
+	INCF	FSR1L, F
+	BANKSEL	_snooze
+;	.line	388; lena.c	snooze++; // augmente le compteur de snooze
+	INCF	_snooze, F, B
+;	.line	389; lena.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+	BCF	_LATJbits, 1
+;	.line	390; lena.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+	BCF	_LATJbits, 2
+;	.line	391; lena.c	whereami = SNOOZE;
+	MOVLW	0x0b
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+;	.line	394; lena.c	break;
+	BRA	_00271_DS_
+_00267_DS_:
+;	.line	397; lena.c	if (snooze < SNOOZE_MAX) {
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
 ;	.line	302; lena.c	break;
@@ -2407,6 +3282,7 @@ _00196_DS_:
 	MOVLW	0x0a
 	BANKSEL	_snooze
 	SUBWF	_snooze, W, B
+<<<<<<< HEAD
 	BTFSC	STATUS, 0
 	BRA	_00198_DS_
 ;	.line	306; lena.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
@@ -2664,6 +3540,238 @@ _00143_DS_:
 	SUBWF	_ahour, F, B
 _00145_DS_:
 	MOVFF	PREINC1, r0x01
+=======
+	BC	_00271_DS_
+;	.line	398; lena.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
+	MOVLW	0x05
+	MOVWF	POSTDEC1
+	CALL	_inc_amin
+	INCF	FSR1L, F
+	BANKSEL	_snooze
+;	.line	399; lena.c	snooze++; // augmente le compteur de snooze
+	INCF	_snooze, F, B
+_00271_DS_:
+	BANKSEL	_button2
+;	.line	406; lena.c	button2 = 0; // remet le flag du boutton 2 à 0
+	CLRF	_button2, B
+_00277_DS_:
+	MOVFF	PREINC1, r0x00
+	MOVFF	PREINC1, FSR2L
+	RETURN	
+
+; ; Starting pCode block
+S_lena__manageseconds	code
+_manageseconds:
+;	.line	273; lena.c	void manageseconds() {
+	MOVFF	FSR2L, POSTDEC1
+	MOVFF	FSR1L, FSR2L
+	BANKSEL	(_pseudoseconds + 1)
+;	.line	274; lena.c	if (pseudoseconds >= PER) {
+	MOVF	(_pseudoseconds + 1), W, B
+	ADDLW	0x80
+	ADDLW	0x80
+	BNZ	_00223_DS_
+	MOVLW	0x05
+	BANKSEL	_pseudoseconds
+	SUBWF	_pseudoseconds, W, B
+_00223_DS_:
+	BNC	_00220_DS_
+;	.line	275; lena.c	overflows = overflows - CUT;
+	MOVLW	0xfe
+	BANKSEL	_overflows
+	ADDWF	_overflows, F, B
+	BC	_10362_DS_
+	BANKSEL	(_overflows + 1)
+	DECF	(_overflows + 1), F, B
+_10362_DS_:
+;	.line	276; lena.c	pseudoseconds = pseudoseconds - PER;
+	MOVLW	0xfb
+	BANKSEL	_pseudoseconds
+	ADDWF	_pseudoseconds, F, B
+	BC	_20363_DS_
+	BANKSEL	(_pseudoseconds + 1)
+	DECF	(_pseudoseconds + 1), F, B
+_20363_DS_:
+_00220_DS_:
+	MOVFF	PREINC1, FSR2L
+	RETURN	
+
+; ; Starting pCode block
+S_lena__time	code
+_time:
+;	.line	225; lena.c	void time(void)
+	MOVFF	FSR2L, POSTDEC1
+	MOVFF	FSR1L, FSR2L
+	MOVFF	r0x00, POSTDEC1
+	BANKSEL	_halfsecond
+;	.line	228; lena.c	if (halfsecond) {
+	MOVF	_halfsecond, W, B
+	BZ	_00159_DS_
+;	.line	229; lena.c	LED0_IO ^= 1;
+	CLRF	r0x00
+	BTFSC	_LATJbits, 0
+	INCF	r0x00, F
+	MOVLW	0x01
+	XORWF	r0x00, F
+	MOVF	r0x00, W
+	ANDLW	0x01
+	MOVWF	PRODH
+	MOVF	_LATJbits, W
+	ANDLW	0xfe
+	IORWF	PRODH, W
+	MOVWF	_LATJbits
+	BANKSEL	_halfsecond
+;	.line	230; lena.c	halfsecond = 0;
+	CLRF	_halfsecond, B
+_00159_DS_:
+	BANKSEL	_new_time
+;	.line	234; lena.c	if (new_time) {
+	MOVF	_new_time, W, B
+	BZ	_00161_DS_
+	BANKSEL	_new_time
+;	.line	235; lena.c	inc_tsec(new_time);
+	MOVF	_new_time, W, B
+	MOVWF	POSTDEC1
+	CALL	_inc_tsec
+	INCF	FSR1L, F
+	BANKSEL	_new_time
+;	.line	236; lena.c	new_time = 0;
+	CLRF	_new_time, B
+;	.line	238; lena.c	LED0_IO ^= 1;
+	CLRF	r0x00
+	BTFSC	_LATJbits, 0
+	INCF	r0x00, F
+	MOVLW	0x01
+	XORWF	r0x00, F
+	MOVF	r0x00, W
+	ANDLW	0x01
+	MOVWF	PRODH
+	MOVF	_LATJbits, W
+	ANDLW	0xfe
+	IORWF	PRODH, W
+	MOVWF	_LATJbits
+_00161_DS_:
+	BANKSEL	_thour
+;	.line	242; lena.c	if ((thour == ahour) && (tmin == amin) && alarm_set) {
+	MOVF	_thour, W, B
+	BANKSEL	_ahour
+	XORWF	_ahour, W, B
+	BZ	_00199_DS_
+	BRA	_00182_DS_
+_00199_DS_:
+	BANKSEL	_tmin
+	MOVF	_tmin, W, B
+	BANKSEL	_amin
+	XORWF	_amin, W, B
+	BZ	_00201_DS_
+	BRA	_00182_DS_
+_00201_DS_:
+	BANKSEL	_alarm_set
+	MOVF	_alarm_set, W, B
+	BTFSC	STATUS, 2
+	BRA	_00182_DS_
+;	.line	245; lena.c	if ((tsec < 31) && (stop_ringing == 0)) {
+	MOVLW	0x1f
+	BANKSEL	_tsec
+	SUBWF	_tsec, W, B
+	BC	_00175_DS_
+	BANKSEL	_stop_ringing
+	MOVF	_stop_ringing, W, B
+	BNZ	_00175_DS_
+	BANKSEL	_whereami
+;	.line	246; lena.c	if ((whereami == DISPLAY) || (whereami == SNOOZE)) {
+	MOVF	_whereami, W, B
+	XORLW	0x09
+	BZ	_00162_DS_
+_00204_DS_:
+	BANKSEL	_whereami
+	MOVF	_whereami, W, B
+	XORLW	0x0b
+	BNZ	_00163_DS_
+_00162_DS_:
+;	.line	247; lena.c	whereami = ALARM;
+	MOVLW	0x0a
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+_00163_DS_:
+	BANKSEL	_whereami
+;	.line	249; lena.c	if (whereami == ALARM) {
+	MOVF	_whereami, W, B
+	XORLW	0x0a
+	BZ	_00208_DS_
+	BRA	_00182_DS_
+_00208_DS_:
+;	.line	250; lena.c	LED1_IO ^= 1; //change state of red leds
+	CLRF	r0x00
+	BTFSC	_LATJbits, 1
+	INCF	r0x00, F
+	MOVLW	0x01
+	XORWF	r0x00, F
+	MOVF	r0x00, W
+	ANDLW	0x01
+	RLNCF	WREG, W
+	MOVWF	PRODH
+	MOVF	_LATJbits, W
+	ANDLW	0xfd
+	IORWF	PRODH, W
+	MOVWF	_LATJbits
+;	.line	251; lena.c	LED2_IO ^= 1; //change state of red leds
+	CLRF	r0x00
+	BTFSC	_LATJbits, 2
+	INCF	r0x00, F
+	MOVLW	0x01
+	XORWF	r0x00, F
+	MOVF	r0x00, W
+	ANDLW	0x01
+	RLNCF	WREG, W
+	RLNCF	WREG, W
+	MOVWF	PRODH
+	MOVF	_LATJbits, W
+	ANDLW	0xfb
+	IORWF	PRODH, W
+	MOVWF	_LATJbits
+	BRA	_00182_DS_
+_00175_DS_:
+;	.line	254; lena.c	} else if (tsec > 30) {
+	MOVLW	0x1f
+	BANKSEL	_tsec
+	SUBWF	_tsec, W, B
+	BNC	_00182_DS_
+	BANKSEL	_stop_ringing
+;	.line	255; lena.c	stop_ringing = 0; // remet à 0 si l'alarme a été éteinte à la main
+	CLRF	_stop_ringing, B
+;	.line	256; lena.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+	BCF	_LATJbits, 1
+;	.line	257; lena.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+	BCF	_LATJbits, 2
+	BANKSEL	_snooze
+;	.line	259; lena.c	if (snooze) {
+	MOVF	_snooze, W, B
+	BZ	_00170_DS_
+;	.line	260; lena.c	ahour = ahour_o; // remet le réveil
+	MOVFF	_ahour_o, _ahour
+;	.line	261; lena.c	amin = amin_o;
+	MOVFF	_amin_o, _amin
+	BANKSEL	_snooze
+;	.line	262; lena.c	snooze = 0;
+	CLRF	_snooze, B
+;	.line	263; lena.c	whereami = DISPLAY;
+	MOVLW	0x09
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+	BRA	_00182_DS_
+_00170_DS_:
+	BANKSEL	_whereami
+;	.line	264; lena.c	} else if (whereami == ALARM) { // si l'alarme sonnait toujours, on
+	MOVF	_whereami, W, B
+	XORLW	0x0a
+	BNZ	_00182_DS_
+;	.line	265; lena.c	whereami = DISPLAY;         // revient à l'affichage de l'heure
+	MOVLW	0x09
+	BANKSEL	_whereami
+	MOVWF	_whereami, B
+_00182_DS_:
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	PREINC1, r0x00
 	MOVFF	PREINC1, FSR2L
 	RETURN	
@@ -2671,36 +3779,49 @@ _00145_DS_:
 ; ; Starting pCode block
 S_lena__inc_amin	code
 _inc_amin:
+<<<<<<< HEAD
 ;	.line	187; lena.c	void inc_amin(BYTE val)
+=======
+;	.line	212; lena.c	void inc_amin(BYTE val)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
 	MOVFF	r0x03, POSTDEC1
+	MOVFF	r0x04, POSTDEC1
+	MOVFF	r0x05, POSTDEC1
 	MOVLW	0x02
 	MOVFF	PLUSW2, r0x00
+<<<<<<< HEAD
 ;	.line	191; lena.c	mod_amin = (amin + val) / 60;
+=======
+;	.line	216; lena.c	mod_amin = (amin + val) / 60;
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVFF	_amin, r0x01
 	CLRF	r0x02
 	CLRF	r0x03
 	MOVF	r0x00, W
-	ADDWF	r0x01, F
+	ADDWF	r0x01, W
+	MOVWF	r0x00
 	MOVF	r0x03, W
-	ADDWFC	r0x02, F
+	ADDWFC	r0x02, W
+	MOVWF	r0x01
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x3c
 	MOVWF	POSTDEC1
-	MOVF	r0x02, W
-	MOVWF	POSTDEC1
 	MOVF	r0x01, W
 	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
 	CALL	__divsint
-	MOVWF	r0x01
-	MOVFF	PRODL, r0x02
+	MOVWF	r0x02
+	MOVFF	PRODL, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 ;	.line	192; lena.c	if (mod_amin) {
 	MOVF	r0x01, W
 	BZ	_00136_DS_
@@ -2715,21 +3836,33 @@ _00136_DS_:
 	CLRF	r0x02
 	MOVF	r0x01, W
 	ADDWF	r0x00, F
+=======
+;	.line	217; lena.c	if (mod_amin) {
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVF	r0x02, W
-	ADDWFC	r0x03, F
+	BZ	_00152_DS_
+;	.line	218; lena.c	ahour = (ahour + mod_amin) % 24;
+	MOVFF	_ahour, r0x03
+	CLRF	r0x04
+	CLRF	r0x05
+	MOVF	r0x02, W
+	ADDWF	r0x03, F
+	MOVF	r0x05, W
+	ADDWFC	r0x04, F
 	MOVLW	0x00
 	MOVWF	POSTDEC1
-	MOVLW	0x3c
+	MOVLW	0x18
+	MOVWF	POSTDEC1
+	MOVF	r0x04, W
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
 	CALL	__modsint
-	MOVWF	r0x00
-	MOVFF	PRODL, r0x01
+	MOVWF	r0x02
+	MOVFF	PRODL, r0x03
 	MOVLW	0x04
 	ADDWF	FSR1L, F
+<<<<<<< HEAD
 	MOVF	r0x00, W
 	BANKSEL	_amin
 	MOVWF	_amin, B
@@ -2760,13 +3893,20 @@ _inc_ahour:
 	ADDWF	r0x01, F
 	MOVF	r0x03, W
 	ADDWFC	r0x02, F
+=======
+	MOVF	r0x02, W
+	BANKSEL	_ahour
+	MOVWF	_ahour, B
+_00152_DS_:
+;	.line	221; lena.c	amin = (amin + val) % 60;
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	MOVLW	0x00
 	MOVWF	POSTDEC1
-	MOVLW	0x18
-	MOVWF	POSTDEC1
-	MOVF	r0x02, W
+	MOVLW	0x3c
 	MOVWF	POSTDEC1
 	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	CALL	__modsint
 	MOVWF	r0x00
@@ -2774,8 +3914,10 @@ _inc_ahour:
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	MOVF	r0x00, W
-	BANKSEL	_ahour
-	MOVWF	_ahour, B
+	BANKSEL	_amin
+	MOVWF	_amin, B
+	MOVFF	PREINC1, r0x05
+	MOVFF	PREINC1, r0x04
 	MOVFF	PREINC1, r0x03
 	MOVFF	PREINC1, r0x02
 	MOVFF	PREINC1, r0x01
@@ -2784,6 +3926,149 @@ _inc_ahour:
 	RETURN	
 
 ; ; Starting pCode block
+<<<<<<< HEAD
+=======
+S_lena__inc_tsec	code
+_inc_tsec:
+;	.line	192; lena.c	void inc_tsec(BYTE val)
+	MOVFF	FSR2L, POSTDEC1
+	MOVFF	FSR1L, FSR2L
+	MOVFF	r0x00, POSTDEC1
+	MOVFF	r0x01, POSTDEC1
+	MOVFF	r0x02, POSTDEC1
+	MOVFF	r0x03, POSTDEC1
+	MOVFF	r0x04, POSTDEC1
+	MOVFF	r0x05, POSTDEC1
+	MOVFF	r0x06, POSTDEC1
+	MOVFF	r0x07, POSTDEC1
+	MOVLW	0x02
+	MOVFF	PLUSW2, r0x00
+;	.line	197; lena.c	mod_tsec = (tsec + val) / 60;
+	MOVFF	_tsec, r0x01
+	CLRF	r0x02
+	CLRF	r0x03
+	MOVF	r0x00, W
+	ADDWF	r0x01, W
+	MOVWF	r0x00
+	MOVF	r0x03, W
+	ADDWFC	r0x02, W
+	MOVWF	r0x01
+	MOVLW	0x00
+	MOVWF	POSTDEC1
+	MOVLW	0x3c
+	MOVWF	POSTDEC1
+	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
+	CALL	__divsint
+	MOVWF	r0x02
+	MOVFF	PRODL, r0x03
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+;	.line	198; lena.c	if (mod_tsec) {
+	MOVF	r0x02, W
+	BTFSC	STATUS, 2
+	BRA	_00145_DS_
+;	.line	200; lena.c	mod_tmin = (tmin + mod_tsec) / 60;
+	MOVFF	_tmin, r0x03
+	CLRF	r0x04
+	CLRF	r0x05
+	MOVF	r0x02, W
+	ADDWF	r0x03, W
+	MOVWF	r0x02
+	MOVF	r0x05, W
+	ADDWFC	r0x04, W
+	MOVWF	r0x03
+	MOVLW	0x00
+	MOVWF	POSTDEC1
+	MOVLW	0x3c
+	MOVWF	POSTDEC1
+	MOVF	r0x03, W
+	MOVWF	POSTDEC1
+	MOVF	r0x02, W
+	MOVWF	POSTDEC1
+	CALL	__divsint
+	MOVWF	r0x04
+	MOVFF	PRODL, r0x05
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+;	.line	201; lena.c	if (mod_tmin) {
+	MOVF	r0x04, W
+	BZ	_00143_DS_
+;	.line	202; lena.c	thour = (thour + mod_tmin) % 24;
+	MOVFF	_thour, r0x05
+	CLRF	r0x06
+	CLRF	r0x07
+	MOVF	r0x04, W
+	ADDWF	r0x05, F
+	MOVF	r0x07, W
+	ADDWFC	r0x06, F
+	MOVLW	0x00
+	MOVWF	POSTDEC1
+	MOVLW	0x18
+	MOVWF	POSTDEC1
+	MOVF	r0x06, W
+	MOVWF	POSTDEC1
+	MOVF	r0x05, W
+	MOVWF	POSTDEC1
+	CALL	__modsint
+	MOVWF	r0x04
+	MOVFF	PRODL, r0x05
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	MOVF	r0x04, W
+	BANKSEL	_thour
+	MOVWF	_thour, B
+_00143_DS_:
+;	.line	205; lena.c	tmin = (tmin + mod_tsec) % 60;
+	MOVLW	0x00
+	MOVWF	POSTDEC1
+	MOVLW	0x3c
+	MOVWF	POSTDEC1
+	MOVF	r0x03, W
+	MOVWF	POSTDEC1
+	MOVF	r0x02, W
+	MOVWF	POSTDEC1
+	CALL	__modsint
+	MOVWF	r0x02
+	MOVFF	PRODL, r0x03
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	MOVF	r0x02, W
+	BANKSEL	_tmin
+	MOVWF	_tmin, B
+_00145_DS_:
+;	.line	208; lena.c	tsec = (tsec + val) % 60;
+	MOVLW	0x00
+	MOVWF	POSTDEC1
+	MOVLW	0x3c
+	MOVWF	POSTDEC1
+	MOVF	r0x01, W
+	MOVWF	POSTDEC1
+	MOVF	r0x00, W
+	MOVWF	POSTDEC1
+	CALL	__modsint
+	MOVWF	r0x00
+	MOVFF	PRODL, r0x01
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	MOVF	r0x00, W
+	BANKSEL	_tsec
+	MOVWF	_tsec, B
+	MOVFF	PREINC1, r0x07
+	MOVFF	PREINC1, r0x06
+	MOVFF	PREINC1, r0x05
+	MOVFF	PREINC1, r0x04
+	MOVFF	PREINC1, r0x03
+	MOVFF	PREINC1, r0x02
+	MOVFF	PREINC1, r0x01
+	MOVFF	PREINC1, r0x00
+	MOVFF	PREINC1, FSR2L
+	RETURN	
+
+; ; Starting pCode block
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 S_lena__low_isr	code
 _low_isr:
 ;	.line	115; lena.c	void low_isr (void) interrupt 2
@@ -2852,6 +4137,7 @@ _high_isr:
 	BANKSEL	_overflows
 ;	.line	108; lena.c	overflows++;
 	INCF	_overflows, F, B
+<<<<<<< HEAD
 	BNC	_10386_DS_
 	BANKSEL	(_overflows + 1)
 	INCF	(_overflows + 1), F, B
@@ -2865,6 +4151,56 @@ _20387_DS_:
 	INCF	(_overflows + 3), F, B
 _30388_DS_:
 ;	.line	109; lena.c	INTCONbits.T0IF = 0;
+=======
+	BNC	_30364_DS_
+	BANKSEL	(_overflows + 1)
+	INCF	(_overflows + 1), F, B
+_30364_DS_:
+	BANKSEL	_overflows
+;	.line	109; lena.c	if (overflows == OPS/2) {
+	MOVF	_overflows, W, B
+	XORLW	0x2f
+	BNZ	_00116_DS_
+	BANKSEL	(_overflows + 1)
+	MOVF	(_overflows + 1), W, B
+	BZ	_00117_DS_
+_00116_DS_:
+	BRA	_00106_DS_
+_00117_DS_:
+;	.line	110; lena.c	halfsecond = 1;
+	MOVLW	0x01
+	BANKSEL	_halfsecond
+	MOVWF	_halfsecond, B
+_00106_DS_:
+	BANKSEL	_overflows
+;	.line	113; lena.c	if (overflows == OPS) {
+	MOVF	_overflows, W, B
+	XORLW	0x5f
+	BNZ	_00118_DS_
+	BANKSEL	(_overflows + 1)
+	MOVF	(_overflows + 1), W, B
+	BZ	_00119_DS_
+_00118_DS_:
+	BRA	_00108_DS_
+_00119_DS_:
+	BANKSEL	_pseudoseconds
+;	.line	114; lena.c	pseudoseconds++;
+	INCF	_pseudoseconds, F, B
+	BNC	_40365_DS_
+	BANKSEL	(_pseudoseconds + 1)
+	INCF	(_pseudoseconds + 1), F, B
+_40365_DS_:
+	BANKSEL	_new_time
+;	.line	115; lena.c	new_time++;
+	INCF	_new_time, F, B
+	BANKSEL	_overflows
+;	.line	116; lena.c	overflows = 0;
+	CLRF	_overflows, B
+	BANKSEL	(_overflows + 1)
+	CLRF	(_overflows + 1), B
+_00108_DS_:
+;	.line	118; lena.c	INTCONbits.T0IF = 0;
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 	BCF	_INTCONbits, 2
 _00107_DS_:
 	MOVFF	PREINC1, FSR2L
@@ -2967,9 +4303,15 @@ __str_14:
 
 
 ; Statistics:
+<<<<<<< HEAD
 ; code size:	 4786 (0x12b2) bytes ( 3.65%)
 ;           	 2393 (0x0959) words
 ; udata size:	   45 (0x002d) bytes ( 1.17%)
+=======
+; code size:	 4198 (0x1066) bytes ( 3.20%)
+;           	 2099 (0x0833) words
+; udata size:	   32 (0x0020) bytes ( 0.83%)
+>>>>>>> 078f03ec449c64e30604dce513613ae99fbb657e
 ; access size:	   22 (0x0016) bytes
 
 
