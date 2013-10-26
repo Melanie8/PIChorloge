@@ -1,6 +1,6 @@
 gplink-0.13.7 beta
 Copyright (c) 1998-2005 gputils project
-Listing File Generated: 10-26-2013  20:37:05
+Listing File Generated: 10-26-2013  20:44:34
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-                                           ; This file was generated Sat Oct 26 20:37:05 2013
+                                           ; This file was generated Sat Oct 26 20:44:33 2013
                                            ;--------------------------------------------------------
                                            ; PIC16 port for the Microchip 16-bit core micros
                                            ;--------------------------------------------------------
@@ -27,7 +27,6 @@ Address  Value    Disassembly              Source
                                            	global _inc_amin
                                            	global _DisplayString
                                            	global _strlcpy
-                                           	global _chandelle
                                            	global _button1
                                            	global _button2
                                            	global _overflows
@@ -556,27 +555,24 @@ Address  Value    Disassembly              Source
                                            r0x15	res	1
                                            
                                            udata_reveil_0	udata
-                                           _chandelle	res	1
-                                           
-                                           udata_reveil_1	udata
                                            _sec	res	4
                                            
-                                           udata_reveil_2	udata
+                                           udata_reveil_1	udata
                                            _decisec	res	4
                                            
-                                           udata_reveil_3	udata
+                                           udata_reveil_2	udata
                                            _ds	res	1
                                            
-                                           udata_reveil_4	udata
+                                           udata_reveil_3	udata
                                            _h	res	1
                                            
-                                           udata_reveil_5	udata
+                                           udata_reveil_4	udata
                                            _m	res	1
                                            
-                                           udata_reveil_6	udata
+                                           udata_reveil_5	udata
                                            _s	res	1
                                            
-                                           udata_reveil_7	udata
+                                           udata_reveil_6	udata
                                            _display	res	32
                                            
                                            ;--------------------------------------------------------
@@ -662,26 +658,23 @@ Address  Value    Disassembly              Source
 003d66   0e01     movlw	0x1                	MOVLW	0x01
 003d68   010f     movlb	0xf                	BANKSEL	_whereami
 003d6a   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-003d6c   010e     movlb	0xe                	BANKSEL	_chandelle
-                                           ;	.line	189; reveil.c	chandelle++; // ##### BIZARRE ####
-003d6e   2b60     incf	0x60, 0x1, 0x1      	INCF	_chandelle, F, B
                                            ;	.line	191; reveil.c	T0CONbits.TMR0ON = 1; // start timer0
-003d70   8ed5     bsf	0xd5, 0x7, 0         	BSF	_T0CONbits, 7
+003d6c   8ed5     bsf	0xd5, 0x7, 0         	BSF	_T0CONbits, 7
                                            _00123_DS_:
                                            ;	.line	194; reveil.c	time();
-003d72   ecc1     call	0x1782, 0           	CALL	_time
-003d74   f00b
+003d6e   ecc1     call	0x1782, 0           	CALL	_time
+003d70   f00b
                                            ;	.line	195; reveil.c	refresh_lcd();
-003d76   ec29     call	0x852, 0            	CALL	_refresh_lcd
-003d78   f004
+003d72   ec29     call	0x852, 0            	CALL	_refresh_lcd
+003d74   f004
                                            ;	.line	196; reveil.c	alarm();
-003d7a   ec75     call	0x3aea, 0           	CALL	_alarm
-003d7c   f01d
+003d76   ec75     call	0x3aea, 0           	CALL	_alarm
+003d78   f01d
                                            ;	.line	197; reveil.c	button();
-003d7e   ec1f     call	0xe3e, 0            	CALL	_button
-003d80   f007
-003d82   d7f7     bra	0x3d72               	BRA	_00123_DS_
-003d84   0012     return	0                 	RETURN	
+003d7a   ec1f     call	0xe3e, 0            	CALL	_button
+003d7c   f007
+003d7e   d7f7     bra	0x3d6e               	BRA	_00123_DS_
+003d80   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_reveil__strlcpy	code
@@ -808,7 +801,7 @@ Address  Value    Disassembly              Source
 0028a0   c011     movff	0x11, 0xff3        	MOVFF	r0x11, PRODL
 0028a2   fff3
 0028a4   5012     movf	0x12, 0, 0          	MOVF	r0x12, W
-0028a6   ec2b     call	0x3e56, 0           	CALL	__gptrget1
+0028a6   ec29     call	0x3e52, 0           	CALL	__gptrget1
 0028a8   f01f
 0028aa   6e15     movwf	0x15, 0            	MOVWF	r0x15
 0028ac   2a10     incf	0x10, 0x1, 0        	INCF	r0x10, F
@@ -823,7 +816,7 @@ Address  Value    Disassembly              Source
 0028be   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 0028c0   fff3
 0028c2   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-0028c4   ec60     call	0x3ec0, 0           	CALL	__gptrput1
+0028c4   ec5e     call	0x3ebc, 0           	CALL	__gptrput1
 0028c6   f01f
 0028c8   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
 0028ca   b0d8     btfsc	0xd8, 0, 0         	BTFSC	STATUS, 0
@@ -867,7 +860,7 @@ Address  Value    Disassembly              Source
 00290a   c009     movff	0x9, 0xff3         	MOVFF	r0x09, PRODL
 00290c   fff3
 00290e   500a     movf	0xa, 0, 0           	MOVF	r0x0a, W
-002910   ec60     call	0x3ec0, 0           	CALL	__gptrput1
+002910   ec5e     call	0x3ebc, 0           	CALL	__gptrput1
 002912   f01f
                                            _00385_DS_:
                                            ;	.line	564; reveil.c	while (*s++)
@@ -883,7 +876,7 @@ Address  Value    Disassembly              Source
 002924   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 002926   fff3
 002928   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-00292a   ec2b     call	0x3e56, 0           	CALL	__gptrget1
+00292a   ec29     call	0x3e52, 0           	CALL	__gptrget1
 00292c   f01f
 00292e   6e06     movwf	0x6, 0             	MOVWF	r0x06
 002930   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
@@ -1502,9 +1495,9 @@ Address  Value    Disassembly              Source
 000fea   f009
                                            _00269_DS_:
 000fec   010f     movlb	0xf                	BANKSEL	_thour
-                                           ;	.line	404; reveil.c	if (thour==59)
+                                           ;	.line	404; reveil.c	if (thour==23)
 000fee   5147     movf	0x47, 0, 0x1        	MOVF	_thour, W, B
-000ff0   0a3b     xorlw	0x3b               	XORLW	0x3b
+000ff0   0a17     xorlw	0x17               	XORLW	0x17
 000ff2   e001     bz	0xff6                 	BZ	_00327_DS_
 000ff4   d047     bra	0x1084               	BRA	_00271_DS_
                                            _00327_DS_:
@@ -2727,7 +2720,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	287; reveil.c	break;
 000c44   d0c9     bra	0xdd8                	BRA	_00194_DS_
                                            _00188_DS_:
-                                           ;	.line	290; reveil.c	thour, tmin, tsec); // ***blink***
+                                           ;	.line	290; reveil.c	thour, tmin, tsec);
 000c46   cf49     movff	0xf49, 0           	MOVFF	_tsec, r0x00
 000c48   f000
 000c4a   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -3222,7 +3215,7 @@ Address  Value    Disassembly              Source
 001934   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 001936   5000     movf	0, 0, 0             	MOVF	r0x00, W
 001938   010e     movlb	0xe                	BANKSEL	_ds
-00193a   6f61     movwf	0x61, 0x1          	MOVWF	_ds, B
+00193a   6f60     movwf	0x60, 0x1          	MOVWF	_ds, B
                                            ;	.line	208; reveil.c	h = (sec/3600)%24;
 00193c   0e00     movlw	0                  	MOVLW	0x00
 00193e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -3284,7 +3277,7 @@ Address  Value    Disassembly              Source
 0019ae   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 0019b0   5004     movf	0x4, 0, 0           	MOVF	r0x04, W
 0019b2   010e     movlb	0xe                	BANKSEL	_h
-0019b4   6f62     movwf	0x62, 0x1          	MOVWF	_h, B
+0019b4   6f61     movwf	0x61, 0x1          	MOVWF	_h, B
                                            ;	.line	209; reveil.c	m = (sec-(sec/3600)*3600)/60;
 0019b6   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0019b8   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -3358,7 +3351,7 @@ Address  Value    Disassembly              Source
 001a40   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 001a42   5000     movf	0, 0, 0             	MOVF	r0x00, W
 001a44   010e     movlb	0xe                	BANKSEL	_m
-001a46   6f63     movwf	0x63, 0x1          	MOVWF	_m, B
+001a46   6f62     movwf	0x62, 0x1          	MOVWF	_m, B
 001a48   010f     movlb	0xf                	BANKSEL	_sec
                                            ;	.line	210; reveil.c	s = sec-h*3600-m*60;
 001a4a   5154     movf	0x54, 0, 0x1        	MOVF	_sec, W, B
@@ -3367,7 +3360,7 @@ Address  Value    Disassembly              Source
                                            ; ;Unrolled 8 X 8 multiplication
                                            ; ;FIXME: the function does not support result==WREG
 001a4e   010e     movlb	0xe                	BANKSEL	_h
-001a50   5162     movf	0x62, 0, 0x1        	MOVF	_h, W, B
+001a50   5161     movf	0x61, 0, 0x1        	MOVF	_h, W, B
 001a52   0d10     mullw	0x10               	MULLW	0x10
 001a54   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
 001a56   f001
@@ -3377,42 +3370,42 @@ Address  Value    Disassembly              Source
                                            ; ;Unrolled 8 X 8 multiplication
                                            ; ;FIXME: the function does not support result==WREG
 001a5c   010e     movlb	0xe                	BANKSEL	_m
-001a5e   5163     movf	0x63, 0, 0x1        	MOVF	_m, W, B
+001a5e   5162     movf	0x62, 0, 0x1        	MOVF	_m, W, B
 001a60   0d3c     mullw	0x3c               	MULLW	0x3c
 001a62   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
 001a64   f001
 001a66   5001     movf	0x1, 0, 0           	MOVF	r0x01, W
 001a68   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
 001a6a   010e     movlb	0xe                	BANKSEL	_s
-001a6c   6f64     movwf	0x64, 0x1          	MOVWF	_s, B
+001a6c   6f63     movwf	0x63, 0x1          	MOVWF	_s, B
 001a6e   010f     movlb	0xf                	BANKSEL	_tsec
                                            ;	.line	213; reveil.c	if (tsec != s)
 001a70   5149     movf	0x49, 0, 0x1        	MOVF	_tsec, W, B
 001a72   010e     movlb	0xe                	BANKSEL	_s
-001a74   1964     xorwf	0x64, 0, 0x1       	XORWF	_s, W, B
+001a74   1963     xorwf	0x63, 0, 0x1       	XORWF	_s, W, B
 001a76   e002     bz	0x1a7c                	BZ	_00131_DS_
                                            ;	.line	214; reveil.c	tsec = s;
-001a78   ce64     movff	0xe64, 0xf49       	MOVFF	_s, _tsec
+001a78   ce63     movff	0xe63, 0xf49       	MOVFF	_s, _tsec
 001a7a   ff49
                                            _00131_DS_:
 001a7c   010f     movlb	0xf                	BANKSEL	_tmin
                                            ;	.line	215; reveil.c	if (tmin != m)
 001a7e   5148     movf	0x48, 0, 0x1        	MOVF	_tmin, W, B
 001a80   010e     movlb	0xe                	BANKSEL	_m
-001a82   1963     xorwf	0x63, 0, 0x1       	XORWF	_m, W, B
+001a82   1962     xorwf	0x62, 0, 0x1       	XORWF	_m, W, B
 001a84   e002     bz	0x1a8a                	BZ	_00133_DS_
                                            ;	.line	216; reveil.c	tmin = m;
-001a86   ce63     movff	0xe63, 0xf48       	MOVFF	_m, _tmin
+001a86   ce62     movff	0xe62, 0xf48       	MOVFF	_m, _tmin
 001a88   ff48
                                            _00133_DS_:
 001a8a   010f     movlb	0xf                	BANKSEL	_thour
                                            ;	.line	217; reveil.c	if (thour != h)
 001a8c   5147     movf	0x47, 0, 0x1        	MOVF	_thour, W, B
 001a8e   010e     movlb	0xe                	BANKSEL	_h
-001a90   1962     xorwf	0x62, 0, 0x1       	XORWF	_h, W, B
+001a90   1961     xorwf	0x61, 0, 0x1       	XORWF	_h, W, B
 001a92   e002     bz	0x1a98                	BZ	_00135_DS_
                                            ;	.line	218; reveil.c	thour = h;
-001a94   ce62     movff	0xe62, 0xf47       	MOVFF	_h, _thour
+001a94   ce61     movff	0xe61, 0xf47       	MOVFF	_h, _thour
 001a96   ff47
                                            _00135_DS_:
 001a98   010f     movlb	0xf                	BANKSEL	_on
@@ -3421,7 +3414,7 @@ Address  Value    Disassembly              Source
 001a9c   e10e     bnz	0x1aba               	BNZ	_00139_DS_
 001a9e   0e05     movlw	0x5                	MOVLW	0x05
 001aa0   010e     movlb	0xe                	BANKSEL	_ds
-001aa2   5d61     subwf	0x61, 0, 0x1       	SUBWF	_ds, W, B
+001aa2   5d60     subwf	0x60, 0, 0x1       	SUBWF	_ds, W, B
 001aa4   e20a     bc	0x1aba                	BC	_00139_DS_
                                            ;	.line	222; reveil.c	LATJbits.LATJ0 = 1;
 001aa6   8091     bsf	0x91, 0, 0           	BSF	_LATJbits, 0
@@ -3446,7 +3439,7 @@ Address  Value    Disassembly              Source
 001abe   e00d     bz	0x1ada                	BZ	_00146_DS_
 001ac0   0e05     movlw	0x5                	MOVLW	0x05
 001ac2   010e     movlb	0xe                	BANKSEL	_ds
-001ac4   5d61     subwf	0x61, 0, 0x1       	SUBWF	_ds, W, B
+001ac4   5d60     subwf	0x60, 0, 0x1       	SUBWF	_ds, W, B
 001ac6   e309     bnc	0x1ada               	BNC	_00146_DS_
                                            ;	.line	232; reveil.c	LATJbits.LATJ0 = 0;
 001ac8   9091     bcf	0x91, 0, 0           	BCF	_LATJbits, 0
@@ -3944,9 +3937,9 @@ Address  Value    Disassembly              Source
                                            
                                            
                                            ; Statistics:
-                                           ; code size:	 5428 (0x1534) bytes ( 4.14%)
-                                           ;           	 2714 (0x0a9a) words
-                                           ; udata size:	   45 (0x002d) bytes ( 1.17%)
+                                           ; code size:	 5424 (0x1530) bytes ( 4.14%)
+                                           ;           	 2712 (0x0a98) words
+                                           ; udata size:	   44 (0x002c) bytes ( 1.15%)
                                            ; access size:	   22 (0x0016) bytes
                                            
                                            

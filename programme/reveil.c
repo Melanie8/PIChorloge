@@ -77,7 +77,7 @@ void DisplayString(BYTE pos, char* text);
 void DisplayWORD(BYTE pos, WORD w);
 size_t strlcpy(char *dst, const char *src, size_t siz);
 
-BYTE chandelle;
+//BYTE chandelle;
 
 /* les boutons */
 BYTE button1 = 0; // flag pour le boutton 1
@@ -186,7 +186,7 @@ void main() {
     LCDInit();
     whereami = TIME_MENU;
     
-    chandelle++; // ##### BIZARRE ####
+    //chandelle++; // ##### BIZARRE ####
     
     T0CONbits.TMR0ON = 1; // start timer0
     
@@ -401,7 +401,7 @@ void button(void)
                 whereami = SET_HOUR;
                 break;
             case SET_HOUR: // ADD
-                if (thour==59)
+                if (thour==23)
                     overflows -= 59*F*3600;
                 else
                     overflows += F*3600;

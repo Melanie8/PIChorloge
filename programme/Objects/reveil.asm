@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-; This file was generated Sat Oct 26 20:37:05 2013
+; This file was generated Sat Oct 26 20:44:33 2013
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -20,7 +20,6 @@
 	global _inc_amin
 	global _DisplayString
 	global _strlcpy
-	global _chandelle
 	global _button1
 	global _button2
 	global _overflows
@@ -549,27 +548,24 @@ r0x14	res	1
 r0x15	res	1
 
 udata_reveil_0	udata
-_chandelle	res	1
-
-udata_reveil_1	udata
 _sec	res	4
 
-udata_reveil_2	udata
+udata_reveil_1	udata
 _decisec	res	4
 
-udata_reveil_3	udata
+udata_reveil_2	udata
 _ds	res	1
 
-udata_reveil_4	udata
+udata_reveil_3	udata
 _h	res	1
 
-udata_reveil_5	udata
+udata_reveil_4	udata
 _m	res	1
 
-udata_reveil_6	udata
+udata_reveil_5	udata
 _s	res	1
 
-udata_reveil_7	udata
+udata_reveil_6	udata
 _display	res	32
 
 ;--------------------------------------------------------
@@ -652,9 +648,6 @@ _main:
 	MOVLW	0x01
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-	BANKSEL	_chandelle
-;	.line	189; reveil.c	chandelle++; // ##### BIZARRE ####
-	INCF	_chandelle, F, B
 ;	.line	191; reveil.c	T0CONbits.TMR0ON = 1; // start timer0
 	BSF	_T0CONbits, 7
 _00123_DS_:
@@ -1287,9 +1280,9 @@ _00268_DS_:
 	GOTO	_00299_DS_
 _00269_DS_:
 	BANKSEL	_thour
-;	.line	404; reveil.c	if (thour==59)
+;	.line	404; reveil.c	if (thour==23)
 	MOVF	_thour, W, B
-	XORLW	0x3b
+	XORLW	0x17
 	BZ	_00327_DS_
 	BRA	_00271_DS_
 _00327_DS_:
@@ -2358,7 +2351,7 @@ _00186_DS_:
 ;	.line	287; reveil.c	break;
 	BRA	_00194_DS_
 _00188_DS_:
-;	.line	290; reveil.c	thour, tmin, tsec); // ***blink***
+;	.line	290; reveil.c	thour, tmin, tsec);
 	MOVFF	_tsec, r0x00
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
@@ -3191,9 +3184,9 @@ __str_14:
 
 
 ; Statistics:
-; code size:	 5428 (0x1534) bytes ( 4.14%)
-;           	 2714 (0x0a9a) words
-; udata size:	   45 (0x002d) bytes ( 1.17%)
+; code size:	 5424 (0x1530) bytes ( 4.14%)
+;           	 2712 (0x0a98) words
+; udata size:	   44 (0x002c) bytes ( 1.15%)
 ; access size:	   22 (0x0016) bytes
 
 
