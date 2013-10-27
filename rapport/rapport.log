@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.1.26)  27 OCT 2013 13:29
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.1.26)  27 OCT 2013 14:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -914,37 +914,72 @@ LaTeX Font Info:    Try loading font information for T1+pcr on input line 249.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [4]
+)
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
 
+ []
+
+[4]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 287.
+
+ (/usr/local/texlive/2012/texmf-dist/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 287.
+
+Underfull \hbox (badness 10000) in paragraph at lines 287--288
+
+ []
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 292.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 293.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--297
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--300
+
+ []
+
+[5] 
 AED: lastpage setting LastPage
-[5] (./rapport.aux)
+[6] (./rapport.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7764 strings out of 493488
- 111265 string characters out of 3141326
- 194323 words of memory out of 3000000
- 10875 multiletter control sequences out of 15000+200000
- 70987 words of font info for 68 fonts, out of 3000000 for 9000
+ 7785 strings out of 493488
+ 111608 string characters out of 3141326
+ 196323 words of memory out of 3000000
+ 10891 multiletter control sequences out of 15000+200000
+ 76967 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,8n,43p,892b,458s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
-texlive/2012/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
-12/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2012/texmf-dist/f
-onts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/pub
-lic/lm/lmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmc
-sc10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/
-texlive/2012/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/201
-2/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2012/texmf-dist
-/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
-e1/urw/courier/ucrr8a.pfb>
-Output written on rapport.pdf (7 pages, 5626648 bytes).
+texlive/2012/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/20
+12/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2012/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/d
+vips/lm/lm-ec.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmb
+x12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local
+/texlive/2012/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/20
+12/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2012/texmf-di
+st/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/ty
+pe1/public/lm/lmr8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/l
+m/lmri12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmsy10.p
+fb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on rapport.pdf (8 pages, 5647107 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

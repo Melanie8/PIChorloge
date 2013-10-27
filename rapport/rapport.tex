@@ -282,51 +282,29 @@ Le programme se lance automatiquement sur le PIC. Pour le faire redémarrer, app
     
     \subsection{Fréquence du PIC}
     
-    Pour déterminer l'heure, nous avons pu nous baser sur les timers de notre PIC. Le principe d'un timer est celui d'un registre qui est incrémenté régulièrement et automatiquement, et qui, lors d'un débordement, génère une interruption. Notre PIC contenait deux timers :
-    \begin{itemize}
-    \item \texttt{timer1}  Ce timer a une fréquence $f_1 = \unit{32768}{\hertz}$
-    \end{itemize}
-    
-%    Nous avons configuré le timer1 pour qu'il overflow après 2 secondes.
-% L'idée de base est alors de mesurer le nombre de fois que le timer0
-% overflow pendant ce laps de temps. Nous estimerons alors que :
-% 
-%    (nombre d'instructions par seconde) = overflows * 2^16 / 2 et
-%    f = 4 * (nombre d'instructions par seconde)
-% 
-% Afin d'avoir une erreur relative la plus petite possible nous
-%    - n'avons pas utilisé de prescaler sur le timer0,
-%    - avons effectué notre mesure sur plus de 2 secondes.
-% 
-% En effet,
-%    f_exacte = 4 * (overflows * 2^16 + value) / N
-%    où  - value est la valeur qui se trouve dans le timer0 pile au moment de l'overflow du timer1
-%        - N est le temps de notre mesure en secondes
-% 
-%    f_mesuree = 4 * (overflows * 2^16) / N
-%    (erreur relative) = |f_exacte - f_mesuree| / f_exacte
-%                      = value / (overflows * 2^16 + value)
-% 
-% Notre erreur relative sera donc plus petite lorsque overflows est plus grand.
-% C'est pourquoi utiliser un prescaler sur le timer0 serait contreproductif
-% (cela diviserait le nombre d'overflows par la valeur du prescaler) et
-% augmenter le temps de mesure est intéressant (cela augmentera le nombre
-% d'overflows).
-% 
-% Nous avons pris le parti de ne pas mesurer la valeur se trouvant dans
-% le timer0 après l'overflow du timer1 parce que cette valeur est négligeable.
-% L'erreur relative maximale en ne la mesurant pas est en effet
-% <= 1 / (overflows + 1).
-% De plus, on ne trouverait de toute façon pas précisément la valeur qui se
-% trouvait dans le timer0 pile au moment de l'overflow.
-% 
-% Nous avons effectué 3 mesures sur un laps de temps de 10 minutes et avons
-% trouvé qu'en moyenne
-% le nombre d'overflows/s        = 95,366
-% le nombre d'incrémentation/s   = 95,366 * 2^16      = 6249906,176
-% la fréquence du PIC            = 6249906,176 * 4    = 24999624 Hz
-% ce qui représente un écart de 0.0015% par rapport à la fréquence de 25 MHz
-% annoncée dans la documentation du PIC.
+    Pour déterminer l'heure, nous avons du nous baser sur le timer0 de notre PIC. Ce timer est un registre qui est incrémenté automatiquement à chaque coup d'horloge, et qui, lors d'un débordement (overflow), génère une interruption. Nous avons alors effectué quelques tests nous permettant de mesurer à quelle fréquence ce registre est incrémenté, sur base de quoi nous avons pu ensuite nous baser pour concevoir notre réveil-matin. Nous allons vous présenter ici notre stratégie.\\
+  
+ Outre le timer0, le PIC contient un timer1 qui peut être programmé pour déborder après exactement 2 secondes (mais nous n'avons toutefois pas eu l'autorisation de l'utiliser dans le cadre du réveil-matin en lui-même).  Notre stratégie a alors été de mesurer le nombre de fois que le timer0 déborde pendant ce laps de temps. Nous estimerons alors que $$f_{software} = \frac{overflows \cdot 2^{16}}{2}$$ car le registre fait 16 bits et $$f_{hardware} = 4 \cdot f_{software}$$ comme expliqué dans la documentation du PIC.\\
+ 
+ Afin d'avoir une erreur relative la plus petite possible, nous n'avons pas utilisé de prescaler sur le timer0 (option qui permet de diviser la fréquence d'incrémentation du registre par une puissance de 2) et avons effectué notre mesure sur plus de 2 secondes. En effet, si on considère ici f comme étant la fréquence hardware, qu'on appelle $value$ est la valeur qui se trouve dans le timer0 pile au moment de l'overflow du timer1 et $N$ est le temps de notre mesure en secondes, nous pouvons aussi écrire
+ \begin{eqnarray*}
+ f_{exacte} &=& \frac{4 \cdot (overflows \cdot 2^{16} + value)}{N}\\
+f_{mesurée} &=&  \frac{4 \cdot (overflows \cdot 2^{16})}{N}\\
+ \text{erreur relative} &=& \frac{|f_{exacte} - f_{mesurée}|}{f_{exacte}}\\
+                      &=& \frac{value}{overflows \cdot 2^{16} + value}\\
+\end{eqnarray*}
+ Notre erreur relative sera donc plus petite lorsque overflows est plus grand. C'est pourquoi utiliser un prescaler sur le timer0 serait contreproductif (cela diminuerait le nombre d'overflows) et augmenter le temps de mesure est intéressant (cela augmentera le nombre d'overflows).\\
+ 
+ Nous avons pris le parti de ne pas mesurer la valeur se trouvant dans le timer0 après l'overflow du timer1 parce que cette valeur est négligeable. L'erreur relative maximale en ne la mesurant pas est en effet $\leq \frac{1}{overflows + 1}$. De plus, on ne trouverait de toute façon pas précisément la valeur qui se
+ trouvait dans le timer0 pile au moment de l'overflow.\\
+ 
+Nous avons donc créé un programme \texttt{findfreq.c} qui compte et affiche le nombre d'overflows sur sur un laps de temps de 10 minutes. Nous avons effectué 3 mesures avons trouvé qu'en moyenne
+  \begin{eqnarray*}
+ \text{le nombre d'overflows/s} &=& 95,366\\
+f_{software}  &=& 95,366 \cdot 2^{16} = 6249906,176\\
+f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
+ \end{eqnarray*}
+ ce qui représente un écart de seulement 0.0015\% par rapport à la fréquence de \unit{25}{\mega\hertz} annoncée dans la documentation du PIC.
  
     \subsection{Choix d'implémentation}
     \subsubsection{Mesure du temps}
