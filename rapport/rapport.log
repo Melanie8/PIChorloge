@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.7)  27 OCT 2013 14:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.7)  27 OCT 2013 14:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -619,7 +619,11 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 )
-(./rapport.aux)
+(./rapport.aux
+
+LaTeX Warning: Label `fig:sonneriealarme' multiply defined.
+
+)
 \openout1 = `rapport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
@@ -810,25 +814,30 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
 .jpg>]
-(./rapport.toc)
+(./rapport.toc
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 19.
+ (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+))
 \tf@toc=\write3
 \openout3 = `rapport.toc'.
 
- [1
+
+[1
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
-<photos/IMG_2150.JPG, id=14, 2442.12375pt x 1831.84375pt>
+<photos/IMG_2150.JPG, id=15, 2442.12375pt x 1831.84375pt>
 File: photos/IMG_2150.JPG Graphic file (type jpg)
 
 <use photos/IMG_2150.JPG>
 Package pdftex.def Info: photos/IMG_2150.JPG used on input line 150.
 (pdftex.def)             Requested size: 241.84843pt x 181.4062pt.
 
-<photos/IMG_2153.JPG, id=15, 2238.3625pt x 1678.27pt>
+<photos/IMG_2153.JPG, id=16, 2238.3625pt x 1678.27pt>
 File: photos/IMG_2153.JPG Graphic file (type jpg)
 
 <use photos/IMG_2153.JPG>
@@ -839,82 +848,38 @@ Overfull \hbox (5.22214pt too wide) in paragraph at lines 149--161
  [][]  [] 
  []
 
-
-LaTeX Warning: Reference `fig:questionhorloge' on page 1 undefined on input lin
-e 165.
-
 [1
 
  <./photos/IMG_2150.JPG> <./photos/IMG_2153.JPG>]
-
-LaTeX Warning: Reference `fig:questionalarme' on page 2 undefined on input line
- 167.
-
-
-LaTeX Warning: Reference `fig:modificationhorloge' on page 2 undefined on input
- line 167.
-
-
-LaTeX Warning: Reference `fig:questionalarme' on page 2 undefined on input line
- 169.
-
-<photos/IMG_2151.JPG, id=20, 2221.29875pt x 1666.225pt>
+<photos/IMG_2151.JPG, id=21, 2221.29875pt x 1666.225pt>
 File: photos/IMG_2151.JPG Graphic file (type jpg)
 
 <use photos/IMG_2151.JPG>
 Package pdftex.def Info: photos/IMG_2151.JPG used on input line 174.
 (pdftex.def)             Requested size: 193.47578pt x 145.12312pt.
 
-<photos/IMG_2156.JPG, id=21, 2311.63625pt x 1733.47626pt>
+<photos/IMG_2156.JPG, id=22, 2311.63625pt x 1733.47626pt>
 File: photos/IMG_2156.JPG Graphic file (type jpg)
 
 <use photos/IMG_2156.JPG>
 Package pdftex.def Info: photos/IMG_2156.JPG used on input line 181.
 (pdftex.def)             Requested size: 193.47578pt x 145.082pt.
 
-<photos/IMG_2157.JPG, id=22, 2313.64375pt x 1735.48375pt>
+<photos/IMG_2157.JPG, id=23, 2313.64375pt x 1735.48375pt>
 File: photos/IMG_2157.JPG Graphic file (type jpg)
 
 <use photos/IMG_2157.JPG>
 Package pdftex.def Info: photos/IMG_2157.JPG used on input line 186.
 (pdftex.def)             Requested size: 193.47578pt x 145.1176pt.
-
-
-LaTeX Warning: Reference `fig:r\IeC {\'e}veil' on page 2 undefined on input lin
-e 193.
-
-
-LaTeX Warning: Reference `fig:activeralarme' on page 2 undefined on input line 
-193.
-
-
-LaTeX Warning: Reference `fig:modificationalarme' on page 2 undefined on input 
-line 193.
-
-
-LaTeX Warning: Reference `fig:r\IeC {\'e}veil' on page 2 undefined on input lin
-e 193.
-
-
-LaTeX Warning: Reference `fig:alarmeon' on page 2 undefined on input line 196.
-
-
-LaTeX Warning: Reference `fig:alarmeoff' on page 2 undefined on input line 196.
-
-
-
-LaTeX Warning: Reference `fig:questionhorloge' on page 2 undefined on input lin
-e 196.
-
-[2 <./photos/IMG_2151.JPG> <./photos/IMG_2156.JPG> <./photos/IMG_2157.JPG>]
-<photos/IMG_2152.JPG, id=26, 2216.28pt x 1661.20625pt>
+ [2 <./photos/IMG_2151.JPG> <./photos/IMG_2156.JPG> <./photos/IMG_2157.JPG>] <p
+hotos/IMG_2152.JPG, id=27, 2216.28pt x 1661.20625pt>
 File: photos/IMG_2152.JPG Graphic file (type jpg)
 
 <use photos/IMG_2152.JPG>
 Package pdftex.def Info: photos/IMG_2152.JPG used on input line 201.
 (pdftex.def)             Requested size: 241.84843pt x 181.26306pt.
 
-<photos/IMG_2158.JPG, id=27, 2221.29875pt x 1665.22125pt>
+<photos/IMG_2158.JPG, id=28, 2221.29875pt x 1665.22125pt>
 File: photos/IMG_2158.JPG Graphic file (type jpg)
 
 <use photos/IMG_2158.JPG>
@@ -925,14 +890,14 @@ Overfull \hbox (5.22214pt too wide) in paragraph at lines 200--212
  [][]  [] 
  []
 
-<photos/IMG_2160.JPG, id=28, 2290.5575pt x 1718.42pt>
+<photos/IMG_2160.JPG, id=29, 2290.5575pt x 1718.42pt>
 File: photos/IMG_2160.JPG Graphic file (type jpg)
 
 <use photos/IMG_2160.JPG>
 Package pdftex.def Info: photos/IMG_2160.JPG used on input line 219.
 (pdftex.def)             Requested size: 241.84843pt x 181.42271pt.
 
-<photos/IMG_2162.JPG, id=29, 2158.0625pt x 1619.04875pt>
+<photos/IMG_2162.JPG, id=30, 2158.0625pt x 1619.04875pt>
 File: photos/IMG_2162.JPG Graphic file (type jpg)
 
 <use photos/IMG_2162.JPG>
@@ -943,52 +908,32 @@ Overfull \hbox (5.22214pt too wide) in paragraph at lines 218--230
  [][]  [] 
  []
 
-
-LaTeX Warning: Reference `fig:sonneriealarme' on page 3 undefined on input line
- 235.
-
-
-LaTeX Warning: Reference `fig:snoozealarme' on page 3 undefined on input line 2
-40.
-
-
-LaTeX Warning: Reference `fig:alarmeon' on page 3 undefined on input line 240.
-
 [3 <./photos/IMG_2152.JPG> <./photos/IMG_2158.JPG> <./photos/IMG_2160.JPG> <./p
-hotos/IMG_2162.JPG>]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 249.
+hotos/IMG_2162.JPG>] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 358--359
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
+ []
 
-LaTeX Warning: Reference `subsec:freq' on page 4 undefined on input line 250.
-
-[4]
-
-Package lastpage Warning: Rerun to get the references right on input line 371.
-
-
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <12> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 366.
+[5] 
 AED: lastpage setting LastPage
-[5] (./rapport.aux)
+[6] (./rapport.aux)
 
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7976 strings out of 493311
- 114765 string characters out of 6137850
- 201686 words of memory out of 5000000
- 11233 multiletter control sequences out of 15000+600000
- 70987 words of font info for 68 fonts, out of 8000000 for 9000
+ 7980 strings out of 493311
+ 114804 string characters out of 6137850
+ 202686 words of memory out of 5000000
+ 11235 multiletter control sequences out of 15000+600000
+ 71608 words of font info for 70 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,8n,43p,884b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
-texlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
-13/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2013/texmf-dist/f
+{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
+exlive/2013/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2013/te
+xmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2013/texmf-dist/f
 onts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/pub
 lic/lm/lmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmc
 sc10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><
@@ -996,11 +941,12 @@ sc10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><
 texlive/2013/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/201
 3/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2013/texmf-dist
 /fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
-e1/urw/courier/ucrr8a.pfb>
-Output written on rapport.pdf (7 pages, 5627327 bytes).
+e1/urw/courier/ucrb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/c
+ourier/ucrr8a.pfb>
+Output written on rapport.pdf (8 pages, 5638908 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 83 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
