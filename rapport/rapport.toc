@@ -1,0 +1,21 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {2}Documentation pour l'utilisateur}{1}
+\contentsline {subsection}{\numberline {2.1}R\IeC {\'e}glages}{1}
+\contentsline {paragraph}{Premi\IeC {\`e}re utilisation}{1}
+\contentsline {paragraph}{Menu de l'horloge}{2}
+\contentsline {paragraph}{Menu du l'alarme}{2}
+\contentsline {paragraph}{L'affichage}{3}
+\contentsline {subsection}{\numberline {2.2}Le r\IeC {\'e}veil}{3}
+\contentsline {section}{\numberline {3}Documentation pour l'installateur}{4}
+\contentsline {subsection}{\numberline {3.1}Compilation}{4}
+\contentsline {subsection}{\numberline {3.2}Installation}{4}
+\contentsline {section}{\numberline {4}Documentation pour le programmeur}{5}
+\contentsline {subsection}{\numberline {4.1}Sp\IeC {\'e}cifications}{5}
+\contentsline {subsection}{\numberline {4.2}Fr\IeC {\'e}quence du PIC}{5}
+\contentsline {subsection}{\numberline {4.3}Choix d'impl\IeC {\'e}mentation}{6}
+\contentsline {subsubsection}{\numberline {4.3.1}Mesure du temps}{6}
+\contentsline {subsubsection}{\numberline {4.3.2}\'Etats du r\IeC {\'e}veil}{7}
+\contentsline {subsubsection}{\numberline {4.3.3}Autres choix}{7}
+\contentsline {subsection}{\numberline {4.4}D\IeC {\'e}tails techniques}{7}
+\contentsline {section}{\numberline {5}Conclusion}{7}

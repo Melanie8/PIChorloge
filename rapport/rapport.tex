@@ -338,10 +338,26 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
  ce qui représente un écart de seulement 0.0015\% par rapport à la fréquence de \unit{25}{\mega\hertz} annoncée dans la documentation du PIC.
  
     \subsection{Choix d'implémentation}
+    
     \subsubsection{Mesure du temps}
+    %Comme expliqué dans la section~\ref{subsec:freq}, nous avons trouvé qu'en moyenne 1 seconde correspond à $95.366$ overlflows du timer0. C'est cette donnée qui nous a permis dans notre programme de calculer l'heure. 
+    
+    Plusieurs choix d'implémentation s'offraient à nous.\\
+    
+    Tout d'abord, il a fallu choisir si nous voulions nous servir d'interruptions ou faire de l'attente active, c'est-à-dire examiner régulièrement la valeur du timer dans une boucle jusqu'à ce qu'il atteigne la valeur souhaitée. Nous avons décidé de nous servir des interruptions parce qu'elles prennent le dessus sur le restant du programme. Comme le calcul du temps se base sur le nombre d'overflows, l'incrémentation de ce compteur doit être prioritaire par rapport au reste.\\
+    
+    Un deuxième choix, indépendant du premier, est de laisser le temporisateur tourner librement ou non. Ce qu'on entend par ne pas laisser tourner le compteur librement est changer la valeur dans le timer à un moment donné. Par exemple, on pourrait calculer le nombre d'incrémentations qui correspondent à 1 seconde et se dire qu'on va changer la valeur dans le timer0 à $2^{16}$ moins cette valeur afin qu'il déborde après une seconde. Cette technique a un inconvénient majeur : il y a un délai entre le débordement du compteur et le moment où on le réinitialise : il faut donc soustraire de la valeur calculée précédemment la valeur du compteur au moment où on le réinitialise. Cette valeur est difficile à calculer de façon précise et pourrait en plus à priori ne pas être constante. Nous avons donc rejeté cette solution et avons décidé de laisser tourner le compteur librement.\\
+    
+    Un autre choix à effectuer a été d'utiliser le prescaler ou non. Nous avons décidé de ne pas l'utiliser tout simplement parce que cela diminuerait la fréquence d'incrémentation du timer0 et augmenterait donc l'incertitude sur le temps écoulé. Au contraire, il aurait plutôt été intéressant de l'augmenter. Mais cela n'est pas possible et on prendrait le risque que des interruptions ne soient pas traitées parce qu'elles arrivent en même temps qu'une autre. Notons que, sans prescaler, nous ne pensons pas que ce type d'événement arrive souvent vu la fréquence très proche de \unit{25}{MHz} que nous avons trouvée. \\
+    
+    Il nous a ensuite fallu établir une vraie stratégie permettant de calculer l'heure sur base des interruptions du timer0 s'incrémentant normalement. Une première idée que nous avons eue était d'avoir des variables heure, minute et seconde et un compteur d'overflows "qui n'ont pas encore été traités". Supposons que nous avions trouvé qu'il fallait 95,5 overflows pour avoir 1 seconde. Nous aurions alors défini qu'à chaque fois que overflows dépasse un multiple de $95$, on incrémentait nos secondes de 1 (avec une bonne gestion de valeurs maximales des variables et des reports entre elles évidemment) et nous aurions ensuite corrigé l'erreur commise en disant qu'une fois que overflows $= 2\cdot 95$, nous remettions overflows à $-1$ afin de corriger l'erreur commise en disant que la fréquence valait 95. Cette technique n'est cependant pas du tout applicable dans notre cas car nous avons trouvé $95,336$ overflows ce qui fait que pour garder une telle précision, il faudra attendre $500$ secondes et mettre overflows à $-168$, ce qui correspond à plus d'une seconde à retirer. Cela veut dire que soudainement on aurait un recul d'une seconde qui se verrait clairement sur le LCD et ce n'est pas ce que nous désirons.\\
+    
+    Ce que nous avons finalement fait pour garder notre précision est de garder un compteur du nombre d'overflows depuis le lancement du programme. Nous pouvons ensuite convertir ce compteur en un délai heure, minute, seconde sur base de simples calculs basés sur le fait que $1$ seconde correspond à $95,336$ overflows. Il suffit alors de modifier ces variables lorsque nos calculs aboutissent à des valeurs différentes. La modification de l'heure par l'utilisateur modifiera donc directement cette unique valeur aussi. Il faudrait juste ajouter à overflows le nombre d'overflows adéquat.\\
+    
     \subsubsection{\'Etats du réveil}
-    \subsubsection{Interruptions}
+    
     \subsubsection{Autres choix}
+    
     \subsection{Détails techniques}
     
 \section{Conclusion}
