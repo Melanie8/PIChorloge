@@ -288,28 +288,6 @@ Le programme se lance automatiquement sur le PIC. Pour le faire redémarrer, app
     \item Il est possible de postposer l'alarme de 5 minutes pendant une heure.
     \end{itemize}
     
-    % Notre réveil se base sur le timer0 pour mesurer le temps qui passe.
- %Connaissant la fréquence de celui-ci, il compte le nombre d'overflows et
- %vérifie si une seconde est passée pour mettre à jour l'heure de l'horloge.
- 
-% Il y a deux routines d'interruptions à des niveaux de priorités différents :
- %   - le niveau 1 génère une interruption dès que le timer0 overflow et ne
- %    fait que compter le nombre d'overflows qui se sont produits;
- % - le niveau 2 génère une interruption lorsqu'on appuie sur un bouton et
-%      modifie le flag du bouton correspondant.
- 
- %La fonction main vérifie en boucle
-  %  - si le temps mesuré a changé, càd s'il y a eu assez d'overflows pour
-  %    ajouter une seconde;
-  %  - s'il faut changer l'affichage à l'écran, ce qui arrive lorsque le temps
-%      a changé, lorsqu'on a appuyé sur un bouton et lorsque l'alarme se
-%      déclenche (càd lorsque l'état du réveil indiqué dans la variable
-%      'whereami' a changé);
-%    - s'il faut déclencher ou arrêter l'alarme;
-%    - s'il faut changer d'état ou la valeur d'une variable suite à
-%      l'actionnement d'un bouton.
-
-    
     \subsection{Fréquence du PIC}
     \label{subsec:freq}
     
@@ -353,12 +331,60 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     Il nous a ensuite fallu établir une vraie stratégie permettant de calculer l'heure sur base des interruptions du timer0 s'incrémentant normalement. Une première idée que nous avons eue était d'avoir des variables heure, minute et seconde et un compteur d'overflows "qui n'ont pas encore été traités". Supposons que nous avions trouvé qu'il fallait 95,5 overflows pour avoir 1 seconde. Nous aurions alors défini qu'à chaque fois que overflows dépasse un multiple de $95$, on incrémentait nos secondes de 1 (avec une bonne gestion de valeurs maximales des variables et des reports entre elles évidemment) et nous aurions ensuite corrigé l'erreur commise en disant qu'une fois que overflows $= 2\cdot 95$, nous remettions overflows à $-1$ afin de corriger l'erreur commise en disant que la fréquence valait 95. Cette technique n'est cependant pas du tout applicable dans notre cas car nous avons trouvé $95,336$ overflows ce qui fait que pour garder une telle précision, il faudra attendre $500$ secondes et mettre overflows à $-168$, ce qui correspond à plus d'une seconde à retirer. Cela veut dire que soudainement on aurait un recul d'une seconde qui se verrait clairement sur le LCD et ce n'est pas ce que nous désirons.\\
     
     Ce que nous avons finalement fait pour garder notre précision est de garder un compteur du nombre d'overflows depuis le lancement du programme. Nous pouvons ensuite convertir ce compteur en un délai heure, minute, seconde sur base de simples calculs basés sur le fait que $1$ seconde correspond à $95,336$ overflows. Il suffit alors de modifier ces variables lorsque nos calculs aboutissent à des valeurs différentes. La modification de l'heure par l'utilisateur modifiera donc directement cette unique valeur aussi. Il faudrait juste ajouter à overflows le nombre d'overflows adéquat.\\
-    
+
+    % Notre réveil se base sur le timer0 pour mesurer le temps qui passe.
+ %Connaissant la fréquence de celui-ci, il compte le nombre d'overflows et
+ %vérifie si une seconde est passée pour mettre à jour l'heure de l'horloge.
     \subsubsection{\'Etats du réveil}
+    Le réveil peut se trouver dans 11 états différents. Ils sont définis en début de programme au moyen de \texttt{\#define}. Ils permettent de structurer le code de manière claire et de gérer chaque événement dans son contexte.
+    \begin{itemize}
+    \item[\texttt{TIME\_MENU 1}:] Permet d'accéder au menu de l'horloge.
+	\item[\texttt{SET\_HOUR 2}:] Permet de changer l'heure de l'horloge.
+	\item[\texttt{SET\_MINUTE 3}:] Permet de changer les minutes de l'horloge.
+	\item[\texttt{SET\_SECOND 4}:] Permet de changer les secondes de l'horloge.
+	\item[\texttt{ALARM\_MENU 5}:] Permet d'accéder au menu de l'alarme.
+	\item[\texttt{SET\_ALARM 6}:] Permet d'activer/désactiver l'alarme.
+	\item[\texttt{SET\_A\_HOUR 7}:] Permet de changer l'heure du réveil.
+	\item[\texttt{SET\_A\_MIN 8}:] Permet de changer les minutes du réveil.
+	\item[\texttt{DISPLAY 9}:] Affichage normal.
+	\item[\texttt{ALARM 10}:] Le réveil sonne.
+	\item[\texttt{SNOOZE 11}:] Le réveil a été reporté.\\
+    \end{itemize}
     
-    \subsubsection{Autres choix}
+    A chacun de ces états correspond 
+    \begin{itemize}
+    \item un affichage sur le LCD repris dans la méthode \texttt{refresh\_lcd()} et
+    \item une modification à appliquer si on appuie sur l'un des deux boutons repris dans la méthode \texttt{button()}.
+    \end{itemize} 
+    \subsubsection{\texttt{main()}}
+    Après l'initialisation des différents registres nécessaires à son fonctionnement, le programme tourne en boucle pour vérifier
+    \begin{itemize}
+    \item si l'heure a changé et quelles LED il faut allumer ou éteindre (\texttt{time()})
+    \item s'il faut mettre à jour l'affichage (\texttt{refresh\_lcd()})
+    \item s'il faut lancer ou arrêter l'alarme (\texttt{alarm()})
+    \item s'il faut l'utilisateur a appuyé sur un bouton (\texttt{button()}).
+    \end{itemize}
     
-    \subsection{Détails techniques}
+    \subsubsection{Interruptions}
+    % Il y a deux routines d'interruptions à des niveaux de priorités différents :
+ %   - le niveau 1 génère une interruption dès que le timer0 overflow et ne
+ %    fait que compter le nombre d'overflows qui se sont produits;
+ % - le niveau 2 génère une interruption lorsqu'on appuie sur un bouton et
+%      modifie le flag du bouton correspondant.
+ 
+ %La fonction main vérifie en boucle
+  %  - si le temps mesuré a changé, càd s'il y a eu assez d'overflows pour
+  %    ajouter une seconde;
+  %  - s'il faut changer l'affichage à l'écran, ce qui arrive lorsque le temps
+%      a changé, lorsqu'on a appuyé sur un bouton et lorsque l'alarme se
+%      déclenche (càd lorsque l'état du réveil indiqué dans la variable
+%      'whereami' a changé);
+%    - s'il faut déclencher ou arrêter l'alarme;
+%    - s'il faut changer d'état ou la valeur d'une variable suite à
+%      l'actionnement d'un bouton.
+
+    \subsection{Détails techniques du PIC}
+    
     
 \section{Conclusion}
     
