@@ -11,9 +11,16 @@
  STRATEGIE
  
  Notre réveil se base sur le timer0 pour mesurer le temps qui passe.
- Connaissant la fréquence de celui-ci, il compte le nombre d'overflows et
- vérifie si une seconde est passée pour mettre à jour l'heure de l'horloge.
- ++++ EXPLIQUER LE COMPTAGE DES TICKS ++++
+ Nous utilisons simplement un compteur du nombre d'overflows depuis le
+ lancement du programme. Nous pouvons ensuite convertir ce compteur en
+ un délai heure, minute, seconde sur base de simples calculs basés sur 
+ le fait que 1 seconde correspond à 95,336 overflows comme mesuré grâce
+ à notre programme findfreq. Il suffit alors de modifier ces variables 
+ lorsque nos calculs aboutissent à des valeurs différentes. La modifica-
+ tion de l'heure par l'utilisateur modifiera donc directement cette unique
+ valeur aussi. Il faudrait juste ajouter à overflows le nombre d'overflows
+ adéquat. Vous trouverez les raisons qui nous ont poussé à effectuer ce
+ choix d'implémentation plutôt qu'un autre dans notre rapport.
  
  Il y a deux routines d'interruptions à des niveaux de priorités différents :
     - le niveau 1 génère une interruption dès que le timer0 overflow et ne

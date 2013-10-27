@@ -318,7 +318,7 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     \subsection{Choix d'implémentation}
     
     \subsubsection{Mesure du temps}
-    %Comme expliqué dans la section~\ref{subsec:freq}, nous avons trouvé qu'en moyenne 1 seconde correspond à $95.366$ overlflows du timer0. C'est cette donnée qui nous a permis dans notre programme de calculer l'heure. 
+    \label{mesuretemps}
     
     Plusieurs choix d'implémentation s'offraient à nous.\\
     
@@ -362,26 +362,19 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     \item si l'heure a changé et quelles LED il faut allumer ou éteindre (\texttt{time()})
     \item s'il faut mettre à jour l'affichage (\texttt{refresh\_lcd()})
     \item s'il faut lancer ou arrêter l'alarme (\texttt{alarm()})
-    \item sil'utilisateur a appuyé sur un bouton (\texttt{button()}).
+    \item si l'utilisateur a appuyé sur un bouton (\texttt{button()}).
     \end{itemize}
     
     \subsubsection{Interruptions}
-    % Il y a deux routines d'interruptions à des niveaux de priorités différents :
- %   - le niveau 1 génère une interruption dès que le timer0 overflow et ne
- %    fait que compter le nombre d'overflows qui se sont produits;
- % - le niveau 2 génère une interruption lorsqu'on appuie sur un bouton et
-%      modifie le flag du bouton correspondant.
- 
- %La fonction main vérifie en boucle
-  %  - si le temps mesuré a changé, càd s'il y a eu assez d'overflows pour
-  %    ajouter une seconde;
-  %  - s'il faut changer l'affichage à l'écran, ce qui arrive lorsque le temps
-%      a changé, lorsqu'on a appuyé sur un bouton et lorsque l'alarme se
-%      déclenche (càd lorsque l'état du réveil indiqué dans la variable
-%      'whereami' a changé);
-%    - s'il faut déclencher ou arrêter l'alarme;
-%    - s'il faut changer d'état ou la valeur d'une variable suite à
-%      l'actionnement d'un bouton.
+    Il y a deux routines d'interruptions à des niveaux de priorités différents :
+    \begin{itemize}
+    \item le niveau 1 génère une interruption dès que le timer0 overflow et ne fait que compter le nombre d'overflows qui se sont produits (la section~\ref{mesuretemps} explique pourquoi nous avons choisi d'utiliser des interruptions plutôt que de faire de l'attente active);
+    \item le niveau 2 génère une interruption lorsqu'on appuie sur un bouton et modifie le flag du bouton correspondant.\\
+    \end{itemize}
+    
+ 	Nous avons véritablement voulu réduire nos routines d'interruption au strict minimum pour éviter d'avoir des interruptions qui arrivent lorsqu'une autre s'exécute. C'est la fonction \texttt{main()}, et plus particulièrement les fonctions \texttt{time()} et \texttt{button()}, qui vont traiter les informations modifiées dans nos routines.\\
+	
+	Le choix de donner une priorité plus importante à l'incrémentation d'overflows qu'à la pression sur les boutons est assez naturel : nous n'avons pas envie de louper des overflows tandis qu'il est acceptable d'attendre un peu pour les boutons.
 
     \subsection{Détails techniques du PIC}
     
