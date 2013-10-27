@@ -150,9 +150,7 @@ Il comporte un mode d'affichage, un menu de l'horloge et un menu de l'alarme.
                 \includegraphics[width=\textwidth]{photos/IMG_2150.JPG}
                 \caption{Menu}
                 \label{fig:questionhorloge}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
+        \end{subfigure}
         \begin{subfigure}[b]{0.5\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2153.JPG}
                 \caption{Modification de l'heure}
@@ -174,9 +172,7 @@ Arrivé aux secondes, le bouton NEXT vous donne accès au menu de l'alarme (Figu
                 \includegraphics[width=\textwidth]{photos/IMG_2151.JPG}
                 \caption{Menu}
                 \label{fig:questionalarme}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
+        \end{subfigure}
           \begin{subfigure}[b]{0.4\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2156.JPG}
                 \caption{On/off}
@@ -201,9 +197,7 @@ Le réveil affiche l'heure sous le format hh~:~mm~:~ss sur la première ligne de
                 \includegraphics[width=\textwidth]{photos/IMG_2152.JPG}
                 \caption{Affichage avec alarme OFF}
                 \label{fig:alarmeoff}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
+        \end{subfigure}
         \begin{subfigure}[b]{0.5\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2158.JPG}
                 \caption{Affichage avec alarme ON}
@@ -219,9 +213,7 @@ Le réveil affiche l'heure sous le format hh~:~mm~:~ss sur la première ligne de
                 \includegraphics[width=\textwidth]{photos/IMG_2160.JPG}
                 \caption{Sonnerie de l'alarme}
                 \label{fig:sonneriealarme}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
+        \end{subfigure}
         \begin{subfigure}[b]{0.5\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2162.JPG}
                 \caption{Snooze}
@@ -332,9 +324,6 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     
     Ce que nous avons finalement fait pour garder notre précision est de garder un compteur du nombre d'overflows depuis le lancement du programme. Nous pouvons ensuite convertir ce compteur en un délai heure, minute, seconde sur base de simples calculs basés sur le fait que $1$ seconde correspond à $95,336$ overflows. Il suffit alors de modifier ces variables lorsque nos calculs aboutissent à des valeurs différentes. La modification de l'heure par l'utilisateur modifiera donc directement cette unique valeur aussi. Il faudrait juste ajouter à overflows le nombre d'overflows adéquat.\\
 
-    % Notre réveil se base sur le timer0 pour mesurer le temps qui passe.
- %Connaissant la fréquence de celui-ci, il compte le nombre d'overflows et
- %vérifie si une seconde est passée pour mettre à jour l'heure de l'horloge.
     \subsubsection{\'Etats du réveil}
     Le réveil peut se trouver dans 11 états différents. Ils sont définis en début de programme au moyen de \texttt{\#define}. Ils permettent de structurer le code de manière claire et de gérer chaque événement dans son contexte.
     \begin{itemize}

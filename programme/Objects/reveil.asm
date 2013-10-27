@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-; This file was generated Sun Oct 27 15:37:26 2013
+; This file was generated Sun Oct 27 21:13:55 2013
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -581,73 +581,73 @@ ivec_0x2_low_isr:
 ; ; Starting pCode block
 S_reveil__main	code
 _main:
-;	.line	147; reveil.c	RCONbits.IPEN       = 1; // enable interrupts priority levels
+;	.line	154; reveil.c	RCONbits.IPEN       = 1; // enable interrupts priority levels
 	BSF	_RCONbits, 7
-;	.line	148; reveil.c	INTCONbits.GIE      = 1; // enables all high-priority interrupts
+;	.line	155; reveil.c	INTCONbits.GIE      = 1; // enables all high-priority interrupts
 	BSF	_INTCONbits, 7
-;	.line	149; reveil.c	INTCONbits.PEIE     = 1; // enables all low-priority peripheral interrupts
+;	.line	156; reveil.c	INTCONbits.PEIE     = 1; // enables all low-priority peripheral interrupts
 	BSF	_INTCONbits, 6
-;	.line	152; reveil.c	T0CONbits.TMR0ON    = 1; // enables Timer0
+;	.line	159; reveil.c	T0CONbits.TMR0ON    = 1; // enables Timer0
 	BSF	_T0CONbits, 7
-;	.line	153; reveil.c	INTCONbits.TMR0IE   = 1; // enables the TMR0 overflow interrupt
+;	.line	160; reveil.c	INTCONbits.TMR0IE   = 1; // enables the TMR0 overflow interrupt
 	BSF	_INTCONbits, 5
-;	.line	154; reveil.c	INTCONbits.TMR0IF   = 0; // clear Timer0 overflow bit
+;	.line	161; reveil.c	INTCONbits.TMR0IF   = 0; // clear Timer0 overflow bit
 	BCF	_INTCONbits, 2
-;	.line	155; reveil.c	INTCON2bits.TMR0IP  = 1; // high priority
+;	.line	162; reveil.c	INTCON2bits.TMR0IP  = 1; // high priority
 	BSF	_INTCON2bits, 2
-;	.line	156; reveil.c	T0CONbits.T08BIT    = 0; // timer0 is configured as a 16-bit timer/counter
+;	.line	163; reveil.c	T0CONbits.T08BIT    = 0; // timer0 is configured as a 16-bit timer/counter
 	BCF	_T0CONbits, 6
-;	.line	157; reveil.c	T0CONbits.T0CS      = 0; // internal instruction cycle clock (CLKO)
+;	.line	164; reveil.c	T0CONbits.T0CS      = 0; // internal instruction cycle clock (CLKO)
 	BCF	_T0CONbits, 5
-;	.line	158; reveil.c	T0CONbits.PSA       = 1; // timer0 prescaler is not assigned
+;	.line	165; reveil.c	T0CONbits.PSA       = 1; // timer0 prescaler is not assigned
 	BSF	_T0CONbits, 3
-;	.line	159; reveil.c	TMR0L = 0;    TMR0H = 0;
+;	.line	166; reveil.c	TMR0L = 0;    TMR0H = 0;
 	CLRF	_TMR0L
 	CLRF	_TMR0H
-;	.line	162; reveil.c	LED0_TRIS = 0; // configure 1st led pin as output (yellow)
+;	.line	169; reveil.c	LED0_TRIS = 0; // configure 1st led pin as output (yellow)
 	BCF	_TRISJbits, 0
-;	.line	163; reveil.c	LED1_TRIS = 0; // configure 2nd led pin as output (red)
+;	.line	170; reveil.c	LED1_TRIS = 0; // configure 2nd led pin as output (red)
 	BCF	_TRISJbits, 1
-;	.line	164; reveil.c	LED2_TRIS = 0; // configure 3rd led pin as output (red)
+;	.line	171; reveil.c	LED2_TRIS = 0; // configure 3rd led pin as output (red)
 	BCF	_TRISJbits, 2
-;	.line	165; reveil.c	LATJbits.LATJ0 = 0; // switch LED 1 off
+;	.line	172; reveil.c	LATJbits.LATJ0 = 0; // switch LED 1 off
 	BCF	_LATJbits, 0
-;	.line	166; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+;	.line	173; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 	BCF	_LATJbits, 1
-;	.line	167; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+;	.line	174; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 	BCF	_LATJbits, 2
-;	.line	170; reveil.c	BUTTON0_TRIS        = 1; // configure 1st button as input
+;	.line	177; reveil.c	BUTTON0_TRIS        = 1; // configure 1st button as input
 	BSF	_TRISBbits, 3
-;	.line	171; reveil.c	BUTTON1_TRIS        = 1; // configure 2nd button as input
+;	.line	178; reveil.c	BUTTON1_TRIS        = 1; // configure 2nd button as input
 	BSF	_TRISBbits, 1
-;	.line	172; reveil.c	INTCON3bits.INT3E   = 1; // enable INT3 interrupt (button 1)
+;	.line	179; reveil.c	INTCON3bits.INT3E   = 1; // enable INT3 interrupt (button 1)
 	BSF	_INTCON3bits, 5
-;	.line	173; reveil.c	INTCON3bits.INT3F   = 0; // clear INT3 flag
+;	.line	180; reveil.c	INTCON3bits.INT3F   = 0; // clear INT3 flag
 	BCF	_INTCON3bits, 2
-;	.line	174; reveil.c	INTCON3bits.INT1E   = 1; // enable INT1 interrupt (button 2)
+;	.line	181; reveil.c	INTCON3bits.INT1E   = 1; // enable INT1 interrupt (button 2)
 	BSF	_INTCON3bits, 3
-;	.line	175; reveil.c	INTCON3bits.INT1F   = 0; // clear INT1 flag
+;	.line	182; reveil.c	INTCON3bits.INT1F   = 0; // clear INT1 flag
 	BCF	_INTCON3bits, 0
-;	.line	176; reveil.c	INTCON3bits.INT1IP  = 0; // low priority
+;	.line	183; reveil.c	INTCON3bits.INT1IP  = 0; // low priority
 	BCF	_INTCON3bits, 6
-;	.line	177; reveil.c	INTCON2bits.INT3IP  = 0; // low priority
+;	.line	184; reveil.c	INTCON2bits.INT3IP  = 0; // low priority
 	BCF	_INTCON2bits, 1
-;	.line	179; reveil.c	LCDInit();
+;	.line	186; reveil.c	LCDInit();
 	CALL	_LCDInit
-;	.line	180; reveil.c	whereami = TIME_MENU;
+;	.line	187; reveil.c	whereami = TIME_MENU;
 	MOVLW	0x01
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	182; reveil.c	T0CONbits.TMR0ON = 1; // start timer0
+;	.line	189; reveil.c	T0CONbits.TMR0ON = 1; // start timer0
 	BSF	_T0CONbits, 7
 _00123_DS_:
-;	.line	185; reveil.c	time(); // met à jour l'heure
+;	.line	192; reveil.c	time(); // met à jour l'heure
 	CALL	_time
-;	.line	186; reveil.c	refresh_lcd(); // met à jour l'affichage
+;	.line	193; reveil.c	refresh_lcd(); // met à jour l'affichage
 	CALL	_refresh_lcd
-;	.line	187; reveil.c	alarm(); // vérifie l'alarme
+;	.line	194; reveil.c	alarm(); // vérifie l'alarme
 	CALL	_alarm
-;	.line	188; reveil.c	button(); // vérifie les boutons
+;	.line	195; reveil.c	button(); // vérifie les boutons
 	CALL	_button
 	BRA	_00123_DS_
 	RETURN	
@@ -655,7 +655,7 @@ _00123_DS_:
 ; ; Starting pCode block
 S_reveil__inc_amin	code
 _inc_amin:
-;	.line	464; reveil.c	void inc_amin(BYTE val)
+;	.line	471; reveil.c	void inc_amin(BYTE val)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -664,7 +664,7 @@ _inc_amin:
 	MOVFF	r0x03, POSTDEC1
 	MOVLW	0x02
 	MOVFF	PLUSW2, r0x00
-;	.line	467; reveil.c	mod_amin = (amin + val) / 60;
+;	.line	474; reveil.c	mod_amin = (amin + val) / 60;
 	MOVFF	_amin, r0x01
 	CLRF	r0x02
 	CLRF	r0x03
@@ -685,16 +685,16 @@ _inc_amin:
 	MOVFF	PRODL, r0x02
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	468; reveil.c	if (mod_amin) // vérifie s'il faut incrémenter les heures
+;	.line	475; reveil.c	if (mod_amin) // vérifie s'il faut incrémenter les heures
 	MOVF	r0x01, W
 	BZ	_00349_DS_
-;	.line	469; reveil.c	inc_ahour(mod_amin);
+;	.line	476; reveil.c	inc_ahour(mod_amin);
 	MOVF	r0x01, W
 	MOVWF	POSTDEC1
 	CALL	_inc_ahour
 	INCF	FSR1L, F
 _00349_DS_:
-;	.line	471; reveil.c	amin = (amin + val) % 60;
+;	.line	478; reveil.c	amin = (amin + val) % 60;
 	MOVFF	_amin, r0x01
 	CLRF	r0x02
 	MOVF	r0x01, W
@@ -727,7 +727,7 @@ _00349_DS_:
 ; ; Starting pCode block
 S_reveil__inc_ahour	code
 _inc_ahour:
-;	.line	458; reveil.c	void inc_ahour(BYTE val)
+;	.line	465; reveil.c	void inc_ahour(BYTE val)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -736,7 +736,7 @@ _inc_ahour:
 	MOVFF	r0x03, POSTDEC1
 	MOVLW	0x02
 	MOVFF	PLUSW2, r0x00
-;	.line	460; reveil.c	ahour = (ahour + val) % 24;
+;	.line	467; reveil.c	ahour = (ahour + val) % 24;
 	MOVFF	_ahour, r0x01
 	CLRF	r0x02
 	CLRF	r0x03
@@ -770,7 +770,7 @@ _inc_ahour:
 ; ; Starting pCode block
 S_reveil__button	code
 _button:
-;	.line	328; reveil.c	void button(void)
+;	.line	335; reveil.c	void button(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -778,11 +778,11 @@ _button:
 	MOVFF	r0x02, POSTDEC1
 	MOVFF	r0x03, POSTDEC1
 	BANKSEL	_button1
-;	.line	336; reveil.c	if (button1) {
+;	.line	343; reveil.c	if (button1) {
 	MOVF	_button1, W, B
 	BTFSC	STATUS, 2
 	BRA	_00303_DS_
-;	.line	337; reveil.c	switch (whereami) {
+;	.line	344; reveil.c	switch (whereami) {
 	MOVLW	0x01
 	BANKSEL	_whereami
 	SUBWF	_whereami, W, B
@@ -832,115 +832,115 @@ _00322_DS_:
 	GOTO	_00264_DS_
 	GOTO	_00265_DS_
 _00255_DS_:
-;	.line	339; reveil.c	whereami = ALARM_MENU;
+;	.line	346; reveil.c	whereami = ALARM_MENU;
 	MOVLW	0x05
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	340; reveil.c	break;
+;	.line	347; reveil.c	break;
 	BRA	_00267_DS_
 _00256_DS_:
-;	.line	342; reveil.c	whereami = SET_MINUTE;
+;	.line	349; reveil.c	whereami = SET_MINUTE;
 	MOVLW	0x03
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	343; reveil.c	break;
+;	.line	350; reveil.c	break;
 	BRA	_00267_DS_
 _00257_DS_:
-;	.line	345; reveil.c	whereami = SET_SECOND;
+;	.line	352; reveil.c	whereami = SET_SECOND;
 	MOVLW	0x04
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	346; reveil.c	break;
+;	.line	353; reveil.c	break;
 	BRA	_00267_DS_
 _00258_DS_:
-;	.line	348; reveil.c	whereami = ALARM_MENU;
+;	.line	355; reveil.c	whereami = ALARM_MENU;
 	MOVLW	0x05
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	349; reveil.c	break;
+;	.line	356; reveil.c	break;
 	BRA	_00267_DS_
 _00259_DS_:
-;	.line	351; reveil.c	whereami = DISPLAY;
+;	.line	358; reveil.c	whereami = DISPLAY;
 	MOVLW	0x09
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	352; reveil.c	break;
+;	.line	359; reveil.c	break;
 	BRA	_00267_DS_
 _00260_DS_:
-;	.line	354; reveil.c	whereami = SET_A_HOUR;
+;	.line	361; reveil.c	whereami = SET_A_HOUR;
 	MOVLW	0x07
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	355; reveil.c	break;
+;	.line	362; reveil.c	break;
 	BRA	_00267_DS_
 _00261_DS_:
-;	.line	357; reveil.c	whereami = SET_A_MIN;
+;	.line	364; reveil.c	whereami = SET_A_MIN;
 	MOVLW	0x08
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	358; reveil.c	break;
+;	.line	365; reveil.c	break;
 	BRA	_00267_DS_
 _00262_DS_:
-;	.line	360; reveil.c	whereami = DISPLAY;
+;	.line	367; reveil.c	whereami = DISPLAY;
 	MOVLW	0x09
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	361; reveil.c	break;
+;	.line	368; reveil.c	break;
 	BRA	_00267_DS_
 _00263_DS_:
-;	.line	363; reveil.c	whereami = TIME_MENU;
+;	.line	370; reveil.c	whereami = TIME_MENU;
 	MOVLW	0x01
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	364; reveil.c	break;
+;	.line	371; reveil.c	break;
 	BRA	_00267_DS_
 _00264_DS_:
-;	.line	366; reveil.c	stop_ringing = 1; // l'alarme doit s'arrêter
+;	.line	373; reveil.c	stop_ringing = 1; // l'alarme doit s'arrêter
 	MOVLW	0x01
 	BANKSEL	_stop_ringing
 	MOVWF	_stop_ringing, B
-;	.line	367; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+;	.line	374; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 	BCF	_LATJbits, 1
-;	.line	368; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+;	.line	375; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 	BCF	_LATJbits, 2
-;	.line	369; reveil.c	whereami = DISPLAY;
+;	.line	376; reveil.c	whereami = DISPLAY;
 	MOVLW	0x09
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	370; reveil.c	break;
+;	.line	377; reveil.c	break;
 	BRA	_00267_DS_
 _00265_DS_:
-;	.line	372; reveil.c	stop_ringing = 1; // l'alarme doit s'arrêter
+;	.line	379; reveil.c	stop_ringing = 1; // l'alarme doit s'arrêter
 	MOVLW	0x01
 	BANKSEL	_stop_ringing
 	MOVWF	_stop_ringing, B
-;	.line	373; reveil.c	amin = amin_o; // remet le réveil à l'heure d'origine
+;	.line	380; reveil.c	amin = amin_o; // remet le réveil à l'heure d'origine
 	MOVFF	_amin_o, _amin
-;	.line	374; reveil.c	ahour = ahour_o;
+;	.line	381; reveil.c	ahour = ahour_o;
 	MOVFF	_ahour_o, _ahour
 	BANKSEL	_snooze
-;	.line	375; reveil.c	snooze = 0;
+;	.line	382; reveil.c	snooze = 0;
 	CLRF	_snooze, B
-;	.line	376; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+;	.line	383; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 	BCF	_LATJbits, 1
-;	.line	377; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+;	.line	384; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 	BCF	_LATJbits, 2
-;	.line	378; reveil.c	whereami = DISPLAY;
+;	.line	385; reveil.c	whereami = DISPLAY;
 	MOVLW	0x09
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
 _00267_DS_:
 	BANKSEL	_button1
-;	.line	383; reveil.c	button1 = 0; // remet le flag du bouton 1 à 0
+;	.line	390; reveil.c	button1 = 0; // remet le flag du bouton 1 à 0
 	CLRF	_button1, B
 	GOTO	_00305_DS_
 _00303_DS_:
 	BANKSEL	_button2
-;	.line	386; reveil.c	} else if (button2) {
+;	.line	393; reveil.c	} else if (button2) {
 	MOVF	_button2, W, B
 	BTFSC	STATUS, 2
 	GOTO	_00305_DS_
-;	.line	387; reveil.c	switch (whereami) {
+;	.line	394; reveil.c	switch (whereami) {
 	MOVLW	0x01
 	BANKSEL	_whereami
 	SUBWF	_whereami, W, B
@@ -990,22 +990,22 @@ _00325_DS_:
 	GOTO	_00292_DS_
 	GOTO	_00295_DS_
 _00268_DS_:
-;	.line	389; reveil.c	whereami = SET_HOUR;
+;	.line	396; reveil.c	whereami = SET_HOUR;
 	MOVLW	0x02
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	390; reveil.c	break;
+;	.line	397; reveil.c	break;
 	GOTO	_00299_DS_
 _00269_DS_:
 	BANKSEL	_thour
-;	.line	392; reveil.c	if (thour == 23) // l'heure doit repasser à 0
+;	.line	399; reveil.c	if (thour == 23) // l'heure doit repasser à 0
 	MOVF	_thour, W, B
 	XORLW	0x17
 	BZ	_00327_DS_
 	BRA	_00271_DS_
 _00327_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	393; reveil.c	overflows -= 59*F*3600;
+;	.line	400; reveil.c	overflows -= 59*F*3600;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1030,7 +1030,7 @@ _00327_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0x89
 	MOVWF	POSTDEC1
-	MOVLW	0xce
+	MOVLW	0xfd
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -1066,7 +1066,7 @@ _00327_DS_:
 	BRA	_00299_DS_
 _00271_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	395; reveil.c	overflows += F*3600;
+;	.line	402; reveil.c	overflows += F*3600;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1091,7 +1091,7 @@ _00271_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0xa2
 	MOVWF	POSTDEC1
-	MOVLW	0x80
+	MOVLW	0xb3
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -1124,18 +1124,18 @@ _00271_DS_:
 	MOVFF	FSR0L, (_overflows + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	396; reveil.c	break;
+;	.line	403; reveil.c	break;
 	BRA	_00299_DS_
 _00273_DS_:
 	BANKSEL	_tmin
-;	.line	398; reveil.c	if (tmin == 59) // les minutes doivent repasser à 0
+;	.line	405; reveil.c	if (tmin == 59) // les minutes doivent repasser à 0
 	MOVF	_tmin, W, B
 	XORLW	0x3b
 	BZ	_00329_DS_
 	BRA	_00275_DS_
 _00329_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	399; reveil.c	overflows -= 59*F*60;
+;	.line	406; reveil.c	overflows -= 59*F*60;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1160,7 +1160,7 @@ _00329_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0xd7
 	MOVWF	POSTDEC1
-	MOVLW	0x42
+	MOVLW	0x74
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -1196,7 +1196,7 @@ _00329_DS_:
 	BRA	_00299_DS_
 _00275_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	401; reveil.c	overflows += F*60;
+;	.line	408; reveil.c	overflows += F*60;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1221,7 +1221,7 @@ _00275_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0xcf
 	MOVWF	POSTDEC1
-	MOVLW	0x77
+	MOVLW	0xae
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -1254,18 +1254,18 @@ _00275_DS_:
 	MOVFF	FSR0L, (_overflows + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	402; reveil.c	break;
+;	.line	409; reveil.c	break;
 	BRA	_00299_DS_
 _00277_DS_:
 	BANKSEL	_tsec
-;	.line	404; reveil.c	if (tsec == 59) // les secondes doivent repasser à 0
+;	.line	411; reveil.c	if (tsec == 59) // les secondes doivent repasser à 0
 	MOVF	_tsec, W, B
 	XORLW	0x3b
 	BZ	_00331_DS_
 	BRA	_00279_DS_
 _00331_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	405; reveil.c	overflows -= 59*F;
+;	.line	412; reveil.c	overflows -= 59*F;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1290,7 +1290,7 @@ _00331_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0xd4
 	MOVWF	POSTDEC1
-	MOVLW	0x8b
+	MOVLW	0xc1
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -1326,7 +1326,7 @@ _00331_DS_:
 	BRA	_00299_DS_
 _00279_DS_:
 	BANKSEL	(_overflows + 3)
-;	.line	407; reveil.c	overflows += F;
+;	.line	414; reveil.c	overflows += F;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -1351,7 +1351,7 @@ _00279_DS_:
 	MOVWF	POSTDEC1
 	MOVLW	0xbb
 	MOVWF	POSTDEC1
-	MOVLW	0x2a
+	MOVLW	0x64
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -1384,106 +1384,106 @@ _00279_DS_:
 	MOVFF	FSR0L, (_overflows + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	408; reveil.c	break;
+;	.line	415; reveil.c	break;
 	BRA	_00299_DS_
 _00281_DS_:
-;	.line	410; reveil.c	whereami = SET_ALARM;
+;	.line	417; reveil.c	whereami = SET_ALARM;
 	MOVLW	0x06
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	411; reveil.c	break;
+;	.line	418; reveil.c	break;
 	BRA	_00299_DS_
 _00282_DS_:
-;	.line	413; reveil.c	alarm_set ^= 1;
+;	.line	420; reveil.c	alarm_set ^= 1;
 	MOVLW	0x01
 	BANKSEL	_alarm_set
 	XORWF	_alarm_set, F, B
-;	.line	414; reveil.c	break;
+;	.line	421; reveil.c	break;
 	BRA	_00299_DS_
 _00283_DS_:
 	BANKSEL	_ahour
-;	.line	416; reveil.c	if (ahour == 23) // l'heure d'alarme doit repasser à 0
+;	.line	423; reveil.c	if (ahour == 23) // l'heure d'alarme doit repasser à 0
 	MOVF	_ahour, W, B
 	XORLW	0x17
 	BNZ	_00285_DS_
 _00334_DS_:
 	BANKSEL	_ahour
-;	.line	417; reveil.c	ahour = 0;
+;	.line	424; reveil.c	ahour = 0;
 	CLRF	_ahour, B
 	BRA	_00286_DS_
 _00285_DS_:
 	BANKSEL	_ahour
-;	.line	419; reveil.c	ahour++;
+;	.line	426; reveil.c	ahour++;
 	INCF	_ahour, F, B
 _00286_DS_:
-;	.line	420; reveil.c	ahour_o = ahour;
+;	.line	427; reveil.c	ahour_o = ahour;
 	MOVFF	_ahour, _ahour_o
-;	.line	421; reveil.c	break;
+;	.line	428; reveil.c	break;
 	BRA	_00299_DS_
 _00287_DS_:
 	BANKSEL	_amin
-;	.line	423; reveil.c	if (amin == 59) // les minutes d'alarme doivent repasser à 0
+;	.line	430; reveil.c	if (amin == 59) // les minutes d'alarme doivent repasser à 0
 	MOVF	_amin, W, B
 	XORLW	0x3b
 	BNZ	_00289_DS_
 _00336_DS_:
 	BANKSEL	_amin
-;	.line	424; reveil.c	amin = 0;
+;	.line	431; reveil.c	amin = 0;
 	CLRF	_amin, B
 	BRA	_00290_DS_
 _00289_DS_:
 	BANKSEL	_amin
-;	.line	426; reveil.c	amin++;
+;	.line	433; reveil.c	amin++;
 	INCF	_amin, F, B
 _00290_DS_:
-;	.line	427; reveil.c	amin_o = amin;
+;	.line	434; reveil.c	amin_o = amin;
 	MOVFF	_amin, _amin_o
-;	.line	428; reveil.c	break;
+;	.line	435; reveil.c	break;
 	BRA	_00299_DS_
 _00291_DS_:
-;	.line	430; reveil.c	break; // bouton sans fonction
+;	.line	437; reveil.c	break; // bouton sans fonction
 	BRA	_00299_DS_
 _00292_DS_:
-;	.line	433; reveil.c	if (snooze < SNOOZE_MAX) {
+;	.line	440; reveil.c	if (snooze < SNOOZE_MAX) {
 	MOVLW	0x0c
 	BANKSEL	_snooze
 	SUBWF	_snooze, W, B
 	BC	_00299_DS_
-;	.line	434; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
+;	.line	441; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
 	MOVLW	0x05
 	MOVWF	POSTDEC1
 	CALL	_inc_amin
 	INCF	FSR1L, F
 	BANKSEL	_snooze
-;	.line	435; reveil.c	snooze++; // augmente le compteur de snooze
+;	.line	442; reveil.c	snooze++; // augmente le compteur de snooze
 	INCF	_snooze, F, B
-;	.line	436; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+;	.line	443; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 	BCF	_LATJbits, 1
-;	.line	437; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+;	.line	444; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 	BCF	_LATJbits, 2
-;	.line	438; reveil.c	whereami = SNOOZE;
+;	.line	445; reveil.c	whereami = SNOOZE;
 	MOVLW	0x0b
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
-;	.line	441; reveil.c	break;
+;	.line	448; reveil.c	break;
 	BRA	_00299_DS_
 _00295_DS_:
-;	.line	444; reveil.c	if (snooze < SNOOZE_MAX) {
+;	.line	451; reveil.c	if (snooze < SNOOZE_MAX) {
 	MOVLW	0x0c
 	BANKSEL	_snooze
 	SUBWF	_snooze, W, B
 	BC	_00299_DS_
-;	.line	445; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
+;	.line	452; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
 	MOVLW	0x05
 	MOVWF	POSTDEC1
 	CALL	_inc_amin
 	INCF	FSR1L, F
 	BANKSEL	_snooze
-;	.line	446; reveil.c	snooze++; // augmente le compteur de snooze
+;	.line	453; reveil.c	snooze++; // augmente le compteur de snooze
 	INCF	_snooze, F, B
 _00299_DS_:
 	BANKSEL	_button2
-;	.line	453; reveil.c	button2 = 0; // remet le flag du bouton 2 à 0
+;	.line	460; reveil.c	button2 = 0; // remet le flag du bouton 2 à 0
 	CLRF	_button2, B
 _00305_DS_:
 	MOVFF	PREINC1, r0x03
@@ -1496,11 +1496,11 @@ _00305_DS_:
 ; ; Starting pCode block
 S_reveil__alarm	code
 _alarm:
-;	.line	298; reveil.c	void alarm(void)
+;	.line	305; reveil.c	void alarm(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	BANKSEL	_thour
-;	.line	301; reveil.c	if (thour == ahour && tmin == amin && alarm_set) {
+;	.line	308; reveil.c	if (thour == ahour && tmin == amin && alarm_set) {
 	MOVF	_thour, W, B
 	BANKSEL	_ahour
 	XORWF	_ahour, W, B
@@ -1517,7 +1517,7 @@ _00242_DS_:
 	BANKSEL	_alarm_set
 	MOVF	_alarm_set, W, B
 	BZ	_00228_DS_
-;	.line	305; reveil.c	if (tsec < 31 && stop_ringing == 0) {
+;	.line	312; reveil.c	if (tsec < 31 && stop_ringing == 0) {
 	MOVLW	0x1f
 	BANKSEL	_tsec
 	SUBWF	_tsec, W, B
@@ -1526,7 +1526,7 @@ _00242_DS_:
 	MOVF	_stop_ringing, W, B
 	BNZ	_00221_DS_
 	BANKSEL	_whereami
-;	.line	306; reveil.c	if (whereami == DISPLAY || whereami == SNOOZE)
+;	.line	313; reveil.c	if (whereami == DISPLAY || whereami == SNOOZE)
 	MOVF	_whereami, W, B
 	XORLW	0x09
 	BZ	_00210_DS_
@@ -1536,47 +1536,47 @@ _00245_DS_:
 	XORLW	0x0b
 	BNZ	_00228_DS_
 _00210_DS_:
-;	.line	307; reveil.c	whereami = ALARM;
+;	.line	314; reveil.c	whereami = ALARM;
 	MOVLW	0x0a
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
 	BRA	_00228_DS_
 _00221_DS_:
-;	.line	310; reveil.c	} else if (tsec > 30) {
+;	.line	317; reveil.c	} else if (tsec > 30) {
 	MOVLW	0x1f
 	BANKSEL	_tsec
 	SUBWF	_tsec, W, B
 	BNC	_00228_DS_
 	BANKSEL	_stop_ringing
-;	.line	311; reveil.c	stop_ringing = 0; // l'alarme doit sonner à nouveau dans 24h
+;	.line	318; reveil.c	stop_ringing = 0; // l'alarme doit sonner à nouveau dans 24h
 	CLRF	_stop_ringing, B
-;	.line	312; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+;	.line	319; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 	BCF	_LATJbits, 1
-;	.line	313; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+;	.line	320; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 	BCF	_LATJbits, 2
 	BANKSEL	_snooze
-;	.line	316; reveil.c	if (snooze) {
+;	.line	323; reveil.c	if (snooze) {
 	MOVF	_snooze, W, B
 	BZ	_00216_DS_
-;	.line	317; reveil.c	ahour = ahour_o; // remet le réveil à l'heure d'origine
+;	.line	324; reveil.c	ahour = ahour_o; // remet le réveil à l'heure d'origine
 	MOVFF	_ahour_o, _ahour
-;	.line	318; reveil.c	amin = amin_o;
+;	.line	325; reveil.c	amin = amin_o;
 	MOVFF	_amin_o, _amin
 	BANKSEL	_snooze
-;	.line	319; reveil.c	snooze = 0;
+;	.line	326; reveil.c	snooze = 0;
 	CLRF	_snooze, B
-;	.line	320; reveil.c	whereami = DISPLAY;
+;	.line	327; reveil.c	whereami = DISPLAY;
 	MOVLW	0x09
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
 	BRA	_00228_DS_
 _00216_DS_:
 	BANKSEL	_whereami
-;	.line	321; reveil.c	} else if (whereami == ALARM) // si l'alarme sonnait toujours, on
+;	.line	328; reveil.c	} else if (whereami == ALARM) // si l'alarme sonnait toujours, on
 	MOVF	_whereami, W, B
 	XORLW	0x0a
 	BNZ	_00228_DS_
-;	.line	322; reveil.c	whereami = DISPLAY;       // revient à l'affichage de l'heure
+;	.line	329; reveil.c	whereami = DISPLAY;       // revient à l'affichage de l'heure
 	MOVLW	0x09
 	BANKSEL	_whereami
 	MOVWF	_whereami, B
@@ -1587,7 +1587,7 @@ _00228_DS_:
 ; ; Starting pCode block
 S_reveil__refresh_lcd	code
 _refresh_lcd:
-;	.line	233; reveil.c	void refresh_lcd(void)
+;	.line	240; reveil.c	void refresh_lcd(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -1605,7 +1605,7 @@ _refresh_lcd:
 	MOVFF	r0x0c, POSTDEC1
 	MOVFF	r0x0d, POSTDEC1
 	MOVFF	r0x0e, POSTDEC1
-;	.line	236; reveil.c	switch (whereami) {
+;	.line	243; reveil.c	switch (whereami) {
 	MOVLW	0x01
 	BANKSEL	_whereami
 	SUBWF	_whereami, W, B
@@ -1655,7 +1655,7 @@ _00204_DS_:
 	GOTO	_00188_DS_
 	GOTO	_00189_DS_
 _00173_DS_:
-;	.line	238; reveil.c	sprintf(display, "Do you want to  set the time ?  ");
+;	.line	245; reveil.c	sprintf(display, "Do you want to  set the time ?  ");
 	MOVLW	HIGH(_display)
 	MOVWF	r0x01
 	MOVLW	LOW(_display)
@@ -1677,17 +1677,17 @@ _00173_DS_:
 	CALL	_sprintf
 	MOVLW	0x06
 	ADDWF	FSR1L, F
-;	.line	239; reveil.c	break;
+;	.line	246; reveil.c	break;
 	GOTO	_00194_DS_
 _00174_DS_:
-;	.line	242; reveil.c	thour, tmin, tsec);
+;	.line	249; reveil.c	thour, tmin, tsec);
 	MOVFF	_tsec, r0x00
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
 	CLRF	r0x03
 	MOVFF	_thour, r0x04
 	CLRF	r0x05
-;	.line	241; reveil.c	sprintf(display, " [%02u]: %02u : %02u                  ",
+;	.line	248; reveil.c	sprintf(display, " [%02u]: %02u : %02u                  ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
@@ -1721,17 +1721,17 @@ _00174_DS_:
 	CALL	_sprintf
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
-;	.line	243; reveil.c	break;
+;	.line	250; reveil.c	break;
 	GOTO	_00194_DS_
 _00175_DS_:
-;	.line	246; reveil.c	thour, tmin, tsec);
+;	.line	253; reveil.c	thour, tmin, tsec);
 	MOVFF	_tsec, r0x00
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
 	CLRF	r0x03
 	MOVFF	_thour, r0x04
 	CLRF	r0x05
-;	.line	245; reveil.c	sprintf(display, "  %02u :[%02u]: %02u                  ",
+;	.line	252; reveil.c	sprintf(display, "  %02u :[%02u]: %02u                  ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
@@ -1765,17 +1765,17 @@ _00175_DS_:
 	CALL	_sprintf
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
-;	.line	247; reveil.c	break;
+;	.line	254; reveil.c	break;
 	BRA	_00194_DS_
 _00176_DS_:
-;	.line	250; reveil.c	thour, tmin, tsec);
+;	.line	257; reveil.c	thour, tmin, tsec);
 	MOVFF	_tsec, r0x00
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
 	CLRF	r0x03
 	MOVFF	_thour, r0x04
 	CLRF	r0x05
-;	.line	249; reveil.c	sprintf(display, "  %02u : %02u :[%02u]                 ",
+;	.line	256; reveil.c	sprintf(display, "  %02u : %02u :[%02u]                 ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
@@ -1809,10 +1809,10 @@ _00176_DS_:
 	CALL	_sprintf
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
-;	.line	251; reveil.c	break;
+;	.line	258; reveil.c	break;
 	BRA	_00194_DS_
 _00177_DS_:
-;	.line	253; reveil.c	sprintf(display, "Do you want to  set the alarm ? ");
+;	.line	260; reveil.c	sprintf(display, "Do you want to  set the alarm ? ");
 	MOVLW	HIGH(_display)
 	MOVWF	r0x01
 	MOVLW	LOW(_display)
@@ -1834,14 +1834,14 @@ _00177_DS_:
 	CALL	_sprintf
 	MOVLW	0x06
 	ADDWF	FSR1L, F
-;	.line	254; reveil.c	break;
+;	.line	261; reveil.c	break;
 	BRA	_00194_DS_
 _00178_DS_:
 	BANKSEL	_alarm_set
-;	.line	256; reveil.c	if (alarm_set)
+;	.line	263; reveil.c	if (alarm_set)
 	MOVF	_alarm_set, W, B
 	BZ	_00180_DS_
-;	.line	257; reveil.c	sprintf(display, "  Alarm [ON ]                   ");
+;	.line	264; reveil.c	sprintf(display, "  Alarm [ON ]                   ");
 	MOVLW	HIGH(_display)
 	MOVWF	r0x01
 	MOVLW	LOW(_display)
@@ -1865,7 +1865,7 @@ _00178_DS_:
 	ADDWF	FSR1L, F
 	BRA	_00194_DS_
 _00180_DS_:
-;	.line	259; reveil.c	sprintf(display, "  Alarm [OFF]                   ");
+;	.line	266; reveil.c	sprintf(display, "  Alarm [OFF]                   ");
 	MOVLW	HIGH(_display)
 	MOVWF	r0x01
 	MOVLW	LOW(_display)
@@ -1887,15 +1887,15 @@ _00180_DS_:
 	CALL	_sprintf
 	MOVLW	0x06
 	ADDWF	FSR1L, F
-;	.line	260; reveil.c	break;
+;	.line	267; reveil.c	break;
 	BRA	_00194_DS_
 _00182_DS_:
-;	.line	263; reveil.c	ahour, amin);
+;	.line	270; reveil.c	ahour, amin);
 	MOVFF	_amin, r0x00
 	CLRF	r0x01
 	MOVFF	_ahour, r0x02
 	CLRF	r0x03
-;	.line	262; reveil.c	sprintf(display, "    Alarm at        [%02u]: %02u    ",
+;	.line	269; reveil.c	sprintf(display, "    Alarm at        [%02u]: %02u    ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x05
 	MOVLW	LOW(_display)
@@ -1925,15 +1925,15 @@ _00182_DS_:
 	CALL	_sprintf
 	MOVLW	0x0a
 	ADDWF	FSR1L, F
-;	.line	264; reveil.c	break;
+;	.line	271; reveil.c	break;
 	BRA	_00194_DS_
 _00183_DS_:
-;	.line	267; reveil.c	ahour, amin);
+;	.line	274; reveil.c	ahour, amin);
 	MOVFF	_amin, r0x00
 	CLRF	r0x01
 	MOVFF	_ahour, r0x02
 	CLRF	r0x03
-;	.line	266; reveil.c	sprintf(display, "    Alarm at         %02u :[%02u]   ",
+;	.line	273; reveil.c	sprintf(display, "    Alarm at         %02u :[%02u]   ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x05
 	MOVLW	LOW(_display)
@@ -1963,14 +1963,14 @@ _00183_DS_:
 	CALL	_sprintf
 	MOVLW	0x0a
 	ADDWF	FSR1L, F
-;	.line	268; reveil.c	break;
+;	.line	275; reveil.c	break;
 	BRA	_00194_DS_
 _00184_DS_:
 	BANKSEL	_alarm_set
-;	.line	270; reveil.c	if (alarm_set)
+;	.line	277; reveil.c	if (alarm_set)
 	MOVF	_alarm_set, W, B
 	BZ	_00186_DS_
-;	.line	272; reveil.c	thour, tmin, tsec, ahour, amin);
+;	.line	279; reveil.c	thour, tmin, tsec, ahour, amin);
 	MOVFF	_amin, r0x00
 	CLRF	r0x01
 	MOVFF	_ahour, r0x02
@@ -1981,7 +1981,7 @@ _00184_DS_:
 	CLRF	r0x07
 	MOVFF	_thour, r0x08
 	CLRF	r0x09
-;	.line	271; reveil.c	sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
+;	.line	278; reveil.c	sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x0b
 	MOVLW	LOW(_display)
@@ -2025,14 +2025,14 @@ _00184_DS_:
 	ADDWF	FSR1L, F
 	BRA	_00194_DS_
 _00186_DS_:
-;	.line	275; reveil.c	thour, tmin, tsec);
+;	.line	282; reveil.c	thour, tmin, tsec);
 	MOVFF	_tsec, r0x00
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
 	CLRF	r0x03
 	MOVFF	_thour, r0x04
 	CLRF	r0x05
-;	.line	274; reveil.c	sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
+;	.line	281; reveil.c	sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
@@ -2066,17 +2066,17 @@ _00186_DS_:
 	CALL	_sprintf
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
-;	.line	276; reveil.c	break;
+;	.line	283; reveil.c	break;
 	BRA	_00194_DS_
 _00188_DS_:
-;	.line	279; reveil.c	thour, tmin, tsec);
+;	.line	286; reveil.c	thour, tmin, tsec);
 	MOVFF	_tsec, r0x00
 	CLRF	r0x01
 	MOVFF	_tmin, r0x02
 	CLRF	r0x03
 	MOVFF	_thour, r0x04
 	CLRF	r0x05
-;	.line	278; reveil.c	sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
+;	.line	285; reveil.c	sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x07
 	MOVLW	LOW(_display)
@@ -2110,16 +2110,16 @@ _00188_DS_:
 	CALL	_sprintf
 	MOVLW	0x0c
 	ADDWF	FSR1L, F
-;	.line	280; reveil.c	break;
+;	.line	287; reveil.c	break;
 	BRA	_00194_DS_
 _00189_DS_:
-;	.line	282; reveil.c	if (snooze < 10)
+;	.line	289; reveil.c	if (snooze < 10)
 	MOVLW	0x0a
 	BANKSEL	_snooze
 	SUBWF	_snooze, W, B
 	BTFSC	STATUS, 0
 	BRA	_00191_DS_
-;	.line	284; reveil.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
+;	.line	291; reveil.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
 	MOVFF	_amin_o, r0x00
 	CLRF	r0x01
 	MOVFF	_ahour_o, r0x02
@@ -2132,7 +2132,7 @@ _00189_DS_:
 	CLRF	r0x09
 	MOVFF	_thour, r0x0a
 	CLRF	r0x0b
-;	.line	283; reveil.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
+;	.line	290; reveil.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x0d
 	MOVLW	LOW(_display)
@@ -2180,7 +2180,7 @@ _00189_DS_:
 	ADDWF	FSR1L, F
 	BRA	_00194_DS_
 _00191_DS_:
-;	.line	287; reveil.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
+;	.line	294; reveil.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
 	MOVFF	_amin_o, r0x00
 	CLRF	r0x01
 	MOVFF	_ahour_o, r0x02
@@ -2193,7 +2193,7 @@ _00191_DS_:
 	CLRF	r0x09
 	MOVFF	_thour, r0x0a
 	CLRF	r0x0b
-;	.line	286; reveil.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
+;	.line	293; reveil.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
 	MOVLW	HIGH(_display)
 	MOVWF	r0x0d
 	MOVLW	LOW(_display)
@@ -2239,10 +2239,10 @@ _00191_DS_:
 	CALL	_sprintf
 	MOVLW	0x12
 	ADDWF	FSR1L, F
-;	.line	288; reveil.c	break;
+;	.line	295; reveil.c	break;
 	BRA	_00194_DS_
 _00193_DS_:
-;	.line	290; reveil.c	sprintf(display, "**** ERROR ********* ERROR *****");
+;	.line	297; reveil.c	sprintf(display, "**** ERROR ********* ERROR *****");
 	MOVLW	HIGH(_display)
 	MOVWF	r0x01
 	MOVLW	LOW(_display)
@@ -2265,7 +2265,7 @@ _00193_DS_:
 	MOVLW	0x06
 	ADDWF	FSR1L, F
 _00194_DS_:
-;	.line	293; reveil.c	DisplayString(0, display);
+;	.line	300; reveil.c	DisplayString(0, display);
 	MOVLW	HIGH(_display)
 	MOVWF	r0x01
 	MOVLW	LOW(_display)
@@ -2304,7 +2304,7 @@ _00194_DS_:
 ; ; Starting pCode block
 S_reveil__time	code
 _time:
-;	.line	193; reveil.c	void time(void)
+;	.line	200; reveil.c	void time(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -2316,7 +2316,7 @@ _time:
 	MOVFF	r0x06, POSTDEC1
 	MOVFF	r0x07, POSTDEC1
 	BANKSEL	(_overflows + 3)
-;	.line	196; reveil.c	sec = overflows/F;
+;	.line	203; reveil.c	sec = overflows/F;
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -2341,7 +2341,7 @@ _time:
 	MOVWF	POSTDEC1
 	MOVLW	0xbb
 	MOVWF	POSTDEC1
-	MOVLW	0x2a
+	MOVLW	0x64
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -2375,7 +2375,7 @@ _time:
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	BANKSEL	(_overflows + 3)
-;	.line	197; reveil.c	decisec = ((10*overflows)/F);
+;	.line	204; reveil.c	decisec = ((10*overflows)/F);
 	MOVF	(_overflows + 3), W, B
 	MOVWF	POSTDEC1
 	BANKSEL	(_overflows + 2)
@@ -2423,7 +2423,7 @@ _time:
 	MOVWF	POSTDEC1
 	MOVLW	0xbb
 	MOVWF	POSTDEC1
-	MOVLW	0x2a
+	MOVLW	0x64
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
@@ -2456,7 +2456,7 @@ _time:
 	MOVFF	FSR0L, (_decisec + 3)
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-;	.line	198; reveil.c	ds = decisec%10;
+;	.line	205; reveil.c	ds = decisec%10;
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -2487,7 +2487,7 @@ _time:
 	MOVF	r0x00, W
 	BANKSEL	_ds
 	MOVWF	_ds, B
-;	.line	199; reveil.c	h = (sec/3600)%24;
+;	.line	206; reveil.c	h = (sec/3600)%24;
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -2541,7 +2541,7 @@ _time:
 	MOVF	r0x04, W
 	BANKSEL	_h
 	MOVWF	_h, B
-;	.line	200; reveil.c	m = (sec-(sec/3600)*3600)/60;
+;	.line	207; reveil.c	m = (sec-(sec/3600)*3600)/60;
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
@@ -2608,7 +2608,7 @@ _time:
 	BANKSEL	_m
 	MOVWF	_m, B
 	BANKSEL	_sec
-;	.line	201; reveil.c	s = sec-h*3600-m*60;
+;	.line	208; reveil.c	s = sec-h*3600-m*60;
 	MOVF	_sec, W, B
 	MOVWF	r0x00
 ; ;multiply lit val:0x10 by variable _h and store in r0x01
@@ -2632,79 +2632,79 @@ _time:
 	BANKSEL	_s
 	MOVWF	_s, B
 	BANKSEL	_tsec
-;	.line	204; reveil.c	if (tsec != s)
+;	.line	211; reveil.c	if (tsec != s)
 	MOVF	_tsec, W, B
 	BANKSEL	_s
 	XORWF	_s, W, B
 	BZ	_00131_DS_
-;	.line	205; reveil.c	tsec = s;
+;	.line	212; reveil.c	tsec = s;
 	MOVFF	_s, _tsec
 _00131_DS_:
 	BANKSEL	_tmin
-;	.line	206; reveil.c	if (tmin != m)
+;	.line	213; reveil.c	if (tmin != m)
 	MOVF	_tmin, W, B
 	BANKSEL	_m
 	XORWF	_m, W, B
 	BZ	_00133_DS_
-;	.line	207; reveil.c	tmin = m;
+;	.line	214; reveil.c	tmin = m;
 	MOVFF	_m, _tmin
 _00133_DS_:
 	BANKSEL	_thour
-;	.line	208; reveil.c	if (thour != h)
+;	.line	215; reveil.c	if (thour != h)
 	MOVF	_thour, W, B
 	BANKSEL	_h
 	XORWF	_h, W, B
 	BZ	_00135_DS_
-;	.line	209; reveil.c	thour = h;
+;	.line	216; reveil.c	thour = h;
 	MOVFF	_h, _thour
 _00135_DS_:
 	BANKSEL	_on
-;	.line	212; reveil.c	if (!on && ds < 5) {
+;	.line	219; reveil.c	if (!on && ds < 5) {
 	MOVF	_on, W, B
 	BNZ	_00139_DS_
 	MOVLW	0x05
 	BANKSEL	_ds
 	SUBWF	_ds, W, B
 	BC	_00139_DS_
-;	.line	213; reveil.c	LATJbits.LATJ0 = 1;
+;	.line	220; reveil.c	LATJbits.LATJ0 = 1;
 	BSF	_LATJbits, 0
 	BANKSEL	_whereami
-;	.line	214; reveil.c	if (whereami == ALARM) {
+;	.line	221; reveil.c	if (whereami == ALARM) {
 	MOVF	_whereami, W, B
 	XORLW	0x0a
 	BNZ	_00137_DS_
-;	.line	215; reveil.c	LATJbits.LATJ1 = 1;
+;	.line	222; reveil.c	LATJbits.LATJ1 = 1;
 	BSF	_LATJbits, 1
-;	.line	216; reveil.c	LATJbits.LATJ2 = 1;
+;	.line	223; reveil.c	LATJbits.LATJ2 = 1;
 	BSF	_LATJbits, 2
 _00137_DS_:
-;	.line	218; reveil.c	on = 1;
+;	.line	225; reveil.c	on = 1;
 	MOVLW	0x01
 	BANKSEL	_on
 	MOVWF	_on, B
 _00139_DS_:
 	BANKSEL	_on
-;	.line	222; reveil.c	if (on && ds >= 5) {
+;	.line	229; reveil.c	if (on && ds >= 5) {
 	MOVF	_on, W, B
 	BZ	_00146_DS_
 	MOVLW	0x05
 	BANKSEL	_ds
 	SUBWF	_ds, W, B
 	BNC	_00146_DS_
-;	.line	223; reveil.c	LATJbits.LATJ0 = 0;
+;	.line	230; reveil.c	LATJbits.LATJ0 = 0;
 	BCF	_LATJbits, 0
 	BANKSEL	_whereami
-;	.line	224; reveil.c	if (whereami == ALARM) {
+;	.line	231; reveil.c	if (whereami == ALARM) {
 	MOVF	_whereami, W, B
 	XORLW	0x0a
 	BNZ	_00142_DS_
-;	.line	225; reveil.c	LATJbits.LATJ1 = 0;
+;	.line	232; reveil.c	LATJbits.LATJ1 = 0;
 	BCF	_LATJbits, 1
-;	.line	226; reveil.c	LATJbits.LATJ2 = 0;
+;	.line	233; reveil.c	LATJbits.LATJ2 = 0;
 	BCF	_LATJbits, 2
 _00142_DS_:
 	BANKSEL	_on
-;	.line	228; reveil.c	on = 0;
+;	.line	235; reveil.c	on = 0;
 	CLRF	_on, B
 _00146_DS_:
 	MOVFF	PREINC1, r0x07
@@ -2721,7 +2721,7 @@ _00146_DS_:
 ; ; Starting pCode block
 S_reveil__low_isr	code
 _low_isr:
-;	.line	129; reveil.c	void low_isr(void) interrupt 2
+;	.line	136; reveil.c	void low_isr(void) interrupt 2
 	MOVFF	WREG, POSTDEC1
 	MOVFF	STATUS, POSTDEC1
 	MOVFF	BSR, POSTDEC1
@@ -2733,25 +2733,25 @@ _low_isr:
 	MOVFF	PCLATU, POSTDEC1
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	132; reveil.c	if (INTCON3bits.INT3F) {
+;	.line	139; reveil.c	if (INTCON3bits.INT3F) {
 	BTFSS	_INTCON3bits, 2
 	BRA	_00115_DS_
-;	.line	133; reveil.c	button1 = 1;
+;	.line	140; reveil.c	button1 = 1;
 	MOVLW	0x01
 	BANKSEL	_button1
 	MOVWF	_button1, B
-;	.line	134; reveil.c	INTCON3bits.INT3F = 0;
+;	.line	141; reveil.c	INTCON3bits.INT3F = 0;
 	BCF	_INTCON3bits, 2
 	BRA	_00117_DS_
 _00115_DS_:
-;	.line	137; reveil.c	} else if (INTCON3bits.INT1F) {
+;	.line	144; reveil.c	} else if (INTCON3bits.INT1F) {
 	BTFSS	_INTCON3bits, 0
 	BRA	_00117_DS_
-;	.line	138; reveil.c	button2 = 1;
+;	.line	145; reveil.c	button2 = 1;
 	MOVLW	0x01
 	BANKSEL	_button2
 	MOVWF	_button2, B
-;	.line	139; reveil.c	INTCON3bits.INT1F = 0;
+;	.line	146; reveil.c	INTCON3bits.INT1F = 0;
 	BCF	_INTCON3bits, 0
 _00117_DS_:
 	MOVFF	PREINC1, FSR2L
@@ -2769,7 +2769,7 @@ _00117_DS_:
 ; ; Starting pCode block
 S_reveil__high_isr	code
 _high_isr:
-;	.line	119; reveil.c	void high_isr(void) interrupt 1
+;	.line	126; reveil.c	void high_isr(void) interrupt 1
 	MOVFF	WREG, POSTDEC1
 	MOVFF	STATUS, POSTDEC1
 	MOVFF	BSR, POSTDEC1
@@ -2781,11 +2781,11 @@ _high_isr:
 	MOVFF	PCLATU, POSTDEC1
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	122; reveil.c	if (INTCONbits.T0IF) {
+;	.line	129; reveil.c	if (INTCONbits.T0IF) {
 	BTFSS	_INTCONbits, 2
 	BRA	_00107_DS_
 	BANKSEL	_overflows
-;	.line	123; reveil.c	overflows++;
+;	.line	130; reveil.c	overflows++;
 	INCF	_overflows, F, B
 	BNC	_10348_DS_
 	BANKSEL	(_overflows + 1)
@@ -2799,7 +2799,7 @@ _20349_DS_:
 	BANKSEL	(_overflows + 3)
 	INCF	(_overflows + 3), F, B
 _30350_DS_:
-;	.line	124; reveil.c	INTCONbits.T0IF = 0;
+;	.line	131; reveil.c	INTCONbits.T0IF = 0;
 	BCF	_INTCONbits, 2
 _00107_DS_:
 	MOVFF	PREINC1, FSR2L

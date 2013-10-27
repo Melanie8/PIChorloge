@@ -1,6 +1,6 @@
 gplink-0.13.7 beta
 Copyright (c) 1998-2005 gputils project
-Listing File Generated: 10-27-2013  15:37:26
+Listing File Generated: 10-27-2013  21:13:55
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-                                           ; This file was generated Sun Oct 27 15:37:26 2013
+                                           ; This file was generated Sun Oct 27 21:13:55 2013
                                            ;--------------------------------------------------------
                                            ; PIC16 port for the Microchip 16-bit core micros
                                            ;--------------------------------------------------------
@@ -590,77 +590,77 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__main	code
                                            _main:
-                                           ;	.line	147; reveil.c	RCONbits.IPEN       = 1; // enable interrupts priority levels
+                                           ;	.line	154; reveil.c	RCONbits.IPEN       = 1; // enable interrupts priority levels
 003d2e   8ed0     bsf	0xd0, 0x7, 0         	BSF	_RCONbits, 7
-                                           ;	.line	148; reveil.c	INTCONbits.GIE      = 1; // enables all high-priority interrupts
+                                           ;	.line	155; reveil.c	INTCONbits.GIE      = 1; // enables all high-priority interrupts
 003d30   8ef2     bsf	0xf2, 0x7, 0         	BSF	_INTCONbits, 7
-                                           ;	.line	149; reveil.c	INTCONbits.PEIE     = 1; // enables all low-priority peripheral interrupts
+                                           ;	.line	156; reveil.c	INTCONbits.PEIE     = 1; // enables all low-priority peripheral interrupts
 003d32   8cf2     bsf	0xf2, 0x6, 0         	BSF	_INTCONbits, 6
-                                           ;	.line	152; reveil.c	T0CONbits.TMR0ON    = 1; // enables Timer0
+                                           ;	.line	159; reveil.c	T0CONbits.TMR0ON    = 1; // enables Timer0
 003d34   8ed5     bsf	0xd5, 0x7, 0         	BSF	_T0CONbits, 7
-                                           ;	.line	153; reveil.c	INTCONbits.TMR0IE   = 1; // enables the TMR0 overflow interrupt
+                                           ;	.line	160; reveil.c	INTCONbits.TMR0IE   = 1; // enables the TMR0 overflow interrupt
 003d36   8af2     bsf	0xf2, 0x5, 0         	BSF	_INTCONbits, 5
-                                           ;	.line	154; reveil.c	INTCONbits.TMR0IF   = 0; // clear Timer0 overflow bit
+                                           ;	.line	161; reveil.c	INTCONbits.TMR0IF   = 0; // clear Timer0 overflow bit
 003d38   94f2     bcf	0xf2, 0x2, 0         	BCF	_INTCONbits, 2
-                                           ;	.line	155; reveil.c	INTCON2bits.TMR0IP  = 1; // high priority
+                                           ;	.line	162; reveil.c	INTCON2bits.TMR0IP  = 1; // high priority
 003d3a   84f1     bsf	0xf1, 0x2, 0         	BSF	_INTCON2bits, 2
-                                           ;	.line	156; reveil.c	T0CONbits.T08BIT    = 0; // timer0 is configured as a 16-bit timer/counter
+                                           ;	.line	163; reveil.c	T0CONbits.T08BIT    = 0; // timer0 is configured as a 16-bit timer/counter
 003d3c   9cd5     bcf	0xd5, 0x6, 0         	BCF	_T0CONbits, 6
-                                           ;	.line	157; reveil.c	T0CONbits.T0CS      = 0; // internal instruction cycle clock (CLKO)
+                                           ;	.line	164; reveil.c	T0CONbits.T0CS      = 0; // internal instruction cycle clock (CLKO)
 003d3e   9ad5     bcf	0xd5, 0x5, 0         	BCF	_T0CONbits, 5
-                                           ;	.line	158; reveil.c	T0CONbits.PSA       = 1; // timer0 prescaler is not assigned
+                                           ;	.line	165; reveil.c	T0CONbits.PSA       = 1; // timer0 prescaler is not assigned
 003d40   86d5     bsf	0xd5, 0x3, 0         	BSF	_T0CONbits, 3
-                                           ;	.line	159; reveil.c	TMR0L = 0;    TMR0H = 0;
+                                           ;	.line	166; reveil.c	TMR0L = 0;    TMR0H = 0;
 003d42   6ad6     clrf	0xd6, 0             	CLRF	_TMR0L
 003d44   6ad7     clrf	0xd7, 0             	CLRF	_TMR0H
-                                           ;	.line	162; reveil.c	LED0_TRIS = 0; // configure 1st led pin as output (yellow)
+                                           ;	.line	169; reveil.c	LED0_TRIS = 0; // configure 1st led pin as output (yellow)
 003d46   909a     bcf	0x9a, 0, 0           	BCF	_TRISJbits, 0
-                                           ;	.line	163; reveil.c	LED1_TRIS = 0; // configure 2nd led pin as output (red)
+                                           ;	.line	170; reveil.c	LED1_TRIS = 0; // configure 2nd led pin as output (red)
 003d48   929a     bcf	0x9a, 0x1, 0         	BCF	_TRISJbits, 1
-                                           ;	.line	164; reveil.c	LED2_TRIS = 0; // configure 3rd led pin as output (red)
+                                           ;	.line	171; reveil.c	LED2_TRIS = 0; // configure 3rd led pin as output (red)
 003d4a   949a     bcf	0x9a, 0x2, 0         	BCF	_TRISJbits, 2
-                                           ;	.line	165; reveil.c	LATJbits.LATJ0 = 0; // switch LED 1 off
+                                           ;	.line	172; reveil.c	LATJbits.LATJ0 = 0; // switch LED 1 off
 003d4c   9091     bcf	0x91, 0, 0           	BCF	_LATJbits, 0
-                                           ;	.line	166; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+                                           ;	.line	173; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 003d4e   9291     bcf	0x91, 0x1, 0         	BCF	_LATJbits, 1
-                                           ;	.line	167; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+                                           ;	.line	174; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 003d50   9491     bcf	0x91, 0x2, 0         	BCF	_LATJbits, 2
-                                           ;	.line	170; reveil.c	BUTTON0_TRIS        = 1; // configure 1st button as input
+                                           ;	.line	177; reveil.c	BUTTON0_TRIS        = 1; // configure 1st button as input
 003d52   8693     bsf	0x93, 0x3, 0         	BSF	_TRISBbits, 3
-                                           ;	.line	171; reveil.c	BUTTON1_TRIS        = 1; // configure 2nd button as input
+                                           ;	.line	178; reveil.c	BUTTON1_TRIS        = 1; // configure 2nd button as input
 003d54   8293     bsf	0x93, 0x1, 0         	BSF	_TRISBbits, 1
-                                           ;	.line	172; reveil.c	INTCON3bits.INT3E   = 1; // enable INT3 interrupt (button 1)
+                                           ;	.line	179; reveil.c	INTCON3bits.INT3E   = 1; // enable INT3 interrupt (button 1)
 003d56   8af0     bsf	0xf0, 0x5, 0         	BSF	_INTCON3bits, 5
-                                           ;	.line	173; reveil.c	INTCON3bits.INT3F   = 0; // clear INT3 flag
+                                           ;	.line	180; reveil.c	INTCON3bits.INT3F   = 0; // clear INT3 flag
 003d58   94f0     bcf	0xf0, 0x2, 0         	BCF	_INTCON3bits, 2
-                                           ;	.line	174; reveil.c	INTCON3bits.INT1E   = 1; // enable INT1 interrupt (button 2)
+                                           ;	.line	181; reveil.c	INTCON3bits.INT1E   = 1; // enable INT1 interrupt (button 2)
 003d5a   86f0     bsf	0xf0, 0x3, 0         	BSF	_INTCON3bits, 3
-                                           ;	.line	175; reveil.c	INTCON3bits.INT1F   = 0; // clear INT1 flag
+                                           ;	.line	182; reveil.c	INTCON3bits.INT1F   = 0; // clear INT1 flag
 003d5c   90f0     bcf	0xf0, 0, 0           	BCF	_INTCON3bits, 0
-                                           ;	.line	176; reveil.c	INTCON3bits.INT1IP  = 0; // low priority
+                                           ;	.line	183; reveil.c	INTCON3bits.INT1IP  = 0; // low priority
 003d5e   9cf0     bcf	0xf0, 0x6, 0         	BCF	_INTCON3bits, 6
-                                           ;	.line	177; reveil.c	INTCON2bits.INT3IP  = 0; // low priority
+                                           ;	.line	184; reveil.c	INTCON2bits.INT3IP  = 0; // low priority
 003d60   92f1     bcf	0xf1, 0x1, 0         	BCF	_INTCON2bits, 1
-                                           ;	.line	179; reveil.c	LCDInit();
+                                           ;	.line	186; reveil.c	LCDInit();
 003d62   eca9     call	0x2352, 0           	CALL	_LCDInit
 003d64   f011
-                                           ;	.line	180; reveil.c	whereami = TIME_MENU;
+                                           ;	.line	187; reveil.c	whereami = TIME_MENU;
 003d66   0e01     movlw	0x1                	MOVLW	0x01
 003d68   010f     movlb	0xf                	BANKSEL	_whereami
 003d6a   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	182; reveil.c	T0CONbits.TMR0ON = 1; // start timer0
+                                           ;	.line	189; reveil.c	T0CONbits.TMR0ON = 1; // start timer0
 003d6c   8ed5     bsf	0xd5, 0x7, 0         	BSF	_T0CONbits, 7
                                            _00123_DS_:
-                                           ;	.line	185; reveil.c	time(); // met à jour l'heure
+                                           ;	.line	192; reveil.c	time(); // met à jour l'heure
 003d6e   ecc1     call	0x1782, 0           	CALL	_time
 003d70   f00b
-                                           ;	.line	186; reveil.c	refresh_lcd(); // met à jour l'affichage
+                                           ;	.line	193; reveil.c	refresh_lcd(); // met à jour l'affichage
 003d72   ec29     call	0x852, 0            	CALL	_refresh_lcd
 003d74   f004
-                                           ;	.line	187; reveil.c	alarm(); // vérifie l'alarme
+                                           ;	.line	194; reveil.c	alarm(); // vérifie l'alarme
 003d76   ec75     call	0x3aea, 0           	CALL	_alarm
 003d78   f01d
-                                           ;	.line	188; reveil.c	button(); // vérifie les boutons
+                                           ;	.line	195; reveil.c	button(); // vérifie les boutons
 003d7a   ec1f     call	0xe3e, 0            	CALL	_button
 003d7c   f007
 003d7e   d7f7     bra	0x3d6e               	BRA	_00123_DS_
@@ -669,7 +669,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__inc_amin	code
                                            _inc_amin:
-                                           ;	.line	464; reveil.c	void inc_amin(BYTE val)
+                                           ;	.line	471; reveil.c	void inc_amin(BYTE val)
 0039b0   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 0039b2   ffe5
 0039b4   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -685,7 +685,7 @@ Address  Value    Disassembly              Source
 0039c8   0e02     movlw	0x2                	MOVLW	0x02
 0039ca   cfdb     movff	0xfdb, 0           	MOVFF	PLUSW2, r0x00
 0039cc   f000
-                                           ;	.line	467; reveil.c	mod_amin = (amin + val) / 60;
+                                           ;	.line	474; reveil.c	mod_amin = (amin + val) / 60;
 0039ce   cf4b     movff	0xf4b, 0x1         	MOVFF	_amin, r0x01
 0039d0   f001
 0039d2   6a02     clrf	0x2, 0              	CLRF	r0x02
@@ -709,17 +709,17 @@ Address  Value    Disassembly              Source
 0039f6   f002
 0039f8   0e04     movlw	0x4                	MOVLW	0x04
 0039fa   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	468; reveil.c	if (mod_amin) // vérifie s'il faut incrémenter les heures
+                                           ;	.line	475; reveil.c	if (mod_amin) // vérifie s'il faut incrémenter les heures
 0039fc   5001     movf	0x1, 0, 0           	MOVF	r0x01, W
 0039fe   e005     bz	0x3a0a                	BZ	_00349_DS_
-                                           ;	.line	469; reveil.c	inc_ahour(mod_amin);
+                                           ;	.line	476; reveil.c	inc_ahour(mod_amin);
 003a00   5001     movf	0x1, 0, 0           	MOVF	r0x01, W
 003a02   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 003a04   ec32     call	0x3c64, 0           	CALL	_inc_ahour
 003a06   f01e
 003a08   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
                                            _00349_DS_:
-                                           ;	.line	471; reveil.c	amin = (amin + val) % 60;
+                                           ;	.line	478; reveil.c	amin = (amin + val) % 60;
 003a0a   cf4b     movff	0xf4b, 0x1         	MOVFF	_amin, r0x01
 003a0c   f001
 003a0e   6a02     clrf	0x2, 0              	CLRF	r0x02
@@ -760,7 +760,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__inc_ahour	code
                                            _inc_ahour:
-                                           ;	.line	458; reveil.c	void inc_ahour(BYTE val)
+                                           ;	.line	465; reveil.c	void inc_ahour(BYTE val)
 003c64   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 003c66   ffe5
 003c68   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -776,7 +776,7 @@ Address  Value    Disassembly              Source
 003c7c   0e02     movlw	0x2                	MOVLW	0x02
 003c7e   cfdb     movff	0xfdb, 0           	MOVFF	PLUSW2, r0x00
 003c80   f000
-                                           ;	.line	460; reveil.c	ahour = (ahour + val) % 24;
+                                           ;	.line	467; reveil.c	ahour = (ahour + val) % 24;
 003c82   cf4a     movff	0xf4a, 0x1         	MOVFF	_ahour, r0x01
 003c84   f001
 003c86   6a02     clrf	0x2, 0              	CLRF	r0x02
@@ -818,7 +818,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__button	code
                                            _button:
-                                           ;	.line	328; reveil.c	void button(void)
+                                           ;	.line	335; reveil.c	void button(void)
 000e3e   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 000e40   ffe5
 000e42   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -832,11 +832,11 @@ Address  Value    Disassembly              Source
 000e52   c003     movff	0x3, 0xfe5         	MOVFF	r0x03, POSTDEC1
 000e54   ffe5
 000e56   010f     movlb	0xf                	BANKSEL	_button1
-                                           ;	.line	336; reveil.c	if (button1) {
+                                           ;	.line	343; reveil.c	if (button1) {
 000e58   5141     movf	0x41, 0, 0x1        	MOVF	_button1, W, B
 000e5a   b4d8     btfsc	0xd8, 0x2, 0       	BTFSC	STATUS, 2
 000e5c   d07d     bra	0xf58                	BRA	_00303_DS_
-                                           ;	.line	337; reveil.c	switch (whereami) {
+                                           ;	.line	344; reveil.c	switch (whereami) {
 000e5e   0e01     movlw	0x1                	MOVLW	0x01
 000e60   010f     movlb	0xf                	BANKSEL	_whereami
 000e62   5d51     subwf	0x51, 0, 0x1       	SUBWF	_whereami, W, B
@@ -901,119 +901,119 @@ Address  Value    Disassembly              Source
 000ed6   ef9a     goto	0xf34               	GOTO	_00265_DS_
 000ed8   f007
                                            _00255_DS_:
-                                           ;	.line	339; reveil.c	whereami = ALARM_MENU;
+                                           ;	.line	346; reveil.c	whereami = ALARM_MENU;
 000eda   0e05     movlw	0x5                	MOVLW	0x05
 000edc   010f     movlb	0xf                	BANKSEL	_whereami
 000ede   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	340; reveil.c	break;
+                                           ;	.line	347; reveil.c	break;
 000ee0   d037     bra	0xf50                	BRA	_00267_DS_
                                            _00256_DS_:
-                                           ;	.line	342; reveil.c	whereami = SET_MINUTE;
+                                           ;	.line	349; reveil.c	whereami = SET_MINUTE;
 000ee2   0e03     movlw	0x3                	MOVLW	0x03
 000ee4   010f     movlb	0xf                	BANKSEL	_whereami
 000ee6   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	343; reveil.c	break;
+                                           ;	.line	350; reveil.c	break;
 000ee8   d033     bra	0xf50                	BRA	_00267_DS_
                                            _00257_DS_:
-                                           ;	.line	345; reveil.c	whereami = SET_SECOND;
+                                           ;	.line	352; reveil.c	whereami = SET_SECOND;
 000eea   0e04     movlw	0x4                	MOVLW	0x04
 000eec   010f     movlb	0xf                	BANKSEL	_whereami
 000eee   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	346; reveil.c	break;
+                                           ;	.line	353; reveil.c	break;
 000ef0   d02f     bra	0xf50                	BRA	_00267_DS_
                                            _00258_DS_:
-                                           ;	.line	348; reveil.c	whereami = ALARM_MENU;
+                                           ;	.line	355; reveil.c	whereami = ALARM_MENU;
 000ef2   0e05     movlw	0x5                	MOVLW	0x05
 000ef4   010f     movlb	0xf                	BANKSEL	_whereami
 000ef6   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	349; reveil.c	break;
+                                           ;	.line	356; reveil.c	break;
 000ef8   d02b     bra	0xf50                	BRA	_00267_DS_
                                            _00259_DS_:
-                                           ;	.line	351; reveil.c	whereami = DISPLAY;
+                                           ;	.line	358; reveil.c	whereami = DISPLAY;
 000efa   0e09     movlw	0x9                	MOVLW	0x09
 000efc   010f     movlb	0xf                	BANKSEL	_whereami
 000efe   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	352; reveil.c	break;
+                                           ;	.line	359; reveil.c	break;
 000f00   d027     bra	0xf50                	BRA	_00267_DS_
                                            _00260_DS_:
-                                           ;	.line	354; reveil.c	whereami = SET_A_HOUR;
+                                           ;	.line	361; reveil.c	whereami = SET_A_HOUR;
 000f02   0e07     movlw	0x7                	MOVLW	0x07
 000f04   010f     movlb	0xf                	BANKSEL	_whereami
 000f06   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	355; reveil.c	break;
+                                           ;	.line	362; reveil.c	break;
 000f08   d023     bra	0xf50                	BRA	_00267_DS_
                                            _00261_DS_:
-                                           ;	.line	357; reveil.c	whereami = SET_A_MIN;
+                                           ;	.line	364; reveil.c	whereami = SET_A_MIN;
 000f0a   0e08     movlw	0x8                	MOVLW	0x08
 000f0c   010f     movlb	0xf                	BANKSEL	_whereami
 000f0e   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	358; reveil.c	break;
+                                           ;	.line	365; reveil.c	break;
 000f10   d01f     bra	0xf50                	BRA	_00267_DS_
                                            _00262_DS_:
-                                           ;	.line	360; reveil.c	whereami = DISPLAY;
+                                           ;	.line	367; reveil.c	whereami = DISPLAY;
 000f12   0e09     movlw	0x9                	MOVLW	0x09
 000f14   010f     movlb	0xf                	BANKSEL	_whereami
 000f16   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	361; reveil.c	break;
+                                           ;	.line	368; reveil.c	break;
 000f18   d01b     bra	0xf50                	BRA	_00267_DS_
                                            _00263_DS_:
-                                           ;	.line	363; reveil.c	whereami = TIME_MENU;
+                                           ;	.line	370; reveil.c	whereami = TIME_MENU;
 000f1a   0e01     movlw	0x1                	MOVLW	0x01
 000f1c   010f     movlb	0xf                	BANKSEL	_whereami
 000f1e   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	364; reveil.c	break;
+                                           ;	.line	371; reveil.c	break;
 000f20   d017     bra	0xf50                	BRA	_00267_DS_
                                            _00264_DS_:
-                                           ;	.line	366; reveil.c	stop_ringing = 1; // l'alarme doit s'arrêter
+                                           ;	.line	373; reveil.c	stop_ringing = 1; // l'alarme doit s'arrêter
 000f22   0e01     movlw	0x1                	MOVLW	0x01
 000f24   010f     movlb	0xf                	BANKSEL	_stop_ringing
 000f26   6f50     movwf	0x50, 0x1          	MOVWF	_stop_ringing, B
-                                           ;	.line	367; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+                                           ;	.line	374; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 000f28   9291     bcf	0x91, 0x1, 0         	BCF	_LATJbits, 1
-                                           ;	.line	368; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+                                           ;	.line	375; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 000f2a   9491     bcf	0x91, 0x2, 0         	BCF	_LATJbits, 2
-                                           ;	.line	369; reveil.c	whereami = DISPLAY;
+                                           ;	.line	376; reveil.c	whereami = DISPLAY;
 000f2c   0e09     movlw	0x9                	MOVLW	0x09
 000f2e   010f     movlb	0xf                	BANKSEL	_whereami
 000f30   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	370; reveil.c	break;
+                                           ;	.line	377; reveil.c	break;
 000f32   d00e     bra	0xf50                	BRA	_00267_DS_
                                            _00265_DS_:
-                                           ;	.line	372; reveil.c	stop_ringing = 1; // l'alarme doit s'arrêter
+                                           ;	.line	379; reveil.c	stop_ringing = 1; // l'alarme doit s'arrêter
 000f34   0e01     movlw	0x1                	MOVLW	0x01
 000f36   010f     movlb	0xf                	BANKSEL	_stop_ringing
 000f38   6f50     movwf	0x50, 0x1          	MOVWF	_stop_ringing, B
-                                           ;	.line	373; reveil.c	amin = amin_o; // remet le réveil à l'heure d'origine
+                                           ;	.line	380; reveil.c	amin = amin_o; // remet le réveil à l'heure d'origine
 000f3a   cf4d     movff	0xf4d, 0xf4b       	MOVFF	_amin_o, _amin
 000f3c   ff4b
-                                           ;	.line	374; reveil.c	ahour = ahour_o;
+                                           ;	.line	381; reveil.c	ahour = ahour_o;
 000f3e   cf4c     movff	0xf4c, 0xf4a       	MOVFF	_ahour_o, _ahour
 000f40   ff4a
 000f42   010f     movlb	0xf                	BANKSEL	_snooze
-                                           ;	.line	375; reveil.c	snooze = 0;
+                                           ;	.line	382; reveil.c	snooze = 0;
 000f44   6b4f     clrf	0x4f, 0x1           	CLRF	_snooze, B
-                                           ;	.line	376; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+                                           ;	.line	383; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 000f46   9291     bcf	0x91, 0x1, 0         	BCF	_LATJbits, 1
-                                           ;	.line	377; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+                                           ;	.line	384; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 000f48   9491     bcf	0x91, 0x2, 0         	BCF	_LATJbits, 2
-                                           ;	.line	378; reveil.c	whereami = DISPLAY;
+                                           ;	.line	385; reveil.c	whereami = DISPLAY;
 000f4a   0e09     movlw	0x9                	MOVLW	0x09
 000f4c   010f     movlb	0xf                	BANKSEL	_whereami
 000f4e   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
                                            _00267_DS_:
 000f50   010f     movlb	0xf                	BANKSEL	_button1
-                                           ;	.line	383; reveil.c	button1 = 0; // remet le flag du bouton 1 à 0
+                                           ;	.line	390; reveil.c	button1 = 0; // remet le flag du bouton 1 à 0
 000f52   6b41     clrf	0x41, 0x1           	CLRF	_button1, B
 000f54   efee     goto	0x13dc              	GOTO	_00305_DS_
 000f56   f009
                                            _00303_DS_:
 000f58   010f     movlb	0xf                	BANKSEL	_button2
-                                           ;	.line	386; reveil.c	} else if (button2) {
+                                           ;	.line	393; reveil.c	} else if (button2) {
 000f5a   5142     movf	0x42, 0, 0x1        	MOVF	_button2, W, B
 000f5c   b4d8     btfsc	0xd8, 0x2, 0       	BTFSC	STATUS, 2
 000f5e   efee     goto	0x13dc              	GOTO	_00305_DS_
 000f60   f009
-                                           ;	.line	387; reveil.c	switch (whereami) {
+                                           ;	.line	394; reveil.c	switch (whereami) {
 000f62   0e01     movlw	0x1                	MOVLW	0x01
 000f64   010f     movlb	0xf                	BANKSEL	_whereami
 000f66   5d51     subwf	0x51, 0, 0x1       	SUBWF	_whereami, W, B
@@ -1080,23 +1080,23 @@ Address  Value    Disassembly              Source
 000fde   efe1     goto	0x13c2              	GOTO	_00295_DS_
 000fe0   f009
                                            _00268_DS_:
-                                           ;	.line	389; reveil.c	whereami = SET_HOUR;
+                                           ;	.line	396; reveil.c	whereami = SET_HOUR;
 000fe2   0e02     movlw	0x2                	MOVLW	0x02
 000fe4   010f     movlb	0xf                	BANKSEL	_whereami
 000fe6   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	390; reveil.c	break;
+                                           ;	.line	397; reveil.c	break;
 000fe8   efec     goto	0x13d8              	GOTO	_00299_DS_
 000fea   f009
                                            _00269_DS_:
 000fec   010f     movlb	0xf                	BANKSEL	_thour
-                                           ;	.line	392; reveil.c	if (thour == 23) // l'heure doit repasser à 0
+                                           ;	.line	399; reveil.c	if (thour == 23) // l'heure doit repasser à 0
 000fee   5147     movf	0x47, 0, 0x1        	MOVF	_thour, W, B
 000ff0   0a17     xorlw	0x17               	XORLW	0x17
 000ff2   e001     bz	0xff6                 	BZ	_00327_DS_
 000ff4   d047     bra	0x1084               	BRA	_00271_DS_
                                            _00327_DS_:
 000ff6   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	393; reveil.c	overflows -= 59*F*3600;
+                                           ;	.line	400; reveil.c	overflows -= 59*F*3600;
 000ff8   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 000ffa   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 000ffc   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1125,7 +1125,7 @@ Address  Value    Disassembly              Source
 00102a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00102c   0e89     movlw	0x89               	MOVLW	0x89
 00102e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001030   0ece     movlw	0xce               	MOVLW	0xce
+001030   0efd     movlw	0xfd               	MOVLW	0xfd
 001032   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001034   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 001036   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1169,7 +1169,7 @@ Address  Value    Disassembly              Source
 001082   d1aa     bra	0x13d8               	BRA	_00299_DS_
                                            _00271_DS_:
 001084   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	395; reveil.c	overflows += F*3600;
+                                           ;	.line	402; reveil.c	overflows += F*3600;
 001086   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 001088   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00108a   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1198,7 +1198,7 @@ Address  Value    Disassembly              Source
 0010b8   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0010ba   0ea2     movlw	0xa2               	MOVLW	0xa2
 0010bc   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0010be   0e80     movlw	0x80               	MOVLW	0x80
+0010be   0eb3     movlw	0xb3               	MOVLW	0xb3
 0010c0   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0010c2   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0010c4   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1239,18 +1239,18 @@ Address  Value    Disassembly              Source
 00110a   ff46
 00110c   0e04     movlw	0x4                	MOVLW	0x04
 00110e   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	396; reveil.c	break;
+                                           ;	.line	403; reveil.c	break;
 001110   d163     bra	0x13d8               	BRA	_00299_DS_
                                            _00273_DS_:
 001112   010f     movlb	0xf                	BANKSEL	_tmin
-                                           ;	.line	398; reveil.c	if (tmin == 59) // les minutes doivent repasser à 0
+                                           ;	.line	405; reveil.c	if (tmin == 59) // les minutes doivent repasser à 0
 001114   5148     movf	0x48, 0, 0x1        	MOVF	_tmin, W, B
 001116   0a3b     xorlw	0x3b               	XORLW	0x3b
 001118   e001     bz	0x111c                	BZ	_00329_DS_
 00111a   d047     bra	0x11aa               	BRA	_00275_DS_
                                            _00329_DS_:
 00111c   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	399; reveil.c	overflows -= 59*F*60;
+                                           ;	.line	406; reveil.c	overflows -= 59*F*60;
 00111e   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 001120   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001122   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1279,7 +1279,7 @@ Address  Value    Disassembly              Source
 001150   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001152   0ed7     movlw	0xd7               	MOVLW	0xd7
 001154   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001156   0e42     movlw	0x42               	MOVLW	0x42
+001156   0e74     movlw	0x74               	MOVLW	0x74
 001158   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00115a   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 00115c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1323,7 +1323,7 @@ Address  Value    Disassembly              Source
 0011a8   d117     bra	0x13d8               	BRA	_00299_DS_
                                            _00275_DS_:
 0011aa   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	401; reveil.c	overflows += F*60;
+                                           ;	.line	408; reveil.c	overflows += F*60;
 0011ac   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 0011ae   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0011b0   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1352,7 +1352,7 @@ Address  Value    Disassembly              Source
 0011de   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0011e0   0ecf     movlw	0xcf               	MOVLW	0xcf
 0011e2   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0011e4   0e77     movlw	0x77               	MOVLW	0x77
+0011e4   0eae     movlw	0xae               	MOVLW	0xae
 0011e6   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0011e8   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0011ea   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1393,18 +1393,18 @@ Address  Value    Disassembly              Source
 001230   ff46
 001232   0e04     movlw	0x4                	MOVLW	0x04
 001234   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	402; reveil.c	break;
+                                           ;	.line	409; reveil.c	break;
 001236   d0d0     bra	0x13d8               	BRA	_00299_DS_
                                            _00277_DS_:
 001238   010f     movlb	0xf                	BANKSEL	_tsec
-                                           ;	.line	404; reveil.c	if (tsec == 59) // les secondes doivent repasser à 0
+                                           ;	.line	411; reveil.c	if (tsec == 59) // les secondes doivent repasser à 0
 00123a   5149     movf	0x49, 0, 0x1        	MOVF	_tsec, W, B
 00123c   0a3b     xorlw	0x3b               	XORLW	0x3b
 00123e   e001     bz	0x1242                	BZ	_00331_DS_
 001240   d047     bra	0x12d0               	BRA	_00279_DS_
                                            _00331_DS_:
 001242   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	405; reveil.c	overflows -= 59*F;
+                                           ;	.line	412; reveil.c	overflows -= 59*F;
 001244   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 001246   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001248   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1433,7 +1433,7 @@ Address  Value    Disassembly              Source
 001276   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001278   0ed4     movlw	0xd4               	MOVLW	0xd4
 00127a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00127c   0e8b     movlw	0x8b               	MOVLW	0x8b
+00127c   0ec1     movlw	0xc1               	MOVLW	0xc1
 00127e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001280   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 001282   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1477,7 +1477,7 @@ Address  Value    Disassembly              Source
 0012ce   d084     bra	0x13d8               	BRA	_00299_DS_
                                            _00279_DS_:
 0012d0   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	407; reveil.c	overflows += F;
+                                           ;	.line	414; reveil.c	overflows += F;
 0012d2   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 0012d4   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0012d6   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -1506,7 +1506,7 @@ Address  Value    Disassembly              Source
 001304   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001306   0ebb     movlw	0xbb               	MOVLW	0xbb
 001308   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00130a   0e2a     movlw	0x2a               	MOVLW	0x2a
+00130a   0e64     movlw	0x64               	MOVLW	0x64
 00130c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00130e   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 001310   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1547,110 +1547,110 @@ Address  Value    Disassembly              Source
 001356   ff46
 001358   0e04     movlw	0x4                	MOVLW	0x04
 00135a   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	408; reveil.c	break;
+                                           ;	.line	415; reveil.c	break;
 00135c   d03d     bra	0x13d8               	BRA	_00299_DS_
                                            _00281_DS_:
-                                           ;	.line	410; reveil.c	whereami = SET_ALARM;
+                                           ;	.line	417; reveil.c	whereami = SET_ALARM;
 00135e   0e06     movlw	0x6                	MOVLW	0x06
 001360   010f     movlb	0xf                	BANKSEL	_whereami
 001362   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	411; reveil.c	break;
+                                           ;	.line	418; reveil.c	break;
 001364   d039     bra	0x13d8               	BRA	_00299_DS_
                                            _00282_DS_:
-                                           ;	.line	413; reveil.c	alarm_set ^= 1;
+                                           ;	.line	420; reveil.c	alarm_set ^= 1;
 001366   0e01     movlw	0x1                	MOVLW	0x01
 001368   010f     movlb	0xf                	BANKSEL	_alarm_set
 00136a   1b4e     xorwf	0x4e, 0x1, 0x1     	XORWF	_alarm_set, F, B
-                                           ;	.line	414; reveil.c	break;
+                                           ;	.line	421; reveil.c	break;
 00136c   d035     bra	0x13d8               	BRA	_00299_DS_
                                            _00283_DS_:
 00136e   010f     movlb	0xf                	BANKSEL	_ahour
-                                           ;	.line	416; reveil.c	if (ahour == 23) // l'heure d'alarme doit repasser à 0
+                                           ;	.line	423; reveil.c	if (ahour == 23) // l'heure d'alarme doit repasser à 0
 001370   514a     movf	0x4a, 0, 0x1        	MOVF	_ahour, W, B
 001372   0a17     xorlw	0x17               	XORLW	0x17
 001374   e103     bnz	0x137c               	BNZ	_00285_DS_
                                            _00334_DS_:
 001376   010f     movlb	0xf                	BANKSEL	_ahour
-                                           ;	.line	417; reveil.c	ahour = 0;
+                                           ;	.line	424; reveil.c	ahour = 0;
 001378   6b4a     clrf	0x4a, 0x1           	CLRF	_ahour, B
 00137a   d002     bra	0x1380               	BRA	_00286_DS_
                                            _00285_DS_:
 00137c   010f     movlb	0xf                	BANKSEL	_ahour
-                                           ;	.line	419; reveil.c	ahour++;
+                                           ;	.line	426; reveil.c	ahour++;
 00137e   2b4a     incf	0x4a, 0x1, 0x1      	INCF	_ahour, F, B
                                            _00286_DS_:
-                                           ;	.line	420; reveil.c	ahour_o = ahour;
+                                           ;	.line	427; reveil.c	ahour_o = ahour;
 001380   cf4a     movff	0xf4a, 0xf4c       	MOVFF	_ahour, _ahour_o
 001382   ff4c
-                                           ;	.line	421; reveil.c	break;
+                                           ;	.line	428; reveil.c	break;
 001384   d029     bra	0x13d8               	BRA	_00299_DS_
                                            _00287_DS_:
 001386   010f     movlb	0xf                	BANKSEL	_amin
-                                           ;	.line	423; reveil.c	if (amin == 59) // les minutes d'alarme doivent repasser à 0
+                                           ;	.line	430; reveil.c	if (amin == 59) // les minutes d'alarme doivent repasser à 0
 001388   514b     movf	0x4b, 0, 0x1        	MOVF	_amin, W, B
 00138a   0a3b     xorlw	0x3b               	XORLW	0x3b
 00138c   e103     bnz	0x1394               	BNZ	_00289_DS_
                                            _00336_DS_:
 00138e   010f     movlb	0xf                	BANKSEL	_amin
-                                           ;	.line	424; reveil.c	amin = 0;
+                                           ;	.line	431; reveil.c	amin = 0;
 001390   6b4b     clrf	0x4b, 0x1           	CLRF	_amin, B
 001392   d002     bra	0x1398               	BRA	_00290_DS_
                                            _00289_DS_:
 001394   010f     movlb	0xf                	BANKSEL	_amin
-                                           ;	.line	426; reveil.c	amin++;
+                                           ;	.line	433; reveil.c	amin++;
 001396   2b4b     incf	0x4b, 0x1, 0x1      	INCF	_amin, F, B
                                            _00290_DS_:
-                                           ;	.line	427; reveil.c	amin_o = amin;
+                                           ;	.line	434; reveil.c	amin_o = amin;
 001398   cf4b     movff	0xf4b, 0xf4d       	MOVFF	_amin, _amin_o
 00139a   ff4d
-                                           ;	.line	428; reveil.c	break;
+                                           ;	.line	435; reveil.c	break;
 00139c   d01d     bra	0x13d8               	BRA	_00299_DS_
                                            _00291_DS_:
-                                           ;	.line	430; reveil.c	break; // bouton sans fonction
+                                           ;	.line	437; reveil.c	break; // bouton sans fonction
 00139e   d01c     bra	0x13d8               	BRA	_00299_DS_
                                            _00292_DS_:
-                                           ;	.line	433; reveil.c	if (snooze < SNOOZE_MAX) {
+                                           ;	.line	440; reveil.c	if (snooze < SNOOZE_MAX) {
 0013a0   0e0c     movlw	0xc                	MOVLW	0x0c
 0013a2   010f     movlb	0xf                	BANKSEL	_snooze
 0013a4   5d4f     subwf	0x4f, 0, 0x1       	SUBWF	_snooze, W, B
 0013a6   e218     bc	0x13d8                	BC	_00299_DS_
-                                           ;	.line	434; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
+                                           ;	.line	441; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
 0013a8   0e05     movlw	0x5                	MOVLW	0x05
 0013aa   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0013ac   ecd8     call	0x39b0, 0           	CALL	_inc_amin
 0013ae   f01c
 0013b0   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
 0013b2   010f     movlb	0xf                	BANKSEL	_snooze
-                                           ;	.line	435; reveil.c	snooze++; // augmente le compteur de snooze
+                                           ;	.line	442; reveil.c	snooze++; // augmente le compteur de snooze
 0013b4   2b4f     incf	0x4f, 0x1, 0x1      	INCF	_snooze, F, B
-                                           ;	.line	436; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+                                           ;	.line	443; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 0013b6   9291     bcf	0x91, 0x1, 0         	BCF	_LATJbits, 1
-                                           ;	.line	437; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+                                           ;	.line	444; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 0013b8   9491     bcf	0x91, 0x2, 0         	BCF	_LATJbits, 2
-                                           ;	.line	438; reveil.c	whereami = SNOOZE;
+                                           ;	.line	445; reveil.c	whereami = SNOOZE;
 0013ba   0e0b     movlw	0xb                	MOVLW	0x0b
 0013bc   010f     movlb	0xf                	BANKSEL	_whereami
 0013be   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
-                                           ;	.line	441; reveil.c	break;
+                                           ;	.line	448; reveil.c	break;
 0013c0   d00b     bra	0x13d8               	BRA	_00299_DS_
                                            _00295_DS_:
-                                           ;	.line	444; reveil.c	if (snooze < SNOOZE_MAX) {
+                                           ;	.line	451; reveil.c	if (snooze < SNOOZE_MAX) {
 0013c2   0e0c     movlw	0xc                	MOVLW	0x0c
 0013c4   010f     movlb	0xf                	BANKSEL	_snooze
 0013c6   5d4f     subwf	0x4f, 0, 0x1       	SUBWF	_snooze, W, B
 0013c8   e207     bc	0x13d8                	BC	_00299_DS_
-                                           ;	.line	445; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
+                                           ;	.line	452; reveil.c	inc_amin(SNOOZE_MINUTE); // modifie le réveil
 0013ca   0e05     movlw	0x5                	MOVLW	0x05
 0013cc   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0013ce   ecd8     call	0x39b0, 0           	CALL	_inc_amin
 0013d0   f01c
 0013d2   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
 0013d4   010f     movlb	0xf                	BANKSEL	_snooze
-                                           ;	.line	446; reveil.c	snooze++; // augmente le compteur de snooze
+                                           ;	.line	453; reveil.c	snooze++; // augmente le compteur de snooze
 0013d6   2b4f     incf	0x4f, 0x1, 0x1      	INCF	_snooze, F, B
                                            _00299_DS_:
 0013d8   010f     movlb	0xf                	BANKSEL	_button2
-                                           ;	.line	453; reveil.c	button2 = 0; // remet le flag du bouton 2 à 0
+                                           ;	.line	460; reveil.c	button2 = 0; // remet le flag du bouton 2 à 0
 0013da   6b42     clrf	0x42, 0x1           	CLRF	_button2, B
                                            _00305_DS_:
 0013dc   cfe4     movff	0xfe4, 0x3         	MOVFF	PREINC1, r0x03
@@ -1668,13 +1668,13 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__alarm	code
                                            _alarm:
-                                           ;	.line	298; reveil.c	void alarm(void)
+                                           ;	.line	305; reveil.c	void alarm(void)
 003aea   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 003aec   ffe5
 003aee   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
 003af0   ffd9
 003af2   010f     movlb	0xf                	BANKSEL	_thour
-                                           ;	.line	301; reveil.c	if (thour == ahour && tmin == amin && alarm_set) {
+                                           ;	.line	308; reveil.c	if (thour == ahour && tmin == amin && alarm_set) {
 003af4   5147     movf	0x47, 0, 0x1        	MOVF	_thour, W, B
 003af6   010f     movlb	0xf                	BANKSEL	_ahour
 003af8   194a     xorwf	0x4a, 0, 0x1       	XORWF	_ahour, W, B
@@ -1691,7 +1691,7 @@ Address  Value    Disassembly              Source
 003b0a   010f     movlb	0xf                	BANKSEL	_alarm_set
 003b0c   514e     movf	0x4e, 0, 0x1        	MOVF	_alarm_set, W, B
 003b0e   e02f     bz	0x3b6e                	BZ	_00228_DS_
-                                           ;	.line	305; reveil.c	if (tsec < 31 && stop_ringing == 0) {
+                                           ;	.line	312; reveil.c	if (tsec < 31 && stop_ringing == 0) {
 003b10   0e1f     movlw	0x1f               	MOVLW	0x1f
 003b12   010f     movlb	0xf                	BANKSEL	_tsec
 003b14   5d49     subwf	0x49, 0, 0x1       	SUBWF	_tsec, W, B
@@ -1700,7 +1700,7 @@ Address  Value    Disassembly              Source
 003b1a   5150     movf	0x50, 0, 0x1        	MOVF	_stop_ringing, W, B
 003b1c   e10c     bnz	0x3b36               	BNZ	_00221_DS_
 003b1e   010f     movlb	0xf                	BANKSEL	_whereami
-                                           ;	.line	306; reveil.c	if (whereami == DISPLAY || whereami == SNOOZE)
+                                           ;	.line	313; reveil.c	if (whereami == DISPLAY || whereami == SNOOZE)
 003b20   5151     movf	0x51, 0, 0x1        	MOVF	_whereami, W, B
 003b22   0a09     xorlw	0x9                	XORLW	0x09
 003b24   e004     bz	0x3b2e                	BZ	_00210_DS_
@@ -1710,49 +1710,49 @@ Address  Value    Disassembly              Source
 003b2a   0a0b     xorlw	0xb                	XORLW	0x0b
 003b2c   e120     bnz	0x3b6e               	BNZ	_00228_DS_
                                            _00210_DS_:
-                                           ;	.line	307; reveil.c	whereami = ALARM;
+                                           ;	.line	314; reveil.c	whereami = ALARM;
 003b2e   0e0a     movlw	0xa                	MOVLW	0x0a
 003b30   010f     movlb	0xf                	BANKSEL	_whereami
 003b32   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
 003b34   d01c     bra	0x3b6e               	BRA	_00228_DS_
                                            _00221_DS_:
-                                           ;	.line	310; reveil.c	} else if (tsec > 30) {
+                                           ;	.line	317; reveil.c	} else if (tsec > 30) {
 003b36   0e1f     movlw	0x1f               	MOVLW	0x1f
 003b38   010f     movlb	0xf                	BANKSEL	_tsec
 003b3a   5d49     subwf	0x49, 0, 0x1       	SUBWF	_tsec, W, B
 003b3c   e318     bnc	0x3b6e               	BNC	_00228_DS_
 003b3e   010f     movlb	0xf                	BANKSEL	_stop_ringing
-                                           ;	.line	311; reveil.c	stop_ringing = 0; // l'alarme doit sonner à nouveau dans 24h
+                                           ;	.line	318; reveil.c	stop_ringing = 0; // l'alarme doit sonner à nouveau dans 24h
 003b40   6b50     clrf	0x50, 0x1           	CLRF	_stop_ringing, B
-                                           ;	.line	312; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
+                                           ;	.line	319; reveil.c	LATJbits.LATJ1 = 0; // switch LED 2 off
 003b42   9291     bcf	0x91, 0x1, 0         	BCF	_LATJbits, 1
-                                           ;	.line	313; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
+                                           ;	.line	320; reveil.c	LATJbits.LATJ2 = 0; // switch LED 3 off
 003b44   9491     bcf	0x91, 0x2, 0         	BCF	_LATJbits, 2
 003b46   010f     movlb	0xf                	BANKSEL	_snooze
-                                           ;	.line	316; reveil.c	if (snooze) {
+                                           ;	.line	323; reveil.c	if (snooze) {
 003b48   514f     movf	0x4f, 0, 0x1        	MOVF	_snooze, W, B
 003b4a   e00a     bz	0x3b60                	BZ	_00216_DS_
-                                           ;	.line	317; reveil.c	ahour = ahour_o; // remet le réveil à l'heure d'origine
+                                           ;	.line	324; reveil.c	ahour = ahour_o; // remet le réveil à l'heure d'origine
 003b4c   cf4c     movff	0xf4c, 0xf4a       	MOVFF	_ahour_o, _ahour
 003b4e   ff4a
-                                           ;	.line	318; reveil.c	amin = amin_o;
+                                           ;	.line	325; reveil.c	amin = amin_o;
 003b50   cf4d     movff	0xf4d, 0xf4b       	MOVFF	_amin_o, _amin
 003b52   ff4b
 003b54   010f     movlb	0xf                	BANKSEL	_snooze
-                                           ;	.line	319; reveil.c	snooze = 0;
+                                           ;	.line	326; reveil.c	snooze = 0;
 003b56   6b4f     clrf	0x4f, 0x1           	CLRF	_snooze, B
-                                           ;	.line	320; reveil.c	whereami = DISPLAY;
+                                           ;	.line	327; reveil.c	whereami = DISPLAY;
 003b58   0e09     movlw	0x9                	MOVLW	0x09
 003b5a   010f     movlb	0xf                	BANKSEL	_whereami
 003b5c   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
 003b5e   d007     bra	0x3b6e               	BRA	_00228_DS_
                                            _00216_DS_:
 003b60   010f     movlb	0xf                	BANKSEL	_whereami
-                                           ;	.line	321; reveil.c	} else if (whereami == ALARM) // si l'alarme sonnait toujours, on
+                                           ;	.line	328; reveil.c	} else if (whereami == ALARM) // si l'alarme sonnait toujours, on
 003b62   5151     movf	0x51, 0, 0x1        	MOVF	_whereami, W, B
 003b64   0a0a     xorlw	0xa                	XORLW	0x0a
 003b66   e103     bnz	0x3b6e               	BNZ	_00228_DS_
-                                           ;	.line	322; reveil.c	whereami = DISPLAY;       // revient à l'affichage de l'heure
+                                           ;	.line	329; reveil.c	whereami = DISPLAY;       // revient à l'affichage de l'heure
 003b68   0e09     movlw	0x9                	MOVLW	0x09
 003b6a   010f     movlb	0xf                	BANKSEL	_whereami
 003b6c   6f51     movwf	0x51, 0x1          	MOVWF	_whereami, B
@@ -1764,7 +1764,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__refresh_lcd	code
                                            _refresh_lcd:
-                                           ;	.line	233; reveil.c	void refresh_lcd(void)
+                                           ;	.line	240; reveil.c	void refresh_lcd(void)
 000852   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 000854   ffe5
 000856   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -1799,7 +1799,7 @@ Address  Value    Disassembly              Source
 000890   ffe5
 000892   c00e     movff	0xe, 0xfe5         	MOVFF	r0x0e, POSTDEC1
 000894   ffe5
-                                           ;	.line	236; reveil.c	switch (whereami) {
+                                           ;	.line	243; reveil.c	switch (whereami) {
 000896   0e01     movlw	0x1                	MOVLW	0x01
 000898   010f     movlb	0xf                	BANKSEL	_whereami
 00089a   5d51     subwf	0x51, 0, 0x1       	SUBWF	_whereami, W, B
@@ -1866,7 +1866,7 @@ Address  Value    Disassembly              Source
 000912   ef4f     goto	0xc9e               	GOTO	_00189_DS_
 000914   f006
                                            _00173_DS_:
-                                           ;	.line	238; reveil.c	sprintf(display, "Do you want to  set the time ?  ");
+                                           ;	.line	245; reveil.c	sprintf(display, "Do you want to  set the time ?  ");
 000916   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000918   6e01     movwf	0x1, 0             	MOVWF	r0x01
 00091a   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -1889,11 +1889,11 @@ Address  Value    Disassembly              Source
 00093c   f019
 00093e   0e06     movlw	0x6                	MOVLW	0x06
 000940   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	239; reveil.c	break;
+                                           ;	.line	246; reveil.c	break;
 000942   efec     goto	0xdd8               	GOTO	_00194_DS_
 000944   f006
                                            _00174_DS_:
-                                           ;	.line	242; reveil.c	thour, tmin, tsec);
+                                           ;	.line	249; reveil.c	thour, tmin, tsec);
 000946   cf49     movff	0xf49, 0           	MOVFF	_tsec, r0x00
 000948   f000
 00094a   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -1903,7 +1903,7 @@ Address  Value    Disassembly              Source
 000952   cf47     movff	0xf47, 0x4         	MOVFF	_thour, r0x04
 000954   f004
 000956   6a05     clrf	0x5, 0              	CLRF	r0x05
-                                           ;	.line	241; reveil.c	sprintf(display, " [%02u]: %02u : %02u                  ",
+                                           ;	.line	248; reveil.c	sprintf(display, " [%02u]: %02u : %02u                  ",
 000958   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 00095a   6e07     movwf	0x7, 0             	MOVWF	r0x07
 00095c   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -1938,11 +1938,11 @@ Address  Value    Disassembly              Source
 000996   f019
 000998   0e0c     movlw	0xc                	MOVLW	0x0c
 00099a   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	243; reveil.c	break;
+                                           ;	.line	250; reveil.c	break;
 00099c   efec     goto	0xdd8               	GOTO	_00194_DS_
 00099e   f006
                                            _00175_DS_:
-                                           ;	.line	246; reveil.c	thour, tmin, tsec);
+                                           ;	.line	253; reveil.c	thour, tmin, tsec);
 0009a0   cf49     movff	0xf49, 0           	MOVFF	_tsec, r0x00
 0009a2   f000
 0009a4   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -1952,7 +1952,7 @@ Address  Value    Disassembly              Source
 0009ac   cf47     movff	0xf47, 0x4         	MOVFF	_thour, r0x04
 0009ae   f004
 0009b0   6a05     clrf	0x5, 0              	CLRF	r0x05
-                                           ;	.line	245; reveil.c	sprintf(display, "  %02u :[%02u]: %02u                  ",
+                                           ;	.line	252; reveil.c	sprintf(display, "  %02u :[%02u]: %02u                  ",
 0009b2   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 0009b4   6e07     movwf	0x7, 0             	MOVWF	r0x07
 0009b6   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -1987,10 +1987,10 @@ Address  Value    Disassembly              Source
 0009f0   f019
 0009f2   0e0c     movlw	0xc                	MOVLW	0x0c
 0009f4   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	247; reveil.c	break;
+                                           ;	.line	254; reveil.c	break;
 0009f6   d1f0     bra	0xdd8                	BRA	_00194_DS_
                                            _00176_DS_:
-                                           ;	.line	250; reveil.c	thour, tmin, tsec);
+                                           ;	.line	257; reveil.c	thour, tmin, tsec);
 0009f8   cf49     movff	0xf49, 0           	MOVFF	_tsec, r0x00
 0009fa   f000
 0009fc   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -2000,7 +2000,7 @@ Address  Value    Disassembly              Source
 000a04   cf47     movff	0xf47, 0x4         	MOVFF	_thour, r0x04
 000a06   f004
 000a08   6a05     clrf	0x5, 0              	CLRF	r0x05
-                                           ;	.line	249; reveil.c	sprintf(display, "  %02u : %02u :[%02u]                 ",
+                                           ;	.line	256; reveil.c	sprintf(display, "  %02u : %02u :[%02u]                 ",
 000a0a   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000a0c   6e07     movwf	0x7, 0             	MOVWF	r0x07
 000a0e   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2035,10 +2035,10 @@ Address  Value    Disassembly              Source
 000a48   f019
 000a4a   0e0c     movlw	0xc                	MOVLW	0x0c
 000a4c   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	251; reveil.c	break;
+                                           ;	.line	258; reveil.c	break;
 000a4e   d1c4     bra	0xdd8                	BRA	_00194_DS_
                                            _00177_DS_:
-                                           ;	.line	253; reveil.c	sprintf(display, "Do you want to  set the alarm ? ");
+                                           ;	.line	260; reveil.c	sprintf(display, "Do you want to  set the alarm ? ");
 000a50   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000a52   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000a54   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2061,14 +2061,14 @@ Address  Value    Disassembly              Source
 000a76   f019
 000a78   0e06     movlw	0x6                	MOVLW	0x06
 000a7a   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	254; reveil.c	break;
+                                           ;	.line	261; reveil.c	break;
 000a7c   d1ad     bra	0xdd8                	BRA	_00194_DS_
                                            _00178_DS_:
 000a7e   010f     movlb	0xf                	BANKSEL	_alarm_set
-                                           ;	.line	256; reveil.c	if (alarm_set)
+                                           ;	.line	263; reveil.c	if (alarm_set)
 000a80   514e     movf	0x4e, 0, 0x1        	MOVF	_alarm_set, W, B
 000a82   e017     bz	0xab2                 	BZ	_00180_DS_
-                                           ;	.line	257; reveil.c	sprintf(display, "  Alarm [ON ]                   ");
+                                           ;	.line	264; reveil.c	sprintf(display, "  Alarm [ON ]                   ");
 000a84   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000a86   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000a88   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2093,7 +2093,7 @@ Address  Value    Disassembly              Source
 000aae   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 000ab0   d193     bra	0xdd8                	BRA	_00194_DS_
                                            _00180_DS_:
-                                           ;	.line	259; reveil.c	sprintf(display, "  Alarm [OFF]                   ");
+                                           ;	.line	266; reveil.c	sprintf(display, "  Alarm [OFF]                   ");
 000ab2   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000ab4   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000ab6   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2116,17 +2116,17 @@ Address  Value    Disassembly              Source
 000ad8   f019
 000ada   0e06     movlw	0x6                	MOVLW	0x06
 000adc   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	260; reveil.c	break;
+                                           ;	.line	267; reveil.c	break;
 000ade   d17c     bra	0xdd8                	BRA	_00194_DS_
                                            _00182_DS_:
-                                           ;	.line	263; reveil.c	ahour, amin);
+                                           ;	.line	270; reveil.c	ahour, amin);
 000ae0   cf4b     movff	0xf4b, 0           	MOVFF	_amin, r0x00
 000ae2   f000
 000ae4   6a01     clrf	0x1, 0              	CLRF	r0x01
 000ae6   cf4a     movff	0xf4a, 0x2         	MOVFF	_ahour, r0x02
 000ae8   f002
 000aea   6a03     clrf	0x3, 0              	CLRF	r0x03
-                                           ;	.line	262; reveil.c	sprintf(display, "    Alarm at        [%02u]: %02u    ",
+                                           ;	.line	269; reveil.c	sprintf(display, "    Alarm at        [%02u]: %02u    ",
 000aec   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000aee   6e05     movwf	0x5, 0             	MOVWF	r0x05
 000af0   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2157,17 +2157,17 @@ Address  Value    Disassembly              Source
 000b22   f019
 000b24   0e0a     movlw	0xa                	MOVLW	0x0a
 000b26   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	264; reveil.c	break;
+                                           ;	.line	271; reveil.c	break;
 000b28   d157     bra	0xdd8                	BRA	_00194_DS_
                                            _00183_DS_:
-                                           ;	.line	267; reveil.c	ahour, amin);
+                                           ;	.line	274; reveil.c	ahour, amin);
 000b2a   cf4b     movff	0xf4b, 0           	MOVFF	_amin, r0x00
 000b2c   f000
 000b2e   6a01     clrf	0x1, 0              	CLRF	r0x01
 000b30   cf4a     movff	0xf4a, 0x2         	MOVFF	_ahour, r0x02
 000b32   f002
 000b34   6a03     clrf	0x3, 0              	CLRF	r0x03
-                                           ;	.line	266; reveil.c	sprintf(display, "    Alarm at         %02u :[%02u]   ",
+                                           ;	.line	273; reveil.c	sprintf(display, "    Alarm at         %02u :[%02u]   ",
 000b36   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000b38   6e05     movwf	0x5, 0             	MOVWF	r0x05
 000b3a   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2198,14 +2198,14 @@ Address  Value    Disassembly              Source
 000b6c   f019
 000b6e   0e0a     movlw	0xa                	MOVLW	0x0a
 000b70   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	268; reveil.c	break;
+                                           ;	.line	275; reveil.c	break;
 000b72   d132     bra	0xdd8                	BRA	_00194_DS_
                                            _00184_DS_:
 000b74   010f     movlb	0xf                	BANKSEL	_alarm_set
-                                           ;	.line	270; reveil.c	if (alarm_set)
+                                           ;	.line	277; reveil.c	if (alarm_set)
 000b76   514e     movf	0x4e, 0, 0x1        	MOVF	_alarm_set, W, B
 000b78   e03a     bz	0xbee                 	BZ	_00186_DS_
-                                           ;	.line	272; reveil.c	thour, tmin, tsec, ahour, amin);
+                                           ;	.line	279; reveil.c	thour, tmin, tsec, ahour, amin);
 000b7a   cf4b     movff	0xf4b, 0           	MOVFF	_amin, r0x00
 000b7c   f000
 000b7e   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -2221,7 +2221,7 @@ Address  Value    Disassembly              Source
 000b92   cf47     movff	0xf47, 0x8         	MOVFF	_thour, r0x08
 000b94   f008
 000b96   6a09     clrf	0x9, 0              	CLRF	r0x09
-                                           ;	.line	271; reveil.c	sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
+                                           ;	.line	278; reveil.c	sprintf(display, "    %02u:%02u:%02u    Alarm ON  %02u:%02u ",
 000b98   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000b9a   6e0b     movwf	0xb, 0             	MOVWF	r0x0b
 000b9c   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2266,7 +2266,7 @@ Address  Value    Disassembly              Source
 000bea   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 000bec   d0f5     bra	0xdd8                	BRA	_00194_DS_
                                            _00186_DS_:
-                                           ;	.line	275; reveil.c	thour, tmin, tsec);
+                                           ;	.line	282; reveil.c	thour, tmin, tsec);
 000bee   cf49     movff	0xf49, 0           	MOVFF	_tsec, r0x00
 000bf0   f000
 000bf2   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -2276,7 +2276,7 @@ Address  Value    Disassembly              Source
 000bfa   cf47     movff	0xf47, 0x4         	MOVFF	_thour, r0x04
 000bfc   f004
 000bfe   6a05     clrf	0x5, 0              	CLRF	r0x05
-                                           ;	.line	274; reveil.c	sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
+                                           ;	.line	281; reveil.c	sprintf(display, "    %02u:%02u:%02u       Alarm  OFF   ",
 000c00   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000c02   6e07     movwf	0x7, 0             	MOVWF	r0x07
 000c04   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2311,10 +2311,10 @@ Address  Value    Disassembly              Source
 000c3e   f019
 000c40   0e0c     movlw	0xc                	MOVLW	0x0c
 000c42   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	276; reveil.c	break;
+                                           ;	.line	283; reveil.c	break;
 000c44   d0c9     bra	0xdd8                	BRA	_00194_DS_
                                            _00188_DS_:
-                                           ;	.line	279; reveil.c	thour, tmin, tsec);
+                                           ;	.line	286; reveil.c	thour, tmin, tsec);
 000c46   cf49     movff	0xf49, 0           	MOVFF	_tsec, r0x00
 000c48   f000
 000c4a   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -2324,7 +2324,7 @@ Address  Value    Disassembly              Source
 000c52   cf47     movff	0xf47, 0x4         	MOVFF	_thour, r0x04
 000c54   f004
 000c56   6a05     clrf	0x5, 0              	CLRF	r0x05
-                                           ;	.line	278; reveil.c	sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
+                                           ;	.line	285; reveil.c	sprintf(display, "    %02u:%02u:%02u      I am ringing! ",
 000c58   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000c5a   6e07     movwf	0x7, 0             	MOVWF	r0x07
 000c5c   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2359,16 +2359,16 @@ Address  Value    Disassembly              Source
 000c96   f019
 000c98   0e0c     movlw	0xc                	MOVLW	0x0c
 000c9a   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	280; reveil.c	break;
+                                           ;	.line	287; reveil.c	break;
 000c9c   d09d     bra	0xdd8                	BRA	_00194_DS_
                                            _00189_DS_:
-                                           ;	.line	282; reveil.c	if (snooze < 10)
+                                           ;	.line	289; reveil.c	if (snooze < 10)
 000c9e   0e0a     movlw	0xa                	MOVLW	0x0a
 000ca0   010f     movlb	0xf                	BANKSEL	_snooze
 000ca2   5d4f     subwf	0x4f, 0, 0x1       	SUBWF	_snooze, W, B
 000ca4   b0d8     btfsc	0xd8, 0, 0         	BTFSC	STATUS, 0
 000ca6   d041     bra	0xd2a                	BRA	_00191_DS_
-                                           ;	.line	284; reveil.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
+                                           ;	.line	291; reveil.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
 000ca8   cf4d     movff	0xf4d, 0           	MOVFF	_amin_o, r0x00
 000caa   f000
 000cac   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -2387,7 +2387,7 @@ Address  Value    Disassembly              Source
 000cc6   cf47     movff	0xf47, 0xa         	MOVFF	_thour, r0x0a
 000cc8   f00a
 000cca   6a0b     clrf	0xb, 0              	CLRF	r0x0b
-                                           ;	.line	283; reveil.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
+                                           ;	.line	290; reveil.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u  %02u:%02u ",
 000ccc   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000cce   6e0d     movwf	0xd, 0             	MOVWF	r0x0d
 000cd0   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2436,7 +2436,7 @@ Address  Value    Disassembly              Source
 000d26   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 000d28   d057     bra	0xdd8                	BRA	_00194_DS_
                                            _00191_DS_:
-                                           ;	.line	287; reveil.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
+                                           ;	.line	294; reveil.c	thour, tmin, tsec, snooze, ahour_o, amin_o);
 000d2a   cf4d     movff	0xf4d, 0           	MOVFF	_amin_o, r0x00
 000d2c   f000
 000d2e   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -2455,7 +2455,7 @@ Address  Value    Disassembly              Source
 000d48   cf47     movff	0xf47, 0xa         	MOVFF	_thour, r0x0a
 000d4a   f00a
 000d4c   6a0b     clrf	0xb, 0              	CLRF	r0x0b
-                                           ;	.line	286; reveil.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
+                                           ;	.line	293; reveil.c	sprintf(display, "    %02u:%02u:%02u    Snooze %u %02u:%02u ",
 000d4e   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000d50   6e0d     movwf	0xd, 0             	MOVWF	r0x0d
 000d52   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2502,10 +2502,10 @@ Address  Value    Disassembly              Source
 000da4   f019
 000da6   0e12     movlw	0x12               	MOVLW	0x12
 000da8   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	288; reveil.c	break;
+                                           ;	.line	295; reveil.c	break;
 000daa   d016     bra	0xdd8                	BRA	_00194_DS_
                                            _00193_DS_:
-                                           ;	.line	290; reveil.c	sprintf(display, "**** ERROR ********* ERROR *****");
+                                           ;	.line	297; reveil.c	sprintf(display, "**** ERROR ********* ERROR *****");
 000dac   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000dae   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000db0   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2529,7 +2529,7 @@ Address  Value    Disassembly              Source
 000dd4   0e06     movlw	0x6                	MOVLW	0x06
 000dd6   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
                                            _00194_DS_:
-                                           ;	.line	293; reveil.c	DisplayString(0, display);
+                                           ;	.line	300; reveil.c	DisplayString(0, display);
 000dd8   0e0f     movlw	0xf                	MOVLW	HIGH(_display)
 000dda   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000ddc   0e21     movlw	0x21               	MOVLW	LOW(_display)
@@ -2585,7 +2585,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__time	code
                                            _time:
-                                           ;	.line	193; reveil.c	void time(void)
+                                           ;	.line	200; reveil.c	void time(void)
 001782   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 001784   ffe5
 001786   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -2607,7 +2607,7 @@ Address  Value    Disassembly              Source
 0017a6   c007     movff	0x7, 0xfe5         	MOVFF	r0x07, POSTDEC1
 0017a8   ffe5
 0017aa   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	196; reveil.c	sec = overflows/F;
+                                           ;	.line	203; reveil.c	sec = overflows/F;
 0017ac   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 0017ae   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0017b0   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -2636,7 +2636,7 @@ Address  Value    Disassembly              Source
 0017de   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0017e0   0ebb     movlw	0xbb               	MOVLW	0xbb
 0017e2   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0017e4   0e2a     movlw	0x2a               	MOVLW	0x2a
+0017e4   0e64     movlw	0x64               	MOVLW	0x64
 0017e6   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0017e8   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0017ea   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -2678,7 +2678,7 @@ Address  Value    Disassembly              Source
 001832   0e04     movlw	0x4                	MOVLW	0x04
 001834   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 001836   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
-                                           ;	.line	197; reveil.c	decisec = ((10*overflows)/F);
+                                           ;	.line	204; reveil.c	decisec = ((10*overflows)/F);
 001838   5146     movf	0x46, 0, 0x1        	MOVF	(_overflows + 3), W, B
 00183a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00183c   010f     movlb	0xf                	BANKSEL	(_overflows + 2)
@@ -2734,7 +2734,7 @@ Address  Value    Disassembly              Source
 0018a0   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0018a2   0ebb     movlw	0xbb               	MOVLW	0xbb
 0018a4   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0018a6   0e2a     movlw	0x2a               	MOVLW	0x2a
+0018a6   0e64     movlw	0x64               	MOVLW	0x64
 0018a8   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0018aa   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0018ac   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -2775,7 +2775,7 @@ Address  Value    Disassembly              Source
 0018f2   ff5b
 0018f4   0e04     movlw	0x4                	MOVLW	0x04
 0018f6   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	198; reveil.c	ds = decisec%10;
+                                           ;	.line	205; reveil.c	ds = decisec%10;
 0018f8   0e00     movlw	0                  	MOVLW	0x00
 0018fa   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0018fc   0e00     movlw	0                  	MOVLW	0x00
@@ -2810,7 +2810,7 @@ Address  Value    Disassembly              Source
 001936   5000     movf	0, 0, 0             	MOVF	r0x00, W
 001938   010e     movlb	0xe                	BANKSEL	_ds
 00193a   6f60     movwf	0x60, 0x1          	MOVWF	_ds, B
-                                           ;	.line	199; reveil.c	h = (sec/3600)%24;
+                                           ;	.line	206; reveil.c	h = (sec/3600)%24;
 00193c   0e00     movlw	0                  	MOVLW	0x00
 00193e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001940   0e00     movlw	0                  	MOVLW	0x00
@@ -2872,7 +2872,7 @@ Address  Value    Disassembly              Source
 0019b0   5004     movf	0x4, 0, 0           	MOVF	r0x04, W
 0019b2   010e     movlb	0xe                	BANKSEL	_h
 0019b4   6f61     movwf	0x61, 0x1          	MOVWF	_h, B
-                                           ;	.line	200; reveil.c	m = (sec-(sec/3600)*3600)/60;
+                                           ;	.line	207; reveil.c	m = (sec-(sec/3600)*3600)/60;
 0019b6   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0019b8   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0019ba   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
@@ -2947,7 +2947,7 @@ Address  Value    Disassembly              Source
 001a44   010e     movlb	0xe                	BANKSEL	_m
 001a46   6f62     movwf	0x62, 0x1          	MOVWF	_m, B
 001a48   010f     movlb	0xf                	BANKSEL	_sec
-                                           ;	.line	201; reveil.c	s = sec-h*3600-m*60;
+                                           ;	.line	208; reveil.c	s = sec-h*3600-m*60;
 001a4a   5154     movf	0x54, 0, 0x1        	MOVF	_sec, W, B
 001a4c   6e00     movwf	0, 0               	MOVWF	r0x00
                                            ; ;multiply lit val:0x10 by variable _h and store in r0x01
@@ -2973,82 +2973,82 @@ Address  Value    Disassembly              Source
 001a6a   010e     movlb	0xe                	BANKSEL	_s
 001a6c   6f63     movwf	0x63, 0x1          	MOVWF	_s, B
 001a6e   010f     movlb	0xf                	BANKSEL	_tsec
-                                           ;	.line	204; reveil.c	if (tsec != s)
+                                           ;	.line	211; reveil.c	if (tsec != s)
 001a70   5149     movf	0x49, 0, 0x1        	MOVF	_tsec, W, B
 001a72   010e     movlb	0xe                	BANKSEL	_s
 001a74   1963     xorwf	0x63, 0, 0x1       	XORWF	_s, W, B
 001a76   e002     bz	0x1a7c                	BZ	_00131_DS_
-                                           ;	.line	205; reveil.c	tsec = s;
+                                           ;	.line	212; reveil.c	tsec = s;
 001a78   ce63     movff	0xe63, 0xf49       	MOVFF	_s, _tsec
 001a7a   ff49
                                            _00131_DS_:
 001a7c   010f     movlb	0xf                	BANKSEL	_tmin
-                                           ;	.line	206; reveil.c	if (tmin != m)
+                                           ;	.line	213; reveil.c	if (tmin != m)
 001a7e   5148     movf	0x48, 0, 0x1        	MOVF	_tmin, W, B
 001a80   010e     movlb	0xe                	BANKSEL	_m
 001a82   1962     xorwf	0x62, 0, 0x1       	XORWF	_m, W, B
 001a84   e002     bz	0x1a8a                	BZ	_00133_DS_
-                                           ;	.line	207; reveil.c	tmin = m;
+                                           ;	.line	214; reveil.c	tmin = m;
 001a86   ce62     movff	0xe62, 0xf48       	MOVFF	_m, _tmin
 001a88   ff48
                                            _00133_DS_:
 001a8a   010f     movlb	0xf                	BANKSEL	_thour
-                                           ;	.line	208; reveil.c	if (thour != h)
+                                           ;	.line	215; reveil.c	if (thour != h)
 001a8c   5147     movf	0x47, 0, 0x1        	MOVF	_thour, W, B
 001a8e   010e     movlb	0xe                	BANKSEL	_h
 001a90   1961     xorwf	0x61, 0, 0x1       	XORWF	_h, W, B
 001a92   e002     bz	0x1a98                	BZ	_00135_DS_
-                                           ;	.line	209; reveil.c	thour = h;
+                                           ;	.line	216; reveil.c	thour = h;
 001a94   ce61     movff	0xe61, 0xf47       	MOVFF	_h, _thour
 001a96   ff47
                                            _00135_DS_:
 001a98   010f     movlb	0xf                	BANKSEL	_on
-                                           ;	.line	212; reveil.c	if (!on && ds < 5) {
+                                           ;	.line	219; reveil.c	if (!on && ds < 5) {
 001a9a   5152     movf	0x52, 0, 0x1        	MOVF	_on, W, B
 001a9c   e10e     bnz	0x1aba               	BNZ	_00139_DS_
 001a9e   0e05     movlw	0x5                	MOVLW	0x05
 001aa0   010e     movlb	0xe                	BANKSEL	_ds
 001aa2   5d60     subwf	0x60, 0, 0x1       	SUBWF	_ds, W, B
 001aa4   e20a     bc	0x1aba                	BC	_00139_DS_
-                                           ;	.line	213; reveil.c	LATJbits.LATJ0 = 1;
+                                           ;	.line	220; reveil.c	LATJbits.LATJ0 = 1;
 001aa6   8091     bsf	0x91, 0, 0           	BSF	_LATJbits, 0
 001aa8   010f     movlb	0xf                	BANKSEL	_whereami
-                                           ;	.line	214; reveil.c	if (whereami == ALARM) {
+                                           ;	.line	221; reveil.c	if (whereami == ALARM) {
 001aaa   5151     movf	0x51, 0, 0x1        	MOVF	_whereami, W, B
 001aac   0a0a     xorlw	0xa                	XORLW	0x0a
 001aae   e102     bnz	0x1ab4               	BNZ	_00137_DS_
-                                           ;	.line	215; reveil.c	LATJbits.LATJ1 = 1;
+                                           ;	.line	222; reveil.c	LATJbits.LATJ1 = 1;
 001ab0   8291     bsf	0x91, 0x1, 0         	BSF	_LATJbits, 1
-                                           ;	.line	216; reveil.c	LATJbits.LATJ2 = 1;
+                                           ;	.line	223; reveil.c	LATJbits.LATJ2 = 1;
 001ab2   8491     bsf	0x91, 0x2, 0         	BSF	_LATJbits, 2
                                            _00137_DS_:
-                                           ;	.line	218; reveil.c	on = 1;
+                                           ;	.line	225; reveil.c	on = 1;
 001ab4   0e01     movlw	0x1                	MOVLW	0x01
 001ab6   010f     movlb	0xf                	BANKSEL	_on
 001ab8   6f52     movwf	0x52, 0x1          	MOVWF	_on, B
                                            _00139_DS_:
 001aba   010f     movlb	0xf                	BANKSEL	_on
-                                           ;	.line	222; reveil.c	if (on && ds >= 5) {
+                                           ;	.line	229; reveil.c	if (on && ds >= 5) {
 001abc   5152     movf	0x52, 0, 0x1        	MOVF	_on, W, B
 001abe   e00d     bz	0x1ada                	BZ	_00146_DS_
 001ac0   0e05     movlw	0x5                	MOVLW	0x05
 001ac2   010e     movlb	0xe                	BANKSEL	_ds
 001ac4   5d60     subwf	0x60, 0, 0x1       	SUBWF	_ds, W, B
 001ac6   e309     bnc	0x1ada               	BNC	_00146_DS_
-                                           ;	.line	223; reveil.c	LATJbits.LATJ0 = 0;
+                                           ;	.line	230; reveil.c	LATJbits.LATJ0 = 0;
 001ac8   9091     bcf	0x91, 0, 0           	BCF	_LATJbits, 0
 001aca   010f     movlb	0xf                	BANKSEL	_whereami
-                                           ;	.line	224; reveil.c	if (whereami == ALARM) {
+                                           ;	.line	231; reveil.c	if (whereami == ALARM) {
 001acc   5151     movf	0x51, 0, 0x1        	MOVF	_whereami, W, B
 001ace   0a0a     xorlw	0xa                	XORLW	0x0a
 001ad0   e102     bnz	0x1ad6               	BNZ	_00142_DS_
-                                           ;	.line	225; reveil.c	LATJbits.LATJ1 = 0;
+                                           ;	.line	232; reveil.c	LATJbits.LATJ1 = 0;
 001ad2   9291     bcf	0x91, 0x1, 0         	BCF	_LATJbits, 1
-                                           ;	.line	226; reveil.c	LATJbits.LATJ2 = 0;
+                                           ;	.line	233; reveil.c	LATJbits.LATJ2 = 0;
 001ad4   9491     bcf	0x91, 0x2, 0         	BCF	_LATJbits, 2
                                            _00142_DS_:
 001ad6   010f     movlb	0xf                	BANKSEL	_on
-                                           ;	.line	228; reveil.c	on = 0;
+                                           ;	.line	235; reveil.c	on = 0;
 001ad8   6b52     clrf	0x52, 0x1           	CLRF	_on, B
                                            _00146_DS_:
 001ada   cfe4     movff	0xfe4, 0x7         	MOVFF	PREINC1, r0x07
@@ -3074,7 +3074,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__low_isr	code
                                            _low_isr:
-                                           ;	.line	129; reveil.c	void low_isr(void) interrupt 2
+                                           ;	.line	136; reveil.c	void low_isr(void) interrupt 2
 003bf4   cfe8     movff	0xfe8, 0xfe5       	MOVFF	WREG, POSTDEC1
 003bf6   ffe5
 003bf8   cfd8     movff	0xfd8, 0xfe5       	MOVFF	STATUS, POSTDEC1
@@ -3097,25 +3097,25 @@ Address  Value    Disassembly              Source
 003c1a   ffe5
 003c1c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
 003c1e   ffd9
-                                           ;	.line	132; reveil.c	if (INTCON3bits.INT3F) {
+                                           ;	.line	139; reveil.c	if (INTCON3bits.INT3F) {
 003c20   a4f0     btfss	0xf0, 0x2, 0       	BTFSS	_INTCON3bits, 2
 003c22   d005     bra	0x3c2e               	BRA	_00115_DS_
-                                           ;	.line	133; reveil.c	button1 = 1;
+                                           ;	.line	140; reveil.c	button1 = 1;
 003c24   0e01     movlw	0x1                	MOVLW	0x01
 003c26   010f     movlb	0xf                	BANKSEL	_button1
 003c28   6f41     movwf	0x41, 0x1          	MOVWF	_button1, B
-                                           ;	.line	134; reveil.c	INTCON3bits.INT3F = 0;
+                                           ;	.line	141; reveil.c	INTCON3bits.INT3F = 0;
 003c2a   94f0     bcf	0xf0, 0x2, 0         	BCF	_INTCON3bits, 2
 003c2c   d006     bra	0x3c3a               	BRA	_00117_DS_
                                            _00115_DS_:
-                                           ;	.line	137; reveil.c	} else if (INTCON3bits.INT1F) {
+                                           ;	.line	144; reveil.c	} else if (INTCON3bits.INT1F) {
 003c2e   a0f0     btfss	0xf0, 0, 0         	BTFSS	_INTCON3bits, 0
 003c30   d004     bra	0x3c3a               	BRA	_00117_DS_
-                                           ;	.line	138; reveil.c	button2 = 1;
+                                           ;	.line	145; reveil.c	button2 = 1;
 003c32   0e01     movlw	0x1                	MOVLW	0x01
 003c34   010f     movlb	0xf                	BANKSEL	_button2
 003c36   6f42     movwf	0x42, 0x1          	MOVWF	_button2, B
-                                           ;	.line	139; reveil.c	INTCON3bits.INT1F = 0;
+                                           ;	.line	146; reveil.c	INTCON3bits.INT1F = 0;
 003c38   90f0     bcf	0xf0, 0, 0           	BCF	_INTCON3bits, 0
                                            _00117_DS_:
 003c3a   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
@@ -3143,7 +3143,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_reveil__high_isr	code
                                            _high_isr:
-                                           ;	.line	119; reveil.c	void high_isr(void) interrupt 1
+                                           ;	.line	126; reveil.c	void high_isr(void) interrupt 1
 001e34   cfe8     movff	0xfe8, 0xfe5       	MOVFF	WREG, POSTDEC1
 001e36   ffe5
 001e38   cfd8     movff	0xfd8, 0xfe5       	MOVFF	STATUS, POSTDEC1
@@ -3166,11 +3166,11 @@ Address  Value    Disassembly              Source
 001e5a   ffe5
 001e5c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
 001e5e   ffd9
-                                           ;	.line	122; reveil.c	if (INTCONbits.T0IF) {
+                                           ;	.line	129; reveil.c	if (INTCONbits.T0IF) {
 001e60   a4f2     btfss	0xf2, 0x2, 0       	BTFSS	_INTCONbits, 2
 001e62   d00c     bra	0x1e7c               	BRA	_00107_DS_
 001e64   010f     movlb	0xf                	BANKSEL	_overflows
-                                           ;	.line	123; reveil.c	overflows++;
+                                           ;	.line	130; reveil.c	overflows++;
 001e66   2b43     incf	0x43, 0x1, 0x1      	INCF	_overflows, F, B
 001e68   e302     bnc	0x1e6e               	BNC	_10348_DS_
 001e6a   010f     movlb	0xf                	BANKSEL	(_overflows + 1)
@@ -3184,7 +3184,7 @@ Address  Value    Disassembly              Source
 001e76   010f     movlb	0xf                	BANKSEL	(_overflows + 3)
 001e78   2b46     incf	0x46, 0x1, 0x1      	INCF	(_overflows + 3), F, B
                                            _30350_DS_:
-                                           ;	.line	124; reveil.c	INTCONbits.T0IF = 0;
+                                           ;	.line	131; reveil.c	INTCONbits.T0IF = 0;
 001e7a   94f2     bcf	0xf2, 0x2, 0         	BCF	_INTCONbits, 2
                                            _00107_DS_:
 001e7c   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
