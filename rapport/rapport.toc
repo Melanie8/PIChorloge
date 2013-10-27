@@ -5,7 +5,7 @@
 \contentsline {paragraph}{Premi\IeC {\`e}re utilisation}{1}
 \contentsline {paragraph}{Menu de l'horloge}{2}
 \contentsline {paragraph}{Menu du l'alarme}{2}
-\contentsline {paragraph}{L'affichage}{2}
+\contentsline {paragraph}{L'affichage}{3}
 \contentsline {subsection}{\numberline {2.2}Le r\IeC {\'e}veil}{3}
 \contentsline {section}{\numberline {3}Documentation pour l'installateur}{4}
 \contentsline {subsection}{\numberline {3.1}Compilation}{4}
@@ -15,7 +15,8 @@
 \contentsline {subsection}{\numberline {4.2}Fr\IeC {\'e}quence du PIC}{5}
 \contentsline {subsection}{\numberline {4.3}Choix d'impl\IeC {\'e}mentation}{5}
 \contentsline {subsubsection}{\numberline {4.3.1}Mesure du temps}{5}
-\contentsline {subsubsection}{\numberline {4.3.2}Interruptions}{5}
-\contentsline {subsubsection}{\numberline {4.3.3}Autres choix}{5}
+\contentsline {subsubsection}{\numberline {4.3.2}\'Etats du r\IeC {\'e}veil}{5}
+\contentsline {subsubsection}{\numberline {4.3.3}Interruptions}{5}
+\contentsline {subsubsection}{\numberline {4.3.4}Autres choix}{5}
 \contentsline {subsection}{\numberline {4.4}D\IeC {\'e}tails techniques}{5}
 \contentsline {section}{\numberline {5}Conclusion}{5}
