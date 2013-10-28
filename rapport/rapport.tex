@@ -25,6 +25,7 @@
 \usepackage{multirow}
 \usepackage{eurosym}
 \usepackage[squaren,Gray]{SIunits}
+\usepackage{url}
 
 % Margins
 %\topmargin=-0.45in
@@ -124,9 +125,9 @@ Groupe 43\\
 
 \section{Introduction}
 
-Le but de ce mini-projet a été de nous familiariser avec la programmation en C sur une machine dite ``nue'', c'est-à-dire sans réel système d'exploitation. Pour cela nous avons programmé un réveil matin sur une carte OLIMEX PIC MaxiWeb. Cette carte inclut un microcontrôleur de la firme Microchip et les programmes y ont un accès direct à la mémoire et aux périphériques. En particulier, nous avons dû utiliser nous-même les interruptions du ``timer'' pour déterminer l'heure.\\
+Le but de ce mini-projet a été de nous familiariser avec la programmation en C sur une machine dite ``nue'', c'est-à-dire sans réel système d'exploitation. Pour cela nous avons programmé un réveil matin sur une carte OLIMEX PIC MaxiWeb. Cette carte inclut un microcontrôleur de la firme Microchip et les programmes y ont un accès direct à la mémoire et aux périphériques. En particulier, nous avons dû utiliser nous-mêmes les interruptions du ``timer'' pour déterminer l'heure. \cite{foditic}\\
 
-Vous trouverez dans ce rapport des explications utiles pour l'utilisateur (c'est-à-dire tout ce qui concerne simplement l'utilisation du réveil lorsqu'il est déjà installé sur le PIC), pour l'installateur (les instructions décrivant comment compiler, installer sur le PIC et tester notre programme) et pour le programmeur (tout ce qui est nécessaire à un programmeur qui désirerait adapter notre programme). Dans cette dernière partie nous détaillerons notamment les spécifications de notre programme, la façon dont nous mesurons le temps qui passe, ainsi que nos divers choix d'implémentation.
+Vous trouverez dans ce rapport des explications utiles pour l'utilisateur (c'est-à-dire tout ce qui concerne simplement l'utilisation du réveil lorsqu'il est déjà installé sur le PIC), pour l'installateur (les instructions décrivant comment compiler, installer sur le PIC et tester notre programme) et pour le programmeur (tout ce qui est nécessaire à un programmeur qui désirerait adapter notre programme). Dans cette dernière partie, nous détaillerons notamment les spécifications de notre programme, la façon dont nous mesurons le temps qui passe, ainsi que nos divers choix d'implémentation.
 
 \section{Documentation pour l'utilisateur}
 % Le mode d'emploi de votre programme lorsqu'il est installé sur le PIC (documentation pour l'utilisateur)
@@ -146,12 +147,12 @@ Il comporte un mode d'affichage, un menu de l'horloge et un menu de l'alarme.
 
 \begin{figure}[!h]
         \centering
-        \begin{subfigure}[b]{0.5\textwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2150.JPG}
                 \caption{Menu}
                 \label{fig:questionhorloge}
         \end{subfigure}
-        \begin{subfigure}[b]{0.5\textwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2153.JPG}
                 \caption{Modification de l'heure}
                 \label{fig:modificationhorloge}
@@ -193,12 +194,12 @@ Le réveil affiche l'heure sous le format hh~:~mm~:~ss sur la première ligne de
 
 \begin{figure}[!h]
         \centering
-        \begin{subfigure}[b]{0.5\textwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2152.JPG}
                 \caption{Affichage avec alarme OFF}
                 \label{fig:alarmeoff}
         \end{subfigure}
-        \begin{subfigure}[b]{0.5\textwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2158.JPG}
                 \caption{Affichage avec alarme ON}
                 \label{fig:alarmeon}
@@ -209,12 +210,12 @@ Le réveil affiche l'heure sous le format hh~:~mm~:~ss sur la première ligne de
 
 \begin{figure}[!h]
         \centering
-        \begin{subfigure}[b]{0.5\textwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2160.JPG}
                 \caption{Sonnerie de l'alarme}
                 \label{fig:sonneriealarme}
         \end{subfigure}
-        \begin{subfigure}[b]{0.5\textwidth}
+        \begin{subfigure}[b]{0.48\textwidth}
                 \includegraphics[width=\textwidth]{photos/IMG_2162.JPG}
                 \caption{Snooze}
                 \label{fig:snoozealarme}
@@ -259,7 +260,18 @@ Pour quitter le client tftp, tapez
 \begin{verbatim}
     my_computer $ tftp> quit               // press 'enter'
 \end{verbatim}
-Le programme se lance automatiquement sur le PIC. Pour le faire redémarrer, appuyez sur le bouton ``reset''.
+Le programme se lance automatiquement sur le PIC. Pour le faire redémarrer, appuyez sur le bouton ``reset''. Vous pouvez à présent débrancher les câbles ethernet.
+
+\subsection{Tests}
+Pour évaluer le bon fonctionnement du réveil, nous vous suggérons les tests suivants.
+\begin{itemize}
+\item Si vous avez beaucoup de temps, vous pouvez tester le décalage de l'heure de l'horloge sur plusieurs heures. 
+\item Vous pouvez tester si l'alarme, une fois qu'elle sonne, s'arrête toute seule au bout de 30 secondes.
+\item Vous pouvez tester si l'alarme est toujours mise et réglée à la même heure une fois qu'elle a été éteinte après une sonnerie.
+\item Vous pouvez répéter le test précédent après un nombre quelconque de snoozes.
+\item Vous pouvez vérifier s'il est bien impossible de dépasser la limite de 12 snoozes et si le réveil sonne bien 1 heure après l'heure initialement réglée dans ce cas.
+\item Vous pouvez tester si l'horloge a bien continué à tourner normalement après un long passage par le menu (pendant lequel l'heure n'a évidemment pas été changée).
+\end{itemize}
 
 
 \section{Documentation pour le programmeur}
@@ -275,6 +287,7 @@ Le programme se lance automatiquement sur le PIC. Pour le faire redémarrer, app
     \begin{itemize}
     \item Il affiche l'heure et la met à jour au moins une fois par seconde. Une LED jaune clignote toutes les secondes.
     \item Il contient un réveil qui, activé, ``sonne'' pendant 30 secondes. La sonnerie est remplacée par le clignotment de LED rouges toutes les secondes.
+    \item Il est possible d'arrêter la sonnerie de l'alarme sans désactiver celle-ci.
     \item Il est possible de régler l'heure sans interrompre l'horloge.
     \item Il est possible de régler et d'activer/désactiver l'alarme.
     \item Il est possible de postposer l'alarme de 5 minutes pendant une heure.
@@ -283,29 +296,29 @@ Le programme se lance automatiquement sur le PIC. Pour le faire redémarrer, app
     \subsection{Fréquence du PIC}
     \label{subsec:freq}
     
-    Pour déterminer l'heure, nous avons du nous baser sur le timer0 de notre PIC. Ce timer est un registre qui est incrémenté automatiquement à chaque coup d'horloge, et qui, lors d'un débordement (overflow), génère une interruption. Nous avons alors effectué quelques tests nous permettant de mesurer à quelle fréquence ce registre est incrémenté, sur base de quoi nous avons pu ensuite nous baser pour concevoir notre réveil-matin. Nous allons vous présenter ici notre stratégie.\\
+    Pour déterminer l'heure, nous avons dû nous baser sur le timer0 de notre PIC. Ce timer est un registre qui est incrémenté automatiquement à chaque coup d'horloge, et qui, lors d'un débordement (overflow), génère une interruption. Nous avons alors effectué quelques tests nous permettant de mesurer à quelle fréquence ce registre est incrémenté; c'est sur cette valeur que nous avons ensuite pu nous baser pour concevoir notre réveil-matin. Nous allons ici vous présenter notre stratégie.\\
   
- Outre le timer0, le PIC contient un timer1 qui peut être programmé pour déborder après exactement 2 secondes (mais nous n'avons toutefois pas eu l'autorisation de l'utiliser dans le cadre du réveil-matin en lui-même).  Notre stratégie a alors été de mesurer le nombre de fois que le timer0 déborde pendant ce laps de temps. Nous estimerons alors que $$f_{software} = \frac{overflows \cdot 2^{16}}{2}$$ car le registre fait 16 bits et $$f_{hardware} = 4 \cdot f_{software}$$ comme expliqué dans la documentation du PIC.\\
+ Outre le timer0, le PIC contient un timer1 qui peut être programmé pour déborder après exactement 2 secondes\footnote{Nous n'avons toutefois pas eu l'autorisation de l'utiliser dans le cadre du réveil-matin en lui-même.}.  Notre stratégie a alors été de mesurer le nombre de fois que le timer0 déborde pendant ce laps de temps. Nous estimerons alors que $$f_{software} = \frac{overflows \cdot 2^{16}}{2}$$ car le registre fait 16 bits et $$f_{hardware} = 4 \cdot f_{software}$$ comme expliqué dans la documentation du PIC~\cite{microchipDS}.\\
  
- Afin d'avoir une erreur relative la plus petite possible, nous n'avons pas utilisé de prescaler sur le timer0 (option qui permet de diviser la fréquence d'incrémentation du registre par une puissance de 2) et avons effectué notre mesure sur plus de 2 secondes. En effet, si on considère ici f comme étant la fréquence hardware, qu'on appelle $value$ est la valeur qui se trouve dans le timer0 pile au moment de l'overflow du timer1 et $N$ est le temps de notre mesure en secondes, nous pouvons aussi écrire
+ Afin d'avoir une erreur relative la plus petite possible, nous n'avons pas utilisé de prescaler\footnote{option qui permet de diviser la fréquence d'incrémentation du registre par une puissance de 2} sur le timer0 et avons effectué notre mesure sur plus de 2 secondes. En effet, si on considère ici $f$ comme étant la fréquence hardware, qu'on appelle $value$ la valeur qui se trouve dans le timer0 pile au moment de l'overflow du timer1 et si $N$ est le temps de notre mesure en secondes, nous pouvons aussi écrire
  \begin{eqnarray*}
  f_{exacte} &=& \frac{4 \cdot (overflows \cdot 2^{16} + value)}{N}\\
 f_{mesurée} &=&  \frac{4 \cdot (overflows \cdot 2^{16})}{N}\\
  \text{erreur relative} &=& \frac{|f_{exacte} - f_{mesurée}|}{f_{exacte}}\\
                       &=& \frac{value}{overflows \cdot 2^{16} + value}\\
 \end{eqnarray*}
- Notre erreur relative sera donc plus petite lorsque overflows est plus grand. C'est pourquoi utiliser un prescaler sur le timer0 serait contreproductif (cela diminuerait le nombre d'overflows) et augmenter le temps de mesure est intéressant (cela augmentera le nombre d'overflows).\\
+ Notre erreur relative sera donc plus petite lorsque $overflows$ est plus grand. C'est pourquoi utiliser un prescaler sur le timer0 serait contreproductif (cela diminuerait le nombre d'overflows) et augmenter le temps de mesure est intéressant (cela augmentera le nombre d'overflows).\\
  
  Nous avons pris le parti de ne pas mesurer la valeur se trouvant dans le timer0 après l'overflow du timer1 parce que cette valeur est négligeable. L'erreur relative maximale en ne la mesurant pas est en effet $\leq \frac{1}{overflows + 1}$. De plus, on ne trouverait de toute façon pas précisément la valeur qui se
  trouvait dans le timer0 pile au moment de l'overflow.\\
  
-Nous avons donc créé un programme \texttt{findfreq.c} qui compte et affiche le nombre d'overflows sur sur un laps de temps de 10 minutes. Nous avons effectué 3 mesures avons trouvé qu'en moyenne
+Nous avons donc créé un programme \texttt{findfreq.c} qui compte et affiche le nombre d'overflows sur un laps de temps de 10 minutes. Nous avons effectué 3 mesures et avons trouvé qu'en moyenne
   \begin{eqnarray*}
  \text{le nombre d'overflows/s} &=& 95,366\\
 f_{software}  &=& 95,366 \cdot 2^{16} = 6249906,176\\
 f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
  \end{eqnarray*}
- ce qui représente un écart de seulement 0.0015\% par rapport à la fréquence de \unit{25}{\mega\hertz} annoncée dans la documentation du PIC.
+ ce qui représente un écart de seulement 0.0015\% par rapport à la fréquence de \unit{25}{\mega\hertz} annoncée dans la documentation du PIC \cite{microchipDS}.
  
     \subsection{Choix d'implémentation}
     
@@ -316,13 +329,16 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     
     Tout d'abord, il a fallu choisir si nous voulions nous servir d'interruptions ou faire de l'attente active, c'est-à-dire examiner régulièrement la valeur du timer dans une boucle jusqu'à ce qu'il atteigne la valeur souhaitée. Nous avons décidé de nous servir des interruptions parce qu'elles prennent le dessus sur le restant du programme. Comme le calcul du temps se base sur le nombre d'overflows, l'incrémentation de ce compteur doit être prioritaire par rapport au reste.\\
     
-    Un deuxième choix, indépendant du premier, est de laisser le temporisateur tourner librement ou non. Ce qu'on entend par ne pas laisser tourner le compteur librement est changer la valeur dans le timer à un moment donné. Par exemple, on pourrait calculer le nombre d'incrémentations qui correspondent à 1 seconde et se dire qu'on va changer la valeur dans le timer0 à $2^{16}$ moins cette valeur afin qu'il déborde après une seconde. Cette technique a un inconvénient majeur : il y a un délai entre le débordement du compteur et le moment où on le réinitialise : il faut donc soustraire de la valeur calculée précédemment la valeur du compteur au moment où on le réinitialise. Cette valeur est difficile à calculer de façon précise et pourrait en plus à priori ne pas être constante. Nous avons donc rejeté cette solution et avons décidé de laisser tourner le compteur librement.\\
+    Un deuxième choix, indépendant du premier, est de laisser le temporisateur tourner librement ou non. Ce qu'on entend par ne pas laisser tourner le compteur librement est changer la valeur dans le timer à un moment donné. Par exemple, on pourrait calculer le nombre d'incrémentations qui correspondent à 1 seconde et se dire qu'on va changer la valeur dans le timer0 à $2^{16}$ moins cette valeur afin qu'il déborde après une seconde. Cette technique a un inconvénient majeur : il y a un délai entre le débordement du compteur et le moment où on le réinitialise; il faut donc soustraire de la valeur calculée précédemment la valeur du compteur au moment où on le réinitialise. Cette valeur est difficile à calculer de façon précise et pourrait en plus à priori ne pas être constante. Nous avons donc rejeté cette solution et avons décidé de laisser tourner le compteur librement.\\
     
     Un autre choix à effectuer a été d'utiliser le prescaler ou non. Nous avons décidé de ne pas l'utiliser tout simplement parce que cela diminuerait la fréquence d'incrémentation du timer0 et augmenterait donc l'incertitude sur le temps écoulé. Au contraire, il aurait plutôt été intéressant de l'augmenter. Mais cela n'est pas possible et on prendrait le risque que des interruptions ne soient pas traitées parce qu'elles arrivent en même temps qu'une autre. Notons que, sans prescaler, nous ne pensons pas que ce type d'événement arrive souvent vu la fréquence très proche de \unit{25}{MHz} que nous avons trouvée. \\
     
-    Il nous a ensuite fallu établir une vraie stratégie permettant de calculer l'heure sur base des interruptions du timer0 s'incrémentant normalement. Une première idée que nous avons eue était d'avoir des variables heure, minute et seconde et un compteur d'overflows "qui n'ont pas encore été traités". Supposons que nous avions trouvé qu'il fallait 95,5 overflows pour avoir 1 seconde. Nous aurions alors défini qu'à chaque fois que overflows dépasse un multiple de $95$, on incrémentait nos secondes de 1 (avec une bonne gestion de valeurs maximales des variables et des reports entre elles évidemment) et nous aurions ensuite corrigé l'erreur commise en disant qu'une fois que overflows $= 2\cdot 95$, nous remettions overflows à $-1$ afin de corriger l'erreur commise en disant que la fréquence valait 95. Cette technique n'est cependant pas du tout applicable dans notre cas car nous avons trouvé $95,336$ overflows ce qui fait que pour garder une telle précision, il faudra attendre $500$ secondes et mettre overflows à $-168$, ce qui correspond à plus d'une seconde à retirer. Cela veut dire que soudainement on aurait un recul d'une seconde qui se verrait clairement sur le LCD et ce n'est pas ce que nous désirons.\\
+    Il nous a ensuite fallu établir une vraie stratégie permettant de calculer l'heure sur base des interruptions du timer0 s'incrémentant normalement. Une première idée que nous avons eue était d'avoir des variables \texttt{heure}, \texttt{minute} et \texttt{seconde} et un compteur d'overflows ``qui n'ont pas encore été traités''. Supposons que nous avions trouvé qu'il fallait 95,5 overflows pour avoir 1 seconde.
+    Nous aurions alors défini qu'à chaque fois que overflows dépasse un multiple de $95$, on incrémenterait nos secondes de 1 (avec une bonne gestion de valeurs maximales des variables et des reports entre elles évidemment) et nous aurions ensuite corrigé l'erreur commise en disant que la fréquence valait 95 en posant qu'une fois que overflows $= 2\cdot 95$, nous remettions overflows à $-1$. Cette technique n'est cependant pas du tout applicable dans notre cas car nous avons trouvé $95,336$ overflows; pour garder la même précision, il faudra attendre $500$ secondes et mettre overflows à $-168$, ce qui correspond à plus d'une seconde à retirer. Cela veut dire qu'on aurait soudainement un recul d'une seconde qui se verrait clairement sur le LCD, et ce n'est pas ce que nous désirons.\\
     
-    Ce que nous avons finalement fait pour garder notre précision est de garder un compteur du nombre d'overflows depuis le lancement du programme. Nous pouvons ensuite convertir ce compteur en un délai heure, minute, seconde sur base de simples calculs basés sur le fait que $1$ seconde correspond à $95,336$ overflows. Il suffit alors de modifier ces variables lorsque nos calculs aboutissent à des valeurs différentes. La modification de l'heure par l'utilisateur modifiera donc directement cette unique valeur aussi. Il faudrait juste ajouter à overflows le nombre d'overflows adéquat.\\
+    Ce que nous avons finalement fait pour garder notre précision est de garder un compteur du nombre d'overflows depuis le lancement du programme. Nous pouvons ensuite convertir ce compteur en un délai heure, minute, seconde sur base de simples calculs basés sur le fait que $1$ seconde correspond à $95,336$ overflows. Il suffit alors de modifier ces variables lorsque nos calculs aboutissent à des valeurs différentes. La modification de l'heure par l'utilisateur modifiera donc directement cette unique valeur aussi. Il faudrait juste ajouter à \texttt{overflows} le nombre d'overflows adéquat.\\
+    
+    Pour pouvoir compter le temps le plus longtemps possible, nous avons choisi de stocker le compte des overflows dans une variable de type \texttt{unsigned long long}. Celle-ci nous permet de compter jusqu'à $2^{64}$ ticks, ce qui correspond à environ $5,37 \cdot 10^{13}$ heures. Nous estimons qu'à cette échelle, le réveil fait preuve d'une durée de vie assez longue avant de devoir être resetté, ce qui peut se faire très facilement\footnote{Il suffit d'appuyer sur le bouton ``reset'' du PIC ou de débrancher et rebrancher l'alimentation.}.
 
     \subsubsection{\'Etats du réveil}
     Le réveil peut se trouver dans 11 états différents. Ils sont définis en début de programme au moyen de \texttt{\#define}. Ils permettent de structurer le code de manière claire et de gérer chaque événement dans son contexte.
@@ -344,8 +360,10 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     \begin{itemize}
     \item un affichage sur le LCD repris dans la méthode \texttt{refresh\_lcd()} et
     \item une modification à appliquer si on appuie sur l'un des deux boutons repris dans la méthode \texttt{button()}.
-    \end{itemize} 
-    \subsubsection{\texttt{main()}}
+    \end{itemize}
+    
+    
+    \subsubsection{Exécution du programme}
     Après l'initialisation des différents registres nécessaires à son fonctionnement, le programme tourne en boucle pour vérifier
     \begin{itemize}
     \item si l'heure a changé et quelles LED il faut allumer ou éteindre (\texttt{time()})
@@ -363,11 +381,28 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     
  	Nous avons véritablement voulu réduire nos routines d'interruption au strict minimum pour éviter d'avoir des interruptions qui arrivent lorsqu'une autre s'exécute. C'est la fonction \texttt{main()}, et plus particulièrement les fonctions \texttt{time()} et \texttt{button()}, qui vont traiter les informations modifiées dans nos routines.\\
 	
-	Le choix de donner une priorité plus importante à l'incrémentation d'overflows qu'à la pression sur les boutons est assez naturel : nous n'avons pas envie de louper des overflows tandis qu'il est acceptable d'attendre un peu pour les boutons.
+	Le choix de donner une priorité plus importante à l'incrémentation d'overflows qu'à la pression sur les boutons est assez naturel : nous n'avons pas envie de manquer des overflows tandis qu'il est acceptable d'attendre un peu pour les boutons.
 
-    \subsection{Détails techniques du PIC}
+    \subsubsection{Autres choix}
+    Pour ne pas devoir faire de suppositions sur le fonctionnement du compilateur et notamment sur ce qu'il fait des appels de fonctions imbriqués et pour ne pas risquer de faire grandir la taille de la pile plus que nécessaire, nous avons décidé de réduire au maximum les appels de fonctions. C'est pour cette raison que notre programme ne contient que peu de méthodes.\\
+    
+    Nous avons choisi de faire un menu qui comporte relativement beaucoup d'écrans différents.  L'idée principale derrière ce choix est que nous n'avions que deux boutons à notre disposition. Pour cependant avoir les fonctionnalités que nous voulions implémenter, il a donc fallu créer des modes différents dans le contexte desquels les boutons ont des fonctions différentes. Par la suite, nous nous sommes rendues compte d'un autre avantage: notre alarme ne sonne pas lorsque l'utilisateur se trouve dans le menu; étant donné que ce dernier est clairement identifiable et différent du mode ``affichage'', l'utilisateur ne peut pas rester dans le menu sans s'en rendre compte et s'étonner du non fonctionnement de son réveil.\\
+
+En ce qui concerne le réveil en tant que tel, nous avons pris le parti de le laisser activé une fois qu'il a sonné, que l'utilisateur l'ait éteint ou non. Nous avons en effet considéré le cas d'une utilisation quotidienne pour laquelle il est plus aisé de ne pas devoir régler et activer le réveil tous les jours. De même, lorsque le réveil a été postposé (snooze) et ensuite éteint, peu importe le nombre de snoozes et le moment de l'arrêt, il est remis à l'heure initiale.\\
+
+Lors d'un changement manuel de l'heure, l'horloge continue à tourner en temps réel, sans interruption. D'ailleurs, elle ne s'arrête à aucun moment de la manipulation du réveil.\\
+
+Lorsqu'on change l'heure manuellement, les heures, minutes et secondes sont désolidarisées, c'est-à-dire qu'incrémenter les minutes, par exemple, au-delà de 59 aura pour seul effet de les faire repasser à 0, mais pas d'augmenter les heures. Ainsi, un seul appui de trop sur le bouton ne nécessitera pas de devoir reparcourir tout le menu pour accéder à la valeur précédente.
     
     
 \section{Conclusion}
+
+Ce projet nous a permis de travailler sur une machine sans réel système d'exploitation pour la première fois. Nous avons été amenées à directement manipuler des registres et à nous poser des questions de priorité des opérations qui sont habituellement gérées par la machine sur laquelle nous travaillons. Pour implémenter une horloge et un réveil, nous avons dû, plus spécifiquement, utiliser des interruptions et coordonner l'ordre des opérations entre elles. Ensuite, nous avons posé un certain nombre de choix d'implémentations. Certains sont liés aux spécifications de la machine, d'autres reflètent plutôt un fonctionnement désiré du programme. Enfin, comme dans tout projet d'informatique, nous avons parcouru les différentes phases de conception, d'implémentation, de tests et de corrections. Le projet final nous paraît répondre aussi bien aux exigences du cahier des charges qu'aux nôtres.\\
+
+
+\addto\captionsfrench{\renewcommand{\refname}{bib}}
+\addcontentsline{toc}{section}{\refname}
+\bibliographystyle{alpha}
+\bibliography{bib}
     
 \end{document}
