@@ -69,7 +69,7 @@
 #define SNOOZE_MINUTE 5 // délai entre 2 répétitions du réveil
 #define SNOOZE_MAX 12 // nombre maximum de répétitions
 
-#define F 95.366 // nombre d'overflows du timer0 en 1 seconde
+#define F 95.366// nombre d'overflows du timer0 en 1 seconde
 
 /* déclarations des fonctions */
 void time(void);

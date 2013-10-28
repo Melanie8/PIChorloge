@@ -1,6 +1,6 @@
 gplink-0.13.7 beta
 Copyright (c) 1998-2005 gputils project
-Listing File Generated: 10-27-2013  21:13:55
+Listing File Generated: 10-28-2013  08:27:21
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-                                           ; This file was generated Sun Oct 27 21:13:55 2013
+                                           ; This file was generated Mon Oct 28 08:27:21 2013
                                            ;--------------------------------------------------------
                                            ; PIC16 port for the Microchip 16-bit core micros
                                            ;--------------------------------------------------------
@@ -1123,9 +1123,9 @@ Address  Value    Disassembly              Source
 001026   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001028   0e9a     movlw	0x9a               	MOVLW	0x9a
 00102a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00102c   0e89     movlw	0x89               	MOVLW	0x89
+00102c   0e8b     movlw	0x8b               	MOVLW	0x8b
 00102e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001030   0efd     movlw	0xfd               	MOVLW	0xfd
+001030   0e3c     movlw	0x3c               	MOVLW	0x3c
 001032   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001034   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 001036   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1196,9 +1196,9 @@ Address  Value    Disassembly              Source
 0010b4   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0010b6   0ea7     movlw	0xa7               	MOVLW	0xa7
 0010b8   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0010ba   0ea2     movlw	0xa2               	MOVLW	0xa2
+0010ba   0ea4     movlw	0xa4               	MOVLW	0xa4
 0010bc   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0010be   0eb3     movlw	0xb3               	MOVLW	0xb3
+0010be   0e0d     movlw	0xd                	MOVLW	0x0d
 0010c0   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0010c2   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0010c4   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1277,9 +1277,9 @@ Address  Value    Disassembly              Source
 00114c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00114e   0ea4     movlw	0xa4               	MOVLW	0xa4
 001150   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001152   0ed7     movlw	0xd7               	MOVLW	0xd7
+001152   0ed8     movlw	0xd8               	MOVLW	0xd8
 001154   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001156   0e74     movlw	0x74               	MOVLW	0x74
+001156   0ec8     movlw	0xc8               	MOVLW	0xc8
 001158   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00115a   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 00115c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1350,9 +1350,9 @@ Address  Value    Disassembly              Source
 0011da   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0011dc   0eb2     movlw	0xb2               	MOVLW	0xb2
 0011de   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0011e0   0ecf     movlw	0xcf               	MOVLW	0xcf
+0011e0   0ed1     movlw	0xd1               	MOVLW	0xd1
 0011e2   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0011e4   0eae     movlw	0xae               	MOVLW	0xae
+0011e4   0e1f     movlw	0x1f               	MOVLW	0x1f
 0011e6   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0011e8   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0011ea   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1431,9 +1431,9 @@ Address  Value    Disassembly              Source
 001272   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001274   0eaf     movlw	0xaf               	MOVLW	0xaf
 001276   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001278   0ed4     movlw	0xd4               	MOVLW	0xd4
+001278   0ed6     movlw	0xd6               	MOVLW	0xd6
 00127a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00127c   0ec1     movlw	0xc1               	MOVLW	0xc1
+00127c   0e2b     movlw	0x2b               	MOVLW	0x2b
 00127e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001280   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 001282   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -1504,9 +1504,9 @@ Address  Value    Disassembly              Source
 001300   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 001302   0ebe     movlw	0xbe               	MOVLW	0xbe
 001304   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001306   0ebb     movlw	0xbb               	MOVLW	0xbb
+001306   0ebc     movlw	0xbc               	MOVLW	0xbc
 001308   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00130a   0e64     movlw	0x64               	MOVLW	0x64
+00130a   0eee     movlw	0xee               	MOVLW	0xee
 00130c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00130e   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 001310   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -2634,9 +2634,9 @@ Address  Value    Disassembly              Source
 0017da   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0017dc   0ebe     movlw	0xbe               	MOVLW	0xbe
 0017de   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0017e0   0ebb     movlw	0xbb               	MOVLW	0xbb
+0017e0   0ebc     movlw	0xbc               	MOVLW	0xbc
 0017e2   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0017e4   0e64     movlw	0x64               	MOVLW	0x64
+0017e4   0eee     movlw	0xee               	MOVLW	0xee
 0017e6   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0017e8   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0017ea   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
@@ -2732,9 +2732,9 @@ Address  Value    Disassembly              Source
 00189c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 00189e   0ebe     movlw	0xbe               	MOVLW	0xbe
 0018a0   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0018a2   0ebb     movlw	0xbb               	MOVLW	0xbb
+0018a2   0ebc     movlw	0xbc               	MOVLW	0xbc
 0018a4   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0018a6   0e64     movlw	0x64               	MOVLW	0x64
+0018a6   0eee     movlw	0xee               	MOVLW	0xee
 0018a8   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0018aa   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0018ac   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1

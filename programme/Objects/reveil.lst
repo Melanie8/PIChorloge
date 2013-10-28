@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  1
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Oct 15 2013) (Mac OS X ppc)
-               00004 ; This file was generated Sun Oct 27 21:13:55 2013
+               00004 ; This file was generated Mon Oct 28 08:27:21 2013
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _EFLOCONbits
                00053         extern _MACON1bits
                00054         extern _MACON2bits
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  2
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _DDRAbits
                00107         extern _TRISAbits
                00108         extern _DDRBbits
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  3
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _T2CONbits
                00161         extern _T1CONbits
                00162         extern _RCONbits
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  4
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EHT1
                00215         extern _EHT2
                00216         extern _EHT3
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  5
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _EDMADSTH
                00269         extern _EDMACS
                00270         extern _EDMACSL
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  6
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _PORTH
                00323         extern _PORTJ
                00324         extern _LATA
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  7
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _TMR3L
                00377         extern _TMR3H
                00378         extern _CMCON
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  8
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _POSTDEC2
                00431         extern _POSTINC2
                00432         extern _INDF2
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE  9
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00484 ;--------------------------------------------------------
   00000FD8     00485 STATUS  equ     0xfd8
   00000FF9     00486 PCL     equ     0xff9
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 10
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -598,7 +598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00538 r0x10   res     1
                00539 
                00540 udata_reveil_0  udata
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 11
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -658,7 +658,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00592 ;       .line   160; reveil.c   INTCONbits.TMR0IE   = 1; // enables the TMR0 overflow interrupt
 0008 8A00      00593         BSF     _INTCONbits, 5
                00594 ;       .line   161; reveil.c   INTCONbits.TMR0IF   = 0; // clear Timer0 overflow bit
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 12
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -718,7 +718,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00646 ;       .line   193; reveil.c   refresh_lcd(); // met à jour l'affichage
 0044 EC00 F000 00647         CALL    _refresh_lcd
                00648 ;       .line   194; reveil.c   alarm(); // vérifie l'alarme
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 13
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -778,7 +778,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0060 5000      00700         MOVF    r0x01, W
 0062 2600      00701         ADDWF   r0x00, F
 0064 5000      00702         MOVF    r0x02, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 14
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -838,7 +838,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 003C 6EE5      00754         MOVWF   POSTDEC1
 003E EC00 F000 00755         CALL    __modsint
 0042 6E00      00756         MOVWF   r0x00
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 15
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -898,7 +898,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0050 0E00      00808         MOVLW   UPPER(_00322_DS_)
 0052 6EFB      00809         MOVWF   PCLATU
 0054 0E00      00810         MOVLW   HIGH(_00322_DS_)
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 16
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -958,7 +958,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00BC 00862 _00259_DS_:
                00863 ;       .line   358; reveil.c   whereami = DISPLAY;
 00BC 0E09      00864         MOVLW   0x09
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 17
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1018,7 +1018,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00FA 6F00      00916         MOVWF   _stop_ringing, B
                00917 ;       .line   380; reveil.c   amin = amin_o; // remet le réveil à l'heure d'origine
 00FC C000 F000 00918         MOVFF   _amin_o, _amin
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 18
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1078,7 +1078,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0160 0E00      00970         MOVLW   LOW(_00325_DS_)
 0162 2600      00971         ADDWF   r0x04, F
 0164 5000      00972         MOVF    r0x05, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 19
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1138,7 +1138,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01DE CFE9 F000 01024         MOVFF   FSR0L, r0x03
 01E2 0E04      01025         MOVLW   0x04
 01E4 26E1      01026         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 20
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1148,9 +1148,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01E8 6EE5      01028         MOVWF   POSTDEC1
 01EA 0E9A      01029         MOVLW   0x9a
 01EC 6EE5      01030         MOVWF   POSTDEC1
-01EE 0E89      01031         MOVLW   0x89
+01EE 0E8B      01031         MOVLW   0x8b
 01F0 6EE5      01032         MOVWF   POSTDEC1
-01F2 0EFD      01033         MOVLW   0xfd
+01F2 0E3C      01033         MOVLW   0x3c
 01F4 6EE5      01034         MOVWF   POSTDEC1
 01F6 5000      01035         MOVF    r0x03, W
 01F8 6EE5      01036         MOVWF   POSTDEC1
@@ -1198,7 +1198,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0258 0000      01078         BANKSEL _overflows
 025A 5100      01079         MOVF    _overflows, W, B
 025C 6EE5      01080         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 21
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1215,9 +1215,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0276 6EE5      01089         MOVWF   POSTDEC1
 0278 0EA7      01090         MOVLW   0xa7
 027A 6EE5      01091         MOVWF   POSTDEC1
-027C 0EA2      01092         MOVLW   0xa2
+027C 0EA4      01092         MOVLW   0xa4
 027E 6EE5      01093         MOVWF   POSTDEC1
-0280 0EB3      01094         MOVLW   0xb3
+0280 0E0D      01094         MOVLW   0x0d
 0282 6EE5      01095         MOVWF   POSTDEC1
 0284 5000      01096         MOVF    r0x03, W
 0286 6EE5      01097         MOVWF   POSTDEC1
@@ -1258,7 +1258,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02D6 5100      01132         MOVF    _tmin, W, B
 02D8 0A3B      01133         XORLW   0x3b
 02DA E000      01134         BZ      _00329_DS_
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 22
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1290,9 +1290,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 030E 6EE5      01158         MOVWF   POSTDEC1
 0310 0EA4      01159         MOVLW   0xa4
 0312 6EE5      01160         MOVWF   POSTDEC1
-0314 0ED7      01161         MOVLW   0xd7
+0314 0ED8      01161         MOVLW   0xd8
 0316 6EE5      01162         MOVWF   POSTDEC1
-0318 0E74      01163         MOVLW   0x74
+0318 0EC8      01163         MOVLW   0xc8
 031A 6EE5      01164         MOVWF   POSTDEC1
 031C 5000      01165         MOVF    r0x03, W
 031E 6EE5      01166         MOVWF   POSTDEC1
@@ -1318,7 +1318,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 034E 5000      01186         MOVF    r0x00, W
 0350 6EE5      01187         MOVWF   POSTDEC1
 0352 EC00 F000 01188         CALL    ___fs2ulong
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 23
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1357,9 +1357,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 039C 6EE5      01219         MOVWF   POSTDEC1
 039E 0EB2      01220         MOVLW   0xb2
 03A0 6EE5      01221         MOVWF   POSTDEC1
-03A2 0ECF      01222         MOVLW   0xcf
+03A2 0ED1      01222         MOVLW   0xd1
 03A4 6EE5      01223         MOVWF   POSTDEC1
-03A6 0EAE      01224         MOVLW   0xae
+03A6 0E1F      01224         MOVLW   0x1f
 03A8 6EE5      01225         MOVWF   POSTDEC1
 03AA 5000      01226         MOVF    r0x03, W
 03AC 6EE5      01227         MOVWF   POSTDEC1
@@ -1378,7 +1378,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 03CE 26E1      01240         ADDWF   FSR1L, F
 03D0 5000      01241         MOVF    r0x03, W
 03D2 6EE5      01242         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 24
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1432,13 +1432,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0434 6EE5      01288         MOVWF   POSTDEC1
 0436 0EAF      01289         MOVLW   0xaf
 0438 6EE5      01290         MOVWF   POSTDEC1
-043A 0ED4      01291         MOVLW   0xd4
+043A 0ED6      01291         MOVLW   0xd6
 043C 6EE5      01292         MOVWF   POSTDEC1
-043E 0EC1      01293         MOVLW   0xc1
+043E 0E2B      01293         MOVLW   0x2b
 0440 6EE5      01294         MOVWF   POSTDEC1
 0442 5000      01295         MOVF    r0x03, W
 0444 6EE5      01296         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 25
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1498,16 +1498,16 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 04C0 0E42      01348         MOVLW   0x42
 04C2 6EE5      01349         MOVWF   POSTDEC1
 04C4 0EBE      01350         MOVLW   0xbe
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 26
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 04C6 6EE5      01351         MOVWF   POSTDEC1
-04C8 0EBB      01352         MOVLW   0xbb
+04C8 0EBC      01352         MOVLW   0xbc
 04CA 6EE5      01353         MOVWF   POSTDEC1
-04CC 0E64      01354         MOVLW   0x64
+04CC 0EEE      01354         MOVLW   0xee
 04CE 6EE5      01355         MOVWF   POSTDEC1
 04D0 5000      01356         MOVF    r0x03, W
 04D2 6EE5      01357         MOVWF   POSTDEC1
@@ -1558,7 +1558,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 052E D000      01402         BRA     _00299_DS_
 0530 01403 _00283_DS_:
 0530 0000      01404         BANKSEL _ahour
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 27
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 27
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1618,7 +1618,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0572 2AE1      01456         INCF    FSR1L, F
 0574 0000      01457         BANKSEL _snooze
                01458 ;       .line   442; reveil.c   snooze++; // augmente le compteur de snooze
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 28
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1678,7 +1678,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0014 0000      01510         BANKSEL _tmin
 0016 5100      01511         MOVF    _tmin, W, B
 0018 0000      01512         BANKSEL _amin
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 29
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1738,7 +1738,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0066 C000 F000 01564         MOVFF   _amin_o, _amin
 006A 0000      01565         BANKSEL _snooze
                01566 ;       .line   326; reveil.c   snooze = 0;
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 30
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1798,7 +1798,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0058 EF00 F000 01618         GOTO    _00193_DS_
 005C 0000      01619         BANKSEL _whereami
 005E 0500      01620         DECF    _whereami, W, B
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 31
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1858,7 +1858,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00DE 6EE5      01672         MOVWF   POSTDEC1
 00E0 5000      01673         MOVF    r0x01, W
 00E2 6EE5      01674         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 32
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1918,7 +1918,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 014E 01726 _00175_DS_:
                01727 ;       .line   253; reveil.c   thour, tmin, tsec);
 014E C000 F000 01728         MOVFF   _tsec, r0x00
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 33
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1978,7 +1978,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01BA 6E00      01780         MOVWF   r0x07
 01BC 0E00      01781         MOVLW   LOW(_display)
 01BE 6E00      01782         MOVWF   r0x06
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 34
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2038,7 +2038,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0222 EC00 F000 01834         CALL    _sprintf
 0226 0E06      01835         MOVLW   0x06
 0228 26E1      01836         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 35
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2098,7 +2098,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0288 0E06      01888         MOVLW   0x06
 028A 26E1      01889         ADDWF   FSR1L, F
                01890 ;       .line   267; reveil.c   break;
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 36
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2158,7 +2158,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02EE 6E00      01942         MOVWF   r0x06
 02F0 5000      01943         MOVF    r0x01, W
 02F2 6EE5      01944         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 37
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 37
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2218,7 +2218,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 035C 6EE5      01996         MOVWF   POSTDEC1
 035E 5000      01997         MOVF    r0x02, W
 0360 6EE5      01998         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 38
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 38
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2278,7 +2278,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 03CA 5000      02050         MOVF    r0x05, W
 03CC 6EE5      02051         MOVWF   POSTDEC1
 03CE 5000      02052         MOVF    r0x04, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 39
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 39
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2338,7 +2338,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0436 5000      02104         MOVF    r0x08, W
 0438 6EE5      02105         MOVWF   POSTDEC1
 043A 5000      02106         MOVF    r0x07, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 40
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 40
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2398,7 +2398,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 04A6 5000      02158         MOVF    r0x09, W
 04A8 6EE5      02159         MOVWF   POSTDEC1
 04AA 5000      02160         MOVF    r0x08, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 41
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 41
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2458,7 +2458,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 051A 6EE5      02212         MOVWF   POSTDEC1
 051C 5000      02213         MOVF    r0x04, W
 051E 6EE5      02214         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 42
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 42
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2518,7 +2518,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0584 26E1      02266         ADDWF   FSR1L, F
 0586 02267 _00194_DS_:
                02268 ;       .line   300; reveil.c   DisplayString(0, display);
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 43
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 43
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2578,7 +2578,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 002A 5100      02320         MOVF    (_overflows + 3), W, B
 002C 6EE5      02321         MOVWF   POSTDEC1
 002E 0000      02322         BANKSEL (_overflows + 2)
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 44
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 44
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2603,9 +2603,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0058 6EE5      02339         MOVWF   POSTDEC1
 005A 0EBE      02340         MOVLW   0xbe
 005C 6EE5      02341         MOVWF   POSTDEC1
-005E 0EBB      02342         MOVLW   0xbb
+005E 0EBC      02342         MOVLW   0xbc
 0060 6EE5      02343         MOVWF   POSTDEC1
-0062 0E64      02344         MOVLW   0x64
+0062 0EEE      02344         MOVLW   0xee
 0064 6EE5      02345         MOVWF   POSTDEC1
 0066 5000      02346         MOVF    r0x03, W
 0068 6EE5      02347         MOVWF   POSTDEC1
@@ -2638,7 +2638,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00AC CFE9 F000 02374         MOVFF   FSR0L, (_sec + 3)
 00B0 0E04      02375         MOVLW   0x04
 00B2 26E1      02376         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 45
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 45
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2691,14 +2691,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 011A 6EE5      02421         MOVWF   POSTDEC1
 011C 0EBE      02422         MOVLW   0xbe
 011E 6EE5      02423         MOVWF   POSTDEC1
-0120 0EBB      02424         MOVLW   0xbb
+0120 0EBC      02424         MOVLW   0xbc
 0122 6EE5      02425         MOVWF   POSTDEC1
-0124 0E64      02426         MOVLW   0x64
+0124 0EEE      02426         MOVLW   0xee
 0126 6EE5      02427         MOVWF   POSTDEC1
 0128 5000      02428         MOVF    r0x03, W
 012A 6EE5      02429         MOVWF   POSTDEC1
 012C 5000      02430         MOVF    r0x02, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 46
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 46
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2758,7 +2758,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01A4 CFF3 F000 02482         MOVFF   PRODL, r0x01
 01A8 CFF4 F000 02483         MOVFF   PRODH, r0x02
 01AC CFE9 F000 02484         MOVFF   FSR0L, r0x03
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 47
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 47
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2818,7 +2818,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 021E CFF3 F000 02536         MOVFF   PRODL, r0x05
 0222 CFF4 F000 02537         MOVFF   PRODH, r0x06
 0226 CFE9 F000 02538         MOVFF   FSR0L, r0x07
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 48
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 48
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2878,7 +2878,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0296 0E3C      02590         MOVLW   0x3c
 0298 6EE5      02591         MOVWF   POSTDEC1
 029A 5000      02592         MOVF    r0x03, W
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 49
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 49
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2938,7 +2938,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                02644 ;       .line   213; reveil.c   if (tmin != m)
 02FC 5100      02645         MOVF    _tmin, W, B
 02FE 0000      02646         BANKSEL _m
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 50
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 50
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2998,7 +2998,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 034A 5100      02698         MOVF    _whereami, W, B
 034C 0A0A      02699         XORLW   0x0a
 034E E100      02700         BNZ     _00142_DS_
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 51
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 51
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3058,7 +3058,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0040 0000      02752         BANKSEL _button2
 0042 6F00      02753         MOVWF   _button2, B
                02754 ;       .line   146; reveil.c   INTCON3bits.INT1F = 0;
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 52
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 52
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3118,7 +3118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 004C CFE4 FFFB 02806         MOVFF   PREINC1, PCLATU
 0050 CFE4 FFFA 02807         MOVFF   PREINC1, PCLATH
 0054 CFE4 FFEA 02808         MOVFF   PREINC1, FSR0H
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 53
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 53
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3178,7 +3178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00FC 2020 2020 02838         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20
      2020 2020 
      2020 2020 
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 54
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 54
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3238,7 +3238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01A4 2020 2020 02864         DB      0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x25, 0x30, 0x32
      2020 2020 
      2520 3230 
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 55
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 55
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3298,7 +3298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
      2520 3230 
 025E 3A75 3025 02890         DB      0x75, 0x3a, 0x25, 0x30, 0x32, 0x75, 0x20, 0x00
      7532 0020 
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 56
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 56
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3337,7 +3337,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                02908 ; access size:     17 (0x0011) bytes
                02909 
                02910 
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 57
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 57
 
 
 SYMBOL TABLE
@@ -3396,7 +3396,7 @@ _00245_DS_                        0000003C
 _00255_DS_                        0000009C
 _00256_DS_                        000000A4
 _00257_DS_                        000000AC
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 58
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 58
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3456,7 +3456,7 @@ _BAUDCON                          00000000
 _BAUDCON1                         00000000
 _BAUDCON1bits                     00000000
 _BAUDCON2                         00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 59
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 59
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3516,7 +3516,7 @@ _DDRG                             00000000
 _DDRGbits                         00000000
 _DDRH                             00000000
 _DDRHbits                         00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 60
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 60
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3576,7 +3576,7 @@ _EHT0                             00000000
 _EHT1                             00000000
 _EHT2                             00000000
 _EHT3                             00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 61
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 61
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3636,7 +3636,7 @@ _ETXSTL                           00000000
 _EWOLIE                           00000000
 _EWOLIEbits                       00000000
 _EWOLIR                           00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 62
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 62
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3696,7 +3696,7 @@ _MAADR6                           00000000
 _MABBIPG                          00000000
 _MACLCON1                         00000000
 _MACLCON1bits                     00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 63
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 63
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3756,7 +3756,7 @@ _PIR3bits                         00000000
 _PLUSW0                           00000000
 _PLUSW1                           00000000
 _PLUSW2                           00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 64
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 64
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3816,7 +3816,7 @@ _SPBRGH2                          00000000
 _SSP1ADD                          00000000
 _SSP1BUF                          00000000
 _SSP1CON1                         00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 65
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 65
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3876,7 +3876,7 @@ _TOSL                             00000000
 _TOSU                             00000000
 _TRISA                            00000000
 _TRISAbits                        00000000
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 66
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 66
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3936,7 +3936,7 @@ __str_6                           00000150
 __str_7                           00000172
 __str_8                           00000198
 __str_9                           000001BE
-gpasm-0.13.7 beta               Objects/reveil.asm10-27-2013  21:13:55         PAGE 67
+gpasm-0.13.7 beta               Objects/reveil.asm10-28-2013  08:27:21         PAGE 67
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
