@@ -25,6 +25,7 @@
 \usepackage{multirow}
 \usepackage{eurosym}
 \usepackage[squaren,Gray]{SIunits}
+\usepackage{url}
 
 % Margins
 %\topmargin=-0.45in
@@ -124,7 +125,7 @@ Groupe 43\\
 
 \section{Introduction}
 
-Le but de ce mini-projet a été de nous familiariser avec la programmation en C sur une machine dite ``nue'', c'est-à-dire sans réel système d'exploitation. Pour cela nous avons programmé un réveil matin sur une carte OLIMEX PIC MaxiWeb. Cette carte inclut un microcontrôleur de la firme Microchip et les programmes y ont un accès direct à la mémoire et aux périphériques. En particulier, nous avons dû utiliser nous-mêmes les interruptions du ``timer'' pour déterminer l'heure.\\
+Le but de ce mini-projet a été de nous familiariser avec la programmation en C sur une machine dite ``nue'', c'est-à-dire sans réel système d'exploitation. Pour cela nous avons programmé un réveil matin sur une carte OLIMEX PIC MaxiWeb. Cette carte inclut un microcontrôleur de la firme Microchip et les programmes y ont un accès direct à la mémoire et aux périphériques. En particulier, nous avons dû utiliser nous-mêmes les interruptions du ``timer'' pour déterminer l'heure. \cite{foditic}\\
 
 Vous trouverez dans ce rapport des explications utiles pour l'utilisateur (c'est-à-dire tout ce qui concerne simplement l'utilisation du réveil lorsqu'il est déjà installé sur le PIC), pour l'installateur (les instructions décrivant comment compiler, installer sur le PIC et tester notre programme) et pour le programmeur (tout ce qui est nécessaire à un programmeur qui désirerait adapter notre programme). Dans cette dernière partie, nous détaillerons notamment les spécifications de notre programme, la façon dont nous mesurons le temps qui passe, ainsi que nos divers choix d'implémentation.
 
@@ -259,7 +260,7 @@ Pour quitter le client tftp, tapez
 \begin{verbatim}
     my_computer $ tftp> quit               // press 'enter'
 \end{verbatim}
-Le programme se lance automatiquement sur le PIC. Pour le faire redémarrer, appuyez sur le bouton ``reset''.
+Le programme se lance automatiquement sur le PIC. Pour le faire redémarrer, appuyez sur le bouton ``reset''. Vous pouvez à présent débrancher les câbles ethernet.
 
 \subsection{Tests}
 Pour évaluer le bon fonctionnement du réveil, nous vous suggérons les tests suivants.
@@ -337,7 +338,7 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     
     Ce que nous avons finalement fait pour garder notre précision est de garder un compteur du nombre d'overflows depuis le lancement du programme. Nous pouvons ensuite convertir ce compteur en un délai heure, minute, seconde sur base de simples calculs basés sur le fait que $1$ seconde correspond à $95,336$ overflows. Il suffit alors de modifier ces variables lorsque nos calculs aboutissent à des valeurs différentes. La modification de l'heure par l'utilisateur modifiera donc directement cette unique valeur aussi. Il faudrait juste ajouter à \texttt{overflows} le nombre d'overflows adéquat.\\
     
-    Pour pouvoir compter le temps le plus longtemps possible, nous avons choisi de stocker le compte des overflows dans une variable de type \texttt{unsigned long long}. Celle-ci nous permet de compter jusqu'à $2^{64}$ ticks, ce qui correspond à environ $5,37 \cdot 10^{13}$ heures. Nous estimons qu'à cette échelle, le réveil fait preuve d'une durée de vie assez longue avant de devoir être resetté, ce qui peut se faire très facilement\footnote{Il suffit d'appuyer sur le bouton ``reset'' du PIC ou de débrancher et rebrancher l'alimentation} .
+    Pour pouvoir compter le temps le plus longtemps possible, nous avons choisi de stocker le compte des overflows dans une variable de type \texttt{unsigned long long}. Celle-ci nous permet de compter jusqu'à $2^{64}$ ticks, ce qui correspond à environ $5,37 \cdot 10^{13}$ heures. Nous estimons qu'à cette échelle, le réveil fait preuve d'une durée de vie assez longue avant de devoir être resetté, ce qui peut se faire très facilement\footnote{Il suffit d'appuyer sur le bouton ``reset'' du PIC ou de débrancher et rebrancher l'alimentation.}.
 
     \subsubsection{\'Etats du réveil}
     Le réveil peut se trouver dans 11 états différents. Ils sont définis en début de programme au moyen de \texttt{\#define}. Ils permettent de structurer le code de manière claire et de gérer chaque événement dans son contexte.
@@ -359,8 +360,10 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     \begin{itemize}
     \item un affichage sur le LCD repris dans la méthode \texttt{refresh\_lcd()} et
     \item une modification à appliquer si on appuie sur l'un des deux boutons repris dans la méthode \texttt{button()}.
-    \end{itemize} 
-    \subsubsection{\texttt{main()}}
+    \end{itemize}
+    
+    
+    \subsubsection{Exécution du programme}
     Après l'initialisation des différents registres nécessaires à son fonctionnement, le programme tourne en boucle pour vérifier
     \begin{itemize}
     \item si l'heure a changé et quelles LED il faut allumer ou éteindre (\texttt{time()})
@@ -378,12 +381,24 @@ f_{hardware} &=& 6249906,176 \cdot 4 = \unit{24999624}{\hertz}
     
  	Nous avons véritablement voulu réduire nos routines d'interruption au strict minimum pour éviter d'avoir des interruptions qui arrivent lorsqu'une autre s'exécute. C'est la fonction \texttt{main()}, et plus particulièrement les fonctions \texttt{time()} et \texttt{button()}, qui vont traiter les informations modifiées dans nos routines.\\
 	
-	Le choix de donner une priorité plus importante à l'incrémentation d'overflows qu'à la pression sur les boutons est assez naturel : nous n'avons pas envie de louper des overflows tandis qu'il est acceptable d'attendre un peu pour les boutons.
+	Le choix de donner une priorité plus importante à l'incrémentation d'overflows qu'à la pression sur les boutons est assez naturel : nous n'avons pas envie de manquer des overflows tandis qu'il est acceptable d'attendre un peu pour les boutons.
 
-    \subsection{Détails techniques du PIC}
+    \subsubsection{Autres choix}
+    Pour ne pas devoir faire de suppositions sur le fonctionnement du compilateur et notamment sur ce qu'il fait des appels de fonctions imbriqués et pour ne pas risquer de faire grandir la taille de la pile plus que nécessaire, nous avons décidé de réduire au maximum les appels de fonctions. C'est pour cette raison que notre programme ne contient que peu de méthodes.\\
+    
+    Nous avons choisi de faire un menu qui comporte relativement beaucoup d'écrans différents.  L'idée principale derrière ce choix est que nous n'avions que deux boutons à notre disposition. Pour cependant avoir les fonctionnalités que nous voulions implémenter, il a donc fallu créer des modes différents dans le contexte desquels les boutons ont des fonctions différentes. Par la suite, nous nous sommes rendues compte d'un autre avantage: notre alarme ne sonne pas lorsque l'utilisateur se trouve dans le menu; étant donné que ce dernier est clairement identifiable et différent du mode ``affichage'', l'utilisateur ne peut pas rester dans le menu sans s'en rendre compte et s'étonner du non fonctionnement de son réveil.\\
+
+En ce qui concerne le réveil en tant que tel, nous avons pris le parti de le laisser activé une fois qu'il a sonné, que l'utilisateur l'ait éteint ou non. Nous avons en effet considéré le cas d'une utilisation quotidienne pour laquelle il est plus aisé de ne pas devoir régler et activer le réveil tous les jours. De même, lorsque le réveil a été postposé (snooze) et ensuite éteint, peu importe le nombre de snoozes et le moment de l'arrêt, il est remis à l'heure initiale.\\
+
+Lors d'un changement manuel de l'heure, l'horloge continue à tourner en temps réel, sans interruption. D'ailleurs, elle ne s'arrête à aucun moment de la manipulation du réveil.\\
+
+Lorsqu'on change l'heure manuellement, les heures, minutes et secondes sont désolidarisées, c'est-à-dire qu'incrémenter les minutes, par exemple, au-delà de 59 aura pour seul effet de les faire repasser à 0, mais pas d'augmenter les heures. Ainsi, un seul appui de trop sur le bouton ne nécessitera pas de devoir reparcourir tout le menu pour accéder à la valeur précédente.
     
     
 \section{Conclusion}
+
+Ce projet nous a permis de travailler sur une machine sans réel système d'exploitation pour la première fois. Nous avons été amenées à directement manipuler des registres et à nous poser des questions de priorité des opérations qui sont habituellement gérées par la machine sur laquelle nous travaillons. Pour implémenter une horloge et un réveil, nous avons dû, plus spécifiquement, utiliser des interruptions et coordonner l'ordre des opérations entre elles. Ensuite, nous avons posé un certain nombre de choix d'implémentations. Certains sont liés aux spécifications de la machine, d'autres reflètent plutôt un fonctionnement désiré du programme. Enfin, comme dans tout projet d'informatique, nous avons parcouru les différentes phases de conception, d'implémentation, de tests et de corrections. Le projet final nous paraît répondre aussi bien aux exigences du cahier des charges qu'aux nôtres.\\
+
 
 \addto\captionsfrench{\renewcommand{\refname}{bib}}
 \addcontentsline{toc}{section}{\refname}
