@@ -10,13 +10,15 @@
 \contentsline {section}{\numberline {3}Documentation pour l'installateur}{4}
 \contentsline {subsection}{\numberline {3.1}Compilation}{4}
 \contentsline {subsection}{\numberline {3.2}Installation}{4}
+\contentsline {subsection}{\numberline {3.3}Tests}{5}
 \contentsline {section}{\numberline {4}Documentation pour le programmeur}{5}
 \contentsline {subsection}{\numberline {4.1}Sp\IeC {\'e}cifications}{5}
 \contentsline {subsection}{\numberline {4.2}Fr\IeC {\'e}quence du PIC}{5}
 \contentsline {subsection}{\numberline {4.3}Choix d'impl\IeC {\'e}mentation}{6}
 \contentsline {subsubsection}{\numberline {4.3.1}Mesure du temps}{6}
-\contentsline {subsubsection}{\numberline {4.3.2}\'Etats du r\IeC {\'e}veil}{7}
-\contentsline {subsubsection}{\numberline {4.3.3}\texttt {main()}}{7}
+\contentsline {subsubsection}{\numberline {4.3.2}\'Etats du r\IeC {\'e}veil}{8}
+\contentsline {subsubsection}{\numberline {4.3.3}\texttt {main()}}{8}
 \contentsline {subsubsection}{\numberline {4.3.4}Interruptions}{8}
-\contentsline {subsection}{\numberline {4.4}D\IeC {\'e}tails techniques du PIC}{8}
-\contentsline {section}{\numberline {5}Conclusion}{8}
+\contentsline {subsection}{\numberline {4.4}D\IeC {\'e}tails techniques du PIC}{9}
+\contentsline {section}{\numberline {5}Conclusion}{9}
+\contentsline {section}{R{\'e}f{\'e}rences}{9}
